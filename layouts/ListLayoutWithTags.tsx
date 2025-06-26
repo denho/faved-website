@@ -17,6 +17,7 @@ interface PaginationProps {
 interface ListLayoutProps {
   posts: CoreContent<Blog>[]
   title: string
+  subheading: string
   initialDisplayPosts?: CoreContent<Blog>[]
   pagination?: PaginationProps
 }
@@ -151,6 +152,77 @@ export default function ListLayoutWithTags({
                         </div>
                         <div className="prose max-w-none text-gray-500 dark:text-gray-400">
                           {summary}
+                        </div>
+                      </div>
+                    </article>
+                  </li>
+                )
+              })}
+            </ul>
+            {pagination && pagination.totalPages > 1 && (
+              <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
+            )}
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}
+
+export function ListLayoutWithoutTags({
+  posts,
+  title,
+  initialDisplayPosts = [],
+  pagination,
+  subheading,
+}: ListLayoutProps) {
+  const pathname = usePathname()
+  const tagCounts = tagData as Record<string, number>
+  const tagKeys = Object.keys(tagCounts)
+  const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
+
+  const displayPosts = initialDisplayPosts.length > 0 ? initialDisplayPosts : posts
+
+  return (
+    <>
+      <div className="divide-y divide-gray-200 dark:divide-gray-700">
+        <div className="pt-6 pb-6">
+          <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 dark:text-gray-100">
+            {title}
+          </h1>
+          <p className="mt-4 text-lg leading-7 text-gray-500 dark:text-gray-400">{desc}</p>
+        </div>
+        <div className="flex sm:space-x-24">
+          <div>
+            <ul className="divide-y divide-gray-200 dark:divide-gray-700">
+              {displayPosts.map((post) => {
+                const { path, date, title, summary, tags } = post
+                return (
+                  <li key={path} className="py-8">
+                    <article>
+                      <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
+                        <dl>
+                          <dt className="sr-only">Published on</dt>
+                          <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400">
+                            <time dateTime={date} suppressHydrationWarning>
+                              {formatDate(date, siteMetadata.locale)}
+                            </time>
+                          </dd>
+                        </dl>
+                        <div className="space-y-3 xl:col-span-3">
+                          <div>
+                            <h2 className="text-2xl leading-8 font-bold tracking-tight">
+                              <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
+                                {title}
+                              </Link>
+                            </h2>
+                            <div className="mt-2 flex flex-wrap">
+                              {tags?.map((tag) => <Tag key={tag} text={tag} />)}
+                            </div>
+                          </div>
+                          <div className="prose max-w-none text-gray-500 dark:text-gray-400">
+                            {summary}
+                          </div>
                         </div>
                       </div>
                     </article>

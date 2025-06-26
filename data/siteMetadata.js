@@ -7,7 +7,7 @@ const siteMetadata = {
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://faved.dev',
-  siteRepo: 'https://github.com/denho/faved-site',
+  siteRepo: 'https://github.com/denho/faved-website',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/faved-logo-blue.png`,
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
   // mastodon: 'https://mastodon.social/@mastodonuser',
