@@ -19,7 +19,7 @@ export default function Footer() {
           <SocialIcon kind="threads" href={siteMetadata.threads} size={6} />
           <SocialIcon kind="medium" href={siteMetadata.medium} size={6} />
         </div>
-        <div className="items-center mb-8 flex flex-col space-y-2 text-sm text-gray-500 dark:text-gray-400">
+        <div className="mb-8 flex flex-col items-center space-y-2 text-sm text-gray-500 dark:text-gray-400">
           <b>Save. Organize. Own.</b>
           <span>
             Faved is a fast, open-source, self-hosted bookmark manager built for people who want
