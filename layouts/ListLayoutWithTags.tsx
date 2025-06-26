@@ -176,7 +176,6 @@ export function ListLayoutWithoutTags({
   pagination,
   subheading,
 }: ListLayoutProps) {
-
   const displayPosts = initialDisplayPosts.length > 0 ? initialDisplayPosts : posts
 
   return (
