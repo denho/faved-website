@@ -19,9 +19,12 @@ export default function Footer() {
           <SocialIcon kind="threads" href={siteMetadata.threads} size={6} />
           <SocialIcon kind="medium" href={siteMetadata.medium} size={6} />
         </div>
-        <div className="mb-2 flex space-x-2 text-sm text-gray-500 dark:text-gray-400">
-          <Link href="/">{siteMetadata.title}</Link>
-          <div>{` • `}</div>
+        <div className="items-center mb-8 flex flex-col space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <b>Save. Organize. Own.</b>
+          <span>
+            Faved is a fast, open-source, self-hosted bookmark manager built for people who want
+            full control over their links and data.
+          </span>
           <div>{`© ${new Date().getFullYear()}`}</div>
         </div>
       </div>
