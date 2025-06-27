@@ -24,7 +24,7 @@ const MAX_DISPLAY = 5
 export default function Home({ posts }) {
   return (
     <div className="divide-y divide-gray-200 dark:divide-gray-700">
-      <div className="py-16 sm:py-24 lg:grid xl:grid-cols-12 xl:gap-x-12">
+      <div className="pt-4 pb-4 sm:pt-8 sm:pb-24 lg:grid lg:pt-16 xl:grid-cols-12 xl:gap-x-12">
         <div className="px-6 lg:px-0 xl:col-span-6">
           <div className="mx-auto max-w-2xl lg:mx-0">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl dark:text-gray-100">
