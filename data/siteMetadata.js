@@ -3,7 +3,7 @@ const siteMetadata = {
   title: 'Faved - Organize Your Bookmarks',
   author: 'Denis Dvali',
   headerTitle: 'Faved',
-  description: 'Faved updates, tutorials and product announcements',
+  description: 'Free, open-source bookmark manager: superfast, lightweight, and secure. Organize with customisable nested tags, save web pages from any browser via a bookmarklet.',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://faved.dev',
