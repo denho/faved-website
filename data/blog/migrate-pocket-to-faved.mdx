@@ -1,0 +1,50 @@
+---
+title: 'How to Migrate Your Data from Pocket to Faved'
+date: '2025-06-30'
+tags: ['Tutorial']
+draft: false
+summary: 'Pocket is shutting down on July 8, 2025. As a privacy-first alternative, Faved lets you organize and manage your bookmarks while keeping full ownership of your data. Learn how to migrate your data from Pocket to Faved in a few simple steps.'
+---
+
+As you probably already know, Pocket is [shutting down](https://getpocket.com/farewell) its service on **July 8, 2025**.
+This means that you will no longer be able to access your articles and other content saved in Pocket after that date: the app and browser extension will stop working, and website will transition into export-only mode.
+You will be able to export your data until **October 8, 2025**.
+
+Faved is a great alternative to Pocket. Not only it lets you seamlessly organize your links, articles, and other web content - it also gives you full control and ownership of your data.
+Faved database is stored locally on your computer or server, and is never sent to any third-party servers.
+
+If you want to migrate your data from Pocket to Faved, you can do it in a few simple steps.
+
+## 📤 Step 1: Export Your Data from Pocket
+
+> [!TIP]
+> For some reason, Pocket does not include article excerpts and sometimes even titles in the export file for articles not attached to a collection.
+>
+> If you don't already have all your Pocket articles attached to collection(s), create a new collection in Pocket and add all your saved articles to it. This will improve the quantity and quality of data Pocket will include in the export file.
+
+1. Go to the Pocket export page https://getpocket.com/export. Sign in to your Pocket account if you’re not already logged in.
+   ![Pocket export page](/static/images/posts/migrate-pocket-to-faved/pocket-export-screen.png)
+
+2. Click on the **Export CSV file** link to initiate the data export process. It will take a few minutes to prepare the file for download. When the export file is ready, you will receive a message to the email address linked to your Pocket account.
+
+> [!NOTE]  
+> Even though it says export _can take up to 24 hours_, the download link usually arrives in less than five minutes.
+
+3. Check your inbox for email with subject **Update on your Pocket data export**. Click the provided link and download your export file. This will be a ZIP file containing all your saved and archived article links, tags, collections, and notes.
+
+## 📥 Step 2: Import Your Data to Faved
+
+1. Open Faved in browser and go to the **Import from Pocket** page. ![Import from Pocket button](/static/images/posts/migrate-pocket-to-faved/import-from-pocket-button.png)
+2. Click **Choose file** and select the ZIP file you downloaded from Pocket. You don't need to unzip it, Faved will do it for you.![Import from Pocket screen](/static/images/posts/migrate-pocket-to-faved/import-from-pocket-screen.png)
+3. Click the **Import Bookmarks** button to start the import process. Faved will read the ZIP file and extract the data from it. This will take just a few seconds depending on the size of your export file.
+4. Once the import is complete, you will see a success message with the number of bookmarks imported. ![Import from Pocket success message](/static/images/posts/migrate-pocket-to-faved/import-from-pocket-success.png)
+
+## ✅ Step 3: Review Your Imported Links and Ensure Everything Looks Good
+
+- All imported bookmarks will have **Imported from Pocket** tag.
+- Unread and Archived bookmarks will be assigned corresponding tags under **Status** parent tag.
+- Collections will be imported as tags under **Collections** parent tag.
+- Collection descriptions will be preserved as tag descriptions.
+- Collection bookmark notes will be saved as bookmark comments.
+
+If you notice any issues with the imported data, feel free to [open an issue](https://github.com/denho/faved/issues) on GitHub. If you have any questions or suggestions, you can also reach out by opening a discussion [here](https://github.com/denho/faved/discussions).
