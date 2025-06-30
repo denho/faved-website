@@ -13,7 +13,7 @@ const siteMetadata = {
   // mastodon: 'https://mastodon.social/@mastodonuser',
   // email: 'address@yoursite.com',
   github: 'https://github.com/denho/faved',
-  // x: 'https://twitter.com/x',
+  x: 'https://x.com/FavedTool',
   // twitter: 'https://twitter.com/Twitter',
   // facebook: 'https://facebook.com',
   // youtube: 'https://youtube.com',
