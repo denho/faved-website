@@ -56,7 +56,7 @@ export default function Home({ posts }) {
             </div>
           </div>
         </div>
-        <div className="-mx-20 mt-12 flex items-center justify-center px-6 md:px-0">
+        <div className="mt-12 flex items-center justify-center lg:-mx-20">
           <Image
             alt="Faved application screenshot"
             src="/static/images/screenshot-list-desktop-mobile-ff.png"
