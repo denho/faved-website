@@ -24,18 +24,17 @@ const MAX_DISPLAY = 5
 export default function Home({ posts }) {
   return (
     <div className="divide-y divide-gray-200 dark:divide-gray-700">
-      <div className="pt-4 pb-4 sm:pt-8 sm:pb-24 lg:grid lg:pt-16 xl:grid-cols-12 xl:gap-x-12">
-        <div className="px-6 lg:px-0 xl:col-span-6">
-          <div className="mx-auto max-w-2xl lg:mx-0">
+      <div className="pt-4 pb-4 sm:pt-8 sm:pb-24">
+        <div className="px-6 md:px-0">
+          <div className="mx-auto max-w-2xl text-center">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl dark:text-gray-100">
-              Organize Your Bookmarks with{' '}
-              <span className="text-primary-600 dark:text-primary-400">Faved</span>
+              Save. Organize. Own.
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
-              A self-hosted, open-source solution to store, categorize, and access your bookmarks
-              from anywhere.
+              Faved is a self-hosted, open-source solution to store, categorize, and access your
+              saved web content and links from anywhere.
             </p>
-            <div className="mt-10 flex items-center gap-x-6">
+            <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
                 className="bg-primary-600 hover:bg-primary-500 focus-visible:outline-primary-600 flex items-center rounded-md px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                 href="https://github.com/denho/faved"
@@ -57,13 +56,14 @@ export default function Home({ posts }) {
             </div>
           </div>
         </div>
-        <div className="flex items-center justify-center px-6 pt-12 lg:px-0 xl:col-span-6 xl:pt-0">
+        <div className="-mx-20 mt-12 flex items-center justify-center px-6 md:px-0">
           <Image
             alt="Faved application screenshot"
-            src="/static/images/hero-image.png"
-            width={600}
-            height={400}
-            className="rounded-lg shadow-sm dark:shadow-gray-800"
+            src="/static/images/screenshot-list-desktop-mobile-ff.png"
+            width={3200}
+            height={2305}
+            loading="eager"
+            className=""
           />
         </div>
       </div>
