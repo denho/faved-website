@@ -190,21 +190,26 @@ export default function Home({ posts }) {
                 <div className="text-primary-600 dark:text-primary-400 h-8 w-8 flex-none text-xl">
                   <FontAwesomeIcon icon={faReact} />
                 </div>
-                <span className="text-base font-medium text-gray-900 dark:text-gray-100">React</span>
+                <span className="text-base font-medium text-gray-900 dark:text-gray-100">
+                  React
+                </span>
               </div>
               <div className="flex flex-col items-center gap-y-3">
                 <div className="text-primary-600 dark:text-primary-400 h-8 w-8 flex-none text-xl">
                   <FontAwesomeIcon icon={faPhp} />
                 </div>
-                <span className="text-base font-medium text-gray-900 dark:text-gray-100">PHP 8</span>
+                <span className="text-base font-medium text-gray-900 dark:text-gray-100">
+                  PHP 8
+                </span>
               </div>
               <div className="flex flex-col items-center gap-y-3">
                 <div className="text-primary-600 dark:text-primary-400 h-8 w-8 flex-none text-xl">
                   <FontAwesomeIcon icon={faDatabase} />
                 </div>
-                <span className="text-base font-medium text-gray-900 dark:text-gray-100">SQLite</span>
+                <span className="text-base font-medium text-gray-900 dark:text-gray-100">
+                  SQLite
+                </span>
               </div>
-          
             </div>
           </div>
         </div>
@@ -247,9 +252,7 @@ export default function Home({ posts }) {
                   </p>
                 </div>
                 <div className="relative rounded-xl border border-gray-800 bg-gray-950 p-6 dark:bg-gray-900">
-                  <code className="font-mono text-sm text-gray-300">
-                    docker pull denho/faved
-                  </code>
+                  <code className="font-mono text-sm text-gray-300">docker pull denho/faved</code>
                 </div>
               </div>
             </div>
@@ -266,7 +269,8 @@ export default function Home({ posts }) {
               <div className="ml-12 space-y-4">
                 <div className="relative rounded-xl border border-gray-800 bg-gray-950 p-6 dark:bg-gray-900">
                   <code className="font-mono text-sm text-gray-300">
-                    docker run -d --name faved -p 8080:80 -v faved-data:/var/www/html/storage denho/faved
+                    docker run -d --name faved -p 8080:80 -v faved-data:/var/www/html/storage
+                    denho/faved
                   </code>
                 </div>
                 <p className="mt-3 text-gray-600 dark:text-gray-400">
