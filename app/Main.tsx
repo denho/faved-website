@@ -15,9 +15,8 @@ import {
   faFileImport,
   faDatabase,
   faInfoCircle,
-  faCopy,
 } from '@fortawesome/free-solid-svg-icons'
-import { faGithub, faPhp, faBootstrap } from '@fortawesome/free-brands-svg-icons'
+import { faGithub, faPhp, faReact } from '@fortawesome/free-brands-svg-icons'
 
 const MAX_DISPLAY = 5
 
@@ -189,6 +188,14 @@ export default function Home({ posts }) {
             <div className="flex justify-around gap-8 xl:flex-col">
               <div className="flex flex-col items-center gap-y-3">
                 <div className="text-primary-600 dark:text-primary-400 h-8 w-8 flex-none text-xl">
+                  <FontAwesomeIcon icon={faReact} />
+                </div>
+                <span className="text-base font-medium text-gray-900 dark:text-gray-100">
+                  React
+                </span>
+              </div>
+              <div className="flex flex-col items-center gap-y-3">
+                <div className="text-primary-600 dark:text-primary-400 h-8 w-8 flex-none text-xl">
                   <FontAwesomeIcon icon={faPhp} />
                 </div>
                 <span className="text-base font-medium text-gray-900 dark:text-gray-100">
@@ -203,14 +210,7 @@ export default function Home({ posts }) {
                   SQLite
                 </span>
               </div>
-              <div className="flex flex-col items-center gap-y-3">
-                <div className="text-primary-600 dark:text-primary-400 h-8 w-8 flex-none text-xl">
-                  <FontAwesomeIcon icon={faBootstrap} />
-                </div>
-                <span className="text-base font-medium text-gray-900 dark:text-gray-100">
-                  Bootstrap
-                </span>
-              </div>
+          
             </div>
           </div>
         </div>
@@ -231,27 +231,7 @@ export default function Home({ posts }) {
                   1
                 </div>
                 <h3 className="text-lg font-medium text-gray-900 dark:text-white">
-                  Clone the repository
-                </h3>
-              </div>
-              <div className="ml-12">
-                <div className="relative rounded-xl border border-gray-800 bg-gray-950 p-6 dark:bg-gray-900">
-                  <code className="font-mono text-sm text-gray-300">
-                    git clone https://github.com/denho/faved.git
-                    <br />
-                    cd faved
-                  </code>
-                </div>
-              </div>
-            </div>
-
-            <div className="group">
-              <div className="mb-4 flex items-center">
-                <div className="bg-primary-500 mr-4 flex h-8 w-8 items-center justify-center rounded-full text-sm font-medium text-white">
-                  2
-                </div>
-                <h3 className="text-lg font-medium text-gray-900 dark:text-white">
-                  Start with Docker (change the port to the desired one)
+                  Pull the latest image from Docker Hub
                 </h3>
               </div>
               <div className="ml-12 space-y-4">
@@ -274,19 +254,34 @@ export default function Home({ posts }) {
                 </div>
                 <div className="relative rounded-xl border border-gray-800 bg-gray-950 p-6 dark:bg-gray-900">
                   <code className="font-mono text-sm text-gray-300">
-                    PORT=8000 docker compose up -d
+                    docker pull denho/faved
                   </code>
                 </div>
+              </div>
+            </div>
 
-                <div className="py-6">
-                  <p className="text-gray-600 dark:text-gray-400">
-                    Done! Open{' '}
-                    <span className="rounded bg-gray-200 px-2 py-1 font-mono text-xs dark:bg-gray-800">
-                      http://localhost:8000
-                    </span>{' '}
-                    in your browser to access your Faved instance.
-                  </p>
+            <div className="group">
+              <div className="mb-4 flex items-center">
+                <div className="bg-primary-500 mr-4 flex h-8 w-8 items-center justify-center rounded-full text-sm font-medium text-white">
+                  2
                 </div>
+                <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+                  Start the Docker container
+                </h3>
+              </div>
+              <div className="ml-12 space-y-4">
+                <div className="relative rounded-xl border border-gray-800 bg-gray-950 p-6 dark:bg-gray-900">
+                  <code className="font-mono text-sm text-gray-300">
+                    docker run -d --name faved -p 8080:80 -v faved-data:/var/www/html/storage denho/faved
+                  </code>
+                </div>
+                <p className="text-gray-600 dark:text-gray-400 mt-3">
+                  Done! Open{' '}
+                  <span className="rounded bg-gray-200 px-2 py-1 font-mono text-xs dark:bg-gray-800">
+                    http://localhost:8080
+                  </span>{' '}
+                  in your browser to access your Faved instance.
+                </p>
               </div>
             </div>
           </div>
