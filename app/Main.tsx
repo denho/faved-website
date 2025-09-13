@@ -190,25 +190,19 @@ export default function Home({ posts }) {
                 <div className="text-primary-600 dark:text-primary-400 h-8 w-8 flex-none text-xl">
                   <FontAwesomeIcon icon={faReact} />
                 </div>
-                <span className="text-base font-medium text-gray-900 dark:text-gray-100">
-                  React
-                </span>
+                <span className="text-base font-medium text-gray-900 dark:text-gray-100">React</span>
               </div>
               <div className="flex flex-col items-center gap-y-3">
                 <div className="text-primary-600 dark:text-primary-400 h-8 w-8 flex-none text-xl">
                   <FontAwesomeIcon icon={faPhp} />
                 </div>
-                <span className="text-base font-medium text-gray-900 dark:text-gray-100">
-                  PHP 8
-                </span>
+                <span className="text-base font-medium text-gray-900 dark:text-gray-100">PHP 8</span>
               </div>
               <div className="flex flex-col items-center gap-y-3">
                 <div className="text-primary-600 dark:text-primary-400 h-8 w-8 flex-none text-xl">
                   <FontAwesomeIcon icon={faDatabase} />
                 </div>
-                <span className="text-base font-medium text-gray-900 dark:text-gray-100">
-                  SQLite
-                </span>
+                <span className="text-base font-medium text-gray-900 dark:text-gray-100">SQLite</span>
               </div>
           
             </div>
@@ -275,7 +269,7 @@ export default function Home({ posts }) {
                     docker run -d --name faved -p 8080:80 -v faved-data:/var/www/html/storage denho/faved
                   </code>
                 </div>
-                <p className="text-gray-600 dark:text-gray-400 mt-3">
+                <p className="mt-3 text-gray-600 dark:text-gray-400">
                   Done! Open{' '}
                   <span className="rounded bg-gray-200 px-2 py-1 font-mono text-xs dark:bg-gray-800">
                     http://localhost:8080
