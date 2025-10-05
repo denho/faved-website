@@ -9,7 +9,7 @@ const siteMetadata = {
   siteUrl: 'https://faved.dev',
   siteRepo: 'https://github.com/denho/faved-website',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/faved-logo-blue.png`,
-  socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
+  socialBanner: `${process.env.BASE_PATH || ''}/static/images/og-image.png`,
   // mastodon: 'https://mastodon.social/@mastodonuser',
   // email: 'address@yoursite.com',
   github: 'https://github.com/denho/faved',

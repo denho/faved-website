@@ -23,7 +23,7 @@ const MAX_DISPLAY = 5
 export default function Home({ posts }) {
   return (
     <div className="divide-y divide-gray-200 dark:divide-gray-700">
-      <div className="pt-4 pb-4 sm:pt-8 sm:pb-24">
+      <div className="pt-4 pb-4 sm:pt-8 sm:pb-16">
         <div className="px-6 md:px-0">
           <div className="mx-auto max-w-2xl text-center">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl dark:text-gray-100">
@@ -58,7 +58,7 @@ export default function Home({ posts }) {
         <div className="mt-12 flex items-center justify-center lg:-mx-20">
           <Image
             alt="Faved application screenshot"
-            src="/static/images/screenshot-list-desktop-mobile-ff.png"
+            src="/static/images/screenshot-list-desktop-safari-2.png"
             width={3200}
             height={2305}
             loading="eager"
