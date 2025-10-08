@@ -58,9 +58,9 @@ export default function Home({ posts }) {
         <div className="mt-12 flex items-center justify-center lg:-mx-20">
           <Image
             alt="Faved application screenshot"
-            src="/static/images/screenshot-list-desktop-safari-2.png"
-            width={3200}
-            height={2305}
+            src="/static/images/screenshot-list-desktop-mobile-safari-2400px.png"
+            width={2400}
+            height={1400}
             loading="eager"
             className=""
           />
