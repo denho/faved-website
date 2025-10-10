@@ -28,7 +28,7 @@ const MobileNav = () => {
 
   return (
     <>
-      <button aria-label="Toggle Menu" onClick={onToggleNav} className="sm:hidden">
+      <button aria-label="Toggle Menu" onClick={onToggleNav} className="md:hidden">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
