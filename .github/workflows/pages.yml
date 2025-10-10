@@ -41,6 +41,9 @@ jobs:
           BASE_PATH: ${{ steps.configurepages.outputs.base_path }}
           IMAGE_PATH_PREFIX: ${{ vars.IMAGE_PATH_PREFIX }}
           GTM_ID: ${{ vars.GTM_ID }}
+          NEXT_PUBLIC_AIRTABLE_TOKEN: ${{ vars.NEXT_PUBLIC_AIRTABLE_TOKEN }}
+          NEXT_PUBLIC_AIRTABLE_BASE_ID: ${{ vars.NEXT_PUBLIC_AIRTABLE_BASE_ID }}
+          NEXT_PUBLIC_AIRTABLE_TABLE_NAME: ${{ vars.NEXT_PUBLIC_AIRTABLE_TABLE_NAME }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
