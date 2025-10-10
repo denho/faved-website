@@ -14,6 +14,12 @@ import {
   IconDefinition,
 } from '@fortawesome/free-solid-svg-icons'
 
+// ⚠️ SECURITY WARNING: This token is exposed to the client
+// Make sure it has ONLY write permissions and is properly scoped
+const AIRTABLE_TOKEN = process.env.NEXT_PUBLIC_AIRTABLE_TOKEN
+const AIRTABLE_BASE_ID = process.env.NEXT_PUBLIC_AIRTABLE_BASE_ID
+const AIRTABLE_TABLE_NAME = process.env.NEXT_PUBLIC_AIRTABLE_TABLE_NAME || 'Submission'
+
 export default function WaitlistForm() {
   const [formData, setFormData] = useState({ name: '', email: '' })
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
@@ -25,27 +31,67 @@ export default function WaitlistForm() {
     setMessage('')
 
     try {
-      const response = await fetch('/api/waitlist', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      })
+      // Validate configuration
+      if (!AIRTABLE_TOKEN || !AIRTABLE_BASE_ID) {
+        setStatus('error')
+        setMessage('Configuration error. Please contact support.')
+        return
+      }
 
-      const data = await response.json()
+      // Validate input
+      if (!formData.name.trim() || !formData.email.trim()) {
+        setStatus('error')
+        setMessage('Name and email are required.')
+        return
+      }
+
+      // Basic email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      if (!emailRegex.test(formData.email)) {
+        setStatus('error')
+        setMessage('Please enter a valid email address.')
+        return
+      }
+
+      // Submit directly to Airtable
+      const response = await fetch(
+        `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(AIRTABLE_TABLE_NAME)}`,
+        {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${AIRTABLE_TOKEN}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            fields: {
+              Name: formData.name,
+              Email: formData.email,
+              Timestamp: new Date().toISOString(),
+            },
+          }),
+        }
+      )
 
       if (response.ok) {
         setStatus('success')
         setMessage("Thank you for joining the waitlist! We'll be in touch soon.")
         setFormData({ name: '', email: '' })
       } else {
-        setStatus('error')
-        setMessage(data.error || 'Something went wrong. Please try again.')
+        const errorData = await response.json()
+
+        // Check for duplicate email error
+        if (errorData.error?.type === 'INVALID_REQUEST_BODY') {
+          setStatus('error')
+          setMessage('Unable to process your request. Please try again.')
+        } else {
+          setStatus('error')
+          setMessage('Something went wrong. Please try again later.')
+        }
       }
     } catch (error) {
+      console.error('Waitlist submission error:', error)
       setStatus('error')
-      setMessage('Failed to submit. Please try again later.')
+      setMessage('Failed to submit. Please check your connection and try again.')
     }
   }
 

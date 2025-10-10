@@ -13,7 +13,7 @@ The purpose of this repository is the website only - it doesn’t contain the ac
 - Framework: Next.js
 - Styling: Tailwind CSS
 - Content: Markdown
-  
+
 ---
 
 💬 Feedback
