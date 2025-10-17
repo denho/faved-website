@@ -55,7 +55,7 @@ export default function Home({ posts }) {
             </div>
           </div>
         </div>
-        <div className="mt-12 flex items-center justify-center lg:-mx-20">
+        <div className="mt-12 flex items-center justify-center">
           <Image
             alt="Faved application screenshot"
             src="/static/images/screenshot-list-desktop-mobile-safari-2400px.png"
@@ -74,8 +74,8 @@ export default function Home({ posts }) {
               Features
             </h2>
           </div>
-          <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-            <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
+          <div className="mx-auto mt-16 sm:mt-20 lg:mt-24">
+            <dl className="grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
               <div className="flex flex-col">
                 <dt className="flex items-center gap-x-3 text-base leading-7 font-semibold text-gray-900 dark:text-gray-100">
                   <div className="text-primary-600 dark:text-primary-400 h-5 w-5 flex-none">
