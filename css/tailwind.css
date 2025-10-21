@@ -100,6 +100,11 @@
     & :where(code):not(pre code) {
       color: var(--color-indigo-500);
     }
+    & code {
+      &::before, &::after {
+        content: "";
+      }
+    }
   }
 
   .prose-invert {
