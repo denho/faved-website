@@ -156,6 +156,8 @@ export const Docs = defineDocumentType(() => ({
     description: { type: 'string' },
     order: { type: 'number', default: 999 },
     draft: { type: 'boolean' },
+    date: { type: 'date', required: true },
+    lastmod: { type: 'date' },
   },
   computedFields,
 }))
