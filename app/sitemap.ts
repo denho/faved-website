@@ -7,7 +7,7 @@ export const dynamic = 'force-static'
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = siteMetadata.siteUrl
 
-  const contentRoutes = [...allBlogs, ...allDocs] 
+  const contentRoutes = [...allBlogs, ...allDocs]
     .filter((post) => !post.draft)
     .map((post) => ({
       url: `${siteUrl}/${post.path}`,
