@@ -2,7 +2,7 @@ const headerNavLinks = [
   { href: '/', title: 'Home' },
   { href: '/blog', title: 'Blog' },
   { href: '/docs/getting-started/introduction', title: 'Docs' },
-  { href: '/waitlist?ref=header-nav', title: 'Managed hosting' },
+  { href: 'https://faved.cloud/signup', title: 'Managed hosting' },
   // { href: '/tags', title: 'Tags' },
   // { href: '/about', title: 'About' },
   { href: 'https://github.com/denho/faved', title: 'Github' },

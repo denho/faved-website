@@ -89,6 +89,15 @@ module.exports = () => {
         },
       ]
     },
+    async redirects() {
+      return [
+        {
+          source: '/waitlist',
+          destination: 'https://faved.cloud/signup',
+          permanent: true, // 308 permanent if true, 307 if false
+        },
+      ]
+    },
     webpack: (config, options) => {
       config.module.rules.push({
         test: /\.svg$/,
