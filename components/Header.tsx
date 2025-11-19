@@ -39,6 +39,11 @@ const Header = () => {
                 className="hover:text-primary-500 dark:hover:text-primary-400 m-1 font-medium text-gray-900 dark:text-gray-100"
               >
                 {link.title}
+                {link.badge && (
+                  <span className="bg-primary-500 ml-2 rounded-full px-2 py-0.5 align-top text-xs font-semibold text-white">
+                    {link.badge}
+                  </span>
+                )}
               </Link>
             ))}
         </div>

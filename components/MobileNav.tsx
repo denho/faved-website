@@ -80,6 +80,11 @@ const MobileNav = () => {
                     onClick={onToggleNav}
                   >
                     {link.title}
+                    {link.badge && (
+                      <span className="bg-primary-500 ml-2 rounded-full px-2 py-1 align-top text-xs font-semibold text-white">
+                        {link.badge}
+                      </span>
+                    )}
                   </Link>
                 ))}
               </nav>
