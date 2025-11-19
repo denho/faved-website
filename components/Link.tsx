@@ -3,8 +3,13 @@ import Link from 'next/link'
 import type { LinkProps } from 'next/link'
 import { AnchorHTMLAttributes } from 'react'
 
-const CustomLink = ({ href, ...rest }: LinkProps & AnchorHTMLAttributes<HTMLAnchorElement>) => {
+const CustomLink = ({
+  href,
+  noReferrer,
+  ...rest
+}: LinkProps & AnchorHTMLAttributes<HTMLAnchorElement> & { noReferrer?: boolean }) => {
   const isInternalLink = href && href.startsWith('/')
+  console.log('href:', href, isInternalLink)
   const isAnchorLink = href && href.startsWith('#')
 
   if (isInternalLink) {
@@ -16,7 +21,13 @@ const CustomLink = ({ href, ...rest }: LinkProps & AnchorHTMLAttributes<HTMLAnch
   }
 
   return (
-    <a className="break-words" target="_blank" rel="noopener noreferrer" href={href} {...rest} />
+    <a
+      className="break-words"
+      target="_blank"
+      rel={'noopener' + (noReferrer ? ' noreferrer' : '')}
+      href={href}
+      {...rest}
+    />
   )
 }
 

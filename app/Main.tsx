@@ -15,6 +15,7 @@ import {
   faFileImport,
   faDatabase,
   faInfoCircle,
+  faCloud,
 } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faPhp, faReact } from '@fortawesome/free-brands-svg-icons'
 
@@ -33,12 +34,23 @@ export default function Home({ posts }) {
               Faved is a self-hosted, open-source solution to store, categorize, and access your
               saved web content and links from anywhere.
             </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-4">
+              <a
+                className="flex items-center rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-gray-300 ring-inset hover:bg-gray-50 dark:bg-transparent dark:text-white dark:ring-gray-600 dark:hover:bg-gray-800"
+                href="https://faved.cloud/signup"
+              >
+                <FontAwesomeIcon icon={faCloud} className="mr-2 h-4 w-4" />
+                Cloud Version
+              </a>
+              <div
+                aria-hidden="true"
+                className="pointer-events-none hidden h-8 w-[1px] rounded bg-gray-200 sm:block dark:bg-gray-700"
+              />
               <a
                 className="bg-primary-600 hover:bg-primary-500 focus-visible:outline-primary-600 flex items-center rounded-md px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                 href="https://github.com/denho/faved"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
               >
                 <FontAwesomeIcon icon={faGithub} className="mr-2 h-4 w-4" />
                 View on GitHub
@@ -47,7 +59,7 @@ export default function Home({ posts }) {
                 className="hover:text-primary-600 dark:hover:text-primary-400 flex items-center text-sm leading-6 font-semibold text-gray-900 transition-colors dark:text-gray-100"
                 href="https://demo.faved.dev/"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
               >
                 <FontAwesomeIcon icon={faGlobe} className="mr-2 h-4 w-4" />
                 Live Demo <span aria-hidden="true">→</span>
@@ -244,7 +256,7 @@ export default function Home({ posts }) {
                     <a
                       href="https://docs.docker.com/get-docker/"
                       target="_blank"
-                      rel="noopener noreferrer"
+                      rel="noopener"
                       className="underline hover:no-underline"
                     >
                       Get it here
