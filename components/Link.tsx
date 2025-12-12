@@ -9,7 +9,6 @@ const CustomLink = ({
   ...rest
 }: LinkProps & AnchorHTMLAttributes<HTMLAnchorElement> & { noReferrer?: boolean }) => {
   const isInternalLink = href && href.startsWith('/')
-  console.log('href:', href, isInternalLink)
   const isAnchorLink = href && href.startsWith('#')
 
   if (isInternalLink) {
