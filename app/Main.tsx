@@ -36,17 +36,6 @@ export default function Home({ posts }) {
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-4">
               <a
-                className="flex items-center rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-gray-300 ring-inset hover:bg-gray-50 dark:bg-transparent dark:text-white dark:ring-gray-600 dark:hover:bg-gray-800"
-                href="https://faved.cloud/signup"
-              >
-                <FontAwesomeIcon icon={faCloud} className="mr-2 h-4 w-4" />
-                Cloud Version
-              </a>
-              <div
-                aria-hidden="true"
-                className="pointer-events-none hidden h-8 w-[1px] rounded bg-gray-200 sm:block dark:bg-gray-700"
-              />
-              <a
                 className="bg-primary-600 hover:bg-primary-500 focus-visible:outline-primary-600 flex items-center rounded-md px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                 href="https://github.com/denho/faved"
                 target="_blank"
@@ -56,18 +45,32 @@ export default function Home({ posts }) {
                 View on GitHub
               </a>
               <a
-                className="hover:text-primary-600 dark:hover:text-primary-400 flex items-center text-sm leading-6 font-semibold text-gray-900 transition-colors dark:text-gray-100"
+                className="hover:text-primary-600 dark:hover:text-primary-400 flex items-center gap-2 text-sm leading-6 font-semibold text-gray-900 transition-colors dark:text-gray-100"
                 href="https://demo.faved.dev/"
                 target="_blank"
                 rel="noopener"
               >
-                <FontAwesomeIcon icon={faGlobe} className="mr-2 h-4 w-4" />
+                <FontAwesomeIcon icon={faGlobe} className="h-4 w-4" />
                 Live Demo <span aria-hidden="true">→</span>
+              </a>
+            </div>
+            <div className="mt-10 flex flex-col flex-wrap items-center justify-center gap-3">
+              <span className="bg-primary-500 flex gap-2 rounded-full px-2 py-1 align-baseline text-xs font-semibold text-white">
+                <FontAwesomeIcon icon={faCloud} className="h-4 w-4" /> <span>Faved Cloud</span>
+              </span>
+              <div className="max-w-[370px]">
+                Secure managed hosting for Faved with automatic backups, updates, and support.
+              </div>
+              <a
+                className="text-md relative flex items-center justify-center gap-2 rounded-md bg-white px-9 py-3 text-center font-semibold text-gray-900 shadow-sm ring-1 ring-gray-300 ring-inset hover:bg-gray-50 dark:bg-transparent dark:text-white dark:ring-gray-600 dark:hover:bg-gray-800"
+                href="https://faved.cloud/signup"
+              >
+                Go to Faved Cloud <span aria-hidden="true">→</span>
               </a>
             </div>
           </div>
         </div>
-        <div className="mt-12 flex items-center justify-center">
+        <div className="mt-10 flex items-center justify-center">
           <Image
             alt="Faved application screenshot"
             src="/static/images/screenshot-list-desktop-mobile-safari-2400px.png"
