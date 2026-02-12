@@ -54,7 +54,7 @@ export default function Home({ posts }) {
                 Live Demo <span aria-hidden="true">→</span>
               </a>
             </div>
-            <div className="mt-10 flex flex-col flex-wrap items-center justify-center gap-3">
+            {/* <div className="mt-10 flex flex-col flex-wrap items-center justify-center gap-3">
               <span className="bg-primary-500 flex gap-2 rounded-full px-2 py-1 align-baseline text-xs font-semibold text-white">
                 <FontAwesomeIcon icon={faCloud} className="h-4 w-4" /> <span>Faved Cloud</span>
               </span>
@@ -67,7 +67,7 @@ export default function Home({ posts }) {
               >
                 Go to Faved Cloud <span aria-hidden="true">→</span>
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="mt-10 flex items-center justify-center">
