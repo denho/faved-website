@@ -1,6 +1,7 @@
 import {
   Mail,
   Github,
+  Discord,
   Facebook,
   Youtube,
   Linkedin,
@@ -16,6 +17,7 @@ import {
 const components = {
   mail: Mail,
   github: Github,
+  discord: Discord,
   facebook: Facebook,
   youtube: Youtube,
   linkedin: Linkedin,
