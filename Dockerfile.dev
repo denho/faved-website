@@ -1,0 +1,14 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY .yarnrc.yml ./
+COPY .yarn/releases/ ./.yarn/releases/
+COPY package.json yarn.lock ./
+RUN node .yarn/releases/yarn-3.6.1.cjs install
+
+COPY . .
+
+EXPOSE 3000
+
+CMD ["node", ".yarn/releases/yarn-3.6.1.cjs", "dev"]
