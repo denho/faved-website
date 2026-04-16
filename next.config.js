@@ -69,9 +69,6 @@ module.exports = () => {
     reactStrictMode: true,
     trailingSlash: false,
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
-    eslint: {
-      dirs: ['app', 'components', 'layouts', 'scripts'],
-    },
     images: {
       remotePatterns: [
         {
@@ -97,6 +94,14 @@ module.exports = () => {
           permanent: true, // 308 permanent if true, 307 if false
         },
       ]
+    },
+    turbopack: {
+      rules: {
+        '*.svg': {
+          loaders: ['@svgr/webpack'],
+          as: '*.js',
+        },
+      },
     },
     webpack: (config, options) => {
       config.module.rules.push({
