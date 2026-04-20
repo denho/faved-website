@@ -1,241 +1,25 @@
-import Link from '@/components/Link'
-import Tag from '@/components/Tag'
-import Image from '@/components/Image'
-import siteMetadata from '@/data/siteMetadata'
-import { formatDate } from 'pliny/utils/formatDate'
-import NewsletterForm from 'pliny/ui/NewsletterForm'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faGlobe,
-  faServer,
-  faTags,
-  faCodeBranch,
-  faBookmark,
-  faBolt,
-  faFileImport,
-  faDatabase,
-  faInfoCircle,
-  faCloud,
-} from '@fortawesome/free-solid-svg-icons'
-import { faGithub, faPhp, faReact } from '@fortawesome/free-brands-svg-icons'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import Hero from '@/components/sections/hero/default'
+import Items from '@/components/sections/items/default'
+import About from '@/components/sections/about/default'
+import { Section } from '@/components/ui/section'
+import React from '@/components/logos/react'
 
 const MAX_DISPLAY = 5
 
 export default function Home({ posts }) {
   return (
-    <div className="divide-y divide-gray-200 dark:divide-gray-700">
-      <div className="pt-4 pb-4 sm:pt-8 sm:pb-16">
-        <div className="px-6 md:px-0">
-          <div className="mx-auto max-w-2xl text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl dark:text-gray-100">
-              Save. Organize. Own.
-            </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
-              Faved is a self-hosted, open-source solution to store, categorize, and access your
-              saved web content and links from anywhere.
-            </p>
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-4">
-              <a
-                className="bg-primary-600 hover:bg-primary-500 focus-visible:outline-primary-600 flex items-center rounded-md px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-                href="https://github.com/denho/faved"
-                target="_blank"
-                rel="noopener"
-              >
-                <FontAwesomeIcon icon={faGithub} className="mr-2 h-4 w-4" />
-                View on GitHub
-              </a>
-              <a
-                className="hover:text-primary-600 dark:hover:text-primary-400 flex items-center gap-2 text-sm leading-6 font-semibold text-gray-900 transition-colors dark:text-gray-100"
-                href="https://demo.faved.dev/"
-                target="_blank"
-                rel="noopener"
-              >
-                <FontAwesomeIcon icon={faGlobe} className="h-4 w-4" />
-                Live Demo <span aria-hidden="true">→</span>
-              </a>
-            </div>
-            {/* <div className="mt-10 flex flex-col flex-wrap items-center justify-center gap-3">
-              <span className="bg-primary-500 flex gap-2 rounded-full px-2 py-1 align-baseline text-xs font-semibold text-white">
-                <FontAwesomeIcon icon={faCloud} className="h-4 w-4" /> <span>Faved Cloud</span>
-              </span>
-              <div className="max-w-[370px]">
-                Secure managed hosting for Faved with automatic backups, updates, and support.
-              </div>
-              <a
-                className="text-md relative flex items-center justify-center gap-2 rounded-md bg-white px-9 py-3 text-center font-semibold text-gray-900 shadow-sm ring-1 ring-gray-300 ring-inset hover:bg-gray-50 dark:bg-transparent dark:text-white dark:ring-gray-600 dark:hover:bg-gray-800"
-                href="https://faved.cloud/signup"
-              >
-                Go to Faved Cloud <span aria-hidden="true">→</span>
-              </a>
-            </div> */}
-          </div>
-        </div>
-        <div className="mt-10 flex items-center justify-center">
-          <Image
-            alt="Faved application screenshot"
-            src="/static/images/screenshot-list-desktop-mobile-safari-2400px.png"
-            width={2400}
-            height={1400}
-            loading="eager"
-            className=""
-          />
-        </div>
-      </div>
-
-      <section className="bg-white py-16 sm:py-24 dark:bg-gray-950" id="features">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 xl:px-0">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-gray-100">
-              Features
-            </h2>
-          </div>
-          <div className="mx-auto mt-16 sm:mt-20 lg:mt-24">
-            <dl className="grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
-              <div className="flex flex-col">
-                <dt className="flex items-center gap-x-3 text-base leading-7 font-semibold text-gray-900 dark:text-gray-100">
-                  <div className="text-primary-600 dark:text-primary-400 h-5 w-5 flex-none">
-                    <FontAwesomeIcon icon={faServer} />
-                  </div>
-                  Self-Hosted
-                </dt>
-                <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600 dark:text-gray-300">
-                  <p className="flex-auto">
-                    Keep your bookmarks on your own computer or server. Your data is stored locally
-                    and belongs to you.
-                  </p>
-                </dd>
-              </div>
-              <div className="flex flex-col">
-                <dt className="flex items-center gap-x-3 text-base leading-7 font-semibold text-gray-900 dark:text-gray-100">
-                  <div className="text-primary-600 dark:text-primary-400 h-5 w-5 flex-none">
-                    <FontAwesomeIcon icon={faTags} />
-                  </div>
-                  Tagging System
-                </dt>
-                <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600 dark:text-gray-300">
-                  <p className="flex-auto">
-                    Organize bookmarks with custom nested tags. Apply different styling to tags and
-                    pin important tags at the top for quick access.
-                  </p>
-                </dd>
-              </div>
-              <div className="flex flex-col">
-                <dt className="flex items-center gap-x-3 text-base leading-7 font-semibold text-gray-900 dark:text-gray-100">
-                  <div className="text-primary-600 dark:text-primary-400 h-5 w-5 flex-none">
-                    <FontAwesomeIcon icon={faCodeBranch} />
-                  </div>
-                  Open Source
-                </dt>
-                <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600 dark:text-gray-300">
-                  <p className="flex-auto">
-                    Transparent codebase that anyone can inspect, modify, and contribute to.
-                  </p>
-                </dd>
-              </div>
-              <div className="flex flex-col">
-                <dt className="flex items-center gap-x-3 text-base leading-7 font-semibold text-gray-900 dark:text-gray-100">
-                  <div className="text-primary-600 dark:text-primary-400 h-5 w-5 flex-none">
-                    <FontAwesomeIcon icon={faBookmark} />
-                  </div>
-                  Browser Bookmarklet
-                </dt>
-                <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600 dark:text-gray-300">
-                  <p className="flex-auto">
-                    Save bookmarks from any browser with a simple bookmarklet without installing
-                    additional extensions. Works on any desktop and mobile browser.
-                  </p>
-                </dd>
-              </div>
-              <div className="flex flex-col">
-                <dt className="flex items-center gap-x-3 text-base leading-7 font-semibold text-gray-900 dark:text-gray-100">
-                  <div className="text-primary-600 dark:text-primary-400 h-5 w-5 flex-none">
-                    <FontAwesomeIcon icon={faBolt} />
-                  </div>
-                  Lightning Fast
-                </dt>
-                <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600 dark:text-gray-300">
-                  <p className="flex-auto">
-                    Blazing performance with full page loads of 2000+ bookmarks under 100ms,
-                    ensuring a smooth experience even with large collections.
-                  </p>
-                </dd>
-              </div>
-              <div className="flex flex-col">
-                <dt className="flex items-center gap-x-3 text-base leading-7 font-semibold text-gray-900 dark:text-gray-100">
-                  <div className="text-primary-600 dark:text-primary-400 h-5 w-5 flex-none">
-                    <FontAwesomeIcon icon={faFileImport} />
-                  </div>
-                  Import from Pocket
-                </dt>
-                <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600 dark:text-gray-300">
-                  <p className="flex-auto">
-                    Seamlessly import your existing bookmarks from Pocket to transition to
-                    self-hosted storage.
-                  </p>
-                </dd>
-              </div>
-            </dl>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 sm:py-24" id="about">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 px-4 sm:px-6 xl:flex-row xl:px-0">
-          <div className="max-w-3xl lg:mx-0">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-gray-100">
-              About Faved
-            </h2>
-            <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
-              Faved was born out of the need for a simple yet powerful bookmark manager that
-              respects user privacy and ownership of data. Unlike commercial bookmark services that
-              collect your data, Faved is completely self-hosted - meaning you maintain control over
-              your information.
-            </p>
-            <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
-              Built with modern web technologies, Faved provides a seamless experience across all
-              your devices while ensuring your bookmarks are organized just the way you want them.
-            </p>
-          </div>
-          <div className="xl:max-w-1xl w-full max-w-full">
-            <h3 className="mt-5 mb-8 text-xl font-bold tracking-tight text-gray-900 xl:mt-0 xl:text-center dark:text-gray-100">
-              Built With
-            </h3>
-            <div className="flex justify-around gap-8 xl:flex-col">
-              <div className="flex flex-col items-center gap-y-3">
-                <div className="text-primary-600 dark:text-primary-400 h-8 w-8 flex-none text-xl">
-                  <FontAwesomeIcon icon={faReact} />
-                </div>
-                <span className="text-base font-medium text-gray-900 dark:text-gray-100">
-                  React
-                </span>
-              </div>
-              <div className="flex flex-col items-center gap-y-3">
-                <div className="text-primary-600 dark:text-primary-400 h-8 w-8 flex-none text-xl">
-                  <FontAwesomeIcon icon={faPhp} />
-                </div>
-                <span className="text-base font-medium text-gray-900 dark:text-gray-100">
-                  PHP 8
-                </span>
-              </div>
-              <div className="flex flex-col items-center gap-y-3">
-                <div className="text-primary-600 dark:text-primary-400 h-8 w-8 flex-none text-xl">
-                  <FontAwesomeIcon icon={faDatabase} />
-                </div>
-                <span className="text-base font-medium text-gray-900 dark:text-gray-100">
-                  SQLite
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="relative overflow-hidden py-24" id="get-started">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-800"></div>
-        <div className="relative mx-auto max-w-4xl px-6">
+    <>
+      <Hero />
+      <Items />
+      <About />
+      <Section id="get-started">
+        <div className="relative mx-auto max-w-6xl px-6">
           <div className="mb-16 text-center">
-            <h2 className="mb-4 text-4xl font-light text-gray-900 dark:text-white">Get Started</h2>
-            <div className="bg-primary-500 mx-auto h-px w-12"></div>
+            <h2 className="text-center text-3xl font-semibold text-balance sm:text-5xl">
+              Get Started
+            </h2>
           </div>
 
           <div className="space-y-8">
@@ -299,7 +83,7 @@ export default function Home({ posts }) {
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
@@ -378,6 +162,6 @@ export default function Home({ posts }) {
           <NewsletterForm />
         </div>
       )} */}
-    </div>
+    </>
   )
 }

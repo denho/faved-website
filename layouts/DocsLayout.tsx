@@ -5,6 +5,7 @@ import Link from '@/components/Link'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Docs } from 'contentlayer/generated'
 import { usePathname } from 'next/navigation'
+import '../styles/prism.css'
 
 interface DocsLayoutProps {
   content: CoreContent<Docs>
@@ -40,7 +41,7 @@ export default function DocsLayout({ content, allDocs, children }: DocsLayoutPro
   }
 
   return (
-    <div className="mx-auto">
+    <div className="mx-auto max-w-container">
       <div className="flex flex-col md:flex-row">
         {/* Mobile menu button */}
         <button
@@ -70,7 +71,7 @@ export default function DocsLayout({ content, allDocs, children }: DocsLayoutPro
 
         {/* Sidebar */}
         <aside
-          className={` ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} fixed top-0 left-0 z-40 h-screen w-64 flex-shrink-0 overflow-y-auto border-r border-gray-200 bg-white pt-10 pb-4 transition-transform md:sticky md:top-0 md:h-[calc(100vh)] md:translate-x-0 dark:border-gray-700 dark:bg-gray-950`}
+          className={` ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} fixed top-15 left-0 z-40 h-screen w-64 flex-shrink-0 overflow-y-auto border-r border-gray-800 pt-10 pb-4 transition-transform md:sticky md:top-15 md:h-[calc(100vh)] md:translate-x-0 bg-primary-foreground`}
         >
           <nav className="space-y-6 px-4">
             <div className="mb-4">
@@ -123,7 +124,7 @@ export default function DocsLayout({ content, allDocs, children }: DocsLayoutPro
         <main className="min-w-0 flex-1 px-4 py-8 md:px-8">
           <article className="mx-auto max-w-3xl">
             <header className="mb-8">
-              <h1 className="mb-2 text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14 dark:text-gray-100">
+              <h1 className="mb-2 text-3xl leading-9 font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14 dark:text-gray-100">
                 {title}
               </h1>
               {description && (
