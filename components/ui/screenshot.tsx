@@ -1,8 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import { useTheme } from 'next-themes'
-import { useEffect, useState } from 'react'
 
 import { cn } from '@/components/lib/utils'
 
@@ -23,18 +21,11 @@ export default function Screenshot({
   height,
   className,
 }: ScreenshotProps) {
-  const { resolvedTheme } = useTheme()
-  const [src, setSrc] = useState<string>(srcLight)
 
-  useEffect(() => {
-    if (resolvedTheme) {
-      setSrc(resolvedTheme === 'light' ? srcLight : srcDark || srcLight)
-    }
-  }, [resolvedTheme, srcLight, srcDark])
 
   if (!srcLight) {
     return <div style={{ width, height }} className={cn('bg-muted', className)} aria-label={alt} />
   }
 
-  return <Image src={src} alt={alt} width={width} height={height} className={className} />
+  return <Image src={srcLight} alt={alt} width={width} height={height} className={className} />
 }
