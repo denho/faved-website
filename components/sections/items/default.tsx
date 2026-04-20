@@ -8,6 +8,7 @@ import {
   faBookmark,
   faCodeBranch,
   faFileImport,
+  faMagnifyingGlass,
   faServer,
   faTags,
 } from '@fortawesome/free-solid-svg-icons'
@@ -40,43 +41,51 @@ export default function Items({
       icon: <FontAwesomeIcon icon={faCodeBranch} className="size-5 stroke-1" />,
     },
     {
-      title: 'Browser Bookmarklet',
+      title: 'Lightning Fast',
       description:
-        'Save bookmarks from any browser with a simple bookmarklet without installing additional extensions. Works on any desktop and mobile browser.',
-      icon: <FontAwesomeIcon icon={faBookmark} className="size-5 stroke-1" />,
-    },
-    {
-      title: '  Lightning Fast',
-      description:
-        'Blazing performance with full page loads of 2000+ bookmarks under 100ms, ensuring a smooth experience even with large collections.',
+        'Exceptional performance delivering a smooth and responsive experience even with extensive collections.',
       icon: <FontAwesomeIcon icon={faBolt} className="size-5 stroke-1" />,
     },
     {
-      title: 'Import from Pocket',
-      description:
-        'Seamlessly import your existing bookmarks from Pocket to transition to self-hosted storage.',
-      icon: <FontAwesomeIcon icon={faFileImport} className="size-5 stroke-1" />,
-    },
-    {
-      title: 'Tagging System',
-      description:
-        'Organize bookmarks with custom nested tags. Apply different styling to tags and pin important tags at the top for quick access.',
-      icon: <FontAwesomeIcon icon={faTags} className="size-5 stroke-1" />,
-    },
-    // NEW
-    {
       title: 'Responsive design',
-      description: 'Looks and works great on any device and screen size',
+      description: 'Works seamlessly across all devices and screen sizes.',
       icon: <MonitorSmartphoneIcon className="size-5 stroke-1" />,
     },
+
     {
       title: 'Light and dark mode',
-      description: 'Seamless switching between color schemes, 6 themes included',
+      description:
+        'Automatically syncs with your system theme, with the option to manually switch between light and dark modes.',
       icon: <EclipseIcon className="size-5 stroke-1" />,
     },
     {
+      title: 'Advanced Tagging System',
+      description:
+        'Organize bookmarks with custom nested tags. Apply different styling to tags and pin important tags for quick access.',
+      icon: <FontAwesomeIcon icon={faTags} className="size-5 stroke-1" />,
+    },
+
+    {
+      title: 'Import from Anywhere',
+      description:
+        'Seamlessly import your existing bookmarks from any browser or service like Raindrop.io or Pocket to transition to self-hosted storage.',
+      icon: <FontAwesomeIcon icon={faFileImport} className="size-5 stroke-1" />,
+    },
+    {
+      title: 'Instant Search',
+      description: 'Find bookmarks instantly as you type in collections of any size.',
+      icon: <FontAwesomeIcon icon={faMagnifyingGlass} className="size-5 stroke-1" />,
+    },
+
+    {
+      title: 'Browser Bookmarklet',
+      description:
+        'Save bookmarks from any browser using a simple bookmarklet — no extensions required. Compatible with all desktop and most mobile browsers.',
+      icon: <FontAwesomeIcon icon={faBookmark} className="size-5 stroke-1" />,
+    },
+    {
       title: 'Localisation (coming soon)',
-      description: 'Support for multiple languages and regions is under development',
+      description: 'Support for multiple languages and regions is under development.',
       icon: <LanguagesIcon className="size-5 stroke-1" />,
     },
   ],

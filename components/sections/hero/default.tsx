@@ -47,8 +47,8 @@ export default function Hero({
       srcLight="/static/images/screenshot-list-desktop.png"
       srcDark="/static/images/screenshot-list-desktop.png"
       alt="Faved application screenshot"
-      width={1248}
-      height={765}
+      width={3204}
+      height={1854}
       className="w-full"
     />
   ),
