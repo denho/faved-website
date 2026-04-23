@@ -47,8 +47,8 @@ export default function FooterSection({
   ],
   copyright = `© ${new Date().getFullYear()} All rights reserved`,
   policies = [
-    { text: 'Privacy Policy', href: '/privacy-policy' },
-    { text: 'Terms of Service', href: '/terms-of-service' },
+    { text: 'Privacy Policy', href: '/privacy' },
+    { text: 'Terms of Service', href: '/terms' },
   ],
   className,
 }: FooterProps) {
@@ -87,16 +87,16 @@ export default function FooterSection({
               </FooterColumn>
             ))}
           </FooterContent>
-          {/*<FooterBottom>*/}
-          {/*  <div>{copyright}</div>*/}
-          {/*  <div className="flex items-center gap-4">*/}
-          {/*    {policies.map((policy, index) => (*/}
-          {/*      <a key={index} href={policy.href}>*/}
-          {/*        {policy.text}*/}
-          {/*      </a>*/}
-          {/*    ))}*/}
-          {/*  </div>*/}
-          {/*</FooterBottom>*/}
+          <FooterBottom>
+            <div>{copyright}</div>
+            <div className="flex items-center gap-4">
+              {policies.map((policy, index) => (
+                <a key={index} href={policy.href}>
+                  {policy.text}
+                </a>
+              ))}
+            </div>
+          </FooterBottom>
         </Footer>
       </div>
     </footer>

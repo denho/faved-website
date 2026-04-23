@@ -162,9 +162,22 @@ export const Docs = defineDocumentType(() => ({
   computedFields,
 }))
 
+export const Legal = defineDocumentType(() => ({
+  name: 'Legal',
+  filePathPattern: 'legal/**/*.mdx',
+  contentType: 'mdx',
+  fields: {
+    title: { type: 'string', required: true },
+    draft: { type: 'boolean' },
+    date: { type: 'date', required: true },
+    lastmod: { type: 'date' },
+  },
+  computedFields,
+}))
+
 export default makeSource({
   contentDirPath: 'data',
-  documentTypes: [Blog, Authors, Docs],
+  documentTypes: [Blog, Authors, Docs, Legal],
   mdx: {
     cwd: process.cwd(),
     remarkPlugins: [
