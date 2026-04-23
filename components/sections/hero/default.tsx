@@ -55,7 +55,7 @@ export default function Hero({
   badge = (
     <Badge variant="outline" className="animate-appear">
       <span className="text-muted-foreground">Start instantly — no setup required!</span>
-      <a href={siteConfig.cloudUrl} className="flex items-center gap-1">
+      <a href={`${siteConfig.cloudUrl}?ref=hero-badge`} className="flex items-center gap-1">
         Try Faved Cloud
         <ArrowRightIcon className="size-3" />
       </a>

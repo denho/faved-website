@@ -55,7 +55,7 @@ export default function Navigation({
     {
       title: 'Managed hosting',
       isLink: true,
-      href: siteMetadata.cloudUrl,
+      href: `${siteMetadata.cloudUrl}?ref=navbar`,
     },
     {
       title: 'Live demo',

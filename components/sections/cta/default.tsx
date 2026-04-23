@@ -166,7 +166,7 @@ export default function CTA({
                 </p>
               </div>
               <Button size="lg" className="shadow-primary-500/20 w-full shadow-lg" asChild>
-                <a href={siteConfig.cloudUrl}>Start Now</a>
+                <a href={`${siteConfig.cloudUrl}?ref=get-started-cta`}>Start Now</a>
               </Button>
             </div>
           </div>

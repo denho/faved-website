@@ -55,7 +55,7 @@ export default function Navbar({
     },
     {
       text: 'Managed hosting',
-      href: siteMetadata.cloudUrl,
+      href: `${siteMetadata.cloudUrl}?ref=navbar`,
     },
     {
       text: 'Live demo',
@@ -72,31 +72,19 @@ export default function Navbar({
     // },
     {
       text: '',
-      icon: (
-        <Github
-          className="h-4 w-4 fill-current"
-        />
-      ),
+      icon: <Github className="h-4 w-4 fill-current" />,
       isButton: false,
       href: siteMetadata.github,
     },
     {
       text: '',
-      icon: (
-        <Discord
-          className="h-4 w-4 fill-current"
-        />
-      ),
+      icon: <Discord className="h-4 w-4 fill-current" />,
       isButton: false,
       href: siteMetadata.discord,
     },
     {
       text: '',
-      icon: (
-        <X
-          className="h-4 w-4 fill-current"
-        />
-      ),
+      icon: <X className="h-4 w-4 fill-current" />,
       isButton: false,
       href: siteMetadata.x,
     },
