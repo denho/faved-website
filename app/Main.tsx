@@ -1,10 +1,9 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+
 import Hero from '@/components/sections/hero/default'
 import Items from '@/components/sections/items/default'
 import About from '@/components/sections/about/default'
-import { Section } from '@/components/ui/section'
 import React from '@/components/logos/react'
+import CTA from "@/components/sections/cta/default";
 
 const MAX_DISPLAY = 5
 
@@ -14,76 +13,7 @@ export default function Home({ posts }) {
       <Hero />
       <Items />
       <About />
-      <Section id="get-started">
-        <div className="relative mx-auto max-w-6xl px-6">
-          <div className="mb-16 text-center">
-            <h2 className="text-center text-3xl font-semibold text-balance sm:text-5xl">
-              Get Started
-            </h2>
-          </div>
-
-          <div className="space-y-8">
-            <div className="group">
-              <div className="mb-4 flex items-center">
-                <div className="bg-primary-500 mr-4 flex h-8 w-8 items-center justify-center rounded-full text-sm font-medium text-white">
-                  1
-                </div>
-                <h3 className="text-lg font-medium text-gray-900 dark:text-white">
-                  Pull the latest image from Docker Hub
-                </h3>
-              </div>
-              <div className="ml-12 space-y-4">
-                <div className="flex items-start space-x-3 rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800/50 dark:bg-blue-950/30">
-                  <FontAwesomeIcon
-                    icon={faInfoCircle}
-                    className="mt-0.5 h-4 w-4 flex-shrink-0 text-blue-500"
-                  />
-                  <p className="text-sm text-blue-700 dark:text-blue-300">
-                    Don't have Docker installed?{' '}
-                    <a
-                      href="https://docs.docker.com/get-docker/"
-                      target="_blank"
-                      rel="noopener"
-                      className="underline hover:no-underline"
-                    >
-                      Get it here
-                    </a>
-                  </p>
-                </div>
-                <div className="relative rounded-xl border border-gray-800 bg-gray-950 p-6 dark:bg-gray-900">
-                  <code className="font-mono text-sm text-gray-300">docker pull denho/faved</code>
-                </div>
-              </div>
-            </div>
-
-            <div className="group">
-              <div className="mb-4 flex items-center">
-                <div className="bg-primary-500 mr-4 flex h-8 w-8 items-center justify-center rounded-full text-sm font-medium text-white">
-                  2
-                </div>
-                <h3 className="text-lg font-medium text-gray-900 dark:text-white">
-                  Start the Docker container
-                </h3>
-              </div>
-              <div className="ml-12 space-y-4">
-                <div className="relative rounded-xl border border-gray-800 bg-gray-950 p-6 dark:bg-gray-900">
-                  <code className="font-mono text-sm text-gray-300">
-                    docker run -d --name faved -p 8080:80 -v faved-data:/var/www/html/storage
-                    denho/faved
-                  </code>
-                </div>
-                <p className="mt-3 text-gray-600 dark:text-gray-400">
-                  Done! Open{' '}
-                  <span className="rounded bg-gray-200 px-2 py-1 font-mono text-xs dark:bg-gray-800">
-                    http://localhost:8080
-                  </span>{' '}
-                  in your browser to access your Faved instance.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Section>
+      <CTA />
 
       {/* <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
