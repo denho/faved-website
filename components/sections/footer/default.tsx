@@ -90,6 +90,9 @@ export default function FooterSection({
           <FooterBottom>
             <div>{copyright}</div>
             <div className="flex items-center gap-4">
+              <button type="button" id="cookie-settings" className="open-consent-btn cursor-pointer">
+                Cookie Settings
+              </button>
               {policies.map((policy, index) => (
                 <a key={index} href={policy.href}>
                   {policy.text}
