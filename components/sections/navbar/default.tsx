@@ -55,11 +55,11 @@ export default function Navbar({
     },
     {
       text: 'Managed hosting',
-      href: 'https://faved.cloud/signup',
+      href: siteMetadata.cloudUrl,
     },
     {
       text: 'Live demo',
-      href: 'https://faved.cloud/signup',
+      href: siteMetadata.demoUrl,
     },
   ],
   actions = [
