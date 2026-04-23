@@ -1,6 +1,6 @@
 'use client'
 
-import Image from 'next/image'
+import Image from '@/components/Image'
 
 import { cn } from '@/components/lib/utils'
 
@@ -15,7 +15,6 @@ interface ScreenshotProps {
 
 export default function Screenshot({
   srcLight,
-  srcDark,
   alt,
   width,
   height,
