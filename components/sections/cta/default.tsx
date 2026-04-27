@@ -1,37 +1,37 @@
 import { CheckIcon } from 'lucide-react'
-import { type VariantProps } from "class-variance-authority";
-import { ReactNode } from "react";
+import { type VariantProps } from 'class-variance-authority'
+import { ReactNode } from 'react'
 
-import siteConfig from "@/data/siteMetadata";
-import { cn } from "@/components/lib/utils";
+import siteConfig from '@/data/siteMetadata'
+import { cn } from '@/components/lib/utils'
 
-import { Button, buttonVariants } from "../../ui/button";
-import Glow from "../../ui/glow";
-import { Section } from "../../ui/section";
+import { Button, buttonVariants } from '../../ui/button'
+import Glow from '../../ui/glow'
+import { Section } from '../../ui/section'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 
 interface CTAButtonProps {
-  href: string;
-  text: string;
-  variant?: VariantProps<typeof buttonVariants>["variant"];
-  icon?: ReactNode;
-  iconRight?: ReactNode;
+  href: string
+  text: string
+  variant?: VariantProps<typeof buttonVariants>['variant']
+  icon?: ReactNode
+  iconRight?: ReactNode
 }
 
 interface CTAProps {
-  title?: string;
-  buttons?: CTAButtonProps[] | false;
-  className?: string;
+  title?: string
+  buttons?: CTAButtonProps[] | false
+  className?: string
 }
 
 export default function CTA({
-  title = "Get Managed Hosting",
+  title = 'Get Managed Hosting',
   buttons = [
     {
       href: siteConfig.cloudUrl,
-      text: "Start in the cloud",
-      variant: "default",
+      text: 'Start in the cloud',
+      variant: 'default',
     },
   ],
   className,
@@ -48,7 +48,7 @@ export default function CTA({
         <div className="mb-20 grid grid-cols-1 gap-12 lg:grid-cols-2">
           {/* Self-Hosted Section */}
           <div className="space-y-8">
-            <h3 className="mb-6 text-center lg:text-left  text-2xl font-semibold text-gray-900 dark:text-white">
+            <h3 className="mb-6 text-center text-2xl font-semibold text-gray-900 lg:text-left dark:text-white">
               Self-hosted
             </h3>
             <div className="group">
@@ -120,51 +120,50 @@ export default function CTA({
 
           {/* Cloud Section */}
           <div className="space-y-8">
-            <h3 className="mb-6 text-center lg:text-left text-2xl font-semibold text-gray-900 dark:text-white">
+            <h3 className="mb-6 text-center text-2xl font-semibold text-gray-900 lg:text-left dark:text-white">
               Managed hosting
             </h3>
             <div className="relative rounded-2xl border border-gray-200 bg-white/50 p-8 shadow-sm transition-shadow hover:shadow-md dark:border-gray-800 dark:bg-gray-900/50">
               <div className="via-primary-500/50 absolute -top-px right-10 left-10 h-px bg-gradient-to-r from-transparent to-transparent" />
-              <p className="mb-6 leading-7 text-gray-600 dark:text-gray-400 text-sm">
-                The easiest way to get started. No installation, no updates, and no maintenance.
-                Everything is managed for you in a secure, high-performance environment.
+              <p className="mb-6 text-sm leading-7 text-gray-600 dark:text-gray-400">
+                <p className="mb-6 text-sm leading-7 text-gray-600 dark:text-gray-400">
+                  The easiest way to get started is to use our managed hosting service. Everything
+                  is handled for you in a secure, optimized environment. No time spent on setup,
+                  updates, or backups.
+                </p>
               </p>
               <ul className="mb-6 space-y-4 text-sm text-gray-600 dark:text-gray-400">
+                <li className="flex items-center gap-3">
+                  <CheckIcon className="text-primary-500 h-4 w-4 shrink-0" />
+                  High-performance servers with blazing-fast CDN
+                </li>
                 <li className="flex items-start gap-3">
                   <CheckIcon className="text-primary-500 mt-0.5 h-4 w-4 shrink-0" />
                   <div className="flex flex-col gap-1.5 sm:flex-row sm:items-center">
-                    <span>Data secure with database encryption</span>
-                    <span className="bg-primary-500/10 text-primary-200 inline-flex w-fit items-center rounded-full px-2 py-0.5 text-[10px] font-semibold tracking-wider uppercase">
-                      Coming soon
-                    </span>
+                    <span>Enterprise-grade security and encryption of your data</span>
                   </div>
                 </li>
                 <li className="flex items-center gap-3">
                   <CheckIcon className="text-primary-500 h-4 w-4 shrink-0" />
-                  Automatic backups & updates
+                  Automatic backups
                 </li>
                 <li className="flex items-center gap-3">
                   <CheckIcon className="text-primary-500 h-4 w-4 shrink-0" />
-                  Early access to Beta features
+                  Automatic updates with early access to new features
                 </li>
                 <li className="flex items-center gap-3">
                   <CheckIcon className="text-primary-500 h-4 w-4 shrink-0" />
-                  Blazing-fast CDN
+                  Priority handling of your feature requests
                 </li>
                 <li className="flex items-center gap-3">
                   <CheckIcon className="text-primary-500 h-4 w-4 shrink-0" />
-                  Priority support & feature requests
+                  Dedicated email support
                 </li>
                 <li className="flex items-center gap-3">
                   <CheckIcon className="text-primary-500 h-4 w-4 shrink-0" />
-                  Zero setup, instant access
+                  Zero setup - start organizing your bookmarks in under 60 seconds
                 </li>
               </ul>
-              <div className="bg-primary-50/50 dark:bg-primary-950/20 mb-2 rounded-lg p-3 text-center">
-                <p className="text-primary-600 dark:text-primary-400 text-sm font-semibold">
-                  Early adopter discount: 60% off
-                </p>
-              </div>
               <Button size="lg" className="shadow-primary-500/20 w-full shadow-lg" asChild>
                 <a href={`${siteConfig.cloudUrl}?ref=get-started-cta`}>Start Now</a>
               </Button>
