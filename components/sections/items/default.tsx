@@ -1,18 +1,17 @@
-import { EclipseIcon, LanguagesIcon, MonitorSmartphoneIcon } from 'lucide-react'
-import { ReactNode } from 'react'
+import {EclipseIcon, LanguagesIcon, MonitorSmartphoneIcon} from 'lucide-react'
+import {ReactNode} from 'react'
 
-import { Item, ItemDescription, ItemIcon, ItemTitle } from '../../ui/item'
-import { Section } from '../../ui/section'
+import {Item, ItemDescription, ItemIcon, ItemTitle} from '../../ui/item'
+import {Section} from '../../ui/section'
 import {
   faBolt,
   faBookmark,
   faCodeBranch,
   faFileImport,
   faMagnifyingGlass,
-  faServer,
   faTags,
 } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
 interface ItemProps {
   title: string
@@ -30,15 +29,10 @@ export default function Items({
   title = 'Features',
   items = [
     {
-      title: 'Self-Hosted',
+      title: 'Advanced Tagging System',
       description:
-        'Keep your bookmarks on your own computer or server. Your data is stored locally and belongs to you.',
-      icon: <FontAwesomeIcon icon={faServer} className="size-5 stroke-1" />,
-    },
-    {
-      title: 'Open Source',
-      description: 'Transparent codebase that anyone can inspect, modify, and contribute to.',
-      icon: <FontAwesomeIcon icon={faCodeBranch} className="size-5 stroke-1" />,
+        'Organize bookmarks with custom nested tags. Apply different styling to tags and pin important tags for quick access.',
+      icon: <FontAwesomeIcon icon={faTags} className="size-5 stroke-1" />,
     },
     {
       title: 'Lightning Fast',
@@ -51,20 +45,12 @@ export default function Items({
       description: 'Works seamlessly across all devices and screen sizes.',
       icon: <MonitorSmartphoneIcon className="size-5 stroke-1" />,
     },
-
     {
       title: 'Light and dark mode',
       description:
         'Automatically syncs with your system theme, with the option to manually switch between light and dark modes.',
       icon: <EclipseIcon className="size-5 stroke-1" />,
     },
-    {
-      title: 'Advanced Tagging System',
-      description:
-        'Organize bookmarks with custom nested tags. Apply different styling to tags and pin important tags for quick access.',
-      icon: <FontAwesomeIcon icon={faTags} className="size-5 stroke-1" />,
-    },
-
     {
       title: 'Import from Anywhere',
       description:
@@ -76,12 +62,16 @@ export default function Items({
       description: 'Find bookmarks instantly as you type in collections of any size.',
       icon: <FontAwesomeIcon icon={faMagnifyingGlass} className="size-5 stroke-1" />,
     },
-
     {
       title: 'Browser Bookmarklet',
       description:
         'Save bookmarks from any browser using a simple bookmarklet — no extensions required. Compatible with all desktop and most mobile browsers.',
       icon: <FontAwesomeIcon icon={faBookmark} className="size-5 stroke-1" />,
+    },
+    {
+      title: 'Open Source',
+      description: 'Transparent codebase that anyone can inspect and contribute to.',
+      icon: <FontAwesomeIcon icon={faCodeBranch} className="size-5 stroke-1" />,
     },
     {
       title: 'Localisation (coming soon)',
