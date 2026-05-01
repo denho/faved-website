@@ -1,9 +1,9 @@
-
 import Hero from '@/components/sections/hero/default'
 import Items from '@/components/sections/items/default'
 import About from '@/components/sections/about/default'
 import React from '@/components/logos/react'
-import CTA from "@/components/sections/cta/default";
+import CTA from '@/components/sections/cta/default'
+import Testimonials from '@/components/sections/testimonials/default'
 
 const MAX_DISPLAY = 5
 
@@ -13,6 +13,7 @@ export default function Home({ posts }) {
       <Hero />
       <Items />
       <About />
+      <Testimonials />
       <CTA />
 
       {/* <div className="divide-y divide-gray-200 dark:divide-gray-700">
