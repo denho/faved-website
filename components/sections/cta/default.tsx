@@ -46,10 +46,57 @@ export default function CTA({
         </div>
 
         <div className="mb-20 grid grid-cols-1 gap-12 lg:grid-cols-2">
+          {/* Cloud Section */}
+          <div className="space-y-8">
+            <h3 className="mb-6 text-center text-2xl font-semibold text-gray-900 lg:text-left dark:text-white">
+             Start in the Cloud
+            </h3>
+            <div className="relative rounded-2xl border border-gray-200 bg-white/50 p-8 shadow-sm transition-shadow hover:shadow-md dark:border-gray-800 dark:bg-gray-900/50">
+              <div className="via-primary-500/50 absolute -top-px right-10 left-10 h-px bg-gradient-to-r from-transparent to-transparent" />
+              <p className="mb-6 text-sm leading-7 text-gray-600 dark:text-gray-400">
+                The easiest way to get started is to use our managed hosting service. Everything is
+                handled for you in a secure, optimized environment. No time spent on setup, updates,
+                or backups.
+              </p>
+              <ul className="mb-6 space-y-4 text-sm text-gray-600 dark:text-gray-400">
+                <li className="flex items-center gap-3">
+                  <CheckIcon className="text-primary-500 h-4 w-4 shrink-0" />
+                  High-performance servers with blazing-fast CDN
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckIcon className="text-primary-500 mt-0.5 h-4 w-4 shrink-0" />
+                  <div className="flex flex-col gap-1.5 sm:flex-row sm:items-center">
+                    <span>Enterprise-grade security and encryption of your data</span>
+                  </div>
+                </li>
+                <li className="flex items-center gap-3">
+                  <CheckIcon className="text-primary-500 h-4 w-4 shrink-0" />
+                  Automatic backups
+                </li>
+                <li className="flex items-center gap-3">
+                  <CheckIcon className="text-primary-500 h-4 w-4 shrink-0" />
+                  Automatic updates with early access to new features
+                </li>
+                <li className="flex items-center gap-3">
+                  <CheckIcon className="text-primary-500 h-4 w-4 shrink-0" />
+                  Dedicated email support
+                </li>
+                <li className="flex items-center gap-3">
+                  <CheckIcon className="text-primary-500 h-4 w-4 shrink-0" />
+                  Zero setup - start organizing your bookmarks in under 60 seconds
+                </li>
+
+              </ul>
+              <Button size="lg" className="shadow-primary-500/20 w-full shadow-lg mt-4" asChild>
+                <a href={`${siteConfig.cloudUrl}?ref=get-started-cta`}>Launch Faved Cloud</a>
+              </Button>
+            </div>
+          </div>
+
           {/* Self-Hosted Section */}
           <div className="space-y-8">
             <h3 className="mb-6 text-center text-2xl font-semibold text-gray-900 lg:text-left dark:text-white">
-              Self-hosted
+              Host your own instance
             </h3>
             <div className="group">
               <div className="mb-4 flex items-center">
@@ -118,55 +165,7 @@ export default function CTA({
             </div>
           </div>
 
-          {/* Cloud Section */}
-          <div className="space-y-8">
-            <h3 className="mb-6 text-center text-2xl font-semibold text-gray-900 lg:text-left dark:text-white">
-              Managed hosting
-            </h3>
-            <div className="relative rounded-2xl border border-gray-200 bg-white/50 p-8 shadow-sm transition-shadow hover:shadow-md dark:border-gray-800 dark:bg-gray-900/50">
-              <div className="via-primary-500/50 absolute -top-px right-10 left-10 h-px bg-gradient-to-r from-transparent to-transparent" />
-              <p className="mb-6 text-sm leading-7 text-gray-600 dark:text-gray-400">
-                The easiest way to get started is to use our managed hosting service. Everything is
-                handled for you in a secure, optimized environment. No time spent on setup, updates,
-                or backups.
-              </p>
-              <ul className="mb-6 space-y-4 text-sm text-gray-600 dark:text-gray-400">
-                <li className="flex items-center gap-3">
-                  <CheckIcon className="text-primary-500 h-4 w-4 shrink-0" />
-                  High-performance servers with blazing-fast CDN
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckIcon className="text-primary-500 mt-0.5 h-4 w-4 shrink-0" />
-                  <div className="flex flex-col gap-1.5 sm:flex-row sm:items-center">
-                    <span>Enterprise-grade security and encryption of your data</span>
-                  </div>
-                </li>
-                <li className="flex items-center gap-3">
-                  <CheckIcon className="text-primary-500 h-4 w-4 shrink-0" />
-                  Automatic backups
-                </li>
-                <li className="flex items-center gap-3">
-                  <CheckIcon className="text-primary-500 h-4 w-4 shrink-0" />
-                  Automatic updates with early access to new features
-                </li>
-                <li className="flex items-center gap-3">
-                  <CheckIcon className="text-primary-500 h-4 w-4 shrink-0" />
-                  Priority handling of your feature requests
-                </li>
-                <li className="flex items-center gap-3">
-                  <CheckIcon className="text-primary-500 h-4 w-4 shrink-0" />
-                  Dedicated email support
-                </li>
-                <li className="flex items-center gap-3">
-                  <CheckIcon className="text-primary-500 h-4 w-4 shrink-0" />
-                  Zero setup - start organizing your bookmarks in under 60 seconds
-                </li>
-              </ul>
-              <Button size="lg" className="shadow-primary-500/20 w-full shadow-lg" asChild>
-                <a href={`${siteConfig.cloudUrl}?ref=get-started-cta`}>Start Now</a>
-              </Button>
-            </div>
-          </div>
+
         </div>
       </div>
 
