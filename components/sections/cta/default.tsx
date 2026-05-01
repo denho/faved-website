@@ -126,11 +126,9 @@ export default function CTA({
             <div className="relative rounded-2xl border border-gray-200 bg-white/50 p-8 shadow-sm transition-shadow hover:shadow-md dark:border-gray-800 dark:bg-gray-900/50">
               <div className="via-primary-500/50 absolute -top-px right-10 left-10 h-px bg-gradient-to-r from-transparent to-transparent" />
               <p className="mb-6 text-sm leading-7 text-gray-600 dark:text-gray-400">
-                <p className="mb-6 text-sm leading-7 text-gray-600 dark:text-gray-400">
-                  The easiest way to get started is to use our managed hosting service. Everything
-                  is handled for you in a secure, optimized environment. No time spent on setup,
-                  updates, or backups.
-                </p>
+                The easiest way to get started is to use our managed hosting service. Everything is
+                handled for you in a secure, optimized environment. No time spent on setup, updates,
+                or backups.
               </p>
               <ul className="mb-6 space-y-4 text-sm text-gray-600 dark:text-gray-400">
                 <li className="flex items-center gap-3">
