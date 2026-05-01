@@ -1,12 +1,12 @@
-import { ReactNode } from 'react'
+import {ReactNode} from 'react'
 
 import React from '../../logos/react'
 import ShadcnUi from '../../logos/shadcn-ui'
 import Tailwind from '../../logos/tailwind'
 import TypeScript from '../../logos/typescript'
-import { Badge } from '../../ui/badge'
+import {Badge} from '../../ui/badge'
 import Logo from '../../ui/logo'
-import { Section } from '../../ui/section'
+import {Section} from '../../ui/section'
 import PHP from '@/components/logos/php'
 import siteMetadata from '@/data/siteMetadata'
 
@@ -36,14 +36,11 @@ export default function Logos({
   return (
     <Section className={className}>
       <div className="max-w-container mx-auto mb-20 flex flex-col items-center gap-6 sm:gap-20">
-        <h2 className="text-center text-3xl font-semibold text-balance sm:text-5xl">About</h2>
-
-        <p className="text-md text-muted-foreground max-w-full text-left leading-9 font-medium sm:text-xl lg:px-20">
-          Faved was born out of the need for a simple yet powerful bookmark manager that respects
-          user privacy and ownership of data. Unlike commercial bookmark services that collect your
-          data, Faved is completely self-hosted - meaning you maintain control over your
-          information.
-        </p>
+        <h2 className="text-center text-3xl font-semibold text-balance sm:text-5xl">Why Faved</h2>
+        <div className="text-md text-muted-foreground max-w-full text-left leading-9 font-medium sm:text-xl lg:px-20 space-y-4">
+        <p>Most tools break down as your collection grows. What starts organized quickly becomes cluttered — links get lost, and finding anything takes too long.</p>
+        <p>Faved combines flexible tagging and instant search to keep everything easy to find. Instead of rigid folders, your bookmarks stay organized in a way that adapts to you — so even large collections remain fast, clear, and manageable.</p>
+        </div>
       </div>
       <div className="max-w-container mx-auto flex flex-col items-center gap-8 text-center">
         <div className="flex flex-col items-center gap-6">
