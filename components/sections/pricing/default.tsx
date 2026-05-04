@@ -142,9 +142,7 @@ export default function Pricing({
             )}
           >
             Yearly
-            <Badge variant="secondary">
-              Save 50%
-            </Badge>
+            <Badge variant="secondary">Save 50%</Badge>
           </Label>
         </div>
 
