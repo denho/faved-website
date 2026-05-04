@@ -29,10 +29,10 @@ export interface PricingColumnProps
   name: string
   icon?: ReactNode
   description: string
-  monthlyPerMonthPrice: number | string
-  yearlyPerMonthPrice?: number | string
+  price: number | string
   originalPrice?: number
   promotionText?: ReactNode
+  priceSubline?: React.ReactNode
   priceNote: string
   cta: {
     variant: 'glow' | 'default'
@@ -56,8 +56,8 @@ export function PricingColumn({
   variant,
   className,
   ...props
-}) {
-  const isNumericPrice = !isNaN(price) && price > 0
+}: PricingColumnProps) {
+  const isNumericPrice = !isNaN(Number(price)) && Number(price) > 0
 
   return (
     <div className={cn(pricingColumnVariants({ variant, className }))} {...props}>
@@ -95,7 +95,7 @@ export function PricingColumn({
               </div>
             </div>
             <div className="flex min-h-[40px] flex-col">
-              {price > 0 && (
+              {Number(price) > 0 && (
                 <>
                   <span className="text-sm">/month</span>
                   {/*<span className="text-muted-foreground text-sm">*/}

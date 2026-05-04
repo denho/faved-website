@@ -13,14 +13,19 @@ import { Label } from '@/components/ui/label'
 import siteConfig from '@/data/siteMetadata'
 import { Badge } from '@/components/ui/badge'
 
+interface PricingPlan extends Omit<PricingColumnProps, 'price'> {
+  monthlyPerMonthPrice: number | string
+  yearlyPerMonthPrice: number | string
+}
+
 interface PricingProps {
   title?: string | false
   description?: string | false
-  plans?: PricingColumnProps[]
+  plans?: PricingPlan[]
   className?: string
 }
 
-const DEFAULT_PRICING_PLANS: PricingColumnProps[] = [
+const DEFAULT_PRICING_PLANS: PricingPlan[] = [
   {
     name: 'Self-hosted',
     description: 'Faved is open-source and free to self-host',
@@ -38,7 +43,7 @@ const DEFAULT_PRICING_PLANS: PricingColumnProps[] = [
   },
   {
     name: 'Cloud',
-    icon: <Cloud className="size-4" />,
+    // icon: <Cloud className="size-4" />,
     // description: "The hassle-free option — no technical knowledge required for setup, no time spent on maintenance, updates, or backups.",
     description: 'Zero setup — start in under 60 seconds',
     monthlyPerMonthPrice: 5,
@@ -62,7 +67,7 @@ const DEFAULT_PRICING_PLANS: PricingColumnProps[] = [
   },
   {
     name: 'Cloud Team',
-    icon: <Users className="size-4" />,
+    // icon: <Users className="size-4" />,
     description: 'For teams and organizations. Collaborate securely',
     monthlyPerMonthPrice: 'Custom',
     yearlyPerMonthPrice: 'Custom',
@@ -87,7 +92,7 @@ const DEFAULT_PRICING_PLANS: PricingColumnProps[] = [
 export default function Pricing({
   title = 'Simple, Flexible Pricing',
   description = 'From self-hosted to fully managed cloud. Choose what fits your workflow.',
-  plans = DEFAULT_PRICING_PLANS,
+  plans = DEFAULT_PRICING_PLANS as PricingPlan[],
   className = '',
 }: PricingProps) {
   const [isYearly, setIsYearly] = useState(true)
@@ -137,7 +142,7 @@ export default function Pricing({
             )}
           >
             Yearly
-            <Badge variant="brand" className="text-primary bg-brand/80">
+            <Badge variant="brand" className="text-primary bg-brand/4s0">
               Save 50%
             </Badge>
           </Label>
@@ -149,16 +154,16 @@ export default function Pricing({
               <PricingColumn
                 key={plan.name}
                 name={plan.name}
-                // icon={plan.icon}
+                icon={plan.icon}
                 description={plan.description}
                 price={isYearly ? plan.yearlyPerMonthPrice : plan.monthlyPerMonthPrice}
                 originalPrice={plan.originalPrice}
                 priceSubline={
-                  !isNaN(plan.yearlyPerMonthPrice) &&
-                  plan.yearlyPerMonthPrice > 0 &&
-                  (isYearly
-                    ? `Billed yearly ($${plan.yearlyPerMonthPrice * 12}/year)`
-                    : 'Cancel anytime')
+                  !isNaN(Number(plan.yearlyPerMonthPrice)) && Number(plan.yearlyPerMonthPrice) > 0
+                    ? isYearly
+                      ? `Billed yearly ($${Number(plan.yearlyPerMonthPrice) * 12}/year)`
+                      : 'Cancel anytime'
+                    : undefined
                 }
                 promotionText={plan.promotionText}
                 priceNote={plan.priceNote}
