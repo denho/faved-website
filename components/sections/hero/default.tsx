@@ -65,7 +65,7 @@ export default function Hero({
       icon: <ArrowRightIcon className="mr-2 size-4" />,
     },
     {
-      href: siteConfig.github,
+      href: siteConfig.demoUrl,
       text: 'Live Demo',
       variant: 'glow',
       icon: <GlobeIcon className="mr-2 size-4" />,
