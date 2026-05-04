@@ -54,6 +54,10 @@ export default function Navbar({
       href: '/docs/getting-started/introduction',
     },
     {
+      text: 'Pricing',
+      href: '/#pricing',
+    },
+    {
       text: 'Managed hosting',
       href: `${siteMetadata.cloudUrl}?ref=navbar`,
     },

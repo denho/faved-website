@@ -2,8 +2,8 @@ import Hero from '@/components/sections/hero/default'
 import Items from '@/components/sections/items/default'
 import About from '@/components/sections/about/default'
 import React from '@/components/logos/react'
-import CTA from '@/components/sections/cta/default'
 import Testimonials from '@/components/sections/testimonials/default'
+import Pricing from '@/components/sections/pricing/default'
 
 const MAX_DISPLAY = 5
 
@@ -14,7 +14,7 @@ export default function Home({ posts }) {
       <Items />
       <About />
       <Testimonials />
-      <CTA />
+      <Pricing />
 
       {/* <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">

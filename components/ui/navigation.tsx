@@ -53,6 +53,11 @@ export default function Navigation({
       href: '/docs/getting-started/introduction',
     },
     {
+      title: 'Pricing',
+      isLink: true,
+      href: '/#pricing',
+    },
+    {
       title: 'Managed hosting',
       isLink: true,
       href: `${siteMetadata.cloudUrl}?ref=navbar`,
