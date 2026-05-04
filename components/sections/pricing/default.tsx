@@ -142,7 +142,7 @@ export default function Pricing({
             )}
           >
             Yearly
-            <Badge variant="brand" className="text-primary bg-brand/4s0">
+            <Badge variant="secondary">
               Save 50%
             </Badge>
           </Label>
