@@ -51,7 +51,7 @@ export default function Logos({
       </div>
       <div className="max-w-container mx-auto flex flex-col items-center gap-8 text-center">
         <div className="flex flex-col items-center gap-6">
-          {badge !== false && badge}
+          {/*{badge !== false && badge}*/}
           <h2 className="text-md font-semibold sm:text-2xl">{title}</h2>
         </div>
         {logos !== false && logos.length > 0 && (
