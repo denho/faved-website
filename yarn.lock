@@ -10158,12 +10158,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-react@npm:^1.8.0":
-  version: 1.8.0
-  resolution: "lucide-react@npm:1.8.0"
+"lucide-react@npm:^1.14.0":
+  version: 1.14.0
+  resolution: "lucide-react@npm:1.14.0"
   peerDependencies:
     react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  checksum: fe8fd168c827fb767bb22970c880a636d41b9ef5e7a9ef89b8f25e8ac35171c8454e9595ec77aae1f639eceb4c2c8b7e8e200c752a15bffdec5b2da786d3505b
+  checksum: 6db2fcc6d7545fabdec6f82db386f7f872a974aa0a4c508e6e23988055712286dccff2e0ef472ee5dc5f3852f1c3e916e84c92e52f049561b6829b6bc2f6483b
   languageName: node
   linkType: hard
 
@@ -14232,7 +14232,7 @@ __metadata:
     husky: ^9.1.7
     image-size: ^2.0.2
     lint-staged: ^16.4.0
-    lucide-react: ^1.8.0
+    lucide-react: ^1.14.0
     next: ^15.2.4
     next-contentlayer2: ^0.5.8
     next-themes: ^0.4.6
