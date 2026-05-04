@@ -32,6 +32,8 @@ export default [
         ecmaFeatures: {
           jsx: true,
         },
+        project: true,
+        tsconfigRootDir: import.meta.dirname,
       },
     },
     rules: {
@@ -46,6 +48,7 @@ export default [
       '@typescript-eslint/ban-ts-comment': 'off',
       '@typescript-eslint/no-require-imports': 'off',
       '@typescript-eslint/no-empty-object-type': 'off',
+      '@typescript-eslint/no-unsafe-argument': 'error',
       'jsx-a11y/anchor-has-content': 'off',
       'jsx-a11y/anchor-is-valid': 'off',
     },
