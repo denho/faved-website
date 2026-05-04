@@ -1,17 +1,17 @@
-import React from "react";
+import React from 'react'
 
-import { cn } from "@/components/lib/utils";
+import { cn } from '@/components/lib/utils'
 
-import { Badge } from "./badge";
+import { Badge } from './badge'
 
 export interface LogoProps extends React.HTMLAttributes<HTMLDivElement> {
-  image: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-  name: string;
-  version?: string;
-  width?: number;
-  height?: number;
-  showName?: boolean;
-  badge?: string;
+  image: React.ComponentType<React.SVGProps<SVGSVGElement>>
+  name: string
+  version?: string
+  width?: number
+  height?: number
+  showName?: boolean
+  badge?: string
 }
 
 export default function Logo({
@@ -28,7 +28,7 @@ export default function Logo({
   return (
     <div
       data-slot="logo"
-      className={cn("flex items-center gap-2 text-sm font-medium", className)}
+      className={cn('flex items-center gap-2 text-sm font-medium', className)}
       {...props}
     >
       <SvgImage
@@ -37,7 +37,7 @@ export default function Logo({
         aria-hidden="true"
         className="max-h-full max-w-full opacity-70"
       />
-      <span className={cn(!showName && "sr-only")}>{name}</span>
+      <span className={cn(!showName && 'sr-only')}>{name}</span>
       {version && <span className="text-muted-foreground">{version}</span>}
       {badge && (
         <Badge variant="brand" size="sm">
@@ -45,5 +45,5 @@ export default function Logo({
         </Badge>
       )}
     </div>
-  );
+  )
 }

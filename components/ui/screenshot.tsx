@@ -13,15 +13,7 @@ interface ScreenshotProps {
   className?: string
 }
 
-export default function Screenshot({
-  srcLight,
-  alt,
-  width,
-  height,
-  className,
-}: ScreenshotProps) {
-
-
+export default function Screenshot({ srcLight, alt, width, height, className }: ScreenshotProps) {
   if (!srcLight) {
     return <div style={{ width, height }} className={cn('bg-muted', className)} aria-label={alt} />
   }

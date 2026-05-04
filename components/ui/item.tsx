@@ -1,51 +1,45 @@
-import * as React from "react";
+import * as React from 'react'
 
-import { cn } from "@/components/lib/utils";
+import { cn } from '@/components/lib/utils'
 
-function Item({ className, ...props }: React.ComponentProps<"div">) {
+function Item({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       data-slot="item"
-      className={cn("text-foreground flex flex-col gap-4 p-4", className)}
+      className={cn('text-foreground flex flex-col gap-4 p-4', className)}
       {...props}
     />
-  );
+  )
 }
 
-function ItemTitle({ className, ...props }: React.ComponentProps<"h3">) {
+function ItemTitle({ className, ...props }: React.ComponentProps<'h3'>) {
   return (
     <h3
       data-slot="item-title"
-      className={cn(
-        "text-sm leading-none font-semibold tracking-tight sm:text-base",
-        className,
-      )}
+      className={cn('text-sm leading-none font-semibold tracking-tight sm:text-base', className)}
       {...props}
     />
-  );
+  )
 }
 
-function ItemDescription({ className, ...props }: React.ComponentProps<"div">) {
+function ItemDescription({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       data-slot="item-description"
-      className={cn(
-        "text-muted-foreground flex flex-col gap-2 text-sm text-balance",
-        className,
-      )}
+      className={cn('text-muted-foreground flex flex-col gap-2 text-sm text-balance', className)}
       {...props}
     />
-  );
+  )
 }
 
-function ItemIcon({ className, ...props }: React.ComponentProps<"div">) {
+function ItemIcon({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       data-slot="item-icon"
-      className={cn("flex items-center self-start", className)}
+      className={cn('flex items-center self-start', className)}
       {...props}
     />
-  );
+  )
 }
 
-export { Item, ItemDescription,ItemIcon, ItemTitle };
+export { Item, ItemDescription, ItemIcon, ItemTitle }

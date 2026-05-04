@@ -27,5 +27,5 @@ const React = (props: React.SVGProps<SVGSVGElement>) => (
       strokeWidth={1.5}
     />
   </svg>
-);
-export default React;
+)
+export default React

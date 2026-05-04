@@ -41,7 +41,7 @@ export default function DocsLayout({ content, allDocs, children }: DocsLayoutPro
   }
 
   return (
-    <div className="mx-auto max-w-container">
+    <div className="max-w-container mx-auto">
       <div className="flex flex-col md:flex-row">
         {/* Mobile menu button */}
         <button
@@ -71,7 +71,7 @@ export default function DocsLayout({ content, allDocs, children }: DocsLayoutPro
 
         {/* Sidebar */}
         <aside
-          className={` ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} fixed top-15 left-0 z-40 h-screen w-64 flex-shrink-0 overflow-y-auto border-r border-gray-800 pt-10 pb-4 transition-transform md:sticky md:top-15 md:h-[calc(100vh)] md:translate-x-0 bg-primary-foreground`}
+          className={` ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} bg-primary-foreground fixed top-15 left-0 z-40 h-screen w-64 flex-shrink-0 overflow-y-auto border-r border-gray-800 pt-10 pb-4 transition-transform md:sticky md:top-15 md:h-[calc(100vh)] md:translate-x-0`}
         >
           <nav className="space-y-6 px-4">
             <div className="mb-4">
@@ -112,12 +112,10 @@ export default function DocsLayout({ content, allDocs, children }: DocsLayoutPro
 
         {/* Overlay for mobile */}
         {sidebarOpen && (
-          /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
           <div
             className="fixed inset-0 z-30 bg-black/50 md:hidden"
             onClick={() => setSidebarOpen(false)}
           />
-          /* eslint-enable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
         )}
 
         {/* Main content */}

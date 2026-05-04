@@ -14,5 +14,5 @@ const TypeScript = (props: React.SVGProps<SVGSVGElement>) => (
       fill="currentColor"
     />
   </svg>
-);
-export default TypeScript;
+)
+export default TypeScript

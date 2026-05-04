@@ -22,5 +22,5 @@ const ShadcnUi = (props: React.SVGProps<SVGSVGElement>) => (
       strokeLinejoin="round"
     />
   </svg>
-);
-export default ShadcnUi;
+)
+export default ShadcnUi

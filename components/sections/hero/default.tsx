@@ -1,17 +1,17 @@
-import {type VariantProps} from 'class-variance-authority'
-import {ArrowRightIcon, GlobeIcon} from 'lucide-react'
-import {ReactNode} from 'react'
+import { type VariantProps } from 'class-variance-authority'
+import { ArrowRightIcon, GlobeIcon } from 'lucide-react'
+import { ReactNode } from 'react'
 
 import siteConfig from '@/data/siteMetadata'
 
-import {cn} from '@/components/lib/utils'
+import { cn } from '@/components/lib/utils'
 
-import {Badge} from '../../ui/badge'
-import {Button, buttonVariants} from '../../ui/button'
+import { Badge } from '../../ui/badge'
+import { Button, buttonVariants } from '../../ui/button'
 import Glow from '../../ui/glow'
-import {Mockup, MockupFrame} from '../../ui/mockup'
+import { Mockup, MockupFrame } from '../../ui/mockup'
 import Screenshot from '../../ui/screenshot'
-import {Section} from '../../ui/section'
+import { Section } from '../../ui/section'
 
 interface HeroButtonProps {
   href: string
@@ -34,8 +34,8 @@ export default function Hero({
   title = 'Organize bookmarks the way your brain actually works',
   description = (
     <>
-        A bookmark manager that combines powerful tagging, instant search, and a clean interface that doesn’t break as your library grows.
-
+      A bookmark manager that combines powerful tagging, instant search, and a clean interface that
+      doesn’t break as your library grows.
     </>
   ),
   mockup = (
@@ -69,7 +69,6 @@ export default function Hero({
       text: 'Live Demo',
       variant: 'glow',
       icon: <GlobeIcon className="mr-2 size-4" />,
-
     },
   ],
   className,
@@ -79,7 +78,7 @@ export default function Hero({
       <div className="max-w-container mx-auto flex flex-col gap-12 pt-10 sm:gap-24">
         <div className="flex flex-col items-center gap-6 text-center sm:gap-12">
           {badge !== false && badge}
-          <h1 className="animate-appear from-foreground to-foreground dark:to-muted-foreground relative z-10 inline-block bg-linear-to-r bg-clip-text text-[2rem] leading-tight font-semibold text-balance text-transparent drop-shadow-2xl xs:text-4xl sm:text-5xl sm:leading-tight md:text-5xl lg:text-6xl xl:text-7xl md:leading-tight">
+          <h1 className="animate-appear from-foreground to-foreground dark:to-muted-foreground xs:text-4xl relative z-10 inline-block bg-linear-to-r bg-clip-text text-[2rem] leading-tight font-semibold text-balance text-transparent drop-shadow-2xl sm:text-5xl sm:leading-tight md:text-5xl md:leading-tight lg:text-6xl xl:text-7xl">
             {title}
           </h1>
           <div className="text-md animate-appear text-muted-foreground relative z-10 max-w-[740px] space-y-5 font-medium text-balance opacity-0 delay-100 sm:text-xl">

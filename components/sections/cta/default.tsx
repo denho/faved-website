@@ -49,7 +49,7 @@ export default function CTA({
           {/* Cloud Section */}
           <div className="space-y-8">
             <h3 className="mb-6 text-center text-2xl font-semibold text-gray-900 lg:text-left dark:text-white">
-             Start in the Cloud
+              Start in the Cloud
             </h3>
             <div className="relative rounded-2xl border border-gray-200 bg-white/50 p-8 shadow-sm transition-shadow hover:shadow-md dark:border-gray-800 dark:bg-gray-900/50">
               <div className="via-primary-500/50 absolute -top-px right-10 left-10 h-px bg-gradient-to-r from-transparent to-transparent" />
@@ -85,9 +85,8 @@ export default function CTA({
                   <CheckIcon className="text-primary-500 h-4 w-4 shrink-0" />
                   Zero setup - start organizing your bookmarks in under 60 seconds
                 </li>
-
               </ul>
-              <Button size="lg" className="shadow-primary-500/20 w-full shadow-lg mt-4" asChild>
+              <Button size="lg" className="shadow-primary-500/20 mt-4 w-full shadow-lg" asChild>
                 <a href={`${siteConfig.cloudUrl}?ref=get-started-cta`}>Launch Faved Cloud</a>
               </Button>
             </div>
@@ -164,8 +163,6 @@ export default function CTA({
               </div>
             </div>
           </div>
-
-
         </div>
       </div>
 

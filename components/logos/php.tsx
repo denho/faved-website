@@ -17,4 +17,4 @@ const PHP = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 )
 
-export default PHP;
+export default PHP

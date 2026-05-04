@@ -1,8 +1,8 @@
-import {EclipseIcon, MonitorSmartphoneIcon} from 'lucide-react'
-import {ReactNode} from 'react'
+import { EclipseIcon, MonitorSmartphoneIcon } from 'lucide-react'
+import { ReactNode } from 'react'
 
-import {Item, ItemDescription, ItemIcon, ItemTitle} from '../../ui/item'
-import {Section} from '../../ui/section'
+import { Item, ItemDescription, ItemIcon, ItemTitle } from '../../ui/item'
+import { Section } from '../../ui/section'
 import {
   faBolt,
   faBookmark,
@@ -13,7 +13,7 @@ import {
   faSliders,
   faTags,
 } from '@fortawesome/free-solid-svg-icons'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 interface ItemProps {
   title: string

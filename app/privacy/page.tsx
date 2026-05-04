@@ -19,7 +19,7 @@ export default function PrivacyPage() {
 
   return (
     <SectionContainer>
-      <div className="prose dark:prose-invert max-w-2xl mx-auto py-12 tracking-tight">
+      <div className="prose dark:prose-invert mx-auto max-w-2xl py-12 tracking-tight">
         <MDXLayoutRenderer code={legal.body.code} components={components} />
       </div>
     </SectionContainer>

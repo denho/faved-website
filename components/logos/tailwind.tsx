@@ -12,5 +12,5 @@ const Tailwind = (props: React.SVGProps<SVGSVGElement>) => (
       fill="currentColor"
     />
   </svg>
-);
-export default Tailwind;
+)
+export default Tailwind
