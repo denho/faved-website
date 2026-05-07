@@ -48,10 +48,10 @@ const DEFAULT_PRICING_PLANS: PricingPlan[] = [
     description: 'Zero setup — start in under 60 seconds',
     monthlyPerMonthPrice: 5,
     yearlyPerMonthPrice: 2.5,
-    priceNote: '15-day money-back guarantee',
+    priceNote: '14-day free trial',
     cta: {
       variant: 'default',
-      label: 'Get started',
+      label: 'Start for free',
       href: `${siteConfig.cloudUrl}?ref=pricing-cta`,
     },
     features: [
