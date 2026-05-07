@@ -51,7 +51,7 @@ const DEFAULT_PRICING_PLANS: PricingPlan[] = [
     priceNote: '14-day free trial',
     cta: {
       variant: 'default',
-      label: 'Start for free',
+      label: 'Try free for 14 days',
       href: `${siteConfig.cloudUrl}?ref=pricing-cta`,
     },
     features: [
