@@ -12,8 +12,9 @@ import { Navbar as NavbarComponent, NavbarLeft, NavbarRight } from '../../ui/nav
 import Navigation from '../../ui/navigation'
 import { Sheet, SheetContent, SheetTrigger } from '../../ui/sheet'
 
-import { Discord, Github, X } from '@/components/social-icons/icons'
+import { Discord, X } from '@/components/social-icons/icons'
 import SearchButton from '@/components/SearchButton'
+import GithubStars from '@/components/GithubStars'
 import BrandLogo from '@/components/ui/brand-logo'
 import Link from '@/components/Link'
 
@@ -65,6 +66,14 @@ export default function Navbar({
       text: 'Live demo',
       href: siteMetadata.demoUrl,
     },
+    {
+      text: 'Discord',
+      href: siteMetadata.discord,
+    },
+    {
+      text: 'X (Twitter)',
+      href: siteMetadata.x,
+    },
   ],
   actions = [
     // { text: 'Sign in', href: siteMetadata.url, isButton: false },
@@ -76,19 +85,13 @@ export default function Navbar({
     // },
     {
       text: '',
-      icon: <Github className="h-4 w-4 fill-current" />,
-      isButton: false,
-      href: siteMetadata.github,
-    },
-    {
-      text: '',
       icon: <Discord className="h-4 w-4 fill-current" />,
       isButton: false,
       href: siteMetadata.discord,
     },
     {
       text: '',
-      icon: <X className="h-4 w-4 fill-current" />,
+      icon: <X className="h-3.5 w-3.5 fill-current" />,
       isButton: false,
       href: siteMetadata.x,
     },
@@ -109,7 +112,8 @@ export default function Navbar({
             {showNavigation && (customNavigation || <Navigation />)}
           </NavbarLeft>
           <NavbarRight>
-            <SearchButton />
+            <SearchButton className="hidden md:block" />
+            <GithubStars />
             {actions.map((action, index) =>
               action.isButton ? (
                 <Button key={index} variant={action.variant || 'default'} asChild>

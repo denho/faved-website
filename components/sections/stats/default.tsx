@@ -79,7 +79,7 @@ export default function Stats({ items = DEFAULT_STATS, className }: StatsProps) 
                       <a
                         href={item.href}
                         target="_blank"
-                        rel="noopener noreferrer"
+                        rel="noopener"
                         className="text-muted-foreground hover:text-foreground transition-colors"
                       >
                         <ExternalLink size={14} />
