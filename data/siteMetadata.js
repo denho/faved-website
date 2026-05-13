@@ -20,6 +20,7 @@ const siteMetadata = {
   demoUrl: 'https://demo.faved.dev/',
   changelogUrl: 'https://github.com/denho/faved/releases',
   cloudUrl: 'https://faved.cloud/signup',
+  dockerHub: 'https://hub.docker.com/r/denho/faved',
   // twitter: 'https://twitter.com/Twitter',
   // facebook: 'https://facebook.com',
   // youtube: 'https://youtube.com',

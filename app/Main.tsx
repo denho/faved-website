@@ -4,6 +4,7 @@ import About from '@/components/sections/about/default'
 import React from '@/components/logos/react'
 import Testimonials from '@/components/sections/testimonials/default'
 import Pricing from '@/components/sections/pricing/default'
+import Stats from '@/components/sections/stats/default'
 
 const MAX_DISPLAY = 5
 
@@ -13,6 +14,7 @@ export default function Home({ posts }) {
       <Hero />
       <Items />
       <About />
+      <Stats />
       <Testimonials />
       <Pricing />
 
