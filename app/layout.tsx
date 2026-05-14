@@ -62,6 +62,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang={siteMetadata.language}
       className={cn('scroll-smooth', inter.variable, 'dark text-foreground bg-background')}
       suppressHydrationWarning
+      style={{ colorScheme: 'dark' }}
     >
       <head>
         <link
@@ -88,8 +89,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           color="#5bbad5"
         /> */}
         <meta name="msapplication-TileColor" content="#000000" />
-        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
-        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="color-scheme" content="dark" />
         <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
       </head>
       <body>
