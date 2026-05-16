@@ -9,7 +9,7 @@ const hoverCls =
   'transition-colors group-hover/stars:bg-accent group-hover/stars:text-accent-foreground'
 
 export default function GithubStars() {
-  const stars = 973
+  const stars = 989
 
   return (
     <Button

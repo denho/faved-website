@@ -29,7 +29,7 @@ const DEFAULT_STATS: StatItemProps[] = [
   },
   {
     label: 'stars',
-    value: 973,
+    value: 989,
     description: 'on GitHub ',
     href: siteMetadata.github,
   },
