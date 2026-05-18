@@ -8,8 +8,12 @@ import { Button } from './ui/button'
 const hoverCls =
   'transition-colors group-hover/stars:bg-accent group-hover/stars:text-accent-foreground'
 
+function formatToThousands(value: number) {
+  return Math.round(value / 100) / 10
+}
+
 export default function GithubStars() {
-  const stars = 989
+  const stars = formatToThousands(siteMetadata.stats.githubStars) + 'K+'
 
   return (
     <Button
@@ -24,7 +28,7 @@ export default function GithubStars() {
           <span className="text-[11px] font-semibold tracking-wider">Star</span>
         </div>
         <div
-          className={`border-input bg-muted/50 flex h-full items-center gap-1.5 border-l px-2.5 text-[10px] font-bold tabular-nums ${hoverCls}`}
+          className={`border-input bg-muted/50 flex h-full items-center gap-1.5 border-l px-2.5 text-[10px] font-bold tracking-wider tabular-nums ${hoverCls}`}
         >
           <Star className="size-3! fill-orange-400 text-orange-400" />
           {stars.toLocaleString()}

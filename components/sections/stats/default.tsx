@@ -22,27 +22,27 @@ function formatToThousands(value: number) {
 const DEFAULT_STATS: StatItemProps[] = [
   {
     label: 'clones + forks',
-    value: formatToThousands(3000) + 'k+',
+    value: formatToThousands(siteMetadata.stats.githubClonesForks) + 'k+',
     // suffix: "k",
     description: 'on GitHub ', // Calculated as average from 8 measurements of clones from 14-day stats
     href: siteMetadata.github,
   },
   {
     label: 'stars',
-    value: 989,
+    value: formatToThousands(siteMetadata.stats.githubStars) + 'k+',
     description: 'on GitHub ',
     href: siteMetadata.github,
   },
   {
     label: 'image pulls',
-    value: formatToThousands(10000) + 'k+',
+    value: formatToThousands(siteMetadata.stats.dockerHubPulls) + 'k+',
     // suffix: "k",
     description: 'from DockerHub ',
     href: siteMetadata.dockerHub,
   },
   {
     label: 'users',
-    value: 70 + '+',
+    value: siteMetadata.stats.cloudUsers + '+',
     description: 'of Cloud version ',
     href: `${siteMetadata.cloudUrl}?ref=stats`,
   },
