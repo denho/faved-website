@@ -13,7 +13,7 @@ function formatToThousands(value: number) {
 }
 
 export default function GithubStars() {
-  const stars = formatToThousands(siteMetadata.stats.githubStars) + 'K+'
+  const stars = formatToThousands(siteMetadata.stats.githubStars as number) + 'K+'
 
   return (
     <Button

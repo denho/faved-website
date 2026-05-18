@@ -22,20 +22,20 @@ function formatToThousands(value: number) {
 const DEFAULT_STATS: StatItemProps[] = [
   {
     label: 'clones + forks',
-    value: formatToThousands(siteMetadata.stats.githubClonesForks) + 'k+',
+    value: formatToThousands(siteMetadata.stats.githubClonesForks as number) + 'k+',
     // suffix: "k",
     description: 'on GitHub ', // Calculated as average from 8 measurements of clones from 14-day stats
     href: siteMetadata.github,
   },
   {
     label: 'stars',
-    value: formatToThousands(siteMetadata.stats.githubStars) + 'k+',
+    value: formatToThousands(siteMetadata.stats.githubStars as number) + 'k+',
     description: 'on GitHub ',
     href: siteMetadata.github,
   },
   {
     label: 'image pulls',
-    value: formatToThousands(siteMetadata.stats.dockerHubPulls) + 'k+',
+    value: formatToThousands(siteMetadata.stats.dockerHubPulls as number) + 'k+',
     // suffix: "k",
     description: 'from DockerHub ',
     href: siteMetadata.dockerHub,
@@ -65,7 +65,7 @@ export default function Stats({ items = DEFAULT_STATS, className }: StatsProps) 
                     )}
                   </div>
                   <div className="flex items-baseline gap-2">
-                    <div className="from-foreground to-foreground dark:to-brand bg-linear-to-r bg-clip-text text-4xl font-medium text-transparent drop-shadow-[2px_1px_24px_var(--brand-foreground)] transition-all duration-300 sm:text-5xl md:text-6xl">
+                    <div className="from-foreground to-foreground dark:to-brand selection:bg-brand bg-linear-to-r bg-clip-text text-4xl font-medium text-transparent drop-shadow-[2px_1px_24px_var(--brand-foreground)] transition-all duration-300 selection:text-gray-100 sm:text-5xl md:text-6xl">
                       {item.value}
                     </div>
                     {item.suffix && (
