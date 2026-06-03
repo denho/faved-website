@@ -34,9 +34,9 @@ const siteMetadata = {
   stickyNav: false,
   stats: {
     githubClonesForks: 3000,
-    githubStars: 1000,
+    githubStars: 1100,
     dockerHubPulls: 10000,
-    cloudUsers: 80,
+    cloudUsers: 100,
   },
   analytics: {
     // If you want to use an analytics provider you have to add it to the
