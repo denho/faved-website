@@ -1,0 +1,49 @@
+---
+title: 'Bulk bookmark actions, metadata refetching, and improved pagination'
+date: '2026-01-11'
+tags: ['Update']
+draft: false
+summary: 'Faved now supports bulk bookmark actions — delete, update tags, and fetch metadata for multiple bookmarks at once. You can also refetch metadata right from the list view without opening each bookmark, and pagination controls are cleaner and more intuitive.'
+---
+import siteMetadata from '@/data/siteMetadata'
+
+
+We’ve rolled out several noteworthy updates to Faved recently, and I wanted to quickly share what’s new and improved.
+
+## Bulk bookmark actions
+  <video
+    controls
+    autoPlay
+    loop
+    muted
+    playsInline
+    className="w-full rounded-lg"
+  >
+    <source src="/static/videos/posts/bulk-actions-and-metadata-refetching/bulk-actions-demo.mp4" type="video/mp4" />
+  </video>
+
+Managing your library one bookmark at a time is now a thing of the past. Select as many bookmarks as you like and act on them all at once — delete them in bulk, add or update tags across the whole selection, or refetch metadata for every item in a single operation. It's a much faster way to tidy up after a big import, reorganize your tags, or clean out links you no longer need, saving you from repeating the same action dozens of times.
+
+## Metadata refetching in list view
+
+You no longer need to open each bookmark individually to refresh its details. Right from the list view, you can refetch a bookmark's metadata — its title, description, and preview image — in a single click. This is especially handy when a page has been updated since you saved it, or when a bookmark was imported without complete information, letting you keep your library accurate and up to date without breaking your flow.
+
+## Cleaner and more intuitive pagination controls
+
+We've also given pagination a fresh, simpler look. Moving between pages is now clearer and more predictable, with a tidier layout that shows exactly where you are in your library and makes it easy to jump to the page you want. It's a small change, but it makes browsing large collections of bookmarks feel noticeably smoother.
+
+---
+
+### 🔄 How to Update
+If you're on the **cloud version**, good news — you're already up to date! These features are live in your account automatically, no action needed.
+
+If you're **self-hosting**, simply follow the [step-by-step instructions](/docs/getting-started/updating) to update your Faved instance to the latest version.
+
+
+### 📜 Full Changelog
+
+In addition to the key features above, there've been several smaller improvements and refinements. Check out the complete list in the [changelog](https://github.com/denho/faved/releases).
+
+### 💬 We'd Love to Hear from You!
+
+Your feedback is invaluable to us. Feel free to ask questions, suggest ideas, or start discussions on any topic in our community on [GitHub](https://github.com/denho/faved/discussions) or <a href={siteMetadata.discord} target="_blank" rel="noopener">Discord</a>.
