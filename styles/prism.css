@@ -10,8 +10,8 @@
 
 code[class*="language-"],
 pre[class*="language-"] {
-  color: #a9b7c6;
-  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+  color: #d4d4d8;
+  font-family: var(--font-mono, Consolas, Monaco, 'Andale Mono', monospace);
   direction: ltr;
   text-align: left;
   white-space: pre;
@@ -46,11 +46,13 @@ pre[class*="language-"] {
   padding: 1em;
   margin: .5em 0;
   overflow: auto;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.5rem;
 }
 
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-  background: #2b2b2b;
+  background: #18181b;
 }
 
 /* Inline code */
