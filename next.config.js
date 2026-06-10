@@ -69,6 +69,7 @@ module.exports = () => {
     basePath,
     reactStrictMode: true,
     trailingSlash: false,
+    allowedDevOrigins: ['*.anthropic.com', 'api.anthropic.com'],
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
     images: {
       remotePatterns: [

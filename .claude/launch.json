@@ -1,8 +1,10 @@
 {
-  "servers": [
+  "version": "0.0.1",
+  "configurations": [
     {
       "name": "Next.js dev",
-      "command": "yarn dev",
+      "runtimeExecutable": "yarn",
+      "runtimeArgs": ["dev"],
       "port": 3000
     }
   ]
