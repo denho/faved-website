@@ -1,0 +1,9 @@
+{
+  "servers": [
+    {
+      "name": "Next.js dev",
+      "command": "yarn dev",
+      "port": 3000
+    }
+  ]
+}
