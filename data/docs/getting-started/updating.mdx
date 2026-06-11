@@ -1,25 +1,33 @@
 ---
 title: 'Updating'
-description: ''
+description: 'Keep your Faved instance on the latest version.'
 order: 3
 date: '2025-10-21'
 draft: false
 ---
 
-Depending on whether you previously completed the [Quick Installation](/docs/getting-started/installation#quick-installation) or the [Advanced Installation](/docs/getting-started/installation#advanced-installation),
-the steps for updating Faved to the latest version will differ. Please refer to the corresponding section below for detailed instructions.
+Depending on whether you previously completed the [Quick Installation](/docs/getting-started/installation#quick-installation) or the [Advanced Installation](/docs/getting-started/installation#advanced-installation), the steps for updating Faved to the latest version will differ.
+
+- **[Updating after Quick Installation](#updating-after-quick-installation)** — if you used the Quick Installation method.
+- **[Updating after Advanced Installation](#updating-after-advanced-installation)** — if you used the Advanced Installation method with Docker Compose.
+
+Choose the section that matches your setup below.
 
 ## Updating after Quick Installation
 
 Follow these steps if you installed Faved using the [Quick Installation](/docs/getting-started/installation#quick-installation) method.
 
-### 1. Pull the latest stable image from Docker Hub
+<Steps>
+
+<Step title="Pull the latest stable image from Docker Hub">
 
 ```bash
 docker pull denho/faved
 ```
 
-### 2. Stop and remove the running container
+</Step>
+
+<Step title="Stop and remove the running container">
 
 ```bash
 docker stop faved
@@ -28,7 +36,9 @@ docker rm faved
 
 If you changed the container name during installation, replace `faved` with the name you used.
 
-### 3. Start a new Docker container
+</Step>
+
+<Step title="Start a new Docker container">
 
 ```bash
 docker run -d --name faved -p 8080:80 -v faved-data:/var/www/html/storage denho/faved
@@ -36,11 +46,19 @@ docker run -d --name faved -p 8080:80 -v faved-data:/var/www/html/storage denho/
 
 Done! You now have the latest version running.
 
+</Step>
+
+</Steps>
+
 ## Updating after Advanced Installation
 
 Follow these steps if you set up Faved using the [Advanced Installation](/docs/getting-started/installation#advanced-installation) method.
 
-### 1. Pull the latest `docker-compose.yml` [file from the official repository](https://github.com/denho/faved/blob/main/docker-compose.yml) to your Faved instance directory
+<Steps>
+
+<Step title="Pull the latest `docker-compose.yml` file to your Faved directory">
+
+Fetch the latest file from the [official repository](https://github.com/denho/faved/blob/main/docker-compose.yml):
 
 ```bash
 cd faved-app
@@ -48,10 +66,16 @@ rm docker-compose.yml
 curl -O https://raw.githubusercontent.com/denho/faved/refs/heads/main/docker-compose.yml
 ```
 
-### 2. Recreate the Docker service with the latest image pulled from Docker Hub
+</Step>
+
+<Step title="Recreate the Docker service with the latest image">
 
 ```bash
 docker compose up --pull always -d
 ```
 
 Done! You now have the latest version running.
+
+</Step>
+
+</Steps>
