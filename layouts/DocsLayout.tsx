@@ -6,11 +6,7 @@ import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Docs } from 'contentlayer/generated'
 import { usePathname } from 'next/navigation'
 import '../styles/prism.css'
-import {
-  ChevronDownIcon,
-  RocketIcon,
-  FolderIcon,
-} from 'lucide-react'
+import { ChevronDownIcon, RocketIcon, FolderIcon } from 'lucide-react'
 
 const SECTION_ICONS: Record<string, React.ElementType> = {
   'getting-started': RocketIcon,
