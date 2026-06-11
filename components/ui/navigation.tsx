@@ -1,10 +1,12 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import * as React from 'react'
 import { ReactNode } from 'react'
 
 import siteMetadata from '@/data/siteMetadata'
+import { cn, isNavLinkActive } from '@/components/lib/utils'
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -69,12 +71,21 @@ export default function Navigation({
     },
   ],
 }: NavigationProps) {
+  const pathname = usePathname()
+
   return (
     <NavigationMenu className="hidden md:flex">
       <NavigationMenuList>
         {menuItems.map((item, index) => (
           <NavigationMenuItem key={index}>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()} asChild>
+            <NavigationMenuLink
+              className={cn(
+                navigationMenuTriggerStyle(),
+                isNavLinkActive(pathname, item.href) &&
+                  'bg-primary/10 text-primary hover:text-primary'
+              )}
+              asChild
+            >
               <Link href={item.href}>{item.title}</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>

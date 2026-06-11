@@ -1,11 +1,20 @@
 'use client'
 
-import { ReactNode, useState } from 'react'
+import { ReactNode, useEffect, useRef, useState } from 'react'
 import Link from '@/components/Link'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Docs } from 'contentlayer/generated'
 import { usePathname } from 'next/navigation'
 import '../styles/prism.css'
+import {
+  ChevronDownIcon,
+  RocketIcon,
+  FolderIcon,
+} from 'lucide-react'
+
+const SECTION_ICONS: Record<string, React.ElementType> = {
+  'getting-started': RocketIcon,
+}
 
 interface TocItem {
   value: string
@@ -29,8 +38,38 @@ export default function DocsLayout({ content, allDocs, children }: DocsLayoutPro
   const { title, description } = content
   const pathname = usePathname()
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [collapsedSections, setCollapsedSections] = useState<Record<string, boolean>>({})
+
+  const toggleSection = (cat: string) =>
+    setCollapsedSections((prev) => ({ ...prev, [cat]: !prev[cat] }))
 
   const toc = (content.toc as unknown as TocItem[]) || []
+  const [activeId, setActiveId] = useState<string>('')
+  const headingIds = useRef<string[]>([])
+
+  useEffect(() => {
+    headingIds.current = toc.map((item) => item.url.slice(1))
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Pick the topmost entry that is intersecting
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+        if (visible.length > 0) {
+          setActiveId(visible[0].target.id)
+        }
+      },
+      { rootMargin: '0px 0px -70% 0px', threshold: 0 }
+    )
+
+    headingIds.current.forEach((id) => {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    })
+
+    return () => observer.disconnect()
+  }, [toc])
   const category = content.slug.includes('/') ? content.slug.split('/')[0] : ''
 
   // Group docs by their directory structure
@@ -94,7 +133,7 @@ export default function DocsLayout({ content, allDocs, children }: DocsLayoutPro
 
         {/* Sidebar */}
         <aside
-          className={` ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} bg-sidebar border-sidebar-border fixed top-15 left-0 z-40 h-screen w-64 flex-shrink-0 overflow-y-auto border-r pt-10 pb-4 transition-transform md:sticky md:top-15 md:h-[calc(100vh)] md:translate-x-0`}
+          className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} bg-background fixed top-15 left-0 z-40 h-screen w-64 flex-shrink-0 overflow-y-auto pt-10 pb-4 transition-transform md:sticky md:top-15 md:h-auto md:max-h-[calc(100vh-3.75rem)] md:translate-x-0 md:self-start md:bg-transparent`}
         >
           <nav className="space-y-6 px-4">
             <div className="mb-4">
@@ -103,32 +142,47 @@ export default function DocsLayout({ content, allDocs, children }: DocsLayoutPro
               </h2>
             </div>
 
-            {Object.entries(groupedDocs).map(([docCategory, docs]) => (
-              <div key={docCategory}>
-                {docCategory && (
-                  <h3 className="text-sidebar-foreground mb-2 text-sm font-semibold">
-                    {formatCategory(docCategory)}
-                  </h3>
-                )}
-                <ul className="space-y-1">
-                  {docs.map((doc) => (
-                    <li key={doc.slug}>
-                      <Link
-                        href={`/docs/${doc.slug}`}
-                        className={`block rounded-md px-3 py-2 text-sm transition-colors ${
-                          isActive(doc.slug)
-                            ? 'bg-primary/10 text-primary font-medium'
-                            : 'text-muted-foreground hover:bg-accent/50 hover:text-foreground'
-                        } `}
-                        onClick={() => setSidebarOpen(false)}
-                      >
-                        {doc.title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            {Object.entries(groupedDocs).map(([docCategory, docs]) => {
+              const isCollapsed = !!collapsedSections[docCategory]
+              const Icon = SECTION_ICONS[docCategory] ?? FolderIcon
+              return (
+                <div key={docCategory}>
+                  {docCategory && (
+                    <button
+                      onClick={() => toggleSection(docCategory)}
+                      className="text-sidebar-foreground hover:text-foreground mb-1 flex w-full items-center justify-between gap-2 rounded-md px-1 py-1 text-sm font-semibold transition-colors"
+                    >
+                      <span className="flex items-center gap-2">
+                        <Icon className="text-muted-foreground h-4 w-4 shrink-0" />
+                        {formatCategory(docCategory)}
+                      </span>
+                      <ChevronDownIcon
+                        className={`text-muted-foreground h-4 w-4 shrink-0 transition-transform duration-200 ${isCollapsed ? '-rotate-90' : ''}`}
+                      />
+                    </button>
+                  )}
+                  {!isCollapsed && (
+                    <ul className="space-y-1">
+                      {docs.map((doc) => (
+                        <li key={doc.slug}>
+                          <Link
+                            href={`/docs/${doc.slug}`}
+                            className={`block rounded-md px-3 py-2 text-sm transition-colors ${
+                              isActive(doc.slug)
+                                ? 'bg-primary/10 text-primary font-medium'
+                                : 'text-muted-foreground hover:bg-accent/50 hover:text-foreground'
+                            }`}
+                            onClick={() => setSidebarOpen(false)}
+                          >
+                            {doc.title}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              )
+            })}
           </nav>
         </aside>
 
@@ -165,13 +219,24 @@ export default function DocsLayout({ content, allDocs, children }: DocsLayoutPro
                 </li>
               </ol>
             </nav>
-            <header className="mb-8">
-              <h1 className="text-foreground mb-2 text-3xl leading-9 font-bold tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-14">
-                {title}
-              </h1>
-              {description && <p className="text-muted-foreground text-lg">{description}</p>}
+            <header className={`${description ? 'border-border/20 mb-0 border-b pb-8' : 'mb-8'}`}>
+              <h1 className="text-foreground mb-2 text-3xl font-bold tracking-tight">{title}</h1>
+              {description && (
+                <p className="text-muted-foreground mt-3 text-lg leading-relaxed font-light">
+                  {description}
+                </p>
+              )}
             </header>
-            <div className="prose dark:prose-invert max-w-none">{children}</div>
+            {description && <div className="mb-8" />}
+            <div
+              className={[
+                'prose prose-zinc dark:prose-invert max-w-none',
+                'prose-headings:scroll-m-20 prose-headings:tracking-tight',
+                'prose-img:rounded-md prose-img:border',
+              ].join(' ')}
+            >
+              {children}
+            </div>
 
             {/* Prev / next navigation */}
             {(prevDoc || nextDoc) && (
@@ -182,10 +247,10 @@ export default function DocsLayout({ content, allDocs, children }: DocsLayoutPro
                 {prevDoc ? (
                   <Link
                     href={`/docs/${prevDoc.slug}`}
-                    className="group border-border dark:border-border/10 hover:border-primary/50 flex-1 rounded-lg border p-4 transition-colors"
+                    className="group border-border/10 hover:border-border/40 flex-1 rounded-lg border p-4 transition-colors"
                   >
                     <span className="text-muted-foreground text-xs">Previous</span>
-                    <span className="group-hover:text-primary text-foreground mt-1 block text-sm font-medium transition-colors">
+                    <span className="text-foreground mt-1 block text-sm font-medium">
                       {prevDoc.title}
                     </span>
                   </Link>
@@ -195,10 +260,10 @@ export default function DocsLayout({ content, allDocs, children }: DocsLayoutPro
                 {nextDoc ? (
                   <Link
                     href={`/docs/${nextDoc.slug}`}
-                    className="group border-border dark:border-border/10 hover:border-primary/50 flex-1 rounded-lg border p-4 text-right transition-colors"
+                    className="group border-border/10 hover:border-border/40 flex-1 rounded-lg border p-4 text-right transition-colors"
                   >
                     <span className="text-muted-foreground text-xs">Next</span>
-                    <span className="group-hover:text-primary text-foreground mt-1 block text-sm font-medium transition-colors">
+                    <span className="text-foreground mt-1 block text-sm font-medium">
                       {nextDoc.title}
                     </span>
                   </Link>
@@ -225,7 +290,11 @@ export default function DocsLayout({ content, allDocs, children }: DocsLayoutPro
                   <li key={item.url} className={item.depth >= 3 ? 'pl-4' : ''}>
                     <a
                       href={item.url}
-                      className="text-muted-foreground hover:text-primary block transition-colors"
+                      className={`block transition-colors ${
+                        activeId === item.url.slice(1)
+                          ? 'text-primary font-medium'
+                          : 'text-muted-foreground hover:text-primary'
+                      }`}
                     >
                       {item.value}
                     </a>

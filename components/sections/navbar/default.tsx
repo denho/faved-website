@@ -2,8 +2,9 @@
 
 import { type VariantProps } from 'class-variance-authority'
 import { Menu } from 'lucide-react'
+import { usePathname } from 'next/navigation'
 import { ReactNode } from 'react'
-import { cn } from '@/components/lib/utils'
+import { cn, isNavLinkActive } from '@/components/lib/utils'
 
 import siteMetadata from '@/data/siteMetadata'
 
@@ -100,6 +101,8 @@ export default function Navbar({
   customNavigation,
   className,
 }: NavbarProps) {
+  const pathname = usePathname()
+
   return (
     <header className={cn('sticky top-0 z-50 -mb-4 px-4 pb-4', className)}>
       <div className="fade-bottom bg-background/15 absolute left-0 h-24 w-full backdrop-blur-lg"></div>
@@ -146,7 +149,11 @@ export default function Navbar({
                     <a
                       key={index}
                       href={link.href}
-                      className="text-muted-foreground hover:text-foreground"
+                      className={
+                        isNavLinkActive(pathname, link.href)
+                          ? 'text-primary font-medium'
+                          : 'text-muted-foreground hover:text-foreground'
+                      }
                     >
                       {link.text}
                     </a>
