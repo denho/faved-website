@@ -2,7 +2,7 @@ import '../styles/tailwind.css'
 import 'pliny/search/algolia.css'
 import 'remark-github-blockquote-alert/alert.css'
 
-import { Inter } from 'next/font/google'
+import { Inter, IBM_Plex_Mono } from 'next/font/google'
 import { Analytics, AnalyticsConfig } from 'pliny/analytics'
 import { SearchConfig } from 'pliny/search'
 import { SearchProvider } from '@/components/SearchProvider'
@@ -13,6 +13,11 @@ import { cn } from '@/components/lib/utils'
 import Navbar from '@/components/sections/navbar/default'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-ibm-plex-mono',
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),
@@ -60,7 +65,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang={siteMetadata.language}
-      className={cn('scroll-smooth', inter.variable, 'dark text-foreground bg-background')}
+      className={cn(
+        'scroll-smooth',
+        inter.variable,
+        ibmPlexMono.variable,
+        'dark text-foreground bg-background'
+      )}
       suppressHydrationWarning
       style={{ colorScheme: 'dark' }}
     >
@@ -93,7 +103,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="color-scheme" content="dark" />
         <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
       </head>
-      <body>
+      <body className="font-sans antialiased">
         <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
         <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
           <Navbar />

@@ -10,8 +10,8 @@
 
 code[class*="language-"],
 pre[class*="language-"] {
-  color: #a9b7c6;
-  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+  color: #d4d4d8;
+  font-family: var(--font-mono, Consolas, Monaco, 'Andale Mono', monospace);
   direction: ltr;
   text-align: left;
   white-space: pre;
@@ -41,22 +41,63 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
   background: rgba(33, 66, 131, .85);
 }
 
-/* Code blocks */
-pre[class*="language-"] {
+/* Code blocks. NB: rehype-prism-plus puts `language-*` on the <code>, not the
+   <pre>, so the block <pre> is targeted via the .code-block class our Pre
+   component adds. element+class (0,1,1) beats Typography's `.prose :where(pre)` (0,1,0). */
+pre.code-block {
   padding: 1em;
+  padding-right: 3.5rem; /* keep content clear of the copy button */
   margin: .5em 0;
-  overflow: auto;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  background: #1e2030;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.5rem;
+
+  /* Firefox: always-visible thin scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.06);
 }
 
-:not(pre) > code[class*="language-"],
-pre[class*="language-"] {
-  background: #2b2b2b;
+/* WebKit/Blink: -webkit-appearance:none forces a persistent (non-overlay) bar */
+pre.code-block::-webkit-scrollbar {
+  -webkit-appearance: none;
+  height: 8px;
+}
+pre.code-block::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+}
+pre.code-block::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+pre.code-block::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+  background-clip: content-box;
 }
 
-/* Inline code */
 :not(pre) > code[class*="language-"] {
-  padding: .1em;
-  border-radius: .3em;
+  background: #1e2030;
+}
+
+/* Inline code (excludes code inside highlighted blocks) */
+.prose :where(:not(pre) > code) {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 0.375rem;
+  padding: 0.125rem 0.375rem;
+  font-family: var(--font-mono, Consolas, Monaco, 'Andale Mono', monospace);
+  font-size: 0.85em;
+  font-weight: 500;
+  color: inherit;
+}
+
+/* Drop the backtick decorations Tailwind Typography adds to inline code */
+.prose :where(:not(pre) > code)::before,
+.prose :where(:not(pre) > code)::after {
+  content: none;
 }
 
 .token.comment,
