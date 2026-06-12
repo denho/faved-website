@@ -43,7 +43,7 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
   const allDocsContent = allCoreContent(allDocs)
 
   return (
-    <DocsLayout content={mainContent} allDocs={allDocsContent}>
+    <DocsLayout content={mainContent} allDocs={allDocsContent} rawContent={doc.body.raw}>
       <MDXLayoutRenderer code={doc.body.code} components={components} toc={doc.toc} />
     </DocsLayout>
   )

@@ -6,6 +6,7 @@ import CustomLink from './Link'
 import TableWrapper from './TableWrapper'
 import Pre from './ui/pre'
 import { Steps, Step } from './ui/steps'
+import { CodeTabs, CodeTab } from './ui/code-tabs'
 
 export const components: MDXComponents = {
   Image,
@@ -16,4 +17,6 @@ export const components: MDXComponents = {
   BlogNewsletterForm,
   Steps,
   Step,
+  CodeTabs,
+  CodeTab,
 }

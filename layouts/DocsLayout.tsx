@@ -5,8 +5,10 @@ import Link from '@/components/Link'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Docs } from 'contentlayer/generated'
 import { usePathname } from 'next/navigation'
+import siteMetadata from '@/data/siteMetadata'
+import PageActions from '@/components/ui/page-actions'
 import '../styles/prism.css'
-import { ChevronDownIcon, RocketIcon, FolderIcon } from 'lucide-react'
+import { ChevronDownIcon, RocketIcon, FolderIcon, PencilIcon } from 'lucide-react'
 
 const SECTION_ICONS: Record<string, React.ElementType> = {
   'getting-started': RocketIcon,
@@ -21,6 +23,7 @@ interface TocItem {
 interface DocsLayoutProps {
   content: CoreContent<Docs>
   allDocs: CoreContent<Docs>[]
+  rawContent: string
   children: ReactNode
 }
 
@@ -30,8 +33,19 @@ const formatCategory = (category: string) =>
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ')
 
-export default function DocsLayout({ content, allDocs, children }: DocsLayoutProps) {
+export default function DocsLayout({ content, allDocs, rawContent, children }: DocsLayoutProps) {
   const { title, description } = content
+
+  const editUrl = `${siteMetadata.siteRepo}/blob/main/data/${content.filePath}`
+  const lastUpdatedSource = content.lastmod || content.date
+  const lastUpdated = lastUpdatedSource
+    ? new Date(lastUpdatedSource).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        timeZone: 'UTC',
+      })
+    : null
   const pathname = usePathname()
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [collapsedSections, setCollapsedSections] = useState<Record<string, boolean>>({})
@@ -224,6 +238,7 @@ export default function DocsLayout({ content, allDocs, children }: DocsLayoutPro
               )}
             </header>
             {description && <div className="mb-8" />}
+            <PageActions slug={content.slug} rawContent={rawContent} />
             <div
               className={[
                 'prose prose-zinc dark:prose-invert max-w-none',
@@ -232,6 +247,20 @@ export default function DocsLayout({ content, allDocs, children }: DocsLayoutPro
               ].join(' ')}
             >
               {children}
+            </div>
+
+            {/* Edit on GitHub + last updated */}
+            <div className="text-muted-foreground mt-10 flex flex-col gap-2 text-sm sm:flex-row sm:items-center sm:justify-between">
+              <a
+                href={editUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-foreground inline-flex items-center gap-1.5 transition-colors"
+              >
+                <PencilIcon className="h-3.5 w-3.5" />
+                Edit this page on GitHub
+              </a>
+              {lastUpdated && <span>Last updated on {lastUpdated}</span>}
             </div>
 
             {/* Prev / next navigation */}
