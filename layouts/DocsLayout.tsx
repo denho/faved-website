@@ -8,10 +8,11 @@ import { usePathname } from 'next/navigation'
 import siteMetadata from '@/data/siteMetadata'
 import PageActions from '@/components/ui/page-actions'
 import '../styles/prism.css'
-import { ChevronDownIcon, RocketIcon, FolderIcon, PencilIcon } from 'lucide-react'
+import { ChevronDownIcon, RocketIcon, BookOpenIcon, FolderIcon, PencilIcon } from 'lucide-react'
 
 const SECTION_ICONS: Record<string, React.ElementType> = {
   'getting-started': RocketIcon,
+  guides: BookOpenIcon,
 }
 
 interface TocItem {
