@@ -205,7 +205,7 @@ export default function DocsLayout({ content, allDocs, rawContent, children }: D
         )}
 
         {/* Main content */}
-        <main className="min-w-0 flex-1 px-4 py-8 md:px-8">
+        <div className="min-w-0 flex-1 px-4 py-8 md:px-8">
           <article className="mx-auto max-w-3xl">
             <nav aria-label="Breadcrumb" className="mb-4">
               <ol className="text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm">
@@ -298,7 +298,7 @@ export default function DocsLayout({ content, allDocs, rawContent, children }: D
               </nav>
             )}
           </article>
-        </main>
+        </div>
 
         {/* Table of contents */}
         {toc.length > 0 && (
