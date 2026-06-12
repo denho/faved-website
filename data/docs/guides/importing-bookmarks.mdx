@@ -1,0 +1,139 @@
+---
+title: 'Importing bookmarks'
+description: 'Move your existing bookmarks into Faved from other tools.'
+order: 15
+date: '2026-06-10'
+draft: false
+---
+
+import siteMetadata from '@/data/siteMetadata'
+
+Switching to Faved doesn't mean leaving your existing bookmarks behind. You can import directly from
+your browser, from Raindrop.io, and from Pocket, keeping your tags and folder structure intact.
+
+> [!TIP]
+> After any import, [bulk actions](/docs/guides/bulk-actions) make it easy to reorganize tags or refetch
+> metadata across all the newly imported bookmarks at once.
+
+## Import from your browser
+
+You can import bookmarks directly from your browser in just a few clicks. **Chrome, Firefox, Safari,
+Edge, and most other browsers are supported.**
+
+The import fully preserves your browser's bookmark **folder structure by converting folders into tags**,
+which you can then reorganize however you prefer using nested tags.
+
+<Steps>
+
+    <Step title="Export your bookmarks from your browser">
+
+        Most browsers let you export bookmarks as an HTML file from their bookmark manager.
+
+    </Step>
+
+    <Step title="Open the browser import page in Faved">
+
+        Navigate to **Settings → Import → From Browser**
+
+    </Step>
+
+    <Step title="Choose your file and start the import">
+
+        Select your exported HTML file and start the import.
+
+        The import usually takes a few seconds, and your folder
+        structure will be converted into hierarchical tags automatically.
+
+        Once complete, you'll see a confirmation message displaying the
+        total number of bookmarks that were imported.
+
+    </Step>
+
+</Steps>
+
+## Import from Raindrop.io
+
+If you're switching from Raindrop.io, you can import your bookmarks **along with their tags**, so your
+existing structure stays intact and ready to use right away.
+
+<Steps>
+
+    <Step title="Export your collection from Raindrop.io">
+
+        In Raindrop.io, use the export option to download your collection.
+
+    </Step>
+
+    <Step title="Open the Raindrop.io import page in Faved">
+
+        Navigate to **Settings → Import → From Raindrop.io**
+
+    </Step>
+
+    <Step title="Select your export file and start the import">
+
+        Choose your export file and start the import.
+
+        The import usually takes a few seconds, and your collection will be converted into hierarchical tags
+        automatically. Raindrop.io tags will also be preserved.
+
+        Once complete, you'll see a confirmation message displaying the
+        total number of bookmarks that were imported.
+
+    </Step>
+
+</Steps>
+
+## Import from Pocket
+
+Faved imports a Pocket export, bringing across your saved and archived articles, tags, collections, and
+notes.
+
+<Steps>
+
+    <Step title="Export your data from Pocket">
+
+        > [!TIP]
+        > Pocket sometimes omits article excerpts and titles for articles that aren't attached to a collection.
+        > If you can, add your saved articles to a collection before exporting to improve the quantity and
+        > quality of the data Pocket includes.
+
+        1. Go to the Pocket export page at https://getpocket.com/export and sign in if needed.
+        2. Click **Export CSV file** to start the export. Pocket prepares the file and emails you a download
+        link when it's ready.
+        3. Open the email titled **Update on your Pocket data export**, follow the link, and download your
+        export. It's a ZIP file containing your saved and archived links, tags, collections, and notes.
+
+    </Step>
+
+    <Step title="Open the Pocket import page in Faved">
+
+        Navigate to **Settings → Import → From Pocket**
+
+    </Step>
+
+    <Step title="Select your export file and start the import">
+
+        Choose the ZIP file you downloaded from Pocket and start the import. You don't need to unzip it, Faved
+        handles that for you.
+
+        The import usually takes just a few seconds depending on the size of your export.
+        Once complete, you'll see a confirmation message displaying the
+        total number of bookmarks that were imported.
+
+    </Step>
+
+</Steps>
+
+Here's what you'll get after the import:
+
+- All imported bookmarks receive an **Imported from Pocket** tag.
+- Unread and Archived bookmarks are assigned corresponding tags under a **Status** parent tag.
+- Collections are imported as tags under a **Collections** parent tag.
+- Collection descriptions are preserved as tag descriptions.
+- Bookmark notes are saved as bookmark comments.
+
+If something doesn't look right, you can
+[open an issue](https://github.com/denho/faved/issues) or start a
+[discussion](https://github.com/denho/faved/discussions) on GitHub. You can also{' '}
+<a href={siteMetadata.discord} target="_blank" rel="noopener">reach out on Discord</a> in the **#support** channel.
