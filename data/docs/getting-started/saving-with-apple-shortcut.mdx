@@ -1,16 +1,17 @@
 ---
-title: 'Apple Shortcut'
-description: 'Save links to Faved from the share sheet on iOS, iPadOS, and macOS.'
+title: 'Saving with Apple shortcut'
+description: 'Save links to Faved from the Share Sheet on iOS, iPadOS, and macOS — and the Services menu on Mac.'
 order: 6
-date: '2026-06-10'
+date: '2026-06-16'
 draft: false
 ---
 import siteMetadata from '@/data/siteMetadata'
 
 
-The Apple Shortcuts integration lets you send links straight to Faved from the **Share Sheet** and
-**Services menu** on iOS, iPadOS, and macOS — capturing a link takes just a tap from whatever app
-you're in.
+The Apple Shortcuts integration lets you send links straight to Faved without leaving the app you're
+in. Tap **Share** in Safari, your RSS reader, or anywhere else on your Apple device, pick **Add to Faved**, and the page
+lands in your library. On Mac, the same shortcut is also a click
+away in the **Services menu**.
 
 ## Setting up the shortcut
 
@@ -26,14 +27,14 @@ you're in.
         playsInline
         className="mx-auto w-full max-w-xs rounded-lg"
     >
-        <source src="/static/videos/posts/apple-shortcut/install-shortcut-ios.mp4" type="video/mp4" />
+        <source src="/static/videos/posts/saving-with-apple-shortcut/install-shortcut-ios.mp4" type="video/mp4" />
     </video>
 
 <Steps>
 
     <Step title="Open the shortcut">
 
-        Visit <a href={siteMetadata.appleShortcutUrl} target="_blank">{siteMetadata.appleShortcutUrl}</a> and click **Get Shortcut** on the
+        Visit <a href={siteMetadata.appleShortcutUrl} target="_blank" className="break-all">{siteMetadata.appleShortcutUrl}</a> and click **Get Shortcut** on the
         opened page. You'll be redirected to the Apple Shortcuts app to proceed with the setup.
 
     </Step>
@@ -73,7 +74,7 @@ you're in.
         playsInline
         className="mx-auto w-full max-w-xs rounded-lg"
     >
-        <source src="/static/videos/posts/apple-shortcut/using-shortcut-ios.mp4" type="video/mp4" />
+        <source src="/static/videos/posts/saving-with-apple-shortcut/using-shortcut-ios.mp4" type="video/mp4" />
     </video>
 <Steps>
 
@@ -91,7 +92,7 @@ you're in.
         **File → Share** menu.
 
         <img
-            src="/static/images/posts/apple-shortcut/file-share-menu-macos.png"
+            src="/static/images/posts/saving-with-apple-shortcut/file-share-menu-macos.png"
             alt="File → Share menu on macOS"
             className="w-full rounded-lg"
             style={{ maxWidth: '400px' }}
