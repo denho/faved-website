@@ -21,6 +21,7 @@ const siteMetadata = {
   changelogUrl: 'https://github.com/denho/faved/releases',
   cloudUrl: 'https://faved.cloud/signup',
   dockerHub: 'https://hub.docker.com/r/denho/faved',
+  appleShortcutUrl: 'https://www.icloud.com/shortcuts/58d96abaca9743b8bf40d610b8715f76',
   // twitter: 'https://twitter.com/Twitter',
   // facebook: 'https://facebook.com',
   // youtube: 'https://youtube.com',

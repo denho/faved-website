@@ -1,0 +1,148 @@
+---
+title: 'Apple Shortcut'
+description: 'Save links to Faved from the share sheet on iOS, iPadOS, and macOS.'
+order: 6
+date: '2026-06-10'
+draft: false
+---
+import siteMetadata from '@/data/siteMetadata'
+
+
+The Apple Shortcuts integration lets you send links straight to Faved from the **Share Sheet** and
+**Services menu** on iOS, iPadOS, and macOS — capturing a link takes just a tap from whatever app
+you're in.
+
+## Setting up the shortcut
+
+
+> [!TIP]
+> Ensure iCloud sync is enabled for the Shortcuts app to have it available on all your Apple devices.
+
+    <video
+        controls={false}
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="mx-auto w-full max-w-xs rounded-lg"
+    >
+        <source src="/static/videos/posts/apple-shortcut/install-shortcut-ios.mp4" type="video/mp4" />
+    </video>
+
+<Steps>
+
+    <Step title="Open the shortcut">
+
+        Visit <a href={siteMetadata.appleShortcutUrl} target="_blank">{siteMetadata.appleShortcutUrl}</a> and click **Get Shortcut** on the
+        opened page. You'll be redirected to the Apple Shortcuts app to proceed with the setup.
+
+    </Step>
+
+    <Step title="Begin setup in the Shortcuts app">
+
+        In the Apple Shortcuts app, click **Add Shortcut...** on Mac, or **Set Up Shortcut** on
+        iPhone/iPad.
+
+        [//]: # (![Add Shortcut screen in the Apple Shortcuts app]&#40;/static/images/docs/apple-shortcuts/add-shortcut.png&#41;)
+
+    </Step>
+
+    <Step title="Enter your Faved URL">
+
+        When prompted, enter your Faved instance URL. If you're using the cloud version, keep the default, `https://faved.cloud`.
+
+    </Step>
+
+    <Step title="Confirm to finish">
+
+        Click **Add Shortcut** to confirm. The **Add to Faved** shortcut is added to your Shortcuts library, and the **Add to Faved** action now appears in your Share Sheet — and in the Services menu on Mac.
+
+    </Step>
+
+</Steps>
+
+
+## Saving a link
+
+### Using the Share Sheet
+    <video
+        controls={false}
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="mx-auto w-full max-w-xs rounded-lg"
+    >
+        <source src="/static/videos/posts/apple-shortcut/using-shortcut-ios.mp4" type="video/mp4" />
+    </video>
+<Steps>
+
+    <Step title="Open the webpage">
+
+        Open the webpage you want to save in Safari or another browser on your iPhone, iPad, or Mac.
+
+    </Step>
+
+    <Step title="Open the Share Sheet">
+
+        Tap or click the browser's **Share** button.
+
+        On Mac, you can also use the app's
+        **File → Share** menu.
+
+        <img
+            src="/static/images/posts/apple-shortcut/file-share-menu-macos.png"
+            alt="File → Share menu on macOS"
+            className="w-full rounded-lg"
+            style={{ maxWidth: '400px' }}
+        />
+    </Step>
+
+    <Step title="Choose Add to Faved">
+
+        Select **Add to Faved** to send the current page or link to Faved.
+
+        On Mac's Share menu,
+        choose **Shortcuts** first, then **Add to Faved**.
+
+        [//]: # (![Add to Faved shortcut highlighted in the iOS share sheet]&#40;/static/images/docs/apple-shortcuts/share-sheet.png&#41;)
+
+        > [!TIP]
+        > On Mac, if the shortcut doesn't appear in the Share menu, check **System Settings → Privacy & Security → Extensions → Sharing** and ensure **Shortcuts** is enabled.
+
+
+    </Step>
+
+    <Step title="Add details and save">
+
+    Optionally, add notes and tags, then click **Save**. The webpage will be stored and available in Faved.
+
+    </Step>
+
+</Steps>
+
+### Using the Services menu (Mac)
+
+<Steps>
+
+    <Step title="Select a link">
+
+        Highlight any visible URL in any app, or right-click a selected link in your browser.
+
+    </Step>
+
+    <Step title="Open the Services menu">
+
+        Open the **Services** menu and select **Add to Faved** to send the selected link to Faved.
+
+    </Step>
+
+    <Step title="Add details and save">
+
+        Optionally, add notes and tags, then click **Save**.  The selected link will be stored and available in Faved.
+
+    </Step>
+
+</Steps>
+
+
