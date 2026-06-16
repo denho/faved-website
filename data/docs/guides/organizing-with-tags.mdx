@@ -1,0 +1,79 @@
+---
+title: 'Organizing with tags'
+description: "How Faved's tag system works and how to make the most of it."
+order: 13
+date: '2026-06-16'
+draft: false
+---
+
+Faved organizes bookmarks with a flexible tagging system inspired by Gmail and the Bear notes app — a
+more powerful alternative to a flat mix of collections and tags. A bookmark can carry as many tags as
+you like, and tags can be nested into hierarchies.
+
+    <video
+        controls={false}
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="w-full rounded-lg"
+    >
+        <source src="/static/videos/posts/organizing-with-tags/sidebar-tags-overview.mp4" type="video/mp4" />
+    </video>
+
+## Creating and nesting tags
+
+You create tags right where you use them — while **adding a new bookmark or editing an existing one**.
+Type a tag that doesn't exist yet and Faved adds it, and a single bookmark can carry as many tags as you
+like.
+
+Nest a tag under a parent in either of two ways:
+
+- **While creating it**, append `/` to the parent tag — for example, typing
+  `Programming Languages/Backend/Go` builds the whole chain at once. Adding `Python` the same way places
+  it alongside `Go` under `Backend`.
+- **Anytime after**, edit the tag and choose its **parent** from the dedicated parent picker.
+
+
+## Rollups
+
+Nested tags support **rollups**: a parent tag's view includes the bookmarks of all its child tags, so
+you can browse a whole branch at once or drill down into a single child. In the example above, opening
+`Programming Languages/Backend` shows everything tagged `Go` or `Python` too. Rollup is optional, so you can
+turn it off when you want a parent tag to show only its own directly tagged items.
+
+## Pinning important tags
+
+Pin the tags you reach for most to keep them at the top of the sidebar for quick access. Nested tags
+can be pinned just like top-level ones.
+
+## Styling tags
+
+Give a tag a **color** to make it stand out and to spot it instantly across the sidebar and your
+bookmark list. Pairing colors with your hierarchy — for example, one color per top-level branch — makes
+large collections far easier to scan at a glance.
+
+> [!NOTE]
+> Custom tag **icons** are coming soon.
+
+## Tag descriptions
+
+Add a **description** to any tag to give it extra context. Descriptions appear in tooltips throughout the
+interface, which is handy when tag names alone aren't self-explanatory.
+
+## Finding tags fast
+
+In large collections the sidebar does the heavy lifting:
+
+- **Search and filter** tags instantly from the sidebar to jump straight to the one you need.
+- See an **item count** next to each tag at a glance.
+- **Fold** nested tags to collapse branches you're not using and focus on what matters.
+- **Resize** the sidebar by dragging its edge on desktop — Faved remembers your preferred width.
+
+## Deleting tags
+
+You can delete a tag whenever you no longer need it.
+
+> [!WARNING]
+> Deleting a parent tag also deletes all of its child tags. Double-check what's nested underneath before
+> removing it.
