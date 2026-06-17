@@ -3,6 +3,7 @@ import Items from '@/components/sections/items/default'
 import About from '@/components/sections/about/default'
 import React from '@/components/logos/react'
 import Testimonials from '@/components/sections/testimonials/default'
+import SocialProof from '@/components/sections/social-proof/default'
 import Pricing from '@/components/sections/pricing/default'
 import Stats from '@/components/sections/stats/default'
 
@@ -15,7 +16,8 @@ export default function Home({ posts }) {
       <Items />
       <About />
       <Stats />
-      <Testimonials />
+      {/*<Testimonials />*/}
+      <SocialProof />
       <Pricing />
 
       {/* <div className="divide-y divide-gray-200 dark:divide-gray-700">

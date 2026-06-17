@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Copy, Check } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { ClaudeIcon, OpenAIIcon } from '@/components/ui/brand-icons'
+import { Claude, OpenAI } from '@/components/social-icons/icons'
 import siteMetadata from '@/data/siteMetadata'
 
 interface PageActionsProps {
@@ -39,13 +39,13 @@ export default function PageActions({ slug, rawContent }: PageActionsProps) {
       </Button>
       <Button asChild variant="outline" size="sm">
         <a href={claudeUrl} target="_blank" rel="noopener noreferrer">
-          <ClaudeIcon />
+          <Claude className="fill-current" />
           Open in Claude
         </a>
       </Button>
       <Button asChild variant="outline" size="sm">
         <a href={chatgptUrl} target="_blank" rel="noopener noreferrer">
-          <OpenAIIcon />
+          <OpenAI className="fill-current" />
           Open in ChatGPT
         </a>
       </Button>
