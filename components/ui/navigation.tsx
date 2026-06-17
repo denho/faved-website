@@ -50,7 +50,7 @@ export default function Navigation({
       href: '/blog',
     },
     {
-      title: 'Documentation',
+      title: 'Docs',
       isLink: true,
       href: '/docs/getting-started/introduction',
     },

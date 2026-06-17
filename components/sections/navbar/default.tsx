@@ -52,7 +52,7 @@ export default function Navbar({
       href: '/blog',
     },
     {
-      text: 'Documentation',
+      text: 'Docs',
       href: '/docs/getting-started/introduction',
     },
     {
