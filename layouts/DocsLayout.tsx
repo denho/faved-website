@@ -144,9 +144,9 @@ export default function DocsLayout({ content, allDocs, rawContent, children }: D
 
         {/* Sidebar */}
         <aside
-          className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} bg-background fixed top-15 left-0 z-40 h-screen w-64 flex-shrink-0 overflow-y-auto pt-10 pb-4 transition-transform md:sticky md:top-15 md:h-auto md:max-h-[calc(100vh-3.75rem)] md:translate-x-0 md:self-start md:bg-transparent`}
+          className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} bg-background fixed top-15 left-0 z-40 h-screen w-72 flex-shrink-0 overflow-y-auto pt-10 pb-4 transition-transform md:sticky md:top-15 md:h-auto md:max-h-[calc(100vh-3.75rem)] md:translate-x-0 md:self-start md:bg-transparent`}
         >
-          <nav className="space-y-6 px-4">
+          <nav className="space-y-6 px-4 xl:pl-0">
             <div className="mb-4">
               <h2 className="text-muted-foreground mb-3 text-xs font-semibold tracking-wider uppercase">
                 Documentation
@@ -178,7 +178,7 @@ export default function DocsLayout({ content, allDocs, rawContent, children }: D
                         <li key={doc.slug}>
                           <Link
                             href={`/docs/${doc.slug}`}
-                            className={`block rounded-md px-3 py-2 text-sm transition-colors ${
+                            className={`block rounded-md px-3 py-2 text-sm whitespace-nowrap transition-colors ${
                               isActive(doc.slug)
                                 ? 'bg-primary/10 text-primary font-medium'
                                 : 'text-muted-foreground hover:bg-accent/50 hover:text-foreground'
@@ -208,7 +208,7 @@ export default function DocsLayout({ content, allDocs, rawContent, children }: D
         {/* Main content */}
         <div className="min-w-0 flex-1 px-4 py-8 md:px-8">
           <article className="mx-auto max-w-3xl">
-            <nav aria-label="Breadcrumb" className="mb-4">
+            <nav aria-label="Breadcrumb" className="mb-4 md:hidden">
               <ol className="text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm">
                 <li>
                   <Link
@@ -306,7 +306,7 @@ export default function DocsLayout({ content, allDocs, rawContent, children }: D
           <aside className="hidden w-56 flex-shrink-0 xl:block">
             <nav
               aria-label="On this page"
-              className="sticky top-15 max-h-[calc(100vh-3.75rem)] overflow-y-auto py-10 pr-4"
+              className="sticky top-15 max-h-[calc(100vh-3.75rem)] overflow-y-auto py-10 pr-1"
             >
               <h2 className="text-muted-foreground mb-3 text-xs font-semibold tracking-wider uppercase">
                 On this page
