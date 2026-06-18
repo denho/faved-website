@@ -17,10 +17,8 @@ import {
 } from 'lucide-react'
 import { CSSProperties, ReactNode } from 'react'
 
-import { Badge } from '../../ui/badge'
 import Glow from '../../ui/glow'
 import { Section } from '../../ui/section'
-import {Mockup} from "@/components/ui/mockup";
 
 interface AppFeaturesProps {
   /** Brand glow behind the header. */
@@ -235,7 +233,8 @@ function CodeVisual() {
           <span style={k('#7ee787')}>denho/faved:latest</span>
           {'\n    '}
           <span style={k('#8b93a1')}>ports</span>:{'\n      - '}
-          <span style={k('#7ee787')}>&quot;80:80&quot;</span>{'\n      - '}
+          <span style={k('#7ee787')}>&quot;80:80&quot;</span>
+          {'\n      - '}
           <span style={k('#7ee787')}>&quot;443:443&quot;</span>
           {'\n    '}
           <span style={k('#8b93a1')}>volumes</span>:{'\n      - '}
@@ -322,7 +321,7 @@ function DuplicatesVisual() {
     </div>
   )
   return (
-    <div className="relative flex min-h-[236px] flex-1 items-end px-6 pb-6 lg:pb-0 pt-6 justify-center">
+    <div className="relative flex min-h-[236px] flex-1 items-end justify-center px-6 pt-6 pb-6 lg:pb-0">
       <div
         className="w-full overflow-hidden rounded-[12px] border border-b-0"
         style={{
@@ -810,7 +809,7 @@ function ImportVisual() {
     </div>
   )
   return (
-    <div className="relative flex min-h-[268px] flex-1 items-center mt-6 justify-center overflow-hidden">
+    <div className="relative mt-6 flex min-h-[268px] flex-1 items-center justify-center overflow-hidden">
       <svg
         width="100%"
         height="100%"
@@ -893,8 +892,8 @@ export default function AppFeatures({
             Built for ease-of-use and efficiency
           </h2>
           <p className="text-muted-foreground max-w-[540px] text-[18px] leading-[1.55] text-pretty">
-            Faved gives your link collection a fast, organized, private home — capture in a click, find it in
-            a second, and own your data forever.
+            Faved gives your link collection a fast, organized, private home — capture in a click,
+            find it in a second, and own your data forever.
           </p>
         </header>
 
@@ -913,8 +912,6 @@ export default function AppFeatures({
           >
             {showMockups && <CaptureVisual />}
           </FeatureCard>
-
-
 
           <FeatureCard
             title="Works on any device"

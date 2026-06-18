@@ -1,10 +1,10 @@
-import {EclipseIcon} from 'lucide-react'
-import {ReactNode} from 'react'
+import { EclipseIcon } from 'lucide-react'
+import { ReactNode } from 'react'
 
-import {Item, ItemDescription, ItemIcon, ItemTitle} from '../../ui/item'
-import {Section} from '../../ui/section'
-import {faBolt, faBookmark, faCodeBranch, faSliders,} from '@fortawesome/free-solid-svg-icons'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import { Item, ItemDescription, ItemIcon, ItemTitle } from '../../ui/item'
+import { Section } from '../../ui/section'
+import { faBolt, faBookmark, faCodeBranch, faSliders } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 interface ItemProps {
   title: string
