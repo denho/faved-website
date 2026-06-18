@@ -21,7 +21,6 @@ interface ItemsProps {
 export default function Items({
   title = 'And so much more',
   items = [
-
     {
       title: 'Powerful UI without Clutter',
       description:
@@ -46,8 +45,6 @@ export default function Items({
         'Easily manage large sets of bookmarks in one go with bulk deleting, refetching, and tagging.',
       icon: <FontAwesomeIcon icon={faSliders} className="size-5 stroke-1" />,
     },
-
-,
     {
       title: 'Open Source',
       description: 'Transparent codebase that anyone can inspect and contribute to.',
