@@ -1,4 +1,5 @@
 import Hero from '@/components/sections/hero/default'
+import AppFeatures from '@/components/sections/app-features/default'
 import Items from '@/components/sections/items/default'
 import About from '@/components/sections/about/default'
 import React from '@/components/logos/react'
@@ -14,6 +15,7 @@ export default function Home({ posts }) {
   return (
     <>
       <Hero />
+      <AppFeatures />
       <Items />
       <About />
       <Stats />

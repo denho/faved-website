@@ -1,19 +1,10 @@
-import { EclipseIcon, MonitorSmartphoneIcon } from 'lucide-react'
-import { ReactNode } from 'react'
+import {EclipseIcon} from 'lucide-react'
+import {ReactNode} from 'react'
 
-import { Item, ItemDescription, ItemIcon, ItemTitle } from '../../ui/item'
-import { Section } from '../../ui/section'
-import {
-  faBolt,
-  faBookmark,
-  faCodeBranch,
-  faFileImport,
-  faLink,
-  faMagnifyingGlass,
-  faSliders,
-  faTags,
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {Item, ItemDescription, ItemIcon, ItemTitle} from '../../ui/item'
+import {Section} from '../../ui/section'
+import {faBolt, faBookmark, faCodeBranch, faSliders,} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
 interface ItemProps {
   title: string
@@ -28,37 +19,14 @@ interface ItemsProps {
 }
 
 export default function Items({
-  title = 'Features',
+  title = 'And so much more',
   items = [
-    {
-      title: 'Advanced Tagging',
-      description:
-        'Organize bookmarks with nested tags for structured grouping. Customize tags with colors, and pin the frequently used ones for quick access.',
-      icon: <FontAwesomeIcon icon={faTags} className="size-5 stroke-1" />,
-    },
-    {
-      title: 'Smart Bookmark Management',
-      description:
-        'Automatic fetching of titles, descriptions, and preview images. Built-in duplicate detection helping your collection stay clean.',
-      icon: <FontAwesomeIcon icon={faBookmark} className="size-5 stroke-1" />,
-    },
+
     {
       title: 'Powerful UI without Clutter',
       description:
         'Customize layouts (card/list/table), fields, and sidebar to your preference. All major actions are one click away with no need to navigate between screens.',
       icon: <FontAwesomeIcon icon={faBolt} className="size-5 stroke-1" />,
-    },
-    {
-      title: 'Bulk Actions',
-      description:
-        'Easily manage large sets of bookmarks in one go with bulk deleting, refetching, and tagging.',
-      icon: <FontAwesomeIcon icon={faSliders} className="size-5 stroke-1" />,
-    },
-    {
-      title: 'Works on Any Device',
-      description:
-        'Fully responsive across mobile, tablet, and desktop. Installable as a PWA for an app-like, near-native experience on mobile.',
-      icon: <MonitorSmartphoneIcon className="size-5 stroke-1" />,
     },
     {
       title: 'Light and Dark Mode',
@@ -67,23 +35,19 @@ export default function Items({
       icon: <EclipseIcon className="size-5 stroke-1" />,
     },
     {
-      title: 'Instant Search & Sorting',
+      title: 'Page Metadata Fetching',
       description:
-        'Find bookmarks instantly as you type with flexible sorting options across collections of any size.',
-      icon: <FontAwesomeIcon icon={faMagnifyingGlass} className="size-5 stroke-1" />,
+        'Faved pulls in the title, description, and preview image automatically. It also keeps those details fresh over time, so your collection never goes stale.',
+      icon: <FontAwesomeIcon icon={faBookmark} className="size-5 stroke-1" />,
     },
     {
-      title: 'Integrations',
+      title: 'Bulk Actions',
       description:
-        'Save links from any browser using a lightweight bookmarklet, or send them via the native Share menu on iPhone, Mac, or iPad.',
-      icon: <FontAwesomeIcon icon={faLink} className="size-5 stroke-1" />,
+        'Easily manage large sets of bookmarks in one go with bulk deleting, refetching, and tagging.',
+      icon: <FontAwesomeIcon icon={faSliders} className="size-5 stroke-1" />,
     },
-    {
-      title: 'Import & Migration',
-      description:
-        'Import from Chrome, Safari, Firefox, or Edge with folder structure preserved. Migrate from Raindrop.io, Pocket, and other tools retaining collections and tags.',
-      icon: <FontAwesomeIcon icon={faFileImport} className="size-5 stroke-1" />,
-    },
+
+,
     {
       title: 'Open Source',
       description: 'Transparent codebase that anyone can inspect and contribute to.',
