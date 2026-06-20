@@ -1,6 +1,6 @@
 # Faved Website
 
-This repository contains the presentation website and blog for the open-source bookmark manager Faved - https://faved.dev.
+This repository contains the presentation website and blog for the open-source bookmark manager Faved - https://faved.to.
 
 Faved is a sleek, private, and self-hosted alternative to proprietary bookmarking services.
 

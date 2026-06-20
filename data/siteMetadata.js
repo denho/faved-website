@@ -8,7 +8,7 @@ const siteMetadata = {
     'Free, open-source bookmark manager: superfast, lightweight, and secure. Organize with customisable nested tags, save web pages from any browser via a bookmarklet.',
   language: 'en-us',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://faved.dev',
+  siteUrl: 'https://faved.to',
   siteRepo: 'https://github.com/denho/faved-website',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/faved-logo.png`,
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/og-image.png`,
@@ -17,7 +17,7 @@ const siteMetadata = {
   github: 'https://github.com/denho/faved',
   discord: 'https://discord.gg/VZrtc8vWp7',
   x: 'https://x.com/FavedTool',
-  demoUrl: 'https://demo.faved.dev/',
+  demoUrl: 'https://demo.faved.to/',
   changelogUrl: 'https://github.com/denho/faved/releases',
   cloudUrl: 'https://faved.cloud/signup',
   dockerHub: 'https://hub.docker.com/r/denho/faved',

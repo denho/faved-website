@@ -3,6 +3,7 @@ import { ReactNode } from 'react'
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../../ui/accordion'
 import { Section } from '../../ui/section'
+import siteMetadata from '@/data/siteMetadata'
 
 interface FAQItemProps {
   question: string
@@ -69,7 +70,7 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
       <>
         <Answer>
           Yes. You can explore the{' '}
-          <Link href="https://demo.faved.dev/" className="text-foreground underline">
+          <Link href={siteMetadata.demoUrl} className="text-foreground underline">
             live demo
           </Link>{' '}
           before setting up self-hosting or signing up for Faved Cloud.
