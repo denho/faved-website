@@ -9,6 +9,7 @@ import PostLayout from '@/layouts/PostLayout'
 import PostBanner from '@/layouts/PostBanner'
 import { Metadata } from 'next'
 import siteMetadata from '@/data/siteMetadata'
+import { ogImagePath } from '@/components/lib/og.mjs'
 import { notFound } from 'next/navigation'
 
 const defaultLayout = 'PostLayout'
@@ -36,15 +37,17 @@ export async function generateMetadata(props: {
   const publishedAt = new Date(post.date).toISOString()
   const modifiedAt = new Date(post.lastmod || post.date).toISOString()
   const authors = authorDetails.map((author) => author.name)
-  let imageList = [siteMetadata.socialBanner]
+  let imageList: string[]
   if (post.images) {
-    imageList = typeof post.images === 'string' ? [post.images] : post.images
+    imageList = typeof post.images === 'string' ? [post.images] : (post.images as string[])
+  } else {
+    // Pre-generated at build time by scripts/generate-og.mjs.
+    imageList = [siteMetadata.siteUrl + ogImagePath(`/blog/${slug}`)]
   }
-  const ogImages = imageList.map((img) => {
-    return {
-      url: img && img.includes('http') ? img : siteMetadata.siteUrl + img,
-    }
-  })
+
+  const ogImages = imageList.map((img) => ({
+    url: img.includes('http') ? img : siteMetadata.siteUrl + img,
+  }))
 
   return {
     title: post.title,
