@@ -22,7 +22,7 @@ const siteMetadata = {
   cloudUrl: 'https://app.faved.to/signup',
   appUrl: 'https://app.faved.to',
   dockerHub: 'https://hub.docker.com/r/denho/faved',
-  appleShortcutUrl: 'https://www.icloud.com/shortcuts/58d96abaca9743b8bf40d610b8715f76',
+  appleShortcutUrl: 'https://www.icloud.com/shortcuts/2411a2c26a084a99bd006ea7cca14d22',
   // twitter: 'https://twitter.com/Twitter',
   // facebook: 'https://facebook.com',
   // youtube: 'https://youtube.com',
