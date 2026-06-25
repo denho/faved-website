@@ -1,0 +1,41 @@
+---
+title: 'Faved has a new home: faved.to'
+date: '2026-06-25'
+tags: ['Announcement']
+draft: false
+summary: "Faved is moving to a single domain. The marketing site is now at faved.to and the cloud app lives at app.faved.to. The old faved.dev and faved.cloud addresses redirect automatically, so there's nothing you need to do — every link and bookmark keeps working."
+---
+import siteMetadata from '@/data/siteMetadata'
+
+We've brought Faved under one roof. From today, everything lives on a single domain:
+
+* 🌐 The website you're reading is now at **faved.to** (previously faved.dev)
+* ☁️ Faved Cloud has moved to **app.faved.to** (previously faved.cloud)
+
+## Why the change?
+
+As Faved has grown, having the project spread across separate `.dev` and `.cloud` addresses started to feel disjointed. One brand, two unrelated domains — it made the project harder to remember and harder to talk about.
+
+Moving everything under **faved.to** fixes that. The marketing site, the docs, and the cloud app now share a single, recognizable home, with the app sitting neatly at `app.faved.to`. It's a small change on the surface, but it makes Faved feel like the one cohesive product it actually is.
+
+## Do I need to do anything?
+
+**Nope.** The old domains redirect automatically to their new homes:
+
+* `faved.dev` → `faved.to`
+* `faved.cloud` → `app.faved.to`
+
+Every existing link, bookmark, and shortcut keeps working — you'll just land on the new address. You can keep using your old bookmarks today and update them whenever it's convenient.
+
+If you self-host Faved, nothing changes for you at all. Your instance runs on your own domain and isn't affected by this move.
+
+<div className="my-4 flex justify-left">
+  <a
+    href={siteMetadata.appUrl}
+  >
+    Open Faved Cloud
+    <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
+  </a>
+</div>
+
+As always, if you spot anything that didn't make the move cleanly, let us know on <a href={siteMetadata.discord} target="_blank" rel="noopener">Discord</a> — we're happy to help.
