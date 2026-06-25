@@ -5,6 +5,7 @@ tags: ['Announcement']
 draft: false
 summary: "Faved is moving to a single domain. The marketing site is now at faved.to and the cloud app lives at app.faved.to. The old faved.dev and faved.cloud addresses redirect automatically, so there's nothing you need to do — every link and bookmark keeps working."
 ---
+
 import siteMetadata from '@/data/siteMetadata'
 
 We've brought Faved under one roof. From today, everything lives on a single domain:
@@ -20,22 +21,12 @@ Moving everything under **faved.to** fixes that. The marketing site, the docs, a
 
 ## Do I need to do anything?
 
-**Nope.** The old domains redirect automatically to their new homes:
+**Mostly nothing.** Old domains redirect automatically, so every existing link keeps working — you'll just land on the new address.
 
-* `faved.dev` → `faved.to`
-* `faved.cloud` → `app.faved.to`
+Faved Cloud users may be prompted to sign in again on their first visit to the new app address (<a href={siteMetadata.appUrl}>app.faved.to</a>). If you use the PWA, the Apple Shortcut, or the bookmarklet, it's worth reinstalling them to point to the new domain so they work faster without relying on the redirect.
 
-Every existing link, bookmark, and shortcut keeps working — you'll just land on the new address. You can keep using your old bookmarks today and update them whenever it's convenient.
+And if you self-host, nothing changes for you at all. Your instance runs on your own domain and isn't affected by this move.
 
-If you self-host Faved, nothing changes for you at all. Your instance runs on your own domain and isn't affected by this move.
-
-<div className="my-4 flex justify-left">
-  <a
-    href={siteMetadata.appUrl}
-  >
-    Open Faved Cloud
-    <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
-  </a>
-</div>
-
-As always, if you spot anything that didn't make the move cleanly, let us know on <a href={siteMetadata.discord} target="_blank" rel="noopener">Discord</a> — we're happy to help.
+As always, if you spot anything that didn't make the move cleanly, let us know on <a href={siteMetadata.discord}
+target="_blank"
+rel="noopener">Discord</a> — we're happy to help.
