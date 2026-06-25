@@ -157,8 +157,8 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
         <Answer>
           If you&apos;re interested in sharing your thoughts to help us improve, please reach out
           via email at{' '}
-          <a href="mailto:hello@faved.cloud" className="text-foreground underline">
-            hello@faved.cloud
+          <a href="mailto:hello@faved.to" className="text-foreground underline">
+            hello@faved.to
           </a>
           .
         </Answer>

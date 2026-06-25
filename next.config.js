@@ -92,7 +92,7 @@ module.exports = () => {
       return [
         {
           source: '/waitlist',
-          destination: 'https://faved.cloud/signup',
+          destination: 'https://app.faved.to/signup',
           permanent: true, // 308 permanent if true, 307 if false
         },
       ]

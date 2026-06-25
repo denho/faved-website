@@ -75,7 +75,7 @@ const DEFAULT_PRICING_PLANS: PricingPlan[] = [
     cta: {
       variant: 'glow',
       label: 'Contact us',
-      href: 'mailto:hello@faved.cloud?subject=Faved%20for%20Teams%20request',
+      href: 'mailto:hello@faved.to?subject=Faved%20for%20Teams%20request',
     },
     features: [
       'Unlimited bookmarks',
