@@ -37,7 +37,7 @@ const siteMetadata = {
   stats: {
     githubClonesForks: 3000,
     githubStars: 1100,
-    dockerHubPulls: 10000,
+    dockerHubPulls: 50000,
     cloudUsers: 100,
   },
   analytics: {
