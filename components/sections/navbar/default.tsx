@@ -1,19 +1,19 @@
 'use client'
 
-import { type VariantProps } from 'class-variance-authority'
-import { Menu } from 'lucide-react'
-import { usePathname } from 'next/navigation'
-import { ReactNode } from 'react'
-import { cn, isNavLinkActive } from '@/components/lib/utils'
+import {type VariantProps} from 'class-variance-authority'
+import {Menu} from 'lucide-react'
+import {usePathname} from 'next/navigation'
+import {ReactNode} from 'react'
+import {cn, getCookie, isNavLinkActive} from '@/components/lib/utils'
 
 import siteMetadata from '@/data/siteMetadata'
 
-import { Button, buttonVariants } from '../../ui/button'
-import { Navbar as NavbarComponent, NavbarLeft, NavbarRight } from '../../ui/navbar'
+import {Button, buttonVariants} from '../../ui/button'
+import {Navbar as NavbarComponent, NavbarLeft, NavbarRight} from '../../ui/navbar'
 import Navigation from '../../ui/navigation'
-import { Sheet, SheetContent, SheetTrigger } from '../../ui/sheet'
+import {Sheet, SheetContent, SheetTrigger} from '../../ui/sheet'
 
-import { Discord, X } from '@/components/social-icons/icons'
+import {Discord} from '@/components/social-icons/icons'
 import SearchButton from '@/components/SearchButton'
 import GithubStars from '@/components/GithubStars'
 import BrandLogo from '@/components/ui/brand-logo'
@@ -77,31 +77,45 @@ export default function Navbar({
     },
   ],
   actions = [
-    // { text: 'Sign in', href: siteMetadata.url, isButton: false },
+    {
+      text: 'Get Started',
+      href: `${siteMetadata.appUrl}/signup?ref=navbar-get-started`,
+      isButton: true,
+      variant: 'default',
+    },
+    { text: 'Sign in', href: `${siteMetadata.appUrl}/login?ref=navbar-signin`, isButton: false },
     // {
-    //   text: 'Get Started',
-    //   href: siteMetadata.url,
-    //   isButton: true,
-    //   variant: 'default',
+    //   text: '',
+    //   icon: <Discord className="h-4 w-4 fill-current" />,
+    //   isButton: false,
+    //   href: siteMetadata.discord,
     // },
-    {
-      text: '',
-      icon: <Discord className="h-4 w-4 fill-current" />,
-      isButton: false,
-      href: siteMetadata.discord,
-    },
-    {
-      text: '',
-      icon: <X className="h-3.5 w-3.5 fill-current" />,
-      isButton: false,
-      href: siteMetadata.x,
-    },
+    // {
+    //   text: '',
+    //   icon: <X className="h-3.5 w-3.5 fill-current" />,
+    //   isButton: false,
+    //   href: siteMetadata.x,
+    // },
   ],
   showNavigation = true,
   customNavigation,
   className,
 }: NavbarProps) {
   const pathname = usePathname()
+
+  const isAuthed = getCookie('faved-logged-in');
+
+  if (isAuthed === '1') {
+    actions = [
+      {
+        text: 'Open Faved',
+        href: `${siteMetadata.appUrl}/?ref=navbar-open-app`,
+        isButton: true,
+        variant: 'default',
+      },
+    ];
+  }
+
 
   return (
     <header className={cn('sticky top-0 z-50 -mb-4 px-4 pb-4', className)}>
