@@ -126,9 +126,9 @@ function PraiseCard({ item }: { item: Praise }) {
     <a
       href={item.href}
       target="_blank"
-      rel="noopener"
+      rel="noopener nofollow ugc"
       aria-label={`Read ${handle}'s comment on ${meta.label}`}
-      className="group/card border-border/30 bg-card/60 hover:border-border/60 hover:bg-card flex h-full w-[330px] shrink-0 flex-col gap-4 rounded-2xl border p-6 transition-colors sm:w-[380px]"
+      className="group/card border-border/[0.12] hover:border-border/25 flex h-full w-[330px] shrink-0 flex-col gap-4 rounded-[16px] border bg-[linear-gradient(180deg,color-mix(in_oklch,var(--foreground)_4%,transparent),transparent)] p-6 transition-colors sm:w-[380px]"
     >
       <div className="flex items-center gap-3">
         {item.avatar && (
@@ -164,7 +164,7 @@ export default function SocialProof({
 }: SocialProofProps) {
   if (items === false || items.length === 0) return null
 
-  // Single row on desktop; split into two rows on tablet and below.
+  // Split into two rows scrolling in opposite directions.
   const mid = Math.ceil(items.length / 2)
   const rows = [items.slice(0, mid), items.slice(mid)].filter((row) => row.length > 0)
 
@@ -180,16 +180,9 @@ export default function SocialProof({
           )}
         </div>
 
-        <div className="fade-x w-full overflow-hidden">
-          {/* Desktop (lg+): one continuous row */}
-          <Marquee pauseOnHover className="hidden [--duration:60s] 2xl:flex">
-            {items.map((item) => (
-              <PraiseCard key={item.href + item.username} item={item} />
-            ))}
-          </Marquee>
-
-          {/* Tablet and below: two rows scrolling in opposite directions */}
-          <div className="flex flex-col gap-4 2xl:hidden">
+        <div className="fade-x max-w-container mx-auto w-full overflow-hidden">
+          {/* Two rows scrolling in opposite directions */}
+          <div className="flex flex-col gap-4">
             {rows.map((row, i) => (
               <Marquee key={i} pauseOnHover reverse={i % 2 === 1} className="[--duration:50s]">
                 {row.map((item) => (
