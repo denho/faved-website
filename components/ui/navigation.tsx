@@ -74,7 +74,7 @@ export default function Navigation({
   const pathname = usePathname()
 
   return (
-    <NavigationMenu className="hidden md:flex">
+    <NavigationMenu className="hidden lg:flex">
       <NavigationMenuList>
         {menuItems.map((item, index) => (
           <NavigationMenuItem key={index}>

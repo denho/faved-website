@@ -4,6 +4,7 @@ import { Github } from '@/components/social-icons/icons'
 import { Star } from 'lucide-react'
 import siteMetadata from '@/data/siteMetadata'
 import { Button } from './ui/button'
+import { cn } from '@/components/lib/utils'
 
 const hoverCls =
   'transition-colors group-hover/stars:bg-accent group-hover/stars:text-accent-foreground'
@@ -12,14 +13,17 @@ function formatToThousands(value: number) {
   return Math.round(value / 100) / 10
 }
 
-export default function GithubStars() {
+export default function GithubStars({ className }: { className?: string }) {
   const stars = formatToThousands(siteMetadata.stats.githubStars as number) + 'K+'
 
   return (
     <Button
       variant="outline"
       size="default"
-      className="group/stars flex h-7 items-stretch gap-0 overflow-hidden px-0 py-0"
+      className={cn(
+        'group/stars flex h-7 items-stretch gap-0 overflow-hidden px-0 py-0',
+        className
+      )}
       asChild
     >
       <a href={siteMetadata.github} target="_blank" rel="noopener">
