@@ -93,7 +93,17 @@ module.exports = () => {
         {
           source: '/waitlist',
           destination: 'https://app.faved.to/signup',
-          permanent: true, // 308 permanent if true, 307 if false
+          permanent: true,
+        },
+        {
+          source: '/legal/privacy',
+          destination: '/privacy',
+          permanent: true,
+        },
+        {
+          source: '/legal/terms',
+          destination: '/terms',
+          permanent: true,
         },
       ]
     },
