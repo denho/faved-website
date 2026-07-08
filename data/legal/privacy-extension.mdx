@@ -1,0 +1,146 @@
+---
+title: Browser Extension Privacy Policy
+date: '2026-07-08'
+---
+
+# Browser Extension Privacy Policy
+
+**Effective Date:** July 8, 2026
+
+---
+
+## 1. Scope
+
+This Policy applies **only to the Faved browser extension**. It does not describe the Faved
+web application or Faved Cloud, which are governed by our main [Privacy Policy](/privacy) and
+our [Terms of Service](/terms). Where the extension sends data to Faved Cloud, that data is
+handled under the main Privacy Policy from the moment it is received.
+
+The Faved browser extension lets you save the page you're viewing to Faved — the open-source
+bookmark manager — with tags and a note.
+
+---
+
+## 2. The Short Version
+
+- The extension transmits your bookmark data to **one place only**: the Faved instance you have
+  configured. That's Faved Cloud (`app.faved.to`) by default, or the self-hosted URL you set. The
+  extension itself sends nothing to any other recipient.
+- The extension contains **no analytics, tracking, or telemetry**.
+- It reads the current page **only when you open the extension popup**. It does not run in the
+  background, and it does not act on pages you have not opened the popup on.
+
+The one exception to "one place only" is your **instance setting**, which your browser — not
+Faved — synchronizes across your devices using your browser account. See Section 6.
+
+---
+
+## 3. What the Extension Collects and Where It Goes
+
+When you open the popup on a page and click **Save**, the extension sends the following to your
+configured Faved instance so it can create the bookmark:
+
+- The page **URL** and **title**
+- The page **description** (from the page's meta/Open Graph tags)
+- The **preview-image URL** (from the page's Open Graph/Twitter tags — a link, not the image itself)
+- The **note** you type
+- The **tags** you select
+
+When you open the popup, before you save, the extension also:
+
+- Reads the **current tab's** URL, title, favicon, and the metadata above, to pre-fill the form.
+- Fetches **your existing tags and saved items** from your configured Faved instance, so it can
+  show your tag picker and warn you if you have already saved the page. This duplicate check runs
+  **locally in your browser** — the current page's URL is not transmitted for this purpose.
+
+The extension does not send page body text, full page content, your browsing history, or your user
+agent. The extension has no server of its own.
+
+---
+
+## 4. Cloud and Self-Hosted Instances
+
+**Faved Cloud (`app.faved.to`).** Data you save through the extension is received by Faved Cloud
+and handled from that point under our main [Privacy Policy](/privacy), including the processors
+and sharing described there. For this data, IE D.DVALI is the **data controller**.
+
+**Self-hosted.** Data goes only to the instance URL you configure. IE D.DVALI does not receive it
+and is not a recipient of it. You operate that server, and for data held on it **you** are the
+data controller.
+
+---
+
+## 5. Authentication
+
+The extension reuses the login session already present in your browser. It reads Faved's session
+and CSRF cookies **only for your configured Faved instance**, solely to authenticate your save and
+fetch requests. It stores no passwords and no authentication tokens.
+
+---
+
+## 6. What's Stored on Your Device
+
+- **Your instance setting** (Cloud or a self-hosted URL). This is stored using your browser's
+  synchronized extension storage, which means **your browser vendor** — for example Google, for
+  Chrome — synchronizes it across the devices signed in to your browser account. This
+  synchronization is performed by your browser, not by Faved, and is subject to your browser
+  vendor's privacy policy.
+- **A local cache** of your tag list and small UI-state flags (for example, whether you were signed
+  in last time, or whether you have dismissed a tip), so the popup opens instantly.
+
+Apart from the instance setting described above, this data is not transmitted anywhere. Changing
+your instance clears the per-instance cache.
+
+---
+
+## 7. What the Extension Does Not Do
+
+- No analytics, tracking pixels, telemetry, or usage reporting.
+- No background monitoring of your tabs, navigation, or browsing history.
+- No content scripts that run persistently on web pages.
+- No selling or sharing of your data. The extension has no third-party recipients.
+
+---
+
+## 8. Permissions
+
+- **activeTab / scripting** — to read the current tab's URL, title, and metadata when you open
+  the popup.
+- **cookies** — to read your Faved session and CSRF cookie so that saves are authenticated.
+- **storage** — to remember your instance setting and cache your tags.
+- **Access to your Faved instance** — to send saves and fetch your tags and items. Access to a
+  self-hosted instance is requested only when you configure one.
+
+---
+
+## 9. Legal Bases for Processing (EEA and United Kingdom)
+
+Where the extension sends data to Faved Cloud, IE D.DVALI processes that data on the basis of
+**performance of a contract** — namely, providing the bookmark-saving functionality you have asked
+for by clicking Save. Where you have configured a self-hosted instance, IE D.DVALI performs no
+processing and is not a controller of that data.
+
+Your rights in respect of data held by Faved Cloud, and how to exercise them, are described in
+Sections 6, 7, and 13 of the main [Privacy Policy](/privacy).
+
+---
+
+## 10. Data Retention and Deletion
+
+The extension keeps no server-side data of its own. Bookmarks you save live in your Faved account;
+delete them there. To clear the extension's local data, remove the extension or clear its storage
+in your browser. Your instance setting can be changed at any time on the options page.
+
+---
+
+## 11. Changes to This Policy
+
+We may update this Policy from time to time. If we make material changes, we will notify users
+through the Service or the extension listing.
+
+---
+
+## 12. Contact
+
+Email: legal@faved.to\
+Address: Vakhtang Gorgasalis Street, 63, Tbilisi, Georgia 0114
