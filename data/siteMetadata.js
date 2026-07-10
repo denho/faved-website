@@ -23,6 +23,8 @@ const siteMetadata = {
   appUrl: 'https://app.faved.to',
   dockerHub: 'https://hub.docker.com/r/denho/faved',
   appleShortcutUrl: 'https://www.icloud.com/shortcuts/2411a2c26a084a99bd006ea7cca14d22',
+  chromeExtensionUrl:
+    'https://chromewebstore.google.com/detail/faved-%E2%80%94-save-bookmarks-li/lejmncpaclknlpnpfinmpnfppaokidmi',
   // twitter: 'https://twitter.com/Twitter',
   // facebook: 'https://facebook.com',
   // youtube: 'https://youtube.com',

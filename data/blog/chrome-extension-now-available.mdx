@@ -1,0 +1,57 @@
+---
+title: 'Save to Faved with the new Chrome extension'
+date: '2026-07-09'
+tags: ['Announcement']
+draft: false
+summary: "The Faved Chrome extension is now available. Save any page to your library in one click — right from your browser toolbar or with a keyboard shortcut — while adding tags and notes and catching duplicates as you go. Then organize, search, and browse everything in Faved, on Cloud or self-hosted."
+---
+
+import siteMetadata from '@/data/siteMetadata'
+
+
+**The Faved Chrome extension is now available in the <a href={siteMetadata.chromeExtensionUrl} target="_blank" rel="noopener">Chrome Web Store</a>.**
+
+Previously, the fastest way to save a link was the bookmarklet. It served its purpose, but a dedicated browser extension makes saving faster and more reliable — one click from the toolbar, and the page is added to the library.
+
+## Save any page in one click
+
+Clicking the Faved icon on any page saves it directly to the account. A keyboard shortcut is also available — <kbd>Cmd/Ctrl+Shift+S</kbd> opens the save popup without requiring the mouse.
+
+<video
+    controls
+    autoPlay
+    loop
+    muted
+    playsInline
+    className="w-full rounded-lg"
+>
+    <source src="/static/videos/posts/chrome-extension-now-available/chrome-extension-demo.mp4" type="video/mp4"/>
+</video>
+
+## Tag, note, and stay organized while saving
+
+Saving is not limited to capturing a URL. From the popup, users can:
+
+- **Add tags** — place the page into the existing nested tag structure, so it is organized before it reaches the library.
+- **Add a note** — record context or a reminder while it is still top of mind.
+- **Catch duplicates** — if a page has already been saved, Faved surfaces this, keeping the library free of redundant entries.
+
+Everything saved flows into the same library users already rely on, fully searchable, filterable, and organizable in the Faved web app exactly as before. The extension simply provides the fastest way in.
+
+## Works wherever Faved runs
+
+The extension integrates seamlessly with any existing setup, whether on Faved Cloud or a self-hosted instance.
+
+## Get it now
+
+<div className="my-4 flex justify-left">
+    <a href={siteMetadata.chromeExtensionUrl} target="_blank">
+        Add Faved to Chrome
+        <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
+    </a>
+</div>
+
+
+### Feedback
+
+This is a first release, and feedback will shape what comes next. Bugs and feature ideas can be reported on [GitHub](https://github.com/denho/faved/discussions) or via <a href={siteMetadata.discord} target="_blank" rel="noopener">Discord</a>.
