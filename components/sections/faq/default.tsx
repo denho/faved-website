@@ -102,10 +102,21 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
     answer: (
       <>
         <Answer>
-          You can save links from any device. Use the bookmarklet in any desktop or mobile browser,
-          or send a page straight to Faved from the native Share menu on iPhone, iPad, and Mac.
+          On Chrome, install the{' '}
+          <a
+            href={siteMetadata.chromeExtensionUrl}
+            target="_blank"
+            rel="noopener"
+            className="text-foreground underline"
+          >
+            browser extension
+          </a>{' '}
+          and save the current page in one click, adding tags and notes as you go.
         </Answer>
-        <Answer>A dedicated browser extension is coming soon.</Answer>
+        <Answer>
+          Everywhere else, use the bookmarklet in any desktop or mobile browser, or send a page
+          straight to Faved from the native Share menu on iPhone, iPad, and Mac.
+        </Answer>
       </>
     ),
   },

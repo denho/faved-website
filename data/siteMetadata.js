@@ -5,7 +5,7 @@ const siteMetadata = {
   headerTitle: 'Faved',
   appLastUpdated: '2026-03-30',
   description:
-    'Free, open-source bookmark manager: superfast, lightweight, and secure. Organize with customisable nested tags, save web pages from any browser via a bookmarklet.',
+    'A superfast, lightweight, and secure hub for all your web content. Save pages from any browser, categorize with customizable nested tags, and access your collection on any device, anywhere. Free and open-source — use it in the cloud or host it yourself.',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://faved.to',

@@ -50,9 +50,9 @@ export default function Hero({
   ),
   badge = (
     <Badge variant="outline" className="animate-appear">
-      <span className="text-muted-foreground">Start instantly in the Cloud</span>
-      <a href={`${siteConfig.cloudUrl}?ref=hero-badge`} className="flex items-center gap-1">
-        Sign Up Now
+      <span className="text-muted-foreground">New</span>
+      <a href="/blog/chrome-extension-now-available" className="flex items-center gap-1">
+        The Chrome extension is here
         <ArrowRightIcon className="size-3" />
       </a>
     </Badge>
@@ -77,7 +77,7 @@ export default function Hero({
     <Section className={cn('fade-bottom overflow-hidden pb-0 sm:pb-0 md:pb-0', className)}>
       <div className="max-w-container mx-auto flex flex-col gap-12 pt-10 sm:gap-24">
         <div className="flex flex-col items-center gap-6 text-center sm:gap-12">
-          {/*{badge !== false && badge}*/}
+          {badge !== false && badge}
           <h1 className="animate-appear from-foreground to-foreground dark:to-muted-foreground xs:text-4xl selection:bg-muted selection:text-foreground relative z-10 inline-block bg-linear-to-r bg-clip-text text-[2rem] leading-tight font-semibold text-balance text-transparent drop-shadow-2xl sm:text-5xl sm:leading-tight md:text-5xl md:leading-tight lg:text-6xl xl:text-7xl">
             {title}
           </h1>

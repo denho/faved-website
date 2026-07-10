@@ -907,7 +907,7 @@ export default function AppFeatures({
           </FeatureCard>
           <FeatureCard
             title="Capture from anywhere"
-            description="Save links from any browser using a lightweight bookmarklet, or send them via the native Share menu on Apple devices."
+            description="Save the current page in one click with the Chrome extension, from any browser with a lightweight bookmarklet, or via the native Share menu on Apple devices."
             className="lg:col-span-2"
           >
             {showMockups && <CaptureVisual />}

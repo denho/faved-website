@@ -6,6 +6,8 @@ date: '2026-06-16'
 draft: false
 ---
 
+import siteMetadata from '@/data/siteMetadata'
+
 Add a link and Faved does the rest — pulling in the title, description, and preview image automatically. It also keeps those details fresh over time, so your
 collection never goes stale.
 
@@ -30,9 +32,10 @@ notes, then save.
     <source src="/static/videos/posts/adding-and-editing-bookmarks/adding-bookmark.mp4" type="video/mp4" />
 </video>
 
-For one-click saving while browsing the web, install the
-[browser bookmarklet](/docs/getting-started/using-browser-bookmarklet) or set up
-[Apple Shortcuts](/docs/getting-started/saving-with-apple-shortcut). Already have links in another tool?
+For one-click saving while browsing the web, install the <a href={siteMetadata.chromeExtensionUrl} target="_blank" rel="noopener">Chrome extension</a>. On other browsers, use the
+[browser bookmarklet](/docs/getting-started/using-browser-bookmarklet), or set up
+[Apple Shortcuts](/docs/getting-started/saving-with-apple-shortcut) to save from the Share menu on
+iPhone, iPad, and Mac. Already have links in another tool?
 See [Importing bookmarks](/docs/guides/importing-bookmarks).
 
 ## Editing and deleting bookmarks
