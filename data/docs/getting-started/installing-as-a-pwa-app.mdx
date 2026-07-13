@@ -10,6 +10,8 @@ Faved is a Progressive Web App, so you can install it directly on your desktop o
 it like a native app. Installed, it opens faster, stays out of your browser clutter, and gives you a more
 focused, app-like experience.
 
+This works with both [Faved Cloud](https://app.faved.to) and self-hosted instances.
+
 ## Supported platforms and browsers
 
 > [!NOTE]
@@ -27,6 +29,10 @@ website and adding it as a bookmark for quick access.
 * [Chrome, Firefox, Edge, Opera, and Samsung Internet](#android) on Android.
 * [Safari](#ios-and-ipados) on iOS/iPadOS.
 * [Chrome, Edge, and Firefox](#ios-and-ipados) on iOS/iPadOS 16.4 and later.
+
+
+> [!NOTE]
+> Self-hosting? Browsers only offer PWA installation on a secure origin, so your instance needs to be served over HTTPS. `localhost` is the exception and always counts as secure — a Quick Installation at `http://localhost:8080` can be installed as-is. But reaching your instance over plain HTTP at a LAN address like `http://192.168.1.10:8080` or a bare domain won't show the install option. See [Advanced Installation](/docs/getting-started/installation#advanced-installation) to set up SSL.
 
 
 ## Chrome, Edge, and Opera on Windows, Mac, and Linux
