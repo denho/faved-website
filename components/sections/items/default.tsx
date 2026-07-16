@@ -55,7 +55,7 @@ export default function Items({
 }: ItemsProps) {
   return (
     <Section className={className}>
-      <div className="max-w-container mx-auto flex flex-col items-center gap-20">
+      <div className="max-w-container mx-auto flex flex-col items-center gap-12 sm:gap-20">
         <h2 className="text-center text-3xl font-semibold sm:text-5xl">{title}</h2>
         {items !== false && items.length > 0 && (
           <div className="grid w-full grid-cols-1 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-y-16">

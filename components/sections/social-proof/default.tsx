@@ -215,8 +215,8 @@ export default function SocialProof({
 
   return (
     <Section className={className}>
-      <div className="flex flex-col gap-16">
-        <div className="max-w-container mx-auto mb-4 flex flex-col items-center gap-4 text-center">
+      <div className="flex flex-col gap-12 sm:gap-16">
+        <div className="max-w-container mx-auto flex flex-col items-center gap-4 text-center sm:mb-4">
           <h2 className="text-3xl font-semibold sm:text-5xl">{title}</h2>
           {description && (
             <p className="text-muted-foreground text-md max-w-[640px] text-balance sm:text-xl">

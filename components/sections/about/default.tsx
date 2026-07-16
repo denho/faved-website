@@ -7,7 +7,7 @@ interface AboutProps {
 export default function About({ className }: AboutProps) {
   return (
     <Section className={className}>
-      <div className="max-w-container mx-auto flex flex-col items-center gap-20">
+      <div className="max-w-container mx-auto flex flex-col items-center gap-12 sm:gap-20">
         <h2 className="text-center text-3xl font-semibold sm:text-5xl">
           Organization that adapts to you
         </h2>
