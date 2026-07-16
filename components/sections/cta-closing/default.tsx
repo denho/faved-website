@@ -35,7 +35,7 @@ export default function ClosingCta({
             </a>
           </Button>
           <p className="text-muted-foreground mt-4 text-sm">
-            Prefer self-hosting? Read the{' '}
+            <span className="font-semibold"> Prefer self-hosting?</span> Read the{' '}
             <a href="/docs/getting-started/installation" className="text-foreground underline">
               guide
             </a>{' '}

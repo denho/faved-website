@@ -26,7 +26,10 @@ function ItemDescription({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       data-slot="item-description"
-      className={cn('text-muted-foreground flex flex-col gap-2 text-[15px] leading-[1.55]', className)}
+      className={cn(
+        'text-muted-foreground flex flex-col gap-2 text-[15px] leading-[1.55]',
+        className
+      )}
       {...props}
     />
   )

@@ -1,13 +1,56 @@
 import { ReactNode } from 'react'
 
+import { ExternalLink } from 'lucide-react'
+
 import Image from '@/components/Image'
 
 import { Github, Reddit, Youtube } from '@/components/social-icons/icons'
 
 import Marquee from '../../ui/marquee'
 import { Section } from '../../ui/section'
+import siteMetadata from '@/data/siteMetadata'
+import React from '@/components/logos/react'
 
 type Source = 'github' | 'reddit' | 'youtube'
+
+interface StatItemProps {
+  label?: string
+  value: string | number
+  suffix?: string
+  description?: string
+  href?: string
+}
+
+function formatToThousands(value: number) {
+  return Math.round(value / 100) / 10
+}
+
+const DEFAULT_STATS: StatItemProps[] = [
+  {
+    label: 'clones + forks',
+    value: formatToThousands(siteMetadata.stats.githubClonesForks as number) + 'k+',
+    description: 'on GitHub ',
+    href: siteMetadata.github,
+  },
+  {
+    label: 'stars',
+    value: formatToThousands(siteMetadata.stats.githubStars as number) + 'k+',
+    description: 'on GitHub ',
+    href: siteMetadata.github,
+  },
+  {
+    label: 'image pulls',
+    value: formatToThousands(siteMetadata.stats.dockerHubPulls as number) + 'k+',
+    description: 'from DockerHub ',
+    href: siteMetadata.dockerHub,
+  },
+  {
+    label: 'users',
+    value: siteMetadata.stats.cloudUsers + '+',
+    description: 'of Cloud version ',
+    href: `${siteMetadata.cloudUrl}?ref=stats`,
+  },
+]
 
 interface Praise {
   /** The quote, kept short (~120 chars). */
@@ -28,6 +71,7 @@ interface SocialProofProps {
   title?: string
   description?: string
   items?: Praise[] | false
+  stats?: StatItemProps[] | false
   className?: string
 }
 
@@ -157,9 +201,10 @@ function PraiseCard({ item }: { item: Praise }) {
 }
 
 export default function SocialProof({
-  title = 'Loved by the community',
-  description = 'What people are saying on GitHub, Reddit, and YouTube.',
+  title = 'Trusted by a growing community',
+  description = '',
   items = DEFAULT_PRAISE,
+  stats = DEFAULT_STATS,
   className,
 }: SocialProofProps) {
   if (items === false || items.length === 0) return null
@@ -170,7 +215,7 @@ export default function SocialProof({
 
   return (
     <Section className={className}>
-      <div className="flex flex-col gap-12">
+      <div className="flex flex-col gap-16">
         <div className="max-w-container mx-auto flex flex-col items-center gap-4 text-center">
           <h2 className="text-3xl font-semibold text-balance sm:text-5xl">{title}</h2>
           {description && (
@@ -180,6 +225,52 @@ export default function SocialProof({
           )}
         </div>
 
+        {stats !== false && stats.length > 0 && (
+          <div className="mx-auto w-full max-w-[960px]">
+            <div className="grid grid-cols-2 gap-12 sm:grid-cols-4">
+              {stats.map((item) => (
+                <div
+                  key={`${item.label}-${item.description}`}
+                  className="flex flex-col items-start gap-3 text-left"
+                >
+                  <div className="flex items-center gap-2">
+                    {item.label && (
+                      <div className="text-muted-foreground text-sm font-semibold first-letter:uppercase">
+                        {item.label}
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex items-baseline gap-2">
+                    <div className="from-foreground to-foreground dark:to-brand selection:bg-brand bg-linear-to-r bg-clip-text text-4xl font-medium text-transparent drop-shadow-[2px_1px_24px_var(--brand-foreground)] transition-all duration-300 selection:text-gray-100 sm:text-5xl md:text-6xl">
+                      {item.value}
+                    </div>
+                    {item.suffix && (
+                      <div className="text-brand text-2xl font-semibold">{item.suffix}</div>
+                    )}
+                  </div>
+                  <div className="text-muted-foreground flex items-center gap-2 text-sm font-semibold text-pretty">
+                    {item.description}
+                    {item.href && (
+                      <a
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener"
+                        className="text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        <ExternalLink size={14} />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+        <div className="mt-6 flex flex-col items-center gap-6">
+          <h3 className="text-md text-muted-foreground font-semibold text-balance sm:text-xl">
+            What people are saying on GitHub, Reddit, and YouTube
+          </h3>
+        </div>
         <div className="fade-x max-w-container mx-auto w-full overflow-hidden">
           {/* Two rows scrolling in opposite directions */}
           <div className="flex flex-col gap-4">

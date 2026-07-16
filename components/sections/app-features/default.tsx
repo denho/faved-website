@@ -357,7 +357,7 @@ function DuplicatesVisual() {
             <path d="m7 4 5 5 5-5" />
           </svg>
         </div>
-        <div className="flex flex-col gap-2 px-3 pb-3 pt-2">
+        <div className="flex flex-col gap-2 px-3 pt-2 pb-3">
           {matchItem()}
           {matchItem(true)}
           {matchItem()}
