@@ -882,8 +882,8 @@ export default function AppFeatures({
           </div>
         )}
 
-        <header className="relative mx-auto mb-12 flex max-w-[640px] flex-col items-center gap-4 text-center">
-          <h2 className="text-3xl font-semibold text-balance sm:text-5xl">
+        <header className="relative mx-auto mb-20 flex flex-col items-center gap-4 text-center">
+          <h2 className="text-3xl font-semibold sm:text-5xl">
             Built for ease-of-use and efficiency
           </h2>
           <p className="text-muted-foreground text-md max-w-[640px] text-balance sm:text-xl">

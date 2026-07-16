@@ -201,8 +201,8 @@ function PraiseCard({ item }: { item: Praise }) {
 }
 
 export default function SocialProof({
-  title = 'Trusted by a growing community',
-  description = '',
+  title = 'Loved by a growing community',
+  description = 'Growing fast — and appreciated on GitHub, Reddit, and YouTube.',
   items = DEFAULT_PRAISE,
   stats = DEFAULT_STATS,
   className,
@@ -216,8 +216,8 @@ export default function SocialProof({
   return (
     <Section className={className}>
       <div className="flex flex-col gap-16">
-        <div className="max-w-container mx-auto flex flex-col items-center gap-4 text-center">
-          <h2 className="text-3xl font-semibold text-balance sm:text-5xl">{title}</h2>
+        <div className="max-w-container mx-auto mb-4 flex flex-col items-center gap-4 text-center">
+          <h2 className="text-3xl font-semibold sm:text-5xl">{title}</h2>
           {description && (
             <p className="text-muted-foreground text-md max-w-[640px] text-balance sm:text-xl">
               {description}
@@ -266,11 +266,7 @@ export default function SocialProof({
             </div>
           </div>
         )}
-        <div className="mt-6 flex flex-col items-center gap-6">
-          <h3 className="text-md text-muted-foreground font-semibold text-balance sm:text-xl">
-            What people are saying on GitHub, Reddit, and YouTube
-          </h3>
-        </div>
+
         <div className="fade-x max-w-container mx-auto w-full overflow-hidden">
           {/* Two rows scrolling in opposite directions */}
           <div className="flex flex-col gap-4">

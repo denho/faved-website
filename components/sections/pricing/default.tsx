@@ -101,8 +101,8 @@ export default function Pricing({
     <Section className={cn(className)} id="pricing">
       <div className="max-w-container mx-auto flex flex-col items-center gap-12">
         {(title || description) && (
-          <div className="flex flex-col items-center gap-4 px-4 text-center">
-            {title && <h2 className="text-3xl font-semibold text-balance sm:text-5xl">{title}</h2>}
+          <div className="mb-8 flex flex-col items-center gap-4 px-4 text-center">
+            {title && <h2 className="text-3xl font-semibold sm:text-5xl">{title}</h2>}
             {description && (
               <p className="text-muted-foreground text-md max-w-[640px] text-balance sm:text-xl">
                 {description}

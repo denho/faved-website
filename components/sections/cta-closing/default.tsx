@@ -21,7 +21,7 @@ export default function ClosingCta({
   return (
     <Section className={cn('group relative overflow-hidden', className)} id="get-started">
       <div className="max-w-container relative z-10 mx-auto flex flex-col items-center gap-6 text-center sm:gap-8">
-        <h2 className="text-3xl leading-tight font-semibold text-balance sm:text-5xl sm:leading-tight">
+        <h2 className="text-3xl leading-tight font-semibold sm:text-5xl sm:leading-tight">
           {title}
         </h2>
         <p className="text-md text-muted-foreground max-w-[600px] font-medium text-balance sm:text-xl">
