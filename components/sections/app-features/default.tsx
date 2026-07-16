@@ -107,7 +107,7 @@ function TagsVisual() {
     </div>
   )
   return (
-    <div className="relative mt-6 min-h-[206px] flex-1 overflow-hidden pr-[30px] pl-[30px]">
+    <div className="relative mt-6 flex min-h-[206px] flex-1 flex-col justify-end overflow-hidden pr-[30px] pl-[30px]">
       <div
         className="overflow-hidden rounded-t-[12px] border border-b-0 px-2.5 pt-3"
         style={{
@@ -305,9 +305,9 @@ function DuplicatesVisual() {
     </div>
   )
   return (
-    <div className="relative flex min-h-[236px] flex-1 items-end justify-center px-6 pt-6 pb-6 lg:pb-0">
+    <div className="relative flex min-h-[236px] flex-1 items-end justify-center px-6 pt-6 pb-3">
       <div
-        className="w-full overflow-hidden rounded-[12px] border border-b-0"
+        className="w-full overflow-hidden rounded-[12px] border"
         style={{
           borderColor: 'color-mix(in oklch,var(--border) 16%,transparent)',
           background: 'color-mix(in oklch,var(--foreground) 6%,var(--background))',
@@ -357,10 +357,10 @@ function DuplicatesVisual() {
             <path d="m7 4 5 5 5-5" />
           </svg>
         </div>
-        <div className="flex flex-col gap-2 px-3 pb-3">
-          {matchItem()}
+        <div className="flex flex-col gap-2 px-3 pb-3 pt-2">
           {matchItem()}
           {matchItem(true)}
+          {matchItem()}
         </div>
       </div>
     </div>
