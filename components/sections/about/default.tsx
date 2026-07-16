@@ -35,9 +35,9 @@ export default function Logos({
 }: LogosProps) {
   return (
     <Section className={className}>
-      <div className="max-w-container mx-auto mb-20 flex flex-col items-center gap-6 sm:gap-20">
+      <div className="max-w-container mx-auto mb-20 flex flex-col items-center gap-12">
         <h2 className="text-center text-3xl font-semibold text-balance sm:text-5xl">Why Faved</h2>
-        <div className="text-md text-muted-foreground max-w-full space-y-4 text-left leading-9 font-medium sm:text-xl lg:px-20">
+        <div className="text-md text-muted-foreground mx-auto max-w-[800px] space-y-4 text-left leading-9 font-medium sm:text-xl">
           <p>
             Most tools break down as your collection grows. What starts organized quickly becomes
             cluttered — links get lost, and finding anything takes too long.
@@ -52,7 +52,7 @@ export default function Logos({
       <div className="max-w-container mx-auto flex flex-col items-center gap-8 text-center">
         <div className="flex flex-col items-center gap-6">
           {/*{badge !== false && badge}*/}
-          <h2 className="text-md font-semibold sm:text-2xl">{title}</h2>
+          <h2 className="text-md max-w-[640px] font-semibold text-balance sm:text-2xl">{title}</h2>
         </div>
         {logos !== false && logos.length > 0 && (
           <div className="flex flex-wrap items-center justify-center gap-8">{logos}</div>

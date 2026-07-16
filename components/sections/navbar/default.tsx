@@ -57,10 +57,6 @@ export default function Navbar({
       text: 'Pricing',
       href: '/#pricing',
     },
-    {
-      text: 'Managed hosting',
-      href: `${siteMetadata.cloudUrl}?ref=navbar`,
-    },
     // {
     //   text: 'Discord',
     //   href: siteMetadata.discord,
@@ -72,8 +68,8 @@ export default function Navbar({
   ],
   actions = [
     {
-      text: 'Get Started',
-      href: `${siteMetadata.appUrl}/signup?ref=navbar-get-started`,
+      text: 'Try for free',
+      href: `${siteMetadata.cloudUrl}?ref=navbar-get-started`,
       isButton: true,
       variant: 'default',
     },

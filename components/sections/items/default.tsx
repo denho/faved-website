@@ -19,7 +19,7 @@ interface ItemsProps {
 }
 
 export default function Items({
-  title = 'And so much more',
+  title = 'The little things that add up',
   items = [
     {
       title: 'Powerful UI without Clutter',
@@ -55,19 +55,22 @@ export default function Items({
 }: ItemsProps) {
   return (
     <Section className={className}>
-      <div className="max-w-container mx-auto flex flex-col items-center gap-6 sm:gap-20">
-        <h2 className="max-w-[560px] text-center text-3xl leading-tight font-semibold sm:text-5xl sm:leading-tight">
+      <div className="max-w-container mx-auto flex flex-col items-center gap-12">
+        <h2 className="max-w-[560px] text-center text-3xl font-semibold text-balance sm:text-5xl">
           {title}
         </h2>
         {items !== false && items.length > 0 && (
-          <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3 lg:gap-5">
+          <div className="grid w-full grid-cols-1 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-y-16">
             {items.map((item, index) => (
-              <Item key={index}>
-                <ItemTitle className="flex items-center gap-2">
-                  <ItemIcon>{item.icon}</ItemIcon>
-                  {item.title}
-                </ItemTitle>
-                <ItemDescription>{item.description}</ItemDescription>
+              <Item
+                key={index}
+                className="border-border/10 gap-6 sm:border-l sm:px-8 sm:py-2 lg:px-10"
+              >
+                <ItemIcon className="text-muted-foreground">{item.icon}</ItemIcon>
+                <div className="flex flex-col gap-3">
+                  <ItemTitle>{item.title}</ItemTitle>
+                  <ItemDescription>{item.description}</ItemDescription>
+                </div>
               </Item>
             ))}
           </div>

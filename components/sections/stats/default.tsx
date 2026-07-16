@@ -51,7 +51,7 @@ const DEFAULT_STATS: StatItemProps[] = [
 export default function Stats({ items = DEFAULT_STATS, className }: StatsProps) {
   return (
     <Section className={className}>
-      <div className="container mx-auto max-w-[960px]">
+      <div className="mx-auto max-w-[960px]">
         {items !== false && items.length > 0 && (
           <div className="grid grid-cols-2 gap-12 sm:grid-cols-4">
             {items.map((item) => {

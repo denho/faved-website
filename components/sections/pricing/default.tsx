@@ -34,7 +34,7 @@ const DEFAULT_PRICING_PLANS: PricingPlan[] = [
     priceNote: 'No external dependencies. Free forever',
     cta: {
       variant: 'glow',
-      label: 'Get started',
+      label: 'Self-host guide',
       href: '/docs/getting-started/installation',
     },
     features: ['Unlimited bookmarks', 'Full control over your data', 'Community support'],
@@ -99,16 +99,14 @@ export default function Pricing({
 
   return (
     <Section className={cn(className)} id="pricing">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-12">
+      <div className="max-w-container mx-auto flex flex-col items-center gap-12">
         {(title || description) && (
-          <div className="flex flex-col items-center gap-4 px-4 text-center sm:gap-8">
+          <div className="flex flex-col items-center gap-4 px-4 text-center">
             {title && (
-              <h2 className="text-3xl leading-tight font-semibold sm:text-5xl sm:leading-tight">
-                {title}
-              </h2>
+              <h2 className="text-3xl font-semibold text-balance sm:text-5xl">{title}</h2>
             )}
             {description && (
-              <p className="text-md text-muted-foreground max-w-[600px] font-medium sm:text-xl">
+              <p className="text-muted-foreground text-md max-w-[640px] text-balance sm:text-xl">
                 {description}
               </p>
             )}

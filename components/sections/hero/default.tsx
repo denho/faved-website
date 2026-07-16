@@ -60,7 +60,7 @@ export default function Hero({
   buttons = [
     {
       href: `${siteConfig.cloudUrl}?ref=hero-cta`,
-      text: 'Get Started',
+      text: 'Try for free',
       variant: 'default',
       icon: <ArrowRightIcon className="mr-2 size-4" />,
     },

@@ -339,13 +339,24 @@ function DuplicatesVisual() {
             color: 'var(--foreground)',
           }}
         >
-          <span>
-            Possible duplicate
-            <span style={{ color: 'var(--muted-foreground)', fontWeight: '400' }}>
-              {' '}
-              – 1 exact match and 2 domain matches
-            </span>
-          </span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            className="lucide lucide-circle-alert size-3.5"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" x2="12" y1="8" y2="12"></line>
+            <line x1="12" x2="12.01" y1="16" y2="16"></line>
+          </svg>
+          <span>Duplicates found</span>
           <span className="flex-1" />
           <svg
             width="15"
@@ -768,7 +779,7 @@ function SearchVisual() {
         >
           <Search className="size-4" style={{ color: '#6ea8fe' }} />
           <span className="text-sm font-medium">
-            home workout guide
+            n8n workflow templates
             <span
               className="ml-px inline-block h-[15px] w-px align-[-2px]"
               style={{ background: '#6ea8fe' }}
@@ -880,18 +891,18 @@ export default function AppFeatures({
 }: AppFeaturesProps) {
   return (
     <Section className={className}>
-      <div className="relative mx-auto w-full max-w-[1152px]">
+      <div className="max-w-container relative mx-auto w-full">
         {showGlow && (
           <div className="pointer-events-none absolute top-[-90px] left-1/2 h-[300px] w-[680px] -translate-x-1/2 opacity-40">
             <Glow variant="center" />
           </div>
         )}
 
-        <header className="relative mx-auto mb-14 flex max-w-[640px] flex-col items-center gap-5 text-center">
-          <h2 className="text-foreground text-[clamp(30px,4vw,46px)] leading-[1.05] font-semibold tracking-[-0.02em] text-balance">
+        <header className="relative mx-auto mb-12 flex max-w-[640px] flex-col items-center gap-4 text-center">
+          <h2 className="text-3xl font-semibold text-balance sm:text-5xl">
             Built for ease-of-use and efficiency
           </h2>
-          <p className="text-muted-foreground max-w-[540px] text-[18px] leading-[1.55] text-pretty">
+          <p className="text-muted-foreground text-md max-w-[640px] text-balance sm:text-xl">
             Faved gives your link collection a fast, organized, private home — capture in a click,
             find it in a second, and own your data forever.
           </p>
@@ -907,7 +918,7 @@ export default function AppFeatures({
           </FeatureCard>
           <FeatureCard
             title="Capture from anywhere"
-            description="Save the current page in one click with the Chrome extension, from any browser with a lightweight bookmarklet, or via the native Share menu on Apple devices."
+            description="Save any web page in one click with the Chrome extension, from any browser with a lightweight bookmarklet, or via the native Share menu on Apple and Android devices."
             className="lg:col-span-2"
           >
             {showMockups && <CaptureVisual />}

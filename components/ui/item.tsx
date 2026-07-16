@@ -16,7 +16,7 @@ function ItemTitle({ className, ...props }: React.ComponentProps<'h3'>) {
   return (
     <h3
       data-slot="item-title"
-      className={cn('text-sm leading-none font-semibold tracking-tight sm:text-base', className)}
+      className={cn('text-[22px] font-semibold tracking-[-0.01em]', className)}
       {...props}
     />
   )
@@ -26,7 +26,7 @@ function ItemDescription({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       data-slot="item-description"
-      className={cn('text-muted-foreground flex flex-col gap-2 text-sm text-balance', className)}
+      className={cn('text-muted-foreground flex flex-col gap-2 text-[15px] leading-[1.55]', className)}
       {...props}
     />
   )

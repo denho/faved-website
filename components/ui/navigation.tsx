@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation'
 import * as React from 'react'
 import { ReactNode } from 'react'
 
-import siteMetadata from '@/data/siteMetadata'
 import { cn, isNavLinkActive } from '@/components/lib/utils'
 import {
   NavigationMenu,
@@ -58,11 +57,6 @@ export default function Navigation({
       title: 'Pricing',
       isLink: true,
       href: '/#pricing',
-    },
-    {
-      title: 'Managed hosting',
-      isLink: true,
-      href: `${siteMetadata.cloudUrl}?ref=navbar`,
     },
   ],
 }: NavigationProps) {
