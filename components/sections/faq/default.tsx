@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { ReactNode } from 'react'
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../../ui/accordion'
@@ -69,15 +68,8 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
     answer: (
       <>
         <Answer>
-          Yes. You can explore the{' '}
-          <Link href={siteMetadata.demoUrl} className="text-foreground underline">
-            live demo
-          </Link>{' '}
-          before setting up self-hosting or signing up for Faved Cloud.
-        </Answer>
-        <Answer>
-          Additionally, Faved Cloud includes a 14-day free trial with access to all premium
-          features, and no credit card is required to start.
+          Yes. Faved Cloud includes a 14-day free trial with access to all premium features, and no
+          credit card is required to start. You can also self-host Faved for free at any time.
         </Answer>
       </>
     ),

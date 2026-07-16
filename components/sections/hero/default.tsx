@@ -1,5 +1,5 @@
 import { type VariantProps } from 'class-variance-authority'
-import { ArrowRightIcon, GlobeIcon } from 'lucide-react'
+import { ArrowRightIcon } from 'lucide-react'
 import { ReactNode } from 'react'
 
 import siteConfig from '@/data/siteMetadata'
@@ -63,12 +63,6 @@ export default function Hero({
       text: 'Get Started',
       variant: 'default',
       icon: <ArrowRightIcon className="mr-2 size-4" />,
-    },
-    {
-      href: siteConfig.demoUrl,
-      text: 'Live Demo',
-      variant: 'glow',
-      icon: <GlobeIcon className="mr-2 size-4" />,
     },
   ],
   className,

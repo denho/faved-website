@@ -61,10 +61,6 @@ export default function Navbar({
       text: 'Managed hosting',
       href: `${siteMetadata.cloudUrl}?ref=navbar`,
     },
-    {
-      text: 'Live demo',
-      href: siteMetadata.demoUrl,
-    },
     // {
     //   text: 'Discord',
     //   href: siteMetadata.discord,

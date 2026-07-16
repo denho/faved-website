@@ -64,11 +64,6 @@ export default function Navigation({
       isLink: true,
       href: `${siteMetadata.cloudUrl}?ref=navbar`,
     },
-    {
-      title: 'Live demo',
-      isLink: true,
-      href: siteMetadata.demoUrl,
-    },
   ],
 }: NavigationProps) {
   const pathname = usePathname()
