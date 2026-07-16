@@ -7,6 +7,7 @@ import Testimonials from '@/components/sections/testimonials/default'
 import SocialProof from '@/components/sections/social-proof/default'
 import Pricing from '@/components/sections/pricing/default'
 import Faq from '@/components/sections/faq/default'
+import ClosingCta from '@/components/sections/cta-closing/default'
 import Stats from '@/components/sections/stats/default'
 
 const MAX_DISPLAY = 5
@@ -23,6 +24,7 @@ export default function Home({ posts }) {
       <SocialProof />
       <Pricing />
       <Faq />
+      <ClosingCta />
 
       {/* <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
