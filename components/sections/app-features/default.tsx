@@ -1,20 +1,4 @@
-import {
-  ArrowDownToLine,
-  Bookmark,
-  Code,
-  CopyCheck,
-  EllipsisVertical,
-  Folder,
-  Globe,
-  Hash,
-  LayoutGrid,
-  List,
-  Pin,
-  Search,
-  Share2,
-  Sparkles,
-  Table,
-} from 'lucide-react'
+import { ArrowDownToLine, Bookmark, Code, Globe, Hash, Pin, Search, Share2 } from 'lucide-react'
 import { CSSProperties, ReactNode } from 'react'
 
 import Glow from '../../ui/glow'
@@ -346,9 +330,9 @@ function DuplicatesVisual() {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             className="lucide lucide-circle-alert size-3.5"
             aria-hidden="true"
           >
