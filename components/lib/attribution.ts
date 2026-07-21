@@ -5,7 +5,13 @@ import { getCookie } from '@/components/lib/utils'
 export const ATTR_COOKIE_NAME = 'faved_attr'
 const ATTR_COOKIE_MAX_AGE = 60 * 60 * 24 * 90 // 90 days, matches Meta's click window
 
-export const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'] as const
+export const UTM_KEYS = [
+  'utm_source',
+  'utm_medium',
+  'utm_campaign',
+  'utm_content',
+  'utm_term',
+] as const
 export type UtmKey = (typeof UTM_KEYS)[number]
 
 export interface AttributionData {
