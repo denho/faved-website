@@ -4,13 +4,18 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 
-// You might need to insert additional domains in script-src if you are using external services
+// You might need to insert additional domains in script-src if you are using external services.
+// NOTE: this template is serialized into the header verbatim (newlines stripped), so
+// comments must live out here, never inside the backticks:
+// - media-src keeps 'self' so self-hosted post videos (public/static/.../*.mp4) can play; S3 hosts remote media.
+// - connect-src stays wildcard on purpose: Zaraz + CookieChimp (and tags configured in the
+//   Cloudflare dashboard) beacon to endpoints outside this repo's control; an allowlist
+//   here would break consent/tracking silently.
 const ContentSecurityPolicy = `
   default-src 'self';
   script-src 'self' 'unsafe-eval' 'unsafe-inline' www.google.com google.com www.googletagmanager.com googletagmanager.com www.google-analytics.com google-analytics.com connect.facebook.net;
   style-src 'self' 'unsafe-inline';
   img-src * blob: data: www.google-analytics.com google-analytics.com www.googletagmanager.com googletagmanager.com;
-  // Keep 'self' so self-hosted post videos (public/static/.../*.mp4) can play; S3 hosts remote media.
   media-src 'self' *.s3.amazonaws.com;
   connect-src * www.google-analytics.com google-analytics.com www.googletagmanager.com googletagmanager.com;
   font-src 'self';
