@@ -47,3 +47,9 @@ yarn-error.log*
 .contentlayer
 
 .env
+
+# Local-only dev environment overrides (not for CI/prod)
+docker-compose.override.yml
+Dockerfile.dev.local
+ca-bundle.crt
+tsconfig.tsbuildinfo
