@@ -65,16 +65,21 @@ export function writeAttrCookie(data: AttributionData): void {
 
 // First-touch policy: the original acquisition context (utm/fbclid/landing)
 // is kept once set; only the live Pixel identifiers (_fbp/_fbc) are refreshed
-// so late-set Pixel cookies still make it into the snapshot.
-export function captureAttribution(now: number = Date.now()): AttributionData | null {
+// so late-set Pixel cookies still make it into the snapshot. Pixel cookies are
+// only read when marketing consent allows it — URL-derived data (utm, fbclid,
+// and the fbc synthesized from fbclid) is not consent-gated.
+export function captureAttribution(
+  includePixelCookies: boolean,
+  now: number = Date.now()
+): AttributionData | null {
   if (typeof document === 'undefined') return null
 
   const existing = readAttrCookie()
   const utm = parseUtms(document.location.search)
   const fbclid = new URLSearchParams(document.location.search).get('fbclid') || undefined
 
-  const liveFbp = getCookie('_fbp') || undefined
-  const liveFbc = getCookie('_fbc') || undefined
+  const liveFbp = (includePixelCookies && getCookie('_fbp')) || undefined
+  const liveFbc = (includePixelCookies && getCookie('_fbc')) || undefined
 
   const hasFirstTouch = existing && (Object.keys(existing.utm).length > 0 || existing.fbclid)
   const hasNewSignal = Object.keys(utm).length > 0 || fbclid

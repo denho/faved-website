@@ -7,7 +7,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 // You might need to insert additional domains in script-src if you are using external services
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' www.google.com google.com www.googletagmanager.com googletagmanager.com www.google-analytics.com google-analytics.com;
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' www.google.com google.com www.googletagmanager.com googletagmanager.com www.google-analytics.com google-analytics.com connect.facebook.net;
   style-src 'self' 'unsafe-inline';
   img-src * blob: data: www.google-analytics.com google-analytics.com www.googletagmanager.com googletagmanager.com;
   // Keep 'self' so self-hosted post videos (public/static/.../*.mp4) can play; S3 hosts remote media.

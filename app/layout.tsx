@@ -12,6 +12,7 @@ import { Metadata } from 'next'
 import { cn } from '@/components/lib/utils'
 import Navbar from '@/components/sections/navbar/default'
 import AttributionCapture from '@/components/analytics/AttributionCapture'
+import MetaPixel from '@/components/analytics/MetaPixel'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const ibmPlexMono = IBM_Plex_Mono({
@@ -107,6 +108,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="font-sans antialiased">
         <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
         <AttributionCapture />
+        <MetaPixel />
         <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
           <Navbar />
           <main className="mb-auto">{children}</main>
