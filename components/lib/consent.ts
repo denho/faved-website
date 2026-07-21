@@ -1,5 +1,8 @@
 import { getCookie } from '@/components/lib/utils'
 
+// NOTE: kept in sync with faved-cloud/frontend/src/lib/consent.ts (separate
+// repo) - CookieChimp category/cookie/event names must change in both.
+//
 // Consent is managed by CookieChimp, loaded at the edge via Cloudflare Zaraz.
 // CookieChimp exposes the vanilla-cookieconsent v3-compatible surface: a
 // window.CookieConsent API, cc:onConsent / cc:onChange window events, and a

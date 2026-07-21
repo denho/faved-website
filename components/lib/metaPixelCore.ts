@@ -1,5 +1,7 @@
 // Minimal Meta Pixel bootstrap (the standard fbevents.js loader, minus the
 // inline-script wrapper so it can run consent-gated from a module).
+// NOTE: kept in sync with the loader in
+// faved-cloud/frontend/src/lib/metaPixel.ts (separate repo).
 interface FbqFunction {
   (...args: unknown[]): void
   callMethod?: (...args: unknown[]) => void
@@ -45,8 +47,4 @@ export function loadMetaPixel(pixelId: string): void {
 
   window.fbq('init', pixelId)
   window.fbq('track', 'PageView')
-}
-
-export function isMetaPixelLoaded(): boolean {
-  return initialized
 }

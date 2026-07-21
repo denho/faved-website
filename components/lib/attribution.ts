@@ -2,6 +2,8 @@ import { getCookie } from '@/components/lib/utils'
 
 // First-party attribution snapshot shared across faved.to subdomains via a
 // cookie scoped to .faved.to, so app.faved.to can read it at signup.
+// NOTE: the cookie shape is read by faved-cloud/frontend/src/lib/attribution.ts
+// (separate repo) - keep the two in sync.
 export const ATTR_COOKIE_NAME = 'faved_attr'
 const ATTR_COOKIE_MAX_AGE = 60 * 60 * 24 * 90 // 90 days, matches Meta's click window
 
@@ -64,44 +66,35 @@ export function writeAttrCookie(data: AttributionData): void {
 }
 
 // First-touch policy: the original acquisition context (utm/fbclid/landing)
-// is kept once set; only the live Pixel identifiers (_fbp/_fbc) are refreshed
-// so late-set Pixel cookies still make it into the snapshot. Pixel cookies are
-// only read when marketing consent allows it — URL-derived data (utm, fbclid,
-// and the fbc synthesized from fbclid) is not consent-gated.
-export function captureAttribution(
-  includePixelCookies: boolean,
-  now: number = Date.now()
-): AttributionData | null {
+// is kept once set and never overwritten by later visits. Only URL-derived
+// data is captured — the Pixel's own _fbp/_fbc cookies live on .faved.to and
+// are read live by the app at signup, so snapshotting them here would be
+// redundant (and racy against the Pixel's consent-gated load).
+export function captureAttribution(now: number = Date.now()): AttributionData | null {
   if (typeof document === 'undefined') return null
 
   const existing = readAttrCookie()
+  if (existing && (Object.keys(existing.utm).length > 0 || existing.fbclid)) {
+    return existing
+  }
+
   const utm = parseUtms(document.location.search)
-  const fbclid = new URLSearchParams(document.location.search).get('fbclid') || undefined
+  // Capped like the UTMs: an oversized value (also duplicated into fbc)
+  // could push the encoded cookie past the ~4KB browser limit, where the
+  // write is silently dropped and ALL attribution would be lost.
+  const fbclid = new URLSearchParams(document.location.search).get('fbclid')?.slice(0, 500) || undefined
 
-  const liveFbp = (includePixelCookies && getCookie('_fbp')) || undefined
-  const liveFbc = (includePixelCookies && getCookie('_fbc')) || undefined
+  // Nothing to record — don't set an empty cookie
+  if (Object.keys(utm).length === 0 && !fbclid) return null
 
-  const hasFirstTouch = existing && (Object.keys(existing.utm).length > 0 || existing.fbclid)
-  const hasNewSignal = Object.keys(utm).length > 0 || fbclid
-
-  const next: AttributionData = hasFirstTouch
-    ? {
-        ...existing,
-        fbp: liveFbp ?? existing.fbp,
-        fbc: liveFbc ?? existing.fbc,
-      }
-    : {
-        v: 1,
-        utm,
-        fbclid,
-        fbc: liveFbc ?? (fbclid ? buildFbc(fbclid, now) : undefined),
-        fbp: liveFbp,
-        ts: now,
-        landing_path: document.location.pathname,
-      }
-
-  // Nothing to record and nothing recorded before — don't set an empty cookie
-  if (!hasFirstTouch && !hasNewSignal && !liveFbp && !liveFbc) return null
+  const next: AttributionData = {
+    v: 1,
+    utm,
+    fbclid,
+    fbc: fbclid ? buildFbc(fbclid, now) : undefined,
+    ts: now,
+    landing_path: document.location.pathname,
+  }
 
   writeAttrCookie(next)
   return next
