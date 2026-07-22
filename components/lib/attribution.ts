@@ -1,4 +1,4 @@
-import { getCookie } from '@/components/lib/utils'
+import {getCookie} from '@/components/lib/utils'
 
 // First-party attribution snapshot shared across faved.to subdomains via a
 // cookie scoped to .faved.to, so app.faved.to can read it at signup.
