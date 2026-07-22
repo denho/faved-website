@@ -1,4 +1,4 @@
-import {getCookie} from '@/components/lib/utils'
+import { getCookie } from '@/components/lib/utils'
 
 // First-party attribution snapshot shared across faved.to subdomains via a
 // cookie scoped to .faved.to, so app.faved.to can read it at signup.
@@ -88,7 +88,8 @@ export function captureAttribution(now: number = Date.now()): AttributionData | 
   // Capped like the UTMs: an oversized value (also duplicated into fbc)
   // could push the encoded cookie past the ~4KB browser limit, where the
   // write is silently dropped and ALL attribution would be lost.
-  const fbclid = new URLSearchParams(document.location.search).get('fbclid')?.slice(0, 500) || undefined
+  const fbclid =
+    new URLSearchParams(document.location.search).get('fbclid')?.slice(0, 500) || undefined
 
   // Nothing to record — don't set an empty cookie
   if (Object.keys(utm).length === 0 && !fbclid) return null
