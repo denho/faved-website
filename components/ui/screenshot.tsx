@@ -21,6 +21,8 @@ interface ScreenshotProps {
    * Defaults to "high" when `preload` is set.
    */
   fetchPriority?: 'high' | 'low' | 'auto'
+  /** Viewport-to-rendered-width hint so the browser picks the right srcset entry. */
+  sizes?: string
 }
 
 export default function Screenshot({
@@ -32,6 +34,7 @@ export default function Screenshot({
   preload,
   loading,
   fetchPriority,
+  sizes,
 }: ScreenshotProps) {
   if (!srcLight) {
     return <div style={{ width, height }} className={cn('bg-muted', className)} aria-label={alt} />
@@ -47,6 +50,7 @@ export default function Screenshot({
       preload={preload}
       loading={loading}
       fetchPriority={fetchPriority ?? (preload ? 'high' : undefined)}
+      sizes={sizes}
     />
   )
 }

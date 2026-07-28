@@ -47,6 +47,7 @@ export default function Hero({
       height={1854}
       className="w-full"
       preload
+      sizes="(max-width: 1280px) 100vw, 1280px"
     />
   ),
   badge = (

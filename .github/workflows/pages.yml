@@ -37,7 +37,6 @@ jobs:
       - run: yarn build
         env:
           EXPORT: 1
-          UNOPTIMIZED: 1
           BASE_PATH: ${{ steps.configurepages.outputs.base_path }}
           IMAGE_PATH_PREFIX: ${{ vars.IMAGE_PATH_PREFIX }}
           NEXT_PUBLIC_AIRTABLE_TOKEN: ${{ vars.NEXT_PUBLIC_AIRTABLE_TOKEN }}

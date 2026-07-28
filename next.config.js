@@ -81,6 +81,8 @@ module.exports = () => {
     trailingSlash: false,
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
     images: {
+      loader: 'custom',
+      loaderFile: './image-loader.js',
       remotePatterns: [
         {
           protocol: 'https',
