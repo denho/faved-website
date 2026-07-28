@@ -7,8 +7,14 @@ services:
       - "3000:3000"
     volumes:
       - .:/app
-      - /app/node_modules
-      - /app/.next
+      - nodemodules:/app/node_modules
+      - nextcache:/app/.next
     environment:
       - NODE_ENV=development
     restart: unless-stopped
+    command: >
+      sh -c "node .yarn/releases/yarn-4.17.1.cjs install && node .yarn/releases/yarn-4.17.1.cjs dev"
+
+volumes:
+  nodemodules:
+  nextcache:

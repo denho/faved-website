@@ -19,26 +19,28 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
-    "baseUrl": ".",
+    "jsx": "react-jsx",
     "paths": {
       "@/components/*": [
-        "components/*"
+        "./components/*"
       ],
       "@/data/*": [
-        "data/*"
+        "./data/*"
       ],
       "@/layouts/*": [
-        "layouts/*"
+        "./layouts/*"
       ],
       "@/css/*": [
-        "css/*"
+        "./css/*"
       ],
       "contentlayer/generated": [
         "./.contentlayer/generated"
       ],
       "pliny/*": [
-        "node_modules/pliny/*"
+        "./node_modules/pliny/*"
+      ],
+      "*": [
+        "./*"
       ]
     },
     "plugins": [
@@ -63,6 +65,7 @@
   ],
   "exclude": [
     "node_modules",
-    "eslint.config.mjs"
+    "eslint.config.mjs",
+    "ds-bundle"
   ]
 }
