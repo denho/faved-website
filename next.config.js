@@ -70,6 +70,12 @@ module.exports = () => {
   return plugins.reduce((acc, next) => next(acc), {
     output,
     basePath,
+    // Inline these into the client bundle too — components/Image.tsx reads them
+    // from client-component code, where only inlined values exist at runtime.
+    env: {
+      BASE_PATH: process.env.BASE_PATH || '',
+      IMAGE_PATH_PREFIX: process.env.IMAGE_PATH_PREFIX || '',
+    },
     distDir: process.env.DIST_DIR || undefined,
     reactStrictMode: true,
     trailingSlash: false,
