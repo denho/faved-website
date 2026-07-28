@@ -12,13 +12,13 @@ interface ScreenshotProps {
   height: number
   className?: string
   /** Skip lazy-loading and preload the image. Set for above-the-fold / LCP images. */
-  priority?: boolean
+  preload?: boolean
   /** Overrides the default loading behaviour ('eager' skips lazy-loading). */
   loading?: 'lazy' | 'eager'
   /**
-   * Resource fetch priority. Next.js does NOT derive this from `priority`, so
+   * Resource fetch priority. Next.js does NOT derive this from `preload`, so
    * it must be set explicitly to emit fetchpriority="high" on the img + preload.
-   * Defaults to "high" when `priority` is set.
+   * Defaults to "high" when `preload` is set.
    */
   fetchPriority?: 'high' | 'low' | 'auto'
 }
@@ -29,7 +29,7 @@ export default function Screenshot({
   width,
   height,
   className,
-  priority,
+  preload,
   loading,
   fetchPriority,
 }: ScreenshotProps) {
@@ -44,9 +44,9 @@ export default function Screenshot({
       width={width}
       height={height}
       className={className}
-      priority={priority}
+      preload={preload}
       loading={loading}
-      fetchPriority={fetchPriority ?? (priority ? 'high' : undefined)}
+      fetchPriority={fetchPriority ?? (preload ? 'high' : undefined)}
     />
   )
 }
