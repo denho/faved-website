@@ -255,9 +255,10 @@ export default function SocialProof({
                         href={item.href}
                         target="_blank"
                         rel="noopener"
+                        aria-label={`${item.label ?? ''} ${item.description ?? ''}`.trim()}
                         className="text-muted-foreground hover:text-foreground transition-colors"
                       >
-                        <ExternalLink size={14} />
+                        <ExternalLink size={14} aria-hidden="true" />
                       </a>
                     )}
                   </div>
