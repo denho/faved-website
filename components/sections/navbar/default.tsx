@@ -69,11 +69,11 @@ export default function Navbar({
   actions = [
     {
       text: 'Try for free',
-      href: `${siteMetadata.cloudUrl}?ref=navbar-get-started`,
+      href: `${siteMetadata.cloudUrl}?cta=navbar-get-started`,
       isButton: true,
       variant: 'default',
     },
-    { text: 'Sign in', href: `${siteMetadata.appUrl}/login?ref=navbar-signin`, isButton: false },
+    { text: 'Sign in', href: `${siteMetadata.appUrl}/login?cta=navbar-signin`, isButton: false },
     // {
     //   text: '',
     //   icon: <Discord className="h-4 w-4 fill-current" />,
@@ -103,7 +103,7 @@ export default function Navbar({
     actions = [
       {
         text: 'Open Faved',
-        href: `${siteMetadata.appUrl}/?ref=navbar-open-app`,
+        href: `${siteMetadata.appUrl}/?cta=navbar-open-app`,
         isButton: true,
         variant: 'default',
       },
@@ -111,7 +111,7 @@ export default function Navbar({
   } else {
     mobileLinks.unshift({
       text: 'Sign in',
-      href: `${siteMetadata.appUrl}/login?ref=navbar-signin`,
+      href: `${siteMetadata.appUrl}/login?cta=navbar-signin`,
     })
   }
 

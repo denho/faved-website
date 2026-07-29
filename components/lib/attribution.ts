@@ -38,6 +38,23 @@ export type UtmKey = (typeof UTM_KEYS)[number]
 // partners hand-write. First one present wins.
 export const REF_PARAMS = ['ref', 'via', 'r'] as const
 
+// Placement of the internal CTA that produced the click ("which button"), not
+// an acquisition source. Recorded alongside attribution, never as part of it.
+export const CTA_PARAM = 'cta'
+
+// Our own CTA values, which used to ride on `?ref=` and are still out there in
+// bookmarks, caches and links people have shared. Referrer suppression below
+// misses those (external referrer, internal value), so they are also rejected
+// by name. Keep in sync with the CTAs in components/sections/.
+const INTERNAL_REF_VALUES = new Set([
+  'hero-cta',
+  'pricing-cta',
+  'navbar-get-started',
+  'navbar-signin',
+  'navbar-open-app',
+  'closing-cta',
+])
+
 // A referrer from our own site is navigation, not acquisition.
 const INTERNAL_REFERRER_HOSTS = ['faved.to']
 
@@ -62,6 +79,9 @@ export interface AttributionData extends Touch {
   // Absent until a second signal-bearing visit - consumers should fall back to
   // the first-touch fields at the top level.
   last?: Touch
+  // Unlike the other top-level fields this is NOT first-touch: it answers "which
+  // button did they last click", so the newest value wins. Never a channel.
+  entry_cta?: string
   visits?: number
   last_ts?: number
 }
@@ -83,7 +103,22 @@ export function parseRef(search: string): string | undefined {
   const params = new URLSearchParams(search)
   for (const key of REF_PARAMS) {
     const value = params.get(key)?.trim().toLowerCase()
-    if (value) return value.slice(0, VALUE_MAX_LEN)
+    if (value && !INTERNAL_REF_VALUES.has(value)) return value.slice(0, VALUE_MAX_LEN)
+  }
+  return undefined
+}
+
+// Internal CTA placement. Always read, including on internal navigation - it is
+// the one thing an internal click legitimately tells us.
+export function parseCta(search: string): string | undefined {
+  const params = new URLSearchParams(search)
+  const value = params.get(CTA_PARAM)?.trim().toLowerCase()
+  if (value) return value.slice(0, VALUE_MAX_LEN)
+  // Transitional: our CTAs used to ride on `?ref=`, and those links are still
+  // in circulation. Recover the placement rather than dropping it.
+  for (const key of REF_PARAMS) {
+    const legacy = params.get(key)?.trim().toLowerCase()
+    if (legacy && INTERNAL_REF_VALUES.has(legacy)) return legacy.slice(0, VALUE_MAX_LEN)
   }
   return undefined
 }
@@ -92,15 +127,31 @@ export function parseRef(search: string): string | undefined {
 // else's path and query string. Returns undefined for our own hosts and for
 // direct arrivals (empty referrer).
 export function externalReferrerHost(referrer: string): string | undefined {
+  const host = referrerHost(referrer)
+  if (!host) return undefined
+  return isInternalHost(host) ? undefined : host.slice(0, VALUE_MAX_LEN)
+}
+
+// True only for a referrer we can parse AND recognize as ours. An absent or
+// malformed referrer is NOT internal - a direct hit on an ad URL has no
+// referrer and must still be captured.
+export function isInternalReferrer(referrer: string): boolean {
+  const host = referrerHost(referrer)
+  return !!host && isInternalHost(host)
+}
+
+function referrerHost(referrer: string): string | undefined {
   if (!referrer) return undefined
   try {
-    const host = new URL(referrer).hostname.replace(/^www\./, '')
-    const internal = INTERNAL_REFERRER_HOSTS.some((h) => host === h || host.endsWith(`.${h}`))
-    return internal ? undefined : host.slice(0, VALUE_MAX_LEN)
+    return new URL(referrer).hostname.replace(/^www\./, '')
   } catch {
     // Malformed referrer - treat as direct
     return undefined
   }
+}
+
+function isInternalHost(host: string): boolean {
+  return INTERNAL_REFERRER_HOSTS.some((h) => host === h || host.endsWith(`.${h}`))
 }
 
 // Crawlers and synthetic runs (Lighthouse, CI, uptime checks) would otherwise
@@ -158,7 +209,12 @@ export function writeAttrCookie(data: AttributionData): void {
 }
 
 function readTouch(now: number): Touch {
-  const search = document.location.search
+  // Internal navigation is never acquisition. A link from our own site carrying
+  // ?ref= or ?utm_* is either CTA metadata or a forwarded duplicate of what the
+  // cookie already holds, so every URL signal is ignored on those hits -
+  // otherwise clicking our own "Get started" button rewrites where the visitor
+  // actually came from.
+  const search = isInternalReferrer(document.referrer) ? '' : document.location.search
   const fbclid = new URLSearchParams(search).get('fbclid')?.slice(0, CLICK_ID_MAX_LEN) || undefined
 
   return {
@@ -185,18 +241,23 @@ function hasSignal(touch: Touch): boolean {
 // both available. Only URL- and referrer-derived data is captured — the
 // Pixel's own _fbp/_fbc cookies live on .faved.to and are read live by the app
 // at signup.
+//
+// The CTA placement is deliberately not a signal: on its own it can neither
+// create the cookie nor qualify a touch, which keeps the invariant that a
+// cookie always carries a real first touch.
 export function captureAttribution(now: number = Date.now()): AttributionData | null {
   if (typeof document === 'undefined') return null
   if (isAutomatedClient()) return null
 
   const existing = readAttrCookie()
   const touch = readTouch(now)
+  const entryCta = parseCta(document.location.search)
 
   if (!existing) {
     // Nothing to record — don't set an empty cookie
     if (!hasSignal(touch)) return null
 
-    const next: AttributionData = { v: 1, ...touch, visits: 1, last_ts: now }
+    const next: AttributionData = { v: 1, ...touch, entry_cta: entryCta, visits: 1, last_ts: now }
     writeAttrCookie(next)
     return next
   }
@@ -204,6 +265,7 @@ export function captureAttribution(now: number = Date.now()): AttributionData | 
   const isNewVisit = now - (existing.last_ts ?? existing.ts) > VISIT_GAP_MS
   const next: AttributionData = {
     ...existing,
+    entry_cta: entryCta ?? existing.entry_cta,
     visits: (existing.visits ?? 1) + (isNewVisit ? 1 : 0),
     last_ts: now,
   }

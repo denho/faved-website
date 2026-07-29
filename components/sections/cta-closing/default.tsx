@@ -29,7 +29,7 @@ export default function ClosingCta({
         </p>
         <div className="flex flex-col items-center gap-4">
           <Button variant="default" size="lg" asChild>
-            <a href={`${siteConfig.cloudUrl}?ref=closing-cta`}>
+            <a href={`${siteConfig.cloudUrl}?cta=closing-cta`}>
               <ArrowRightIcon className="mr-2 size-4" />
               Try for free
             </a>
