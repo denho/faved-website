@@ -3,10 +3,10 @@
   "version": "2.4.0",
   "private": true,
   "scripts": {
-    "start": "yarn dev",
     "dev": "cross-env INIT_CWD=$PWD concurrently -k -n next,content -c blue,magenta \"next dev\" \"contentlayer2 dev\"",
     "build": "contentlayer2 build && cross-env NODE_ENV=production INIT_CWD=$PWD next build && cross-env NODE_OPTIONS='--experimental-json-modules' node ./scripts/postbuild.mjs",
-    "serve": "next start",
+    "start": "next start",
+    "preview": "cross-env EXPORT=1 yarn build && npx serve@latest out",
     "analyze": "cross-env ANALYZE=true yarn build",
     "lint": "tsc --noEmit && eslint --fix app components layouts scripts",
     "prepare": "husky"
