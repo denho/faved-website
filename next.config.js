@@ -9,15 +9,15 @@ const ContentSecurityPolicy = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-eval' 'unsafe-inline' www.google.com google.com www.googletagmanager.com googletagmanager.com www.google-analytics.com google-analytics.com",
   "style-src 'self' 'unsafe-inline'",
-  "img-src * blob: data: www.google-analytics.com google-analytics.com www.googletagmanager.com googletagmanager.com",
+  'img-src * blob: data: www.google-analytics.com google-analytics.com www.googletagmanager.com googletagmanager.com',
   // - media-src keeps 'self' so self-hosted post videos (public/static/.../*.mp4) can play; S3 hosts remote media.
   "media-src 'self' *.s3.amazonaws.com",
   // - connect-src stays wildcard on purpose: Zaraz + CookieChimp (and tags configured in the
   //   Cloudflare dashboard) beacon to endpoints outside this repo's control; an allowlist
   //   here would break consent/tracking silently.
-  "connect-src * www.google-analytics.com google-analytics.com www.googletagmanager.com googletagmanager.com",
+  'connect-src * www.google-analytics.com google-analytics.com www.googletagmanager.com googletagmanager.com',
   "font-src 'self'",
-  "frame-src giscus.app",
+  'frame-src giscus.app',
 ].join('; ')
 
 const securityHeaders = [
@@ -62,6 +62,13 @@ const output = process.env.EXPORT ? 'export' : undefined
 const basePath = process.env.BASE_PATH || undefined
 const unoptimized = process.env.UNOPTIMIZED ? true : undefined
 
+// Polling file watcher for environments where native file events never
+// arrive (the Claude sandbox mounts the repo from the host). Only enabled
+// when scripts/dev.mjs sets NEXT_DEV_POLL — it pairs polling with webpack
+// (`next dev --webpack`), because Turbopack's polling mode delivers no
+// events on Linux (vercel/next.js#68255) and would silently kill HMR.
+const devPolling = Boolean(process.env.NEXT_DEV_POLL)
+
 /**
  * @type {import('next/dist/next-server/server/config').NextConfig}
  **/
@@ -77,6 +84,7 @@ module.exports = () => {
       IMAGE_PATH_PREFIX: process.env.IMAGE_PATH_PREFIX || '',
     },
     distDir: process.env.DIST_DIR || undefined,
+    watchOptions: devPolling ? { pollIntervalMs: 500 } : undefined,
     reactStrictMode: true,
     trailingSlash: false,
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],

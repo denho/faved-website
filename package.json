@@ -3,7 +3,7 @@
   "version": "2.4.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env INIT_CWD=$PWD concurrently -k -n next,content -c blue,magenta \"next dev\" \"contentlayer2 dev\"",
+    "dev": "node scripts/dev.mjs",
     "build": "contentlayer2 build && cross-env NODE_ENV=production INIT_CWD=$PWD next build && cross-env NODE_OPTIONS='--experimental-json-modules' node ./scripts/postbuild.mjs",
     "start": "next start",
     "preview": "cross-env EXPORT=1 yarn build && npx serve@latest out",
