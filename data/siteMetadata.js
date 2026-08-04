@@ -40,7 +40,7 @@ const siteMetadata = {
     githubClonesForks: 3000,
     githubStars: 1200,
     dockerHubPulls: 50000,
-    cloudUsers: 100,
+    cloudUsers: 200,
   },
   analytics: {
     // If you want to use an analytics provider you have to add it to the
