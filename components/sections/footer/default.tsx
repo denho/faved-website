@@ -59,7 +59,7 @@ export default function FooterSection({
           <FooterContent>
             <FooterColumn className="col-span-1 space-y-3 md:col-span-2">
               <BrandLogo />
-              <div className="text-muted-foreground space-y-2 text-sm">Save. Organize. Own.</div>
+              <div className="text-muted-foreground space-y-2 text-sm">Save. Extract. Own.</div>
 
               <div className="mb-y flex space-x-4">
                 <SocialIcon kind="mail" href={`mailto:${siteMetadata.email}`} size={6} />

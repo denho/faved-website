@@ -31,11 +31,12 @@ interface HeroProps {
 }
 
 export default function Hero({
-  title = 'Organize bookmarks the way your brain actually works',
+  title = 'Save any page. Extract what matters.',
   description = (
     <>
-      A bookmark manager that combines powerful tagging, instant search, and a clean interface that
-      doesn’t break as your library grows.
+      Faved is a bookmark manager that turns web pages into structured records. Give a page a type,
+      such as product, recipe, job posting, or your own, and Faved’s AI fills in its fields straight
+      from the page. Page content, summaries and screenshots come free.
     </>
   ),
   mockup = (
@@ -53,8 +54,8 @@ export default function Hero({
   badge = (
     <Badge variant="outline" className="animate-appear">
       <span className="text-muted-foreground">New</span>
-      <a href="/blog/chrome-extension-now-available" className="flex items-center gap-1">
-        The Chrome extension is here
+      <a href="/#features" className="flex items-center gap-1">
+        Types, fields and Extract are here
         <ArrowRightIcon className="size-3" />
       </a>
     </Badge>

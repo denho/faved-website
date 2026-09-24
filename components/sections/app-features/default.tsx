@@ -1,4 +1,17 @@
-import { ArrowDownToLine, Bookmark, Code, Globe, Hash, Pin, Search, Share2 } from 'lucide-react'
+import {
+  ArrowDownToLine,
+  Bookmark,
+  Code,
+  Copy,
+  Globe,
+  Hash,
+  Pin,
+  Search,
+  Share2,
+  ShoppingBag,
+  Sparkles,
+  Wand2,
+} from 'lucide-react'
 import { CSSProperties, ReactNode } from 'react'
 
 import Glow from '../../ui/glow'
@@ -868,13 +881,314 @@ function ImportVisual() {
   )
 }
 
+/* Card — types with fields: a typed table */
+function TypesVisual() {
+  const bar = (width: string, alpha = 0.26, height = '7px') => (
+    <span
+      className="block rounded"
+      style={{ width, height, background: `rgba(255,255,255,${alpha})` }}
+    />
+  )
+  const chip = (label: string, color: string) => (
+    <span
+      className="inline-flex items-center gap-1.5 rounded-full px-2 py-[3px] text-[10px] leading-none font-medium"
+      style={{
+        color: 'rgba(255,255,255,.8)',
+        background: 'rgba(255,255,255,.06)',
+        border: '1px solid rgba(255,255,255,.1)',
+      }}
+    >
+      <span className="size-1.5 rounded-full" style={{ background: color }} />
+      {label}
+    </span>
+  )
+  const stars = (n: number) => (
+    <span className="font-mono text-[11px] tracking-[1px]" style={{ color: '#f0a868' }}>
+      {'★'.repeat(n)}
+      <span style={{ color: 'rgba(255,255,255,.18)' }}>{'★'.repeat(5 - n)}</span>
+    </span>
+  )
+  const rows: {
+    title: string
+    price: string
+    brand: [string, string]
+    rating: number
+    active?: boolean
+  }[] = [
+    { title: '74%', price: '€129', brand: ['Aeron', '#6ea8fe'], rating: 5, active: true },
+    { title: '58%', price: '€89', brand: ['Vitra', '#7ee787'], rating: 4 },
+    { title: '66%', price: '€245', brand: ['Hay', '#d2a8ff'], rating: 4 },
+    { title: '50%', price: '€59', brand: ['Muuto', '#ff7b9c'], rating: 3 },
+  ]
+  return (
+    <div className="relative mt-6 flex min-h-[206px] flex-1 flex-col justify-end overflow-hidden pr-[30px] pl-[30px]">
+      <div
+        className="overflow-hidden rounded-t-[12px] border border-b-0"
+        style={{
+          borderColor: 'color-mix(in oklch,var(--border) 16%,transparent)',
+          background: 'color-mix(in oklch,var(--foreground) 6%,var(--background))',
+          boxShadow: '0 -24px 60px rgba(0,0,0,.4)',
+        }}
+      >
+        <div
+          className="flex items-center gap-2.5 px-3.5 py-2.5 text-[12px] font-semibold"
+          style={{
+            color: 'var(--foreground)',
+            borderBottom: '1px solid color-mix(in oklch,var(--border) 12%,transparent)',
+          }}
+        >
+          <span
+            className="grid size-6 place-items-center rounded-[7px] text-white"
+            style={brandTileStyle}
+          >
+            <ShoppingBag className="size-3.5" />
+          </span>
+          Products
+          <span
+            className="rounded-full px-1.5 py-0.5 font-mono text-[10px] leading-none font-medium"
+            style={{ color: 'rgba(255,255,255,.45)', background: 'rgba(255,255,255,.08)' }}
+          >
+            128
+          </span>
+          <span className="flex-1" />
+          <span
+            className="text-[10px] font-medium tracking-wide uppercase"
+            style={{ color: 'rgba(255,255,255,.38)' }}
+          >
+            8 fields
+          </span>
+        </div>
+        <div
+          className="grid items-center gap-3 px-3.5 py-2 text-[10px] font-semibold tracking-wide uppercase"
+          style={{
+            gridTemplateColumns: '1fr 52px 64px 66px',
+            color: 'rgba(255,255,255,.38)',
+            borderBottom: '1px solid rgba(255,255,255,.06)',
+          }}
+        >
+          <span>Title</span>
+          <span>Price</span>
+          <span>Brand</span>
+          <span>Rating</span>
+        </div>
+        {rows.map((row, index) => (
+          <div
+            key={index}
+            className="grid items-center gap-3 px-3.5 py-2.5"
+            style={{
+              gridTemplateColumns: '1fr 52px 64px 66px',
+              background: row.active ? 'rgba(0,98,255,.1)' : undefined,
+              borderBottom: index < rows.length - 1 ? '1px solid rgba(255,255,255,.05)' : undefined,
+            }}
+          >
+            <span className="flex items-center gap-2.5">
+              <span
+                className="size-5 flex-none rounded-[5px]"
+                style={{ background: 'rgba(255,255,255,.1)' }}
+              />
+              {bar(row.title, row.active ? 0.42 : 0.26)}
+            </span>
+            <span
+              className="font-mono text-[11px] font-medium"
+              style={{ color: 'rgba(255,255,255,.75)' }}
+            >
+              {row.price}
+            </span>
+            <span>{chip(row.brand[0], row.brand[1])}</span>
+            {stars(row.rating)}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+/* Card — extract from the page: the field picker and its cost */
+function ExtractVisual() {
+  const field = (label: string, hint: string, on = true) => (
+    <div
+      className="flex items-center gap-2.5 rounded-[9px] px-2.5 py-2"
+      style={
+        on
+          ? { background: 'rgba(0,98,255,.13)', border: '1px solid rgba(0,98,255,.32)' }
+          : { border: '1px solid rgba(255,255,255,.08)' }
+      }
+    >
+      <span
+        className="grid size-4 flex-none place-items-center rounded-[4px]"
+        style={
+          on
+            ? { background: '#0062ff', boxShadow: '0 0 12px rgba(0,98,255,.5)' }
+            : { border: '1px solid rgba(255,255,255,.2)' }
+        }
+      >
+        {on && (
+          <svg
+            width="10"
+            height="10"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
+            strokeWidth="3"
+          >
+            <path d="m5 12 5 5L20 7" />
+          </svg>
+        )}
+      </span>
+      <span
+        className="text-[12px] font-medium"
+        style={{ color: on ? 'rgba(255,255,255,.9)' : 'rgba(255,255,255,.55)' }}
+      >
+        {label}
+      </span>
+      <span className="flex-1" />
+      <span className="text-[10px]" style={{ color: 'rgba(255,255,255,.35)' }}>
+        {hint}
+      </span>
+    </div>
+  )
+  return (
+    <div className="relative mt-6 flex min-h-[236px] flex-1 flex-col justify-end overflow-hidden px-[30px]">
+      <div
+        className="rounded-t-[12px] border border-b-0 px-3 pt-3"
+        style={{
+          borderColor: 'color-mix(in oklch,var(--border) 16%,transparent)',
+          background: 'color-mix(in oklch,var(--foreground) 6%,var(--background))',
+          boxShadow: '0 -24px 60px rgba(0,0,0,.4)',
+        }}
+      >
+        <div
+          className="flex items-center gap-2 pb-2.5 text-[11px] font-semibold tracking-wide uppercase"
+          style={{ color: 'rgba(255,255,255,.38)' }}
+        >
+          <Wand2 className="size-3" />
+          Fill from the page
+        </div>
+        <div className="flex flex-col gap-1.5">
+          {field('Price', 'Extracted')}
+          {field('Brand', 'Matched from its options')}
+          {field('Summary', 'AI-generated')}
+          {field('Screenshot', 'Page capture', false)}
+        </div>
+        <div className="mt-3 flex items-center gap-3 pb-4">
+          <span
+            className="inline-flex h-8 items-center gap-1.5 rounded-[8px] px-3 text-[12px] font-semibold text-white"
+            style={brandTileStyle}
+          >
+            <Sparkles className="size-3.5" />
+            Extract from page
+          </span>
+          <span className="text-[11px]" style={{ color: 'rgba(255,255,255,.45)' }}>
+            Uses 1 AI credit
+          </span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* Card — reader: summary, full content and screenshot from one read */
+function ReaderVisual() {
+  const line = (width: string, alpha = 0.16) => (
+    <span
+      className="block h-[6px] rounded"
+      style={{ width, background: `rgba(255,255,255,${alpha})` }}
+    />
+  )
+  return (
+    <div className="relative mt-6 flex min-h-[236px] flex-1 flex-col justify-end overflow-hidden px-[30px]">
+      <div
+        className="overflow-hidden rounded-t-[12px] border border-b-0"
+        style={{
+          borderColor: 'color-mix(in oklch,var(--border) 16%,transparent)',
+          background: 'color-mix(in oklch,var(--foreground) 6%,var(--background))',
+          boxShadow: '0 -24px 60px rgba(0,0,0,.4)',
+        }}
+      >
+        <div
+          className="flex items-center gap-2.5 px-3.5 py-2.5"
+          style={{ borderBottom: '1px solid color-mix(in oklch,var(--border) 12%,transparent)' }}
+        >
+          <span className="flex flex-col gap-1">
+            <span className="text-[12px] font-semibold" style={{ color: 'var(--foreground)' }}>
+              Page content
+            </span>
+            <span className="text-[10px]" style={{ color: 'rgba(255,255,255,.4)' }}>
+              1,240 words · 6 min read
+            </span>
+          </span>
+          <span className="flex-1" />
+          <span
+            className="grid size-7 place-items-center rounded-[7px]"
+            style={{ background: 'rgba(255,255,255,.06)', color: 'rgba(255,255,255,.5)' }}
+          >
+            <Copy className="size-3.5" />
+          </span>
+        </div>
+        <div className="flex gap-3 px-3.5 pt-3">
+          <div className="flex flex-1 flex-col gap-[7px]">
+            <span
+              className="mb-1 block h-[8px] w-[72%] rounded"
+              style={{ background: 'rgba(255,255,255,.34)' }}
+            />
+            {line('100%')}
+            {line('94%')}
+            {line('88%')}
+            <span
+              className="mt-1.5 flex items-center gap-1.5 rounded-[7px] px-2 py-1.5 text-[10px] font-medium"
+              style={{
+                color: '#6ea8fe',
+                background: 'rgba(0,98,255,.1)',
+                border: '1px solid rgba(0,98,255,.25)',
+                width: 'fit-content',
+              }}
+            >
+              <Sparkles className="size-3" />
+              Summary
+            </span>
+            {line('96%', 0.22)}
+            {line('64%', 0.22)}
+          </div>
+          <div
+            className="w-[92px] flex-none overflow-hidden rounded-[8px] border"
+            style={{
+              borderColor: 'rgba(255,255,255,.1)',
+              background: 'linear-gradient(180deg,#1b2533,#0f1319)',
+              boxShadow: '0 10px 26px rgba(0,0,0,.4)',
+              height: '118px',
+            }}
+          >
+            <span className="block h-[10px]" style={{ background: 'rgba(255,255,255,.08)' }} />
+            <span
+              className="mx-2 mt-2 block h-[30px] rounded-[4px]"
+              style={{ background: 'radial-gradient(120% 120% at 50% 22%,#4f93ff,#0062ff 72%)' }}
+            />
+            <span
+              className="mx-2 mt-2 block h-[5px] w-[70%] rounded"
+              style={{ background: 'rgba(255,255,255,.3)' }}
+            />
+            <span
+              className="mx-2 mt-1.5 block h-[4px] w-[90%] rounded"
+              style={{ background: 'rgba(255,255,255,.14)' }}
+            />
+            <span
+              className="mx-2 mt-1 block h-[4px] w-[80%] rounded"
+              style={{ background: 'rgba(255,255,255,.14)' }}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function AppFeatures({
   showGlow = false,
   showMockups = true,
   className,
 }: AppFeaturesProps) {
   return (
-    <Section className={className}>
+    <Section className={className} id="features">
       <div className="max-w-container relative mx-auto w-full">
         {showGlow && (
           <div className="pointer-events-none absolute top-[-90px] left-1/2 h-[300px] w-[680px] -translate-x-1/2 opacity-40">
@@ -883,26 +1197,46 @@ export default function AppFeatures({
         )}
 
         <header className="relative mx-auto mb-12 flex flex-col items-center gap-4 text-center sm:mb-20">
-          <h2 className="text-3xl font-semibold sm:text-5xl">
-            Built for ease-of-use and efficiency
-          </h2>
+          <h2 className="text-3xl font-semibold sm:text-5xl">A library that knows what it saved</h2>
           <p className="text-muted-foreground text-md max-w-[640px] text-balance sm:text-xl">
-            Faved gives your link collection a fast, organized, private home — capture in a click,
-            find it in a second, and own your data forever.
+            Every record has a type, every type has fields, and Faved fills them from the page — so
+            your library reads like a database, not a list of links.
           </p>
         </header>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
           <FeatureCard
-            title="Advanced tagging system"
-            description="Organize bookmarks with nested tags for structured grouping. Customize tags with colors, and pin the frequently used ones for quick access."
+            title="Types and fields, not just folders"
+            description="Every library starts with a Bookmark type that has notes and tags. Add presets — Product, Recipe, Job posting, Real estate, Article, Event — or define your own type with text, number, date, link, select and checkbox fields. Views, columns and filters are saved per type."
             className="lg:col-span-4"
+          >
+            {showMockups && <TypesVisual />}
+          </FeatureCard>
+          <FeatureCard
+            title="Extract from the page"
+            description="Pick the fields, and Faved’s AI reads the page and fills them in: one page, or up to 500 at once, in the background while you keep working. Select fields are matched to your options, never invented."
+            className="lg:col-span-2"
+          >
+            {showMockups && <ExtractVisual />}
+          </FeatureCard>
+
+          <FeatureCard
+            title="Web archive: page content, summaries, screenshots"
+            description="Keep every page’s content as clean Markdown, an AI-written summary and a screenshot, with Write and Preview tabs to read or edit them. All of it is free, with no AI credits spent."
+            className="lg:col-span-2"
+          >
+            {showMockups && <ReaderVisual />}
+          </FeatureCard>
+          <FeatureCard
+            title="Options and nested tags"
+            description="Tags are options on a select field: nested, color-coded, pinned, with counts and rollups in the sidebar. Use them on every record, or only on one type."
+            className="lg:col-span-2"
           >
             {showMockups && <TagsVisual />}
           </FeatureCard>
           <FeatureCard
             title="Capture from anywhere"
-            description="Save any web page in one click with the Chrome extension, from any browser with a lightweight bookmarklet, or via the native Share menu on Apple and Android devices."
+            description="Save any web page in one click with the Chrome extension, a lightweight bookmarklet, or the Share menu on Apple and Android. They hand the page over as you see it, so pages behind a login extract too."
             className="lg:col-span-2"
           >
             {showMockups && <CaptureVisual />}
@@ -915,33 +1249,31 @@ export default function AppFeatures({
           >
             {showMockups && <PhoneVisual />}
           </FeatureCard>
-
           <FeatureCard
-            title="Available for self-hosting"
-            description="You can run Faved on your own server with one command. Your library never leaves infrastructure you control."
+            title="Duplicates detection"
+            description="Faved detects duplicate records as you save, helping you keep your library clean."
+            className="lg:col-span-2"
+          >
+            {showMockups && <DuplicatesVisual />}
+          </FeatureCard>
+          <FeatureCard
+            title="Open source at heart"
+            description="The classic Faved bookmark manager is open source and free to self-host on your own server with one command. Types, fields and Extract are Faved Cloud features today."
             className="lg:col-span-2"
           >
             {showMockups && <CodeVisual />}
           </FeatureCard>
 
           <FeatureCard
-            title="Duplicates detection"
-            description="Faved detects duplicate bookmarks as you save, helping you keep your library clean."
-            className="lg:col-span-2"
-          >
-            {showMockups && <DuplicatesVisual />}
-          </FeatureCard>
-
-          <FeatureCard
-            title="Instant search"
-            description="Find bookmarks instantly as you type with flexible sorting options across collections of any size."
+            title="Full-text search and filters"
+            description="Full-text search as you type, page content included, then narrow by any field: option picks, number and date ranges, text matches, even the link’s domain. Filters live in the URL, so a view is shareable."
             className="lg:col-span-3"
           >
             {showMockups && <SearchVisual />}
           </FeatureCard>
           <FeatureCard
             title="Bring your whole library"
-            description="Import from Chrome, Safari, Firefox, and Edge with the full folder structure preserved, or migrate from Raindrop and Pocket keeping tags and collections."
+            description="Import from Chrome, Safari, Firefox, and Edge with folders turned into nested options, or migrate from Raindrop and Pocket keeping tags and collections. Export any time as a standard bookmarks file."
             className="lg:col-span-3"
           >
             {showMockups && <ImportVisual />}

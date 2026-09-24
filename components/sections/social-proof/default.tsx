@@ -48,7 +48,7 @@ const DEFAULT_STATS: StatItemProps[] = [
     label: 'users',
     value: siteMetadata.stats.cloudUsers + '+',
     description: 'of Cloud version ',
-    href: `${siteMetadata.cloudUrl}?ref=stats`,
+    href: `${siteMetadata.cloudUrl}?cta=stats`,
   },
 ]
 
