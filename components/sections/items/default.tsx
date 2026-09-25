@@ -31,28 +31,16 @@ export default function Items({
   title = 'The little things that add up',
   items = [
     {
+      title: 'Powerful UI without Clutter',
+      description:
+        'Multiple layouts (card, list, table), flexible sorting, customizable sidebar and filters. All major actions are one click away with no need to navigate between screens.',
+      icon: <FontAwesomeIcon icon={faBolt} className="size-5 stroke-1" />,
+    },
+    {
       title: 'Views per type',
       description:
-        'Column order, widths, visible fields and filter chips are saved for each type, in table, cards and list layouts. A product list looks the same wherever you open it from.',
+        'Customize how each record type appears in card, list, and table layouts. Your preferences persist across views.',
       icon: <FontAwesomeIcon icon={faLayerGroup} className="size-5 stroke-1" />,
-    },
-    {
-      title: 'Bulk actions',
-      description:
-        'Select records and delete them, set any field, change their type, or extract from up to 500 of them in one go, three runs at a time.',
-      icon: <FontAwesomeIcon icon={faSliders} className="size-5 stroke-1" />,
-    },
-    {
-      title: 'Field hints',
-      description:
-        'A one-line hint per field tells Extract exactly what to pull — “price per bottle as a number, no currency symbol”.',
-      icon: <FontAwesomeIcon icon={faWandMagicSparkles} className="size-5 stroke-1" />,
-    },
-    {
-      title: 'Extract on save',
-      description:
-        'Saving a page you found extracts it by default, in the background. Switch it off for a record when you only want the link.',
-      icon: <FontAwesomeIcon icon={faBolt} className="size-5 stroke-1" />,
     },
     {
       title: 'Activity log',
@@ -61,10 +49,10 @@ export default function Items({
       icon: <FontAwesomeIcon icon={faListCheck} className="size-5 stroke-1" />,
     },
     {
-      title: 'Page metadata fetching',
+      title: 'Bulk actions',
       description:
-        'Faved pulls in the title, description, and preview image automatically. It is read directly from the page, free, with no AI credits spent, and kept fresh over time.',
-      icon: <FontAwesomeIcon icon={faBookmark} className="size-5 stroke-1" />,
+        'Select records to extract data from their linked web pages, edit their field values, or delete them in one go.',
+      icon: <FontAwesomeIcon icon={faSliders} className="size-5 stroke-1" />,
     },
     {
       title: 'Light and dark mode',
@@ -75,14 +63,8 @@ export default function Items({
     {
       title: 'Export anytime',
       description:
-        'Take your whole library with you as a standard bookmarks HTML file: each record once, one select field as the folder tree, the rest as tags.',
+        'Take your whole library with you as a standard bookmarks HTML file.',
       icon: <FontAwesomeIcon icon={faFileExport} className="size-5 stroke-1" />,
-    },
-    {
-      title: 'Step through records',
-      description:
-        'Read a filtered list without closing the editor: a pair of chevrons and “3 of 48” in the header, or Alt with the up and down arrows.',
-      icon: <FontAwesomeIcon icon={faForwardStep} className="size-5 stroke-1" />,
     },
   ],
   className,
