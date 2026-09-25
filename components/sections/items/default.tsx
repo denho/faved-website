@@ -75,7 +75,7 @@ export default function Items({
     {
       title: 'Export anytime',
       description:
-        'Take your whole library with you as a standard bookmarks HTML file, with the select field of your choice as the folder tree.',
+        'Take your whole library with you as a standard bookmarks HTML file: each record once, one select field as the folder tree, the rest as tags.',
       icon: <FontAwesomeIcon icon={faFileExport} className="size-5 stroke-1" />,
     },
     {

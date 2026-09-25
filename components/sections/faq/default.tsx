@@ -29,8 +29,8 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
         <Answer>
           A record is a saved web page. Its type decides which fields it carries: text, numbers with
           units, dates and times, links, checkboxes, selects with nested options, plus a summary,
-          the page content and a screenshot. Every library starts with a Bookmark type that has
-          notes and tags.
+          the page content and a screenshot. Until you build a type of your own, records land in a
+          Bookmark type with notes and tags; the first type you create becomes the default.
         </Answer>
         <Answer>
           Add presets such as Product, Recipe, Job posting, Real estate listing, Article and Event,
@@ -148,17 +148,24 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
     ),
   },
   {
-    question: 'Is there a limit on how many records I can save?',
+    question: 'Are records really unlimited?',
     answer: (
       <>
-        <Answer>No. Records, fields and types are unlimited on every plan.</Answer>
         <Answer>
-          Fair use applies: Faved is for your own library, so an account used as a bulk scraper may
-          be rate limited. Page reads, the free ones included (page content, summaries and
-          screenshots), have a ceiling of 500 over a trial and 1,500 a month on a paid plan, and the
-          library has two guards of its own: 100,000 records, and 5,000 added in a day. All of it
-          sits far beyond normal use, and we always email first.
+          Yes. Records, fields and types have no plan limit. Fair usage applies: Faved is for your
+          own library, so a few ceilings stop it being used as a bulk scraper.
         </Answer>
+        <ul className="text-muted-foreground mb-4 list-disc space-y-1 pl-5 text-balance">
+          <li>
+            <span className="text-foreground font-medium">Library:</span> 100,000 records.
+          </li>
+          <li>
+            <span className="text-foreground font-medium">Page reads:</span> 500 over a trial, 5,000
+            a month on a paid plan. A page read is any page Faved fetches for you, the free ones
+            included. It is separate from AI credits.
+          </li>
+        </ul>
+        <Answer>Normal use never comes close. If an account does, we email first.</Answer>
       </>
     ),
   },
@@ -173,6 +180,10 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
         <Answer>
           It can also import from other bookmark managers such as Raindrop.io and Pocket, preserving
           your tags, collections, and notes.
+        </Answer>
+        <Answer>
+          Pick which type the records become. Links you’ve already saved are skipped, and a link in
+          two folders becomes one record in both.
         </Answer>
       </>
     ),
@@ -233,8 +244,8 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
     answer: (
       <>
         <Answer>
-          Yes, always. Export your whole library at any time as a standard bookmarks HTML file, with
-          your Folders field as the folder tree. It imports into any browser, another bookmark
+          Yes, always. Export your whole library at any time as a standard bookmarks HTML file, each
+          record once, its other folders as tags. It imports into any browser, another bookmark
           manager, or a free self-hosted Faved on your own machine.
         </Answer>
         <Answer>
@@ -250,9 +261,12 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
     answer: (
       <>
         <Answer>
-          Any major card, Apple Pay, Google Pay and local methods in your country. Payments are
-          processed securely by Dodo Payments; your card details are never shared with or stored by
-          us. A subscription started through PayPal carries on there.
+          Any major card, Apple Pay, Google Pay and local methods in your country. PayPal and bank
+          transfer are available on request:{' '}
+          <a href="mailto:hello@faved.to" className="text-foreground underline">
+            email us
+          </a>
+          .
         </Answer>
       </>
     ),
@@ -263,8 +277,7 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
       <>
         <Answer>Yes, we provide dedicated support via email for Cloud plans.</Answer>
         <Answer>
-          A person reads every email, never a bot, so you get the most accurate and helpful
-          assistance.
+          A person reads every email, so you get the most accurate and helpful assistance.
         </Answer>
       </>
     ),

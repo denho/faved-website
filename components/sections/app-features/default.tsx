@@ -1207,7 +1207,7 @@ export default function AppFeatures({
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
           <FeatureCard
             title="Types and fields, not just folders"
-            description="Every library starts with a Bookmark type that has notes and tags. Add presets — Product, Recipe, Job posting, Real estate, Article, Event — or define your own type with text, number, date, link, select and checkbox fields. Views, columns and filters are saved per type."
+            description="Start from a preset — Product, Recipe, Job posting, Real estate, Article, Event — or define your own type with text, number, date, link, select and checkbox fields. Your first type becomes the default. Views, columns and filters are saved per type."
             className="lg:col-span-4"
           >
             {showMockups && <TypesVisual />}
@@ -1273,7 +1273,7 @@ export default function AppFeatures({
           </FeatureCard>
           <FeatureCard
             title="Bring your whole library"
-            description="Import from Chrome, Safari, Firefox, and Edge with folders turned into nested options, or migrate from Raindrop and Pocket keeping tags and collections. Export any time as a standard bookmarks file."
+            description="Import from Chrome, Safari, Firefox, and Edge with folders turned into nested options, or migrate from Raindrop and Pocket keeping tags and collections. Choose the type they arrive as, and links you already saved are skipped. Export any time as a standard bookmarks file."
             className="lg:col-span-3"
           >
             {showMockups && <ImportVisual />}

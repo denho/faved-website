@@ -37,7 +37,7 @@ const CREDITS_NOTE = 'for AI extraction of data from web pages into your custom 
  */
 const BASIC_FEATURES: ReactNode[] = [
   'Fetching page metadata and content, taking a screenshot and generating a summary are free: no credits',
-  'Unlimited records, fields and types',
+  'Unlimited records, fields and types, fair usage applies',
   'Web archive: page content and screenshots',
   'Full-text search',
   'Priority support by email',
