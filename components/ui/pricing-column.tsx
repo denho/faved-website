@@ -34,7 +34,7 @@ export interface PricingColumnProps
   price: number | string
   /** The line under the price: what is billed, and when. */
   priceSubline?: ReactNode
-  /** One brand-coloured line under the price block. Its slot is always reserved so buttons line up. */
+  /** A small pill under the price block. Its slot is always reserved so buttons line up. */
   promotionText?: ReactNode
   cta: {
     variant: 'glow' | 'default'
@@ -43,11 +43,16 @@ export interface PricingColumnProps
   }
   /** The reassurance under the button. Its slot is always reserved. */
   ctaNote?: string
-  /** The tile between the button and the list: the number a plan is picked by. */
+  /** The credit panel between the button and the list: the number a plan is picked by. */
   stat: {
-    value: string
-    unit?: string
+    /** The allowance as a figure ("100"), set in the credit colour. */
+    figure?: string
+    label: string
     badge?: ReactNode
+    /** How full the meter is, 0–100. Left out, the track is dashed: a custom allowance. */
+    meter?: number
+    /** What the meter says to a screen reader. */
+    meterLabel: string
     note: string
   }
   features: ReactNode[]
@@ -91,7 +96,7 @@ export function PricingColumn({
           {isNumericPrice ? (
             <>
               <span className="text-muted-foreground text-2xl font-bold">$</span>
-              <span className="text-5xl font-bold tracking-tight">{price}</span>
+              <span className="font-mono text-5xl font-medium tracking-tighter">{price}</span>
               <span className="text-muted-foreground text-sm">/month</span>
             </>
           ) : (
@@ -101,7 +106,13 @@ export function PricingColumn({
         <div className="text-muted-foreground min-h-5 text-sm">{priceSubline}</div>
       </section>
 
-      <div className="text-brand-foreground -mt-3 h-6 text-sm font-medium">{promotionText}</div>
+      <div className="-mt-3 flex h-7 items-center">
+        {promotionText && (
+          <span className="border-foreground/15 bg-foreground/[0.04] text-foreground/85 inline-flex items-center rounded-full border px-3 py-1 text-[13px] leading-[18px] font-medium">
+            {promotionText}
+          </span>
+        )}
+      </div>
 
       <div className="flex flex-col gap-2.5">
         <Button variant={cta.variant} size="lg" asChild>
@@ -112,18 +123,43 @@ export function PricingColumn({
 
       <hr className="border-input" />
 
-      <div className="glass-3 dark:glass-1 flex items-start gap-3 rounded-xl px-4 py-3">
-        <span className="bg-brand/15 text-brand-foreground ring-brand/30 mt-0.5 grid size-7 shrink-0 place-items-center rounded-full ring-1 ring-inset">
-          <Sparkles className="size-3.5" />
-        </span>
-        <div className="flex flex-col gap-0.5">
-          <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1">
-            <span className="text-base font-semibold">{stat.value}</span>
-            {stat.unit && <span className="text-muted-foreground text-sm">{stat.unit}</span>}
-            {stat.badge}
-          </div>
-          <p className="text-muted-foreground text-xs leading-5">{stat.note}</p>
+      <div className="border-foreground/10 bg-foreground/[0.03] flex flex-col gap-3 rounded-xl border p-4">
+        <div className="flex min-h-8 flex-wrap items-center gap-x-2.5 gap-y-1">
+          <Sparkles className="text-credit size-[18px] shrink-0" />
+          {stat.figure && (
+            <span className="text-credit font-mono text-[28px] leading-8 font-semibold">
+              {stat.figure}
+            </span>
+          )}
+          <span
+            className={cn(
+              'text-sm',
+              stat.figure ? 'text-foreground/85' : 'text-foreground text-base font-semibold'
+            )}
+          >
+            {stat.label}
+          </span>
+          {stat.badge && <span className="ml-auto">{stat.badge}</span>}
         </div>
+        {stat.meter !== undefined ? (
+          <div
+            role="img"
+            aria-label={stat.meterLabel}
+            className="bg-foreground/10 h-2 overflow-hidden rounded-full"
+          >
+            <div
+              className="bg-credit h-full rounded-full"
+              style={{ width: `${Math.min(100, Math.max(0, stat.meter))}%` }}
+            />
+          </div>
+        ) : (
+          <div
+            role="img"
+            aria-label={stat.meterLabel}
+            className="border-credit/55 h-2 rounded-full border border-dashed"
+          />
+        )}
+        <p className="text-muted-foreground text-[13px] leading-5">{stat.note}</p>
       </div>
 
       <ul className="flex flex-1 flex-col gap-2.5">

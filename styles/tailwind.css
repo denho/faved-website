@@ -11,6 +11,7 @@
   /* Colors */
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
+  --color-credit: var(--credit);
   --color-light: var(--light);
   --color-light-foreground: var(--light-foreground);
   --color-background: var(--background);
@@ -144,6 +145,8 @@
   /* Accent colors */
   --brand: #0062FF;
   --brand-foreground: #0062FF;
+  /* AI credits, the one thing that is metered */
+  --credit: #F5A524;
 
   /* Customized shadcn/ui colors */
   --background: oklch(97.65% 0.001 17.18);
@@ -193,6 +196,8 @@
   /* Accent colors */
   --brand: #0062FF;
   --brand-foreground: #0062FF;
+  /* AI credits, the one thing that is metered */
+  --credit: #F5A524;
 
   /* Customized shadcn/ui colors */
   --background: oklch(0.141 0.005 285.823);

@@ -51,7 +51,7 @@ const BASIC_FEATURES: ReactNode[] = [
 const SHARED_FEATURES: { text: string; icon?: ReactNode }[] = [
   {
     text: 'Top up any time: 100 AI credits for $5, 500 for $20. They never expire',
-    icon: <Sparkles className="size-4 shrink-0" />,
+    icon: <Sparkles className="text-credit size-4 shrink-0" />,
   },
   { text: 'Custom record types and fields' },
   { text: 'Duplicate detection' },
@@ -77,7 +77,13 @@ const DEFAULT_PRICING_PLANS: PricingPlan[] = [
       href: `${siteConfig.cloudUrl}?cta=pricing-basic`,
     },
     ctaNote: TRIAL_NOTE,
-    stat: { value: '100 AI credits', unit: 'a month', note: CREDITS_NOTE },
+    stat: {
+      figure: '100',
+      label: 'AI credits a month',
+      meter: 20,
+      meterLabel: '100 AI credits a month, a fifth of Plus',
+      note: CREDITS_NOTE,
+    },
     features: BASIC_FEATURES,
     variant: 'glow',
   },
@@ -94,9 +100,11 @@ const DEFAULT_PRICING_PLANS: PricingPlan[] = [
     },
     ctaNote: TRIAL_NOTE,
     stat: {
-      value: '500 AI credits',
-      unit: 'a month',
-      badge: <Badge variant="brand-secondary">5× Basic</Badge>,
+      figure: '500',
+      label: 'AI credits a month',
+      badge: <Badge className="bg-credit/15 text-credit border-transparent">5× Basic</Badge>,
+      meter: 100,
+      meterLabel: '500 AI credits a month, five times Basic',
       note: CREDITS_NOTE,
     },
     features: [
@@ -119,7 +127,11 @@ const DEFAULT_PRICING_PLANS: PricingPlan[] = [
       label: 'Contact us',
       href: 'mailto:hello@faved.to?subject=Faved%20for%20Teams%20request',
     },
-    stat: { value: 'Custom allowance', note: 'AI credits sized for your team' },
+    stat: {
+      label: 'Custom allowance',
+      meterLabel: 'A custom AI credit allowance',
+      note: 'AI credits sized for your team',
+    },
     features: [
       'Everything in Plus',
       'Multi-user access',
