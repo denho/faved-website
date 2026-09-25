@@ -14,8 +14,8 @@ interface ClosingCtaProps {
 }
 
 export default function ClosingCta({
-  title = 'Ready to organize your bookmarks?',
-  description = 'Start free in under 60 seconds — no credit card required.',
+  title = 'Ready to give your bookmarks structure?',
+  description = 'Start your 14-day free trial in under 60 seconds — no credit card required.',
   className,
 }: ClosingCtaProps) {
   return (

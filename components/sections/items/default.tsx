@@ -3,7 +3,16 @@ import { ReactNode } from 'react'
 
 import { Item, ItemDescription, ItemIcon, ItemTitle } from '../../ui/item'
 import { Section } from '../../ui/section'
-import { faBolt, faBookmark, faCodeBranch, faSliders } from '@fortawesome/free-solid-svg-icons'
+import {
+  faBolt,
+  faBookmark,
+  faForwardStep,
+  faFileExport,
+  faLayerGroup,
+  faListCheck,
+  faSliders,
+  faWandMagicSparkles,
+} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 interface ItemProps {
@@ -24,31 +33,38 @@ export default function Items({
     {
       title: 'Powerful UI without Clutter',
       description:
-        'Customize layouts (card/list/table), fields, and sidebar to your preference. All major actions are one click away with no need to navigate between screens.',
+        'Multiple layouts (card, list, table), flexible sorting, customizable sidebar and filters. All major actions are one click away with no need to navigate between screens.',
       icon: <FontAwesomeIcon icon={faBolt} className="size-5 stroke-1" />,
     },
     {
-      title: 'Light and Dark Mode',
+      title: 'Views per type',
+      description:
+        'Customize how each record type appears in card, list, and table layouts. Your preferences persist across views.',
+      icon: <FontAwesomeIcon icon={faLayerGroup} className="size-5 stroke-1" />,
+    },
+    {
+      title: 'Activity log',
+      description:
+        'Every extraction is recorded: what it asked for, what it cost, and anything that went wrong. Bulk runs show their progress right in the sidebar.',
+      icon: <FontAwesomeIcon icon={faListCheck} className="size-5 stroke-1" />,
+    },
+    {
+      title: 'Bulk actions',
+      description:
+        'Select records to extract data from their linked web pages, edit their field values, or delete them in one go.',
+      icon: <FontAwesomeIcon icon={faSliders} className="size-5 stroke-1" />,
+    },
+    {
+      title: 'Light and dark mode',
       description:
         'Automatically syncs with your system theme for a comfortable viewing experience in any lighting condition.',
       icon: <EclipseIcon className="size-5 stroke-1" />,
     },
     {
-      title: 'Page Metadata Fetching',
+      title: 'Export anytime',
       description:
-        'Faved pulls in the title, description, and preview image automatically. It also keeps those details fresh over time, so your collection never goes stale.',
-      icon: <FontAwesomeIcon icon={faBookmark} className="size-5 stroke-1" />,
-    },
-    {
-      title: 'Bulk Actions',
-      description:
-        'Easily manage large sets of bookmarks in one go with bulk deleting, refetching, and tagging.',
-      icon: <FontAwesomeIcon icon={faSliders} className="size-5 stroke-1" />,
-    },
-    {
-      title: 'Open Source',
-      description: 'Transparent codebase that anyone can inspect and contribute to.',
-      icon: <FontAwesomeIcon icon={faCodeBranch} className="size-5 stroke-1" />,
+        'Take your whole library with you as a standard bookmarks HTML file.',
+      icon: <FontAwesomeIcon icon={faFileExport} className="size-5 stroke-1" />,
     },
   ],
   className,

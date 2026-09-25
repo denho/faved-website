@@ -1,11 +1,11 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Faved - Organize Your Bookmarks',
+  title: 'Faved - Bookmarks with types, fields and Extract',
   author: 'Denis Dvali',
   headerTitle: 'Faved',
-  appLastUpdated: '2026-03-30',
+  appLastUpdated: '2026-09-23',
   description:
-    'A superfast, lightweight, and secure hub for all your web content. Save pages from any browser, categorize with customizable nested tags, and access your collection on any device, anywhere. Free and open-source — use it in the cloud or host it yourself.',
+    'A bookmark manager that turns web pages into structured records. Give a page a type, and Faved’s AI extracts its fields; page content, summaries and screenshots come free. Nested tags, instant search, import from any browser. Free trial, or self-host the open-source classic.',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://faved.to',

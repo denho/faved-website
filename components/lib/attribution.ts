@@ -48,7 +48,9 @@ export const CTA_PARAM = 'cta'
 // by name. Keep in sync with the CTAs in components/sections/.
 const INTERNAL_REF_VALUES = new Set([
   'hero-cta',
-  'pricing-cta',
+  'pricing-basic',
+  'pricing-plus',
+  'stats',
   'navbar-get-started',
   'navbar-signin',
   'navbar-open-app',
