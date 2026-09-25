@@ -51,12 +51,6 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
           keep the page content as clean Markdown, and take a screenshot. Select fields are matched
           to the options you already have, never invented.
         </Answer>
-        <Answer>
-          Faved fetches the page by its address, or the bookmarklet and extension hand it over as
-          you see it, so pages behind a login extract too. A new record is extracted when you save
-          it, in the background, unless you switch that off. Run it on one record, or on up to 500
-          at once, and follow the progress in the sidebar.
-        </Answer>
       </>
     ),
   },
@@ -65,12 +59,7 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
     answer: (
       <>
         <Answer>
-          One AI credit is one page put through the AI to fill your custom fields, however many
-          fields it comes back with. Running it on the same page again costs another. It makes no
-          difference whether Faved fetched the page or the bookmarklet handed it over.
-        </Answer>
-        <Answer>
-          Everything else is free and uncounted. Fetching page metadata (title, description and
+          One AI credit is one page put through the AI to fill your custom fields. Everything else is free and uncounted. Fetching page metadata (title, description and
           preview image) and content, taking a screenshot and generating a summary cost nothing.
         </Answer>
       </>
@@ -86,8 +75,7 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
         </Answer>
         <Answer>
           Need more sooner? On a paid plan, top up any time: 100 AI credits for $5, or 500 for $20.
-          They never expire and are used once the month’s allowance is spent. Or pick Plus for 500 a
-          month.
+          They never expire and are used once the month’s allowance is spent.
         </Answer>
       </>
     ),
@@ -175,15 +163,10 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
       <>
         <Answer>
           Yes. Faved imports bookmarks from any browser, including Chrome, Safari, Firefox, and
-          Edge, and turns your folders into nested options automatically.
+          Edge, and turns your folders into nested tags automatically.
         </Answer>
         <Answer>
-          It can also import from other bookmark managers such as Raindrop.io and Pocket, preserving
-          your tags, collections, and notes.
-        </Answer>
-        <Answer>
-          Pick which type the records become. Links you’ve already saved are skipped, and a link in
-          two folders becomes one record in both.
+          It can also import from other bookmark managers such as Raindrop.io and Pocket.
         </Answer>
       </>
     ),
@@ -244,8 +227,7 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
     answer: (
       <>
         <Answer>
-          Yes, always. Export your whole library at any time as a standard bookmarks HTML file, each
-          record once, its other folders as tags. It imports into any browser, another bookmark
+          Yes, always. Export your whole library at any time as a standard bookmarks HTML file. It imports into any browser, another bookmark
           manager, or a free self-hosted Faved on your own machine.
         </Answer>
         <Answer>

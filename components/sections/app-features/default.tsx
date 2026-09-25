@@ -1067,8 +1067,8 @@ function ExtractVisual() {
         <div className="flex flex-col gap-1.5">
           {field('Price', 'Extracted')}
           {field('Brand', 'Matched from its options')}
-          {field('Summary', 'AI-generated')}
-          {field('Screenshot', 'Page capture', false)}
+          {field('Availability', 'In stock, Out of stock, Preorder')}
+          {field('Summary', 'AI-generated', false)}
         </div>
         <div className="mt-3 flex items-center gap-3 pb-4">
           <span
@@ -1207,39 +1207,59 @@ export default function AppFeatures({
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
           <FeatureCard
             title="Types and fields, not just folders"
-            description="Start from a preset — Product, Recipe, Job posting, Real estate, Article, Event — or define your own type with text, number, date, link, select and checkbox fields. Your first type becomes the default. Views, columns and filters are saved per type."
+            description="Start from a preset — Product, Article, Recipe, Job posting, Real estate, Event — or define your own type with text, number, date, link, select and checkbox fields."
             className="lg:col-span-4"
           >
             {showMockups && <TypesVisual />}
           </FeatureCard>
           <FeatureCard
             title="Extract from the page"
-            description="Pick the fields, and Faved’s AI reads the page and fills them in: one page, or up to 500 at once, in the background while you keep working. Select fields are matched to your options, never invented."
+            description="Pick the fields, and Faved’s AI reads the page and fills them in."
             className="lg:col-span-2"
           >
             {showMockups && <ExtractVisual />}
           </FeatureCard>
 
+
           <FeatureCard
-            title="Web archive: page content, summaries, screenshots"
-            description="Keep every page’s content as clean Markdown, an AI-written summary and a screenshot, with Write and Preview tabs to read or edit them. All of it is free, with no AI credits spent."
+            title="Capture from anywhere"
+            description="Save any web page in one click with the Chrome extension, a lightweight bookmarklet, or the Share menu on Apple and Android."
             className="lg:col-span-2"
           >
-            {showMockups && <ReaderVisual />}
+            {showMockups && <CaptureVisual />}
           </FeatureCard>
+
           <FeatureCard
-            title="Options and nested tags"
-            description="Tags are options on a select field: nested, color-coded, pinned, with counts and rollups in the sidebar. Use them on every record, or only on one type."
+            title="Duplicates detection"
+            description="Faved detects duplicate records as you save, helping you keep your library clean."
+            className="lg:col-span-2"
+          >
+            {showMockups && <DuplicatesVisual />}
+          </FeatureCard>
+
+          <FeatureCard
+            title="Advanced tagging system"
+            description="Organize records with nested tags for structured grouping. Customize tags with colors, and pin the frequently used ones for quick access."
             className="lg:col-span-2"
           >
             {showMockups && <TagsVisual />}
           </FeatureCard>
+
           <FeatureCard
-            title="Capture from anywhere"
-            description="Save any web page in one click with the Chrome extension, a lightweight bookmarklet, or the Share menu on Apple and Android. They hand the page over as you see it, so pages behind a login extract too."
+            title="Web archive: page content, summaries, screenshots"
+            description="Keep every page’s content as clean Markdown, an AI-written summary and a screenshot."
             className="lg:col-span-2"
           >
-            {showMockups && <CaptureVisual />}
+            {showMockups && <ReaderVisual />}
+          </FeatureCard>
+
+
+          <FeatureCard
+            title="Full-text search and filters"
+            description="Full-text search as you type, page content included, then narrow by any field: option picks, number and date ranges, text matches, even the link’s domain."
+            className="lg:col-span-2"
+          >
+            {showMockups && <SearchVisual />}
           </FeatureCard>
 
           <FeatureCard
@@ -1249,34 +1269,22 @@ export default function AppFeatures({
           >
             {showMockups && <PhoneVisual />}
           </FeatureCard>
-          <FeatureCard
-            title="Duplicates detection"
-            description="Faved detects duplicate records as you save, helping you keep your library clean."
-            className="lg:col-span-2"
-          >
-            {showMockups && <DuplicatesVisual />}
-          </FeatureCard>
-          <FeatureCard
-            title="Open source at heart"
-            description="The classic Faved bookmark manager is open source and free to self-host on your own server with one command. Types, fields and Extract are Faved Cloud features today."
-            className="lg:col-span-2"
-          >
-            {showMockups && <CodeVisual />}
-          </FeatureCard>
+
 
           <FeatureCard
-            title="Full-text search and filters"
-            description="Full-text search as you type, page content included, then narrow by any field: option picks, number and date ranges, text matches, even the link’s domain. Filters live in the URL, so a view is shareable."
-            className="lg:col-span-3"
-          >
-            {showMockups && <SearchVisual />}
-          </FeatureCard>
-          <FeatureCard
             title="Bring your whole library"
-            description="Import from Chrome, Safari, Firefox, and Edge with folders turned into nested options, or migrate from Raindrop and Pocket keeping tags and collections. Choose the type they arrive as, and links you already saved are skipped. Export any time as a standard bookmarks file."
+            description="Import from Chrome, Safari, Firefox, and Edge with the full folder structure preserved, or migrate from Raindrop and Pocket keeping tags and collections."
             className="lg:col-span-3"
           >
             {showMockups && <ImportVisual />}
+          </FeatureCard>
+
+          <FeatureCard
+            title="Open source at heart"
+            description="The classic Faved bookmark manager is open source and free to self-host on your own server with one command. Types, fields and Extract are Faved Cloud features today."
+            className="lg:col-span-3"
+          >
+            {showMockups && <CodeVisual />}
           </FeatureCard>
         </div>
       </div>

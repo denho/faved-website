@@ -36,7 +36,7 @@ export default function Hero({
     <>
       Faved is a bookmark manager that turns web pages into structured records. Give a page a type,
       such as product, recipe, job posting, or your own, and Faved’s AI fills in its fields straight
-      from the page. Page content, summaries and screenshots come free.
+      from the page.
     </>
   ),
   mockup = (
