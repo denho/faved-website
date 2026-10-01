@@ -51,7 +51,7 @@ export default function Navigation({
     {
       title: 'Docs',
       isLink: true,
-      href: '/docs/getting-started/introduction',
+      href: '/docs/cloud/getting-started/introduction',
     },
     {
       title: 'Pricing',

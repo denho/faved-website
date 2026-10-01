@@ -32,7 +32,7 @@ export default function FooterSection({
       links: [
         { text: 'Changelog', href: siteMetadata.changelogUrl },
         { text: 'Chrome extension', href: siteMetadata.chromeExtensionUrl },
-        { text: 'Documentation', href: '/docs/getting-started/introduction' },
+        { text: 'Documentation', href: '/docs/cloud/getting-started/introduction' },
       ],
     },
     {

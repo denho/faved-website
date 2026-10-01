@@ -8,11 +8,46 @@ import { usePathname } from 'next/navigation'
 import siteMetadata from '@/data/siteMetadata'
 import PageActions from '@/components/ui/page-actions'
 import '../styles/prism.css'
-import { ChevronDownIcon, RocketIcon, BookOpenIcon, FolderIcon, PencilIcon } from 'lucide-react'
+import {
+  ChevronDownIcon,
+  RocketIcon,
+  BookOpenIcon,
+  FolderIcon,
+  PencilIcon,
+  UserIcon,
+} from 'lucide-react'
 
 const SECTION_ICONS: Record<string, React.ElementType> = {
   'getting-started': RocketIcon,
   guides: BookOpenIcon,
+  account: UserIcon,
+}
+
+/**
+ * Two doc sets share this layout. Faved Cloud's pages live under
+ * `data/docs/cloud/`, so their slugs start with `cloud/`; every other page is
+ * the self-hosted edition, at the URLs it has always had.
+ */
+const CLOUD_PREFIX = 'cloud/'
+
+const EDITIONS = {
+  cloud: { label: 'Faved Cloud', intro: '/docs/cloud/getting-started/introduction' },
+  'self-hosted': { label: 'Self-hosted', intro: '/docs/getting-started/introduction' },
+} as const
+
+type Edition = keyof typeof EDITIONS
+
+const editionOf = (slug: string): Edition =>
+  slug.startsWith(CLOUD_PREFIX) ? 'cloud' : 'self-hosted'
+
+/** The slug inside its edition: `cloud/guides/records` reads as `guides/records`. */
+const localSlug = (slug: string) =>
+  slug.startsWith(CLOUD_PREFIX) ? slug.slice(CLOUD_PREFIX.length) : slug
+
+/** The sidebar section a page sits in: the first folder inside its edition. */
+const categoryOf = (slug: string) => {
+  const local = localSlug(slug)
+  return local.includes('/') ? local.split('/')[0] : ''
 }
 
 interface TocItem {
@@ -81,17 +116,17 @@ export default function DocsLayout({ content, allDocs, rawContent, children }: D
 
     return () => observer.disconnect()
   }, [toc])
-  const category = content.slug.includes('/') ? content.slug.split('/')[0] : ''
+  const edition = editionOf(content.slug)
+  const category = categoryOf(content.slug)
 
-  // Group docs by their directory structure
+  // Only this edition's pages, grouped by their directory structure
   const sortedDocs = allDocs
-    .filter((doc) => !doc.draft)
+    .filter((doc) => !doc.draft && editionOf(doc.slug) === edition)
     .sort((a, b) => (a.order || 999) - (b.order || 999))
 
   const groupedDocs = sortedDocs.reduce(
     (acc, doc) => {
-      const pathParts = doc.slug.split('/')
-      const docCategory = pathParts.length > 1 ? pathParts[0] : ''
+      const docCategory = categoryOf(doc.slug)
 
       if (!acc[docCategory]) {
         acc[docCategory] = []
@@ -151,6 +186,26 @@ export default function DocsLayout({ content, allDocs, rawContent, children }: D
               <h2 className="text-muted-foreground mb-3 text-xs font-semibold tracking-wider uppercase">
                 Documentation
               </h2>
+              <nav
+                aria-label="Documentation edition"
+                className="glass-2 dark:glass-3 grid grid-cols-2 gap-1 rounded-full p-1"
+              >
+                {(Object.keys(EDITIONS) as Edition[]).map((key) => (
+                  <Link
+                    key={key}
+                    href={EDITIONS[key].intro}
+                    aria-current={key === edition ? 'page' : undefined}
+                    onClick={() => setSidebarOpen(false)}
+                    className={`rounded-full px-3 py-1.5 text-center text-xs font-medium whitespace-nowrap transition-colors ${
+                      key === edition
+                        ? 'bg-foreground text-background shadow-sm'
+                        : 'text-muted-foreground hover:text-foreground'
+                    }`}
+                  >
+                    {EDITIONS[key].label}
+                  </Link>
+                ))}
+              </nav>
             </div>
 
             {Object.entries(groupedDocs).map(([docCategory, docs]) => {
@@ -212,10 +267,10 @@ export default function DocsLayout({ content, allDocs, rawContent, children }: D
               <ol className="text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm">
                 <li>
                   <Link
-                    href="/docs/getting-started/introduction"
+                    href={EDITIONS[edition].intro}
                     className="hover:text-foreground transition-colors"
                   >
-                    Docs
+                    {EDITIONS[edition].label} docs
                   </Link>
                 </li>
                 {category && (

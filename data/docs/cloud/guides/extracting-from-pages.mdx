@@ -1,0 +1,62 @@
+---
+title: 'Extracting from pages'
+description: 'Let Faved read a page and fill in your fields, for one record or hundreds.'
+order: 13
+date: '2026-10-01'
+lastmod: '2026-10-01'
+draft: false
+---
+
+**Extract** reads a web page and fills in the fields you pick. It can fill your own fields with AI, write a summary, keep the page's content as clean Markdown, and take a screenshot, all from one read.
+
+## What each field gets
+
+- **Your own fields** (Text, Number, Date, Checkbox, Link, Select) are filled by the AI from what the page says. Select fields are matched to the options you already have; Extract never adds new options.
+- **Summary** gets a short summary written by the AI.
+- **Page content** gets the page's text as clean Markdown, without menus, footers or cookie banners.
+- **Screenshot** gets a snapshot of the page.
+- **Title**, **Description** and **Preview image** are refreshed from the page itself.
+
+Only fields with **Filled by extraction from the page** turned on can be extracted. See [Types and fields](/docs/cloud/guides/types-and-fields#field-settings).
+
+## Extracting while you save
+
+The record form has an **Extract from the page** row. Expand it to see the fields that will be filled, and click them to pick or skip each one. Your choice is remembered.
+
+- Click **Extract** to read the page now. On a new record, the values land in the form before anything is saved, so you can check them first.
+- Or leave **Extract on save** on. It's on by default for new records, and Faved reads the page in the background after you save.
+
+The row shows what it will cost, such as **Uses 1 AI credit** or **No AI credits**, and **History** shows past extractions for the record.
+
+## Extracting from the list
+
+Choose **Extract…** from a record's menu. Pick the fields to fill, then click **Extract from page**. Picking only Title, Description and Preview image refreshes them from the page for free.
+
+## Extracting many records at once
+
+Select records in the list and click **Extract** in the bulk bar. The popover shows how many pages will be read and how many AI credits that uses before you start.
+
+- A run covers at most **500 records**.
+- Up to **3 runs** can go at once.
+- Records with nothing to fill or no link are skipped.
+
+The run carries on in the background. Its progress shows in **Activity** at the bottom of the sidebar.
+
+## Pages handed over or fetched
+
+When you save with the [bookmarklet or the Chrome extension](/docs/cloud/getting-started/saving-pages), the page is **handed over** exactly as you see it: signed in, with its scripts run. Nothing is fetched, so extraction works on pages Faved couldn't reach on its own, such as pages behind a login. Pages up to 32 MB can be handed over.
+
+A screenshot can't be taken from a handed-over page, so Faved fetches the page for the screenshot when you save. That's free.
+
+Everywhere else, Faved fetches the page from its address.
+
+## Activity
+
+**Activity**, at the bottom of the sidebar, lists every extraction: what it asked for, what it cost, and anything that went wrong. Filter by **All**, **Succeeded** or **Problems**. A bulk run appears as one group with its pages inside. While a run is going, click **Cancel** to stop it.
+
+## What it costs
+
+- **Free:** fetching a page's title, description and preview image, its content, a screenshot, and a summary.
+- **One AI credit:** each page put through the AI to fill your own fields, however many fields come back. Extracting a page again costs again.
+
+It's the same whether Faved fetched the page or the bookmarklet handed it over. If a run needs more credits than you have, it stops when they run out. Plans, top-ups and limits are on [Plans and AI credits](/docs/cloud/account/plans-and-ai-credits).

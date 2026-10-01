@@ -51,7 +51,7 @@ export default function Navbar({
     },
     {
       text: 'Docs',
-      href: '/docs/getting-started/introduction',
+      href: '/docs/cloud/getting-started/introduction',
     },
     {
       text: 'Pricing',

@@ -25,7 +25,15 @@ export const SearchProvider = ({ searchConfig, children }) => {
           return json.map((post: CoreContent<Blog | Docs>) => {
             const keywords =
               'summary' in post ? post.summary : 'description' in post ? post.description : ''
-            const subtitle = 'tags' in post && Array.isArray(post.tags) ? post.tags.join(', ') : ''
+            // Docs come in two editions with pages of the same name, so say which.
+            const subtitle =
+              'tags' in post && Array.isArray(post.tags)
+                ? post.tags.join(', ')
+                : post.path.startsWith('docs/cloud/')
+                  ? 'Faved Cloud'
+                  : post.path.startsWith('docs/')
+                    ? 'Self-hosted'
+                    : ''
             return {
               id: post.path,
               name: post.title,
