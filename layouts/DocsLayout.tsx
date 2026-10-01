@@ -7,6 +7,7 @@ import type { Docs } from 'contentlayer/generated'
 import { usePathname } from 'next/navigation'
 import siteMetadata from '@/data/siteMetadata'
 import PageActions from '@/components/ui/page-actions'
+import { categoryOf, editionOf } from '@/components/docs/editions'
 import '../styles/prism.css'
 import {
   ChevronDownIcon,
@@ -21,33 +22,6 @@ const SECTION_ICONS: Record<string, React.ElementType> = {
   'getting-started': RocketIcon,
   guides: BookOpenIcon,
   account: UserIcon,
-}
-
-/**
- * Two doc sets share this layout. Faved Cloud's pages live under
- * `data/docs/cloud/`, so their slugs start with `cloud/`; every other page is
- * the self-hosted edition, at the URLs it has always had.
- */
-const CLOUD_PREFIX = 'cloud/'
-
-const EDITIONS = {
-  cloud: { label: 'Faved Cloud', intro: '/docs/cloud/getting-started/introduction' },
-  'self-hosted': { label: 'Self-hosted', intro: '/docs/getting-started/introduction' },
-} as const
-
-type Edition = keyof typeof EDITIONS
-
-const editionOf = (slug: string): Edition =>
-  slug.startsWith(CLOUD_PREFIX) ? 'cloud' : 'self-hosted'
-
-/** The slug inside its edition: `cloud/guides/records` reads as `guides/records`. */
-const localSlug = (slug: string) =>
-  slug.startsWith(CLOUD_PREFIX) ? slug.slice(CLOUD_PREFIX.length) : slug
-
-/** The sidebar section a page sits in: the first folder inside its edition. */
-const categoryOf = (slug: string) => {
-  const local = localSlug(slug)
-  return local.includes('/') ? local.split('/')[0] : ''
 }
 
 interface TocItem {
@@ -179,43 +153,18 @@ export default function DocsLayout({ content, allDocs, rawContent, children }: D
 
         {/* Sidebar */}
         <aside
-          className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} bg-background fixed top-15 left-0 z-40 h-screen w-72 flex-shrink-0 overflow-y-auto pt-10 pb-4 transition-transform md:sticky md:top-15 md:h-auto md:max-h-[calc(100vh-3.75rem)] md:translate-x-0 md:self-start md:bg-transparent`}
+          className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} bg-background fixed top-28 left-0 z-40 h-[calc(100vh-7rem)] w-72 flex-shrink-0 overflow-y-auto pt-8 pb-4 transition-transform md:sticky md:top-28 md:h-auto md:max-h-[calc(100vh-7rem)] md:translate-x-0 md:self-start md:bg-transparent`}
         >
           <nav className="space-y-6 px-4 xl:pl-0">
-            <div className="mb-4">
-              <h2 className="text-muted-foreground mb-3 text-xs font-semibold tracking-wider uppercase">
-                Documentation
-              </h2>
-              <nav
-                aria-label="Documentation edition"
-                className="glass-2 dark:glass-3 grid grid-cols-2 gap-1 rounded-full p-1"
-              >
-                {(Object.keys(EDITIONS) as Edition[]).map((key) => (
-                  <Link
-                    key={key}
-                    href={EDITIONS[key].intro}
-                    aria-current={key === edition ? 'page' : undefined}
-                    onClick={() => setSidebarOpen(false)}
-                    className={`rounded-full px-3 py-1.5 text-center text-xs font-medium whitespace-nowrap transition-colors ${
-                      key === edition
-                        ? 'bg-foreground text-background shadow-sm'
-                        : 'text-muted-foreground hover:text-foreground'
-                    }`}
-                  >
-                    {EDITIONS[key].label}
-                  </Link>
-                ))}
-              </nav>
-            </div>
-
             {Object.entries(groupedDocs).map(([docCategory, docs]) => {
-              const isCollapsed = !!collapsedSections[docCategory]
+              const sectionKey = `${edition}:${docCategory}`
+              const isCollapsed = !!collapsedSections[sectionKey]
               const Icon = SECTION_ICONS[docCategory] ?? FolderIcon
               return (
                 <div key={docCategory}>
                   {docCategory && (
                     <button
-                      onClick={() => toggleSection(docCategory)}
+                      onClick={() => toggleSection(sectionKey)}
                       className="text-sidebar-foreground hover:text-foreground mb-1 flex w-full items-center justify-between gap-2 rounded-md px-1 py-1 text-sm font-semibold transition-colors"
                     >
                       <span className="flex items-center gap-2">
@@ -265,21 +214,12 @@ export default function DocsLayout({ content, allDocs, rawContent, children }: D
           <article className="mx-auto max-w-3xl">
             <nav aria-label="Breadcrumb" className="mb-4 md:hidden">
               <ol className="text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm">
-                <li>
-                  <Link
-                    href={EDITIONS[edition].intro}
-                    className="hover:text-foreground transition-colors"
-                  >
-                    {EDITIONS[edition].label} docs
-                  </Link>
-                </li>
                 {category && (
                   <>
-                    <li aria-hidden="true">/</li>
                     <li>{formatCategory(category)}</li>
+                    <li aria-hidden="true">/</li>
                   </>
                 )}
-                <li aria-hidden="true">/</li>
                 <li aria-current="page" className="text-foreground">
                   {title}
                 </li>
@@ -298,7 +238,7 @@ export default function DocsLayout({ content, allDocs, rawContent, children }: D
             <div
               className={[
                 'prose prose-zinc dark:prose-invert max-w-none',
-                'prose-headings:scroll-m-20 prose-headings:tracking-tight',
+                'prose-headings:scroll-m-32 prose-headings:tracking-tight',
                 'prose-img:rounded-md prose-img:border',
               ].join(' ')}
             >
@@ -361,7 +301,7 @@ export default function DocsLayout({ content, allDocs, rawContent, children }: D
           <aside className="hidden w-56 flex-shrink-0 xl:block">
             <nav
               aria-label="On this page"
-              className="sticky top-15 max-h-[calc(100vh-3.75rem)] overflow-y-auto py-10 pr-1"
+              className="sticky top-28 max-h-[calc(100vh-7rem)] overflow-y-auto py-10 pr-1"
             >
               <h2 className="text-muted-foreground mb-3 text-xs font-semibold tracking-wider uppercase">
                 On this page

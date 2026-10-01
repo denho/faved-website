@@ -16,6 +16,8 @@ import SearchButton from '@/components/SearchButton'
 import GithubStars from '@/components/GithubStars'
 import BrandLogo from '@/components/ui/brand-logo'
 import Link from '@/components/Link'
+import DocsTabs from '@/components/docs/DocsTabs'
+import { editionOfPath } from '@/components/docs/editions'
 
 interface NavbarLink {
   text: string
@@ -92,6 +94,7 @@ export default function Navbar({
   className,
 }: NavbarProps) {
   const pathname = usePathname()
+  const isDocs = pathname === '/docs' || pathname.startsWith('/docs/')
 
   const [isAuthed, setIsAuthed] = useState(false)
 
@@ -117,7 +120,13 @@ export default function Navbar({
 
   return (
     <header className={cn('sticky top-0 z-50 -mb-4 px-4 pb-4', className)}>
-      <div className="fade-bottom bg-background/15 absolute left-0 h-24 w-full backdrop-blur-lg"></div>
+      <div
+        className={cn(
+          'absolute left-0 w-full backdrop-blur-lg',
+          // On docs the edition tabs end the header with a hard edge
+          isDocs ? 'bg-background h-28' : 'fade-bottom bg-background/15 h-24'
+        )}
+      ></div>
       <div className="max-w-container relative mx-auto">
         <NavbarComponent>
           <NavbarLeft>
@@ -176,6 +185,7 @@ export default function Navbar({
           </NavbarRight>
         </NavbarComponent>
       </div>
+      {isDocs && <DocsTabs edition={editionOfPath(pathname)} />}
     </header>
   )
 }
