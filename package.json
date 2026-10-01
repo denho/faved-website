@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node scripts/dev.mjs",
-    "build": "contentlayer2 build && cross-env NODE_ENV=production INIT_CWD=$PWD next build && cross-env NODE_OPTIONS='--experimental-json-modules' node ./scripts/postbuild.mjs",
+    "build": "node ./scripts/check-shared-docs.mjs && contentlayer2 build && cross-env NODE_ENV=production INIT_CWD=$PWD next build && cross-env NODE_OPTIONS='--experimental-json-modules' node ./scripts/postbuild.mjs",
     "start": "next start",
     "preview": "cross-env EXPORT=1 yarn build && npx serve@latest out",
     "analyze": "cross-env ANALYZE=true yarn build",
