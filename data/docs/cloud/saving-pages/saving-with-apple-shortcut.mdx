@@ -7,6 +7,7 @@ lastmod: '2026-10-05'
 draft: false
 ---
 
+
 import siteMetadata from '@/data/siteMetadata'
 
 The Apple Shortcuts integration lets you send links straight to Faved without leaving the app you're
@@ -16,32 +17,33 @@ away in the **Services menu**.
 
 ## Setting up the shortcut
 
-<Screenshot
-  src="/static/images/docs/cloud/apple-shortcut-card.webp"
-  alt="The Apple Shortcut card in Settings › Integrations, with the Install Shortcut button"
-  width={800}
-/>
+<video
+    controls={false}
+    autoPlay
+    loop
+    muted
+    playsInline
+    className="mx-auto w-full max-w-xs rounded-lg"
+>
+    <source src="/static/videos/posts/saving-with-apple-shortcut/install-shortcut-ios.mp4" type="video/mp4"/>
+</video>
 
-> [!TIP]
-> Ensure iCloud sync is enabled for the Shortcuts app to have it available on all your Apple devices.
-
-    <video
-        controls={false}
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="mx-auto w-full max-w-xs rounded-lg"
-    >
-        <source src="/static/videos/posts/saving-with-apple-shortcut/install-shortcut-ios.mp4" type="video/mp4" />
-    </video>
 
 <Steps>
 
     <Step title="Open the shortcut">
 
-        Go to **Settings › Integrations › Apple Shortcut** and click **Install Shortcut**, or visit <a href={siteMetadata.appleShortcutUrl} target="_blank" className="break-all">{siteMetadata.appleShortcutUrl}</a>. Then click **Get Shortcut** on the
+        Go to **Settings › Integrations › Apple Shortcut** and click **Install Shortcut**, or visit <a
+        href={siteMetadata.appleShortcutUrl} target="_blank" className="break-all">{siteMetadata.appleShortcutUrl}</a>.
+        Then click **Get Shortcut** on the
         opened page. You'll be redirected to the Apple Shortcuts app to proceed with the setup.
+
+
+        <Screenshot
+            src="/static/images/docs/cloud/apple-shortcut-card.webp"
+            alt="The Apple Shortcut card in Settings › Integrations, with the Install Shortcut button"
+            width={800}
+        />
 
     </Step>
 
@@ -50,7 +52,8 @@ away in the **Services menu**.
         In the Apple Shortcuts app, click **Add Shortcut...** on Mac, or **Set Up Shortcut** on
         iPhone/iPad.
 
-        [//]: # (![Add Shortcut screen in the Apple Shortcuts app]&#40;/static/images/docs/apple-shortcuts/add-shortcut.png&#41;)
+        [//]: # (![Add Shortcut screen in the Apple Shortcuts
+        app]&#40;/static/images/docs/apple-shortcuts/add-shortcut.png&#41;)
 
     </Step>
 
@@ -62,11 +65,16 @@ away in the **Services menu**.
 
     <Step title="Confirm to finish">
 
-        Click **Add Shortcut** to confirm. The **Add to Faved** shortcut is added to your Shortcuts library, and the **Add to Faved** action now appears in your Share Sheet — and in the Services menu on Mac.
+        Click **Add Shortcut** to confirm. The **Add to Faved** shortcut is added to your Shortcuts library, and the
+        **Add to Faved** action now appears in your Share Sheet — and in the Services menu on Mac.
 
     </Step>
 
 </Steps>
+
+
+> [!TIP]
+> Ensure iCloud sync is enabled for the Shortcuts app to have it available on all your Apple devices.
 
 ## Saving a link
 
@@ -112,23 +120,27 @@ away in the **Services menu**.
         On Mac's Share menu,
         choose **Shortcuts** first, then **Add to Faved**.
 
-        [//]: # (![Add to Faved shortcut highlighted in the iOS share sheet]&#40;/static/images/docs/apple-shortcuts/share-sheet.png&#41;)
+        [//]: # (![Add to Faved shortcut highlighted in the iOS share
+        sheet]&#40;/static/images/docs/apple-shortcuts/share-sheet.png&#41;)
 
         > [!TIP]
-        > On Mac, if the shortcut doesn't appear in the Share menu, check **System Settings → Privacy & Security → Extensions → Sharing** and ensure **Shortcuts** is enabled.
+        > On Mac, if the shortcut doesn't appear in the Share menu, check **System Settings → Privacy & Security →
+        Extensions → Sharing** and ensure **Shortcuts** is enabled.
 
 
     </Step>
 
     <Step title="Select the record type">
 
-        The save form opens with the page's details. Under **Type**, choose what kind of page this is, such as a product, recipe, or a simple bookmark. The form shows that type's fields.
+        The save form opens with the page's details. Under **Type**, choose what kind of page this is, such as a
+        product, recipe, or a simple bookmark. The form shows that type's fields.
 
     </Step>
 
     <Step title="Fill in the fields and save">
 
-        Extract the fields from the page or fill them in manually, then click **Save**. The page will be stored and available in Faved.
+        Extract the fields from the page or fill them in manually, then click **Save**. The page will be stored and
+        available in Faved.
 
     </Step>
 
@@ -152,13 +164,15 @@ away in the **Services menu**.
 
     <Step title="Select the record type">
 
-        The save form opens with the link. Under **Type**, choose what kind of page this is, such as a product, recipe, or a simple bookmark. The form shows that type's fields.
+        The save form opens with the link. Under **Type**, choose what kind of page this is, such as a product, recipe,
+        or a simple bookmark. The form shows that type's fields.
 
     </Step>
 
     <Step title="Fill in the fields and save">
 
-        Extract the fields from the page or fill them in manually, then click **Save**. The selected link will be stored and available in Faved.
+        Extract the fields from the page or fill them in manually, then click **Save**. The selected link will be stored
+        and available in Faved.
 
     </Step>
 
