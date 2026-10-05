@@ -57,7 +57,7 @@ export default function DocsScreenshot({ src, alt, width, className }: DocsScree
         loading="lazy"
         decoding="async"
         style={{ maxWidth: width }}
-        className="relative mx-auto block h-auto w-full rounded-lg shadow-[0_24px_60px_-12px_rgba(0,0,0,0.8)]"
+        className="relative mx-auto block h-auto w-full rounded-lg shadow-[0_24px_60px_-12px_rgba(0,0,0,0.8)] ring-1 ring-white/10"
       />
     </figure>
   )
