@@ -3,7 +3,7 @@ title: 'Introduction'
 description: 'What Faved Cloud is, and the few ideas everything else builds on.'
 order: 1
 date: '2026-10-01'
-lastmod: '2026-10-01'
+lastmod: '2026-10-05'
 draft: false
 ---
 
@@ -14,25 +14,26 @@ draft: false
 
 Faved Cloud is a bookmark manager that turns web pages into structured records. Every page you save becomes a **record**. Give it a **type**, such as a product, a recipe or a job posting, and the record gets that type's **fields**. Faved can then read the page and fill those fields in for you.
 
-Saving a page, fetching its title and preview image, keeping its content, taking a screenshot and writing a summary are all free. Only the AI step that fills your own fields uses an **AI credit**.
+Fields are whatever you want to keep about a page. For example:
+
+| Type                | Fields you might give it                                    |
+| ------------------- | ----------------------------------------------------------- |
+| Product             | Price, Brand, Rating, Availability, Screenshot              |
+| Real estate listing | Address, Price, Bedrooms, Area, Features                    |
+| Job posting         | Company, Location, Workplace type, Salary range, Apply link |
+| Recipe              | Cuisine, Prep time, Servings, Diet, Ingredients             |
+| Article             | Author, Published date, Reading time, Topics, Summary       |
+| Event               | Start date, Venue, City, Ticket price, Ticket link          |
+
+A field can hold text, a number with a unit (€, kg, min), a date, a yes/no checkbox, a link, or one or more options from a list you define. Three kinds come from the page itself: a short **summary**, the page's full **content** as Markdown, and a **screenshot**.
 
 ## The ideas behind it
 
 - **Records.** A record is a saved web page: its link, title, description and preview image, plus whatever fields its type adds. See [Records](/docs/cloud/guides/records).
 - **Types.** A type decides which fields its records carry. Start from a preset (Product, Real estate listing, Job posting, Article, Recipe, Event) or build your own. See [Types and fields](/docs/cloud/guides/types-and-fields).
-- **Fields.** Text, numbers, dates, checkboxes, links and selects, plus three that come from the page itself: a summary, the page content and a screenshot. A field can belong to one type, or be global and appear on every record.
+- **Fields.** A field belongs to one type, or is **global** and sits on every record, whatever its type. Global fields let records of different types share one way of grouping them: a **Project** field can gather the products, articles and job postings for the same project, and an **Area** field can sort everything into Home, Work and Hobby. See [Types and fields](/docs/cloud/guides/types-and-fields#global-fields-and-type-fields).
 - **Extract.** Faved reads a page and fills in the fields you pick, for one record or up to 500 at once. See [Extracting from pages](/docs/cloud/guides/extracting-from-pages).
-- **Options.** A select field holds options, which can be nested, colored and pinned in the sidebar. Your **Tags** field is one of these. See [Options and tags](/docs/cloud/guides/options-and-tags).
 - **Views.** Each type keeps its own columns, layout and filters, so a list of products can look like a catalogue and a list of recipes like a cookbook. See [Finding and viewing records](/docs/cloud/guides/finding-and-viewing).
-
-## Your new library
-
-A new account starts with:
-
-- a **Bookmark** type with a **Notes** field. Records saved without a type land here until you make a type of your own; the first type you create becomes the default,
-- a **Tags** field in the sidebar,
-- a few welcome records that link to these docs,
-- a **Get started with Faved** checklist in the sidebar: import your bookmarks, install the app or extension, and save your first link.
 
 ## The free trial
 
