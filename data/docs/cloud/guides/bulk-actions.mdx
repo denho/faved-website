@@ -11,7 +11,7 @@ Select records with their checkboxes. A bar appears showing how many are selecte
 
 ## Change type
 
-Gives the selected records a new type. They get that type's fields. Values with nowhere to go are kept, hidden, and come back if you switch them back.
+Gives the selected records a new type, along with that type's fields. Fields in the new type with the same name as fields in the old one keep their values, and so do global fields. The new type's other fields start empty. You can fill them in for all the selected records at once, by hand with [Edit field](#edit-field), or with [Extract](#extract) for fields filled by extraction.
 
 ## Edit field
 
@@ -26,7 +26,7 @@ Sets or clears one field on every selected record. Choose a field, then:
 - enter a value and click **Set**, or
 - click **Clear** to empty it.
 
-Only fields that all the selected records share are offered. When records of several types are selected, that means their global fields.
+The picker lists only the fields that every selected record has. If you've selected records of different types, that's just the global fields.
 
 For a select field, each option has three states: ticked puts it on every record, a dash leaves it as it is, and unticked takes it off. Tick **Replace** to keep only the ticked options. Then click **Apply changes**.
 
