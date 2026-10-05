@@ -1,7 +1,7 @@
 'use client'
 
 import { CircleCheckBig, Sparkles } from 'lucide-react'
-import { ReactNode, useState } from 'react'
+import { ReactNode, useRef, useState } from 'react'
 
 import { cn } from '@/components/lib/utils'
 
@@ -102,7 +102,9 @@ const DEFAULT_PRICING_PLANS: PricingPlan[] = [
     stat: {
       figure: '500',
       label: 'AI credits a month',
-      badge: <Badge className="bg-credit/15 text-credit border-transparent">5× Basic</Badge>,
+      badge: (
+        <Badge className="bg-credit/15 text-credit-foreground border-transparent">5× Basic</Badge>
+      ),
       meter: 100,
       meterLabel: '500 AI credits a month, five times Basic',
       note: CREDITS_NOTE,
@@ -144,6 +146,8 @@ const DEFAULT_PRICING_PLANS: PricingPlan[] = [
   },
 ]
 
+const BILLING_PERIODS = ['monthly', 'yearly'] as const
+
 const perMonth = (yearlyPrice: number) => Math.round((yearlyPrice / 12) * 100) / 100
 
 /** What a yearly plan saves against paying monthly, as a whole percent. */
@@ -157,7 +161,18 @@ export default function Pricing({
   className = '',
 }: PricingProps) {
   const [isYearly, setIsYearly] = useState(true)
-  const savings = yearlySavings(5, 48)
+  const radios = useRef<(HTMLButtonElement | null)[]>([])
+  // The best yearly deal on offer, read from the plans so the badge never goes stale
+  const savings = Math.max(
+    0,
+    ...plans.flatMap((plan) =>
+      typeof plan.monthlyPrice === 'number' &&
+      typeof plan.yearlyPrice === 'number' &&
+      plan.yearlyPrice > 0
+        ? [yearlySavings(plan.monthlyPrice, plan.yearlyPrice)]
+        : []
+    )
+  )
   const half = Math.ceil(SHARED_FEATURES.length / 2)
   const sharedColumns = [SHARED_FEATURES.slice(0, half), SHARED_FEATURES.slice(half)]
 
@@ -175,30 +190,53 @@ export default function Pricing({
           </div>
         )}
 
-        {/* Monthly / Yearly segmented toggle */}
+        {/* Monthly / Yearly segmented toggle: a radio group with arrow-key selection */}
         <div
-          role="tablist"
+          role="radiogroup"
           aria-label="Billing period"
           className="glass-2 dark:glass-3 inline-flex items-center rounded-full p-1"
         >
-          {(['monthly', 'yearly'] as const).map((period) => {
+          {BILLING_PERIODS.map((period, index) => {
             const selected = period === 'yearly' ? isYearly : !isYearly
+            const select = (next: number) => {
+              setIsYearly(BILLING_PERIODS[next] === 'yearly')
+              radios.current[next]?.focus()
+            }
             return (
               <button
                 key={period}
+                ref={(el) => {
+                  radios.current[index] = el
+                }}
                 type="button"
-                role="tab"
-                aria-selected={selected}
+                role="radio"
+                aria-checked={selected}
+                tabIndex={selected ? 0 : -1}
                 onClick={() => setIsYearly(period === 'yearly')}
+                onKeyDown={(event) => {
+                  const last = BILLING_PERIODS.length - 1
+                  const targets: Record<string, number> = {
+                    ArrowLeft: index === 0 ? last : index - 1,
+                    ArrowUp: index === 0 ? last : index - 1,
+                    ArrowRight: index === last ? 0 : index + 1,
+                    ArrowDown: index === last ? 0 : index + 1,
+                    Home: 0,
+                    End: last,
+                  }
+                  const next = targets[event.key]
+                  if (next === undefined) return
+                  event.preventDefault()
+                  select(next)
+                }}
                 className={cn(
-                  'inline-flex cursor-pointer items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium capitalize transition-colors sm:px-5',
+                  'focus-visible:ring-ring inline-flex cursor-pointer items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium capitalize transition-colors outline-none focus-visible:ring-2 sm:px-5',
                   selected
                     ? 'bg-foreground text-background shadow-sm'
                     : 'text-muted-foreground hover:text-foreground'
                 )}
               >
                 {period}
-                {period === 'yearly' && (
+                {period === 'yearly' && savings > 0 && (
                   <Badge variant={selected ? 'brand' : 'brand-secondary'} size="sm">
                     Save {savings}%
                   </Badge>
