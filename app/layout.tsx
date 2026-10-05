@@ -1,11 +1,9 @@
 import '../styles/tailwind.css'
-import 'pliny/search/algolia.css'
 import 'remark-github-blockquote-alert/alert.css'
 
 import { Inter, IBM_Plex_Mono } from 'next/font/google'
 import { Analytics, AnalyticsConfig } from 'pliny/analytics'
-import { SearchConfig } from 'pliny/search'
-import { SearchProvider } from '@/components/SearchProvider'
+import { SearchProvider } from '@/components/search/SearchContext'
 import Footer from '@/components/sections/footer/default'
 import siteMetadata from '@/data/siteMetadata'
 import { Metadata } from 'next'
@@ -107,7 +105,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="font-sans antialiased">
         <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
         <AttributionCapture />
-        <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
+        <SearchProvider>
           <Navbar />
           <main className="mb-auto">{children}</main>
           <Footer />

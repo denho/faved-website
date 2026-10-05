@@ -6,6 +6,16 @@ import { Button } from '@/components/ui/button'
 import { Claude, OpenAI } from '@/components/social-icons/icons'
 import siteMetadata from '@/data/siteMetadata'
 
+/** Links that open Claude or ChatGPT primed with the Markdown version of a docs page. */
+export function aiChatUrls(slug: string) {
+  const mdUrl = `${siteMetadata.siteUrl}/docs/${slug}.md`
+  const aiPrompt = `Read ${mdUrl} so I can ask questions about this page.`
+  return {
+    claudeUrl: `https://claude.ai/new?q=${encodeURIComponent(aiPrompt)}`,
+    chatgptUrl: `https://chatgpt.com/?hints=search&q=${encodeURIComponent(aiPrompt)}`,
+  }
+}
+
 interface PageActionsProps {
   slug: string
   rawContent: string
@@ -20,10 +30,7 @@ export default function PageActions({ slug, rawContent }: PageActionsProps) {
     setTimeout(() => setCopied(false), 2000)
   }
 
-  const mdUrl = `${siteMetadata.siteUrl}/docs/${slug}.md`
-  const aiPrompt = `Read ${mdUrl} so I can ask questions about this page.`
-  const claudeUrl = `https://claude.ai/new?q=${encodeURIComponent(aiPrompt)}`
-  const chatgptUrl = `https://chatgpt.com/?hints=search&q=${encodeURIComponent(aiPrompt)}`
+  const { claudeUrl, chatgptUrl } = aiChatUrls(slug)
 
   return (
     <div className="mb-8 flex flex-wrap items-center gap-2">

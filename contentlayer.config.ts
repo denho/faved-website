@@ -23,7 +23,7 @@ import rehypeCitation from 'rehype-citation'
 import rehypePrismPlus from 'rehype-prism-plus'
 import rehypePresetMinify from 'rehype-preset-minify'
 import siteMetadata from './data/siteMetadata'
-import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js'
+import { buildSearchIndex } from './scripts/search-index.mjs'
 import prettier from 'prettier'
 
 const root = process.cwd()
@@ -78,19 +78,6 @@ async function createTagCount(allBlogs) {
   })
   const formatted = await prettier.format(JSON.stringify(tagCount, null, 2), { parser: 'json' })
   writeFileSync('./app/tag-data.json', formatted)
-}
-
-function createSearchIndex(allSearchItems) {
-  if (
-    siteMetadata?.search?.provider === 'kbar' &&
-    siteMetadata.search.kbarConfig.searchDocumentsPath
-  ) {
-    writeFileSync(
-      `public/${path.basename(siteMetadata.search.kbarConfig.searchDocumentsPath)}`,
-      JSON.stringify(allCoreContent(sortPosts(allSearchItems)))
-    )
-    console.log('Local search index generated...')
-  }
 }
 
 export const Blog = defineDocumentType(() => ({
@@ -210,6 +197,6 @@ export default makeSource({
   onSuccess: async (importData) => {
     const { allBlogs, allDocs } = await importData()
     createTagCount(allBlogs)
-    createSearchIndex([...allBlogs, ...allDocs])
+    buildSearchIndex({ allDocs, allBlogs, outFile: 'public/search.json', isProduction })
   },
 })

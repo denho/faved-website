@@ -12,7 +12,6 @@ import { Button, buttonVariants } from '../../ui/button'
 import { Navbar as NavbarComponent, NavbarLeft, NavbarRight } from '../../ui/navbar'
 import Navigation from '../../ui/navigation'
 import { Sheet, SheetContent, SheetTrigger } from '../../ui/sheet'
-import SearchButton from '@/components/SearchButton'
 import GithubStars from '@/components/GithubStars'
 import BrandLogo from '@/components/ui/brand-logo'
 import Link from '@/components/Link'
@@ -127,7 +126,6 @@ export default function Navbar({
             {showNavigation && (customNavigation || <Navigation />)}
           </NavbarLeft>
           <NavbarRight>
-            <SearchButton className="hidden sm:block" />
             <GithubStars className="xs:flex hidden" />
             {actions.map((action, index) =>
               action.isButton ? (
