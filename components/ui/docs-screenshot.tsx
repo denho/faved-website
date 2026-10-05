@@ -100,27 +100,31 @@ export default function DocsScreenshot({ src, alt, width, className }: DocsScree
           </Dialog.Trigger>
           <Dialog.Portal>
             <Dialog.Overlay className="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/85 backdrop-blur-sm" />
+            {/* On phones the image opens at full size and scrolls sideways; from
+                the sm breakpoint up it fits the screen and a click closes it. */}
             <Dialog.Content
               aria-describedby={undefined}
-              className="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed inset-0 z-50 flex items-center justify-center p-4 outline-none sm:p-10"
+              className="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed inset-0 z-50 overflow-auto overscroll-contain outline-none"
             >
               <Dialog.Title className="sr-only">{alt}</Dialog.Title>
               <Dialog.Close asChild>
                 <button
                   type="button"
                   aria-label="Close"
-                  className="absolute inset-0 h-full w-full cursor-zoom-out"
+                  className="absolute inset-0 hidden h-full w-full cursor-zoom-out sm:block"
                 />
               </Dialog.Close>
-              <img
-                src={src}
-                alt={alt}
-                style={{ maxWidth: `min(100%, ${width * 2}px)` }}
-                className="pointer-events-none relative h-auto max-h-full w-auto rounded-lg object-contain shadow-2xl ring-1 ring-white/10"
-              />
+              <div className="flex min-h-full w-max min-w-full items-center p-4 sm:pointer-events-none sm:h-full sm:w-full sm:justify-center sm:p-10">
+                <img
+                  src={src}
+                  alt={alt}
+                  style={{ '--w': `${width}px`, '--w2': `${width * 2}px` } as CSSProperties}
+                  className="relative block h-auto w-(--w) max-w-none rounded-lg shadow-2xl ring-1 ring-white/10 sm:max-h-full sm:w-auto sm:max-w-[min(100%,var(--w2))]"
+                />
+              </div>
               <Dialog.Close
                 aria-label="Close"
-                className="absolute top-4 right-4 rounded-full bg-white/10 p-2 text-white transition-colors hover:bg-white/20 focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:outline-none"
+                className="fixed top-4 right-4 rounded-full bg-black/60 p-2 text-white ring-1 ring-white/15 backdrop-blur transition-colors hover:bg-white/20 focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:outline-none"
               >
                 <XIcon className="size-5" />
               </Dialog.Close>
