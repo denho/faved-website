@@ -23,18 +23,11 @@ interface ComponentItem {
   description: string
 }
 
-interface SubMenuItem {
-  title: string
-  href: string
-  description: string
-}
-
 interface MenuItem {
   title: string
   href: string
   isLink?: boolean
   content?: ReactNode
-  children?: SubMenuItem[]
 }
 
 interface NavigationProps {
@@ -61,18 +54,7 @@ export default function Navigation({
     {
       title: 'Docs',
       href: '/docs',
-      children: [
-        {
-          title: EDITIONS.cloud.label,
-          href: EDITIONS.cloud.intro,
-          description: 'Docs for the hosted app at app.faved.to',
-        },
-        {
-          title: EDITIONS['self-hosted'].label,
-          href: EDITIONS['self-hosted'].intro,
-          description: 'Install and run Faved on your own server',
-        },
-      ],
+      content: <DocsMenu />,
     },
     {
       title: 'Pricing',
@@ -84,47 +66,13 @@ export default function Navigation({
   const pathname = usePathname()
 
   const activeClass = 'bg-primary/10 text-primary hover:text-primary'
-  // The docs edition being read, so the dropdown can mark it
-  const currentDocsHref = pathname.startsWith('/docs')
-    ? EDITIONS[editionOfPath(pathname)].intro
-    : null
 
   return (
     <NavigationMenu className="hidden lg:flex" viewport={false}>
       <NavigationMenuList>
         {menuItems.map((item, index) => (
           <NavigationMenuItem key={index}>
-            {item.children ? (
-              <>
-                <NavigationMenuTrigger
-                  className={cn(isNavLinkActive(pathname, item.href) && activeClass)}
-                >
-                  {item.title}
-                </NavigationMenuTrigger>
-                <NavigationMenuContent className="group-data-[viewport=false]/navigation-menu:border-border dark:group-data-[viewport=false]/navigation-menu:border-border/15">
-                  <ul className="grid w-64 gap-1">
-                    {item.children.map((child) => (
-                      <li key={child.href}>
-                        <NavigationMenuLink
-                          asChild
-                          data-active={child.href === currentDocsHref || undefined}
-                        >
-                          <Link
-                            href={child.href}
-                            aria-current={child.href === currentDocsHref ? 'page' : undefined}
-                          >
-                            <span className="text-foreground font-medium">{child.title}</span>
-                            <span className="text-muted-foreground text-xs leading-snug">
-                              {child.description}
-                            </span>
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </>
-            ) : (
+            {item.isLink ? (
               <NavigationMenuLink
                 className={cn(
                   navigationMenuTriggerStyle(),
@@ -134,10 +82,76 @@ export default function Navigation({
               >
                 <Link href={item.href}>{item.title}</Link>
               </NavigationMenuLink>
+            ) : (
+              <>
+                <NavigationMenuTrigger
+                  className={cn(isNavLinkActive(pathname, item.href) && activeClass)}
+                >
+                  {item.title}
+                </NavigationMenuTrigger>
+                <NavigationMenuContent className="group-data-[viewport=false]/navigation-menu:border-border dark:group-data-[viewport=false]/navigation-menu:border-border/15">
+                  {item.content}
+                </NavigationMenuContent>
+              </>
             )}
           </NavigationMenuItem>
         ))}
       </NavigationMenuList>
     </NavigationMenu>
+  )
+}
+
+/** The Docs dropdown: one entry per docs edition, marking the one being read. */
+function DocsMenu() {
+  const pathname = usePathname()
+  const current = pathname.startsWith('/docs') ? editionOfPath(pathname) : null
+
+  return (
+    <ul className="grid w-[400px] gap-3 p-4 md:grid-cols-2">
+      <ListItem
+        href={EDITIONS.cloud.intro}
+        title={EDITIONS.cloud.label}
+        active={current === 'cloud'}
+      >
+        Docs for the hosted app at app.faved.to
+      </ListItem>
+      <ListItem
+        href={EDITIONS['self-hosted'].intro}
+        title={EDITIONS['self-hosted'].label}
+        active={current === 'self-hosted'}
+      >
+        Install and run Faved on your own server
+      </ListItem>
+    </ul>
+  )
+}
+
+function ListItem({
+  className,
+  title,
+  children,
+  href,
+  active,
+  ...props
+}: React.ComponentProps<typeof Link> & { title: string; active?: boolean }) {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <Link
+          data-slot="list-item"
+          href={href}
+          aria-current={active ? 'page' : undefined}
+          className={cn(
+            'hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline outline-hidden transition-colors select-none',
+            active && 'bg-accent text-accent-foreground',
+            className
+          )}
+          {...props}
+        >
+          <div className="text-sm leading-none font-medium">{title}</div>
+          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">{children}</p>
+        </Link>
+      </NavigationMenuLink>
+    </li>
   )
 }
