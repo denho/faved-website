@@ -16,10 +16,12 @@ import {
   FolderIcon,
   PencilIcon,
   UserIcon,
+  BookmarkPlusIcon,
 } from 'lucide-react'
 
 const SECTION_ICONS: Record<string, React.ElementType> = {
   'getting-started': RocketIcon,
+  'saving-pages': BookmarkPlusIcon,
   guides: BookOpenIcon,
   account: UserIcon,
 }
