@@ -23,7 +23,7 @@ import {
 const SECTION_ICONS: Record<string, React.ElementType> = {
   'getting-started': RocketIcon,
   organizing: ShapesIcon,
-  'saving-pages': BookmarkPlusIcon,
+  saving: BookmarkPlusIcon,
   guides: BookOpenIcon,
   account: UserIcon,
 }
