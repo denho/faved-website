@@ -9,32 +9,14 @@ draft: false
 
 ## Search
 
-Type in **Search everywhere…** above the list. Faved matches as you type, ignoring case, across titles, links, descriptions and field values. For page content, only the beginning of the page is searched. Press <kbd>Esc</kbd> to clear it.
+Type in **Search everywhere…** above the list. Faved matches as you type, ignoring case, across titles, links, descriptions and field values. Press <kbd>Esc</kbd> to clear it.
+
+> [!NOTE]
+> In **Page content** fields, search only looks at the first 400 characters or so, about the opening paragraph of the page. A word that first appears further down won't match. Summaries and text fields are searched in full.
 
 ## Types
 
-The **Types** list at the top of the sidebar narrows the list to one type, or shows **All types**. Each type brings its own columns, layout and filters with it.
-
-## Filters
-
-Each field can be filtered:
-
-- **Text and links:** is, is not, contains, does not contain, starts with, does not start with, ends with or does not end with. Links can also be filtered by **domain is**.
-- **Numbers and dates:** **At least** and **At most**.
-- **Select fields and other formats:** pick from the values records hold.
-- **Any field:** **Has a value** or **Is empty**.
-
-Select fields filter from the sidebar; everything else filters from chips above the list. Move any field between the two with **Move to toolbar** or **Move to sidebar**. Drag the chips to reorder them; when there are many, the rest fold behind **Show all**.
-
-## Sorting
-
-<Screenshot
-  src="/static/images/docs/cloud/sort-menu.webp"
-  alt="The Sort by menu, listing the built-in fields and the Recipe type's fields"
-  width={197}
-/>
-
-Open **Sort by** and choose a field. Double-click to flip the order. New records come first by default.
+The **Types** list at the top of the sidebar narrows the list to one type, or shows **All types**. Each type brings its own columns, layout and filters with it. Global fields show up on every type.
 
 ## Layouts and fields
 
@@ -54,14 +36,22 @@ Click **View** to choose a layout and the fields it shows:
 
 In the table, drag a column's edge to resize it.
 
-## A view for each type
+Your layout, fields, column widths and filters are remembered for each type, and for **All types**, on your account. So a list of products can be a table with Price and Brand, while recipes are cards with an image and a cooking time. Types you haven't arranged yet use the **All types** view.
 
-Your layout, fields, column widths and filters are saved for each type, on your account. So a list of products can be a table with Price and Brand, while recipes are cards with an image and a cooking time. Choosing **All types** shows the default view, which types you haven't arranged yet also use.
+## Filters
 
-## Paging and links
+Filters show up depending on the selected type: its own fields plus the global fields. Select fields filter from the sidebar, and the rest from chips above the list. Move a filter between the sidebar and the toolbar with **Move to sidebar** or **Move to toolbar**, and drag the chips to reorder them.
 
-Choose how many records to show per page: 10, 25, 50 or 100. Your search, type, filters, sort and page are kept in the page's address, so a link to it opens the same view.
+## Sorting
 
-## Reading and screenshots
+<Screenshot
+  src="/static/images/docs/cloud/sort-menu.webp"
+  alt="The Sort by menu, listing the built-in fields and the Recipe type's fields"
+  width={197}
+/>
 
-Long values such as page content and summaries show a short preview in the list. Click it to open the full text in a reader. Click a screenshot to see it full size.
+Open **Sort by** and choose a field. Like filters, the menu lists the built-in fields plus the fields of the selected type. Click the same field again to flip the direction between ascending and descending. New records come first by default.
+
+## Stateful URLs
+
+Your search, type, applied filters, sorting and pagination are all captured in the URL, so your view is fully preserved. Bookmark it to reopen the exact same view later, and because every change updates the URL, your browser's **back** and **forward** buttons step through the views you've visited.
