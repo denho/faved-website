@@ -3,12 +3,12 @@ title: 'Updating'
 description: 'Keep your Faved instance on the latest version.'
 order: 3
 date: '2025-10-21'
-lastmod: '2026-07-13'
+lastmod: '2026-10-05'
 draft: false
 ---
 
 > [!NOTE]
-> This guide applies to the self-hosted version of Faved only. [Faved Cloud](https://app.faved.to/signup) instances are updated automatically — you're always on the latest version with nothing to do.
+> This guide applies to the self-hosted version of Faved only. [Faved Cloud](https://app.faved.to/signup) instances are updated automatically — you're always on the latest version with nothing to do. See the [Faved Cloud docs](/docs/cloud/getting-started/introduction).
 
 Depending on whether you previously completed the [Quick Installation](/docs/getting-started/installation#quick-installation) or the [Advanced Installation](/docs/getting-started/installation#advanced-installation), the steps for updating Faved to the latest version will differ.
 
@@ -66,18 +66,22 @@ Fetch the latest file from the [official repository](https://github.com/denho/fa
 
 <CodeTabs>
 <CodeTab label="curl">
+
 ```bash
 cd faved-app
 rm docker-compose.yml
 curl -O https://raw.githubusercontent.com/denho/faved/refs/heads/main/docker-compose.yml
 ```
+
 </CodeTab>
 <CodeTab label="wget">
+
 ```bash
 cd faved-app
 rm docker-compose.yml
 wget https://raw.githubusercontent.com/denho/faved/refs/heads/main/docker-compose.yml
 ```
+
 </CodeTab>
 </CodeTabs>
 

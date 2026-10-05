@@ -29,9 +29,14 @@ function formatSection(raw) {
     .join(' ')
 }
 
+// Faved Cloud's pages live under docs/cloud/; the rest are the self-hosted docs.
+// Mirrors the edition split in layouts/DocsLayout.tsx.
 function docsSectionLabel(slug) {
-  const category = slug.includes('/') ? slug.split('/')[0] : ''
-  return category ? `Docs · ${formatSection(category)}` : 'Docs'
+  const isCloud = slug.startsWith('cloud/')
+  const local = isCloud ? slug.slice('cloud/'.length) : slug
+  const category = local.includes('/') ? local.split('/')[0] : ''
+  const prefix = isCloud ? 'Cloud docs' : 'Docs'
+  return category ? `${prefix} · ${formatSection(category)}` : prefix
 }
 
 async function exists(p) {
