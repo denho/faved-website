@@ -19,7 +19,7 @@ export const editionOf = (slug: string): Edition =>
 export const editionOfPath = (pathname: string): Edition =>
   editionOf(pathname.replace(/^\/docs\/?/, ''))
 
-/** The slug inside its edition: `cloud/guides/importing` reads as `guides/importing`. */
+/** The slug inside its edition: `cloud/organizing/types-and-fields` reads as `guides/importing`. */
 export const localSlug = (slug: string) =>
   slug.startsWith(CLOUD_PREFIX) ? slug.slice(CLOUD_PREFIX.length) : slug
 
