@@ -241,7 +241,7 @@ export default function DocsLayout({ content, allDocs, rawContent, children }: D
               className={[
                 'prose prose-zinc dark:prose-invert max-w-none',
                 'prose-headings:scroll-m-32 prose-headings:tracking-tight',
-                'prose-img:rounded-md prose-img:border',
+                'prose-img:rounded-md',
               ].join(' ')}
             >
               {children}

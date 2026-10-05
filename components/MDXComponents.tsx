@@ -7,6 +7,7 @@ import TableWrapper from './TableWrapper'
 import Pre from './ui/pre'
 import { Steps, Step } from './ui/steps'
 import { CodeTabs, CodeTab } from './ui/code-tabs'
+import Screenshot from './ui/docs-screenshot'
 
 export const components: MDXComponents = {
   Image,
@@ -19,4 +20,5 @@ export const components: MDXComponents = {
   Step,
   CodeTabs,
   CodeTab,
+  Screenshot,
 }
