@@ -129,8 +129,9 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
         </Answer>
         <Answer>
           The self-hosted version is the classic bookmark manager: nested tags, instant search,
-          capture from any browser, import and export, running entirely on your own machine.
-          Bookmarks move between the two through import and export at any time.
+          capture from any browser and import from other tools, running entirely on your own
+          machine. You can move a Cloud library to self-hosted Faved through export and import at
+          any time.
         </Answer>
       </>
     ),
