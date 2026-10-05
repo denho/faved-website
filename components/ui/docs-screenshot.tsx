@@ -3,6 +3,7 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { XIcon } from 'lucide-react'
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
+import Image from '@/components/Image'
 import { cn } from '@/components/lib/utils'
 
 interface DocsScreenshotProps {
@@ -12,6 +13,8 @@ interface DocsScreenshotProps {
   width: number
   className?: string
 }
+
+const basePath = process.env.BASE_PATH || ''
 
 const light = (alpha: number) => `rgba(255,255,255,${alpha})`
 const fade = (gradient: string) => ({ maskImage: gradient, WebkitMaskImage: gradient })
@@ -57,12 +60,14 @@ export default function DocsScreenshot({ src, alt, width, className }: DocsScree
   }, [width])
 
   const image = (
-    <img
+    <Image
       src={src}
       alt={alt}
+      // Only the display width is known; height auto keeps the aspect ratio
+      width={width}
+      height={0}
       loading="lazy"
-      decoding="async"
-      style={{ maxWidth: width }}
+      style={{ maxWidth: width, height: 'auto' }}
       className={cn(
         'relative mx-auto block h-auto w-full rounded-lg shadow-[0_24px_60px_-12px_rgba(0,0,0,0.8)] ring-1 ring-white/10',
         isShrunk && 'cursor-zoom-in'
@@ -115,8 +120,10 @@ export default function DocsScreenshot({ src, alt, width, className }: DocsScree
                 />
               </Dialog.Close>
               <div className="flex min-h-full w-max min-w-full items-center p-4 sm:pointer-events-none sm:h-full sm:w-full sm:justify-center sm:p-10">
+                {/* A plain img: a srcset's 2x entry would halve the intrinsic
+                    size the sm:w-auto sizing relies on */}
                 <img
-                  src={src}
+                  src={`${basePath}${src}`}
                   alt={alt}
                   style={{ '--w': `${width}px`, '--w2': `${width * 2}px` } as CSSProperties}
                   className="relative block h-auto w-(--w) max-w-none rounded-lg shadow-2xl ring-1 ring-white/10 sm:max-h-full sm:w-auto sm:max-w-[min(100%,var(--w2))]"
