@@ -12,6 +12,7 @@
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
   --color-credit: var(--credit);
+  --color-credit-foreground: var(--credit-foreground);
   --color-light: var(--light);
   --color-light-foreground: var(--light-foreground);
   --color-background: var(--background);
@@ -147,6 +148,8 @@
   --brand-foreground: #0062FF;
   /* AI credits, the one thing that is metered */
   --credit: #F5A524;
+  /* Credit text: darker in light mode to reach WCAG AA (≥4.5:1) on near-white */
+  --credit-foreground: #A04A06;
 
   /* Customized shadcn/ui colors */
   --background: oklch(97.65% 0.001 17.18);
@@ -198,6 +201,7 @@
   --brand-foreground: #0062FF;
   /* AI credits, the one thing that is metered */
   --credit: #F5A524;
+  --credit-foreground: #F5A524;
 
   /* Customized shadcn/ui colors */
   --background: oklch(0.141 0.005 285.823);
