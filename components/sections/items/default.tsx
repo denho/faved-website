@@ -5,13 +5,10 @@ import { Item, ItemDescription, ItemIcon, ItemTitle } from '../../ui/item'
 import { Section } from '../../ui/section'
 import {
   faBolt,
-  faBookmark,
-  faForwardStep,
   faFileExport,
   faLayerGroup,
   faListCheck,
   faSliders,
-  faWandMagicSparkles,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -62,8 +59,7 @@ export default function Items({
     },
     {
       title: 'Export anytime',
-      description:
-        'Take your whole library with you as a standard bookmarks HTML file.',
+      description: 'Take your whole library with you as a standard bookmarks HTML file.',
       icon: <FontAwesomeIcon icon={faFileExport} className="size-5 stroke-1" />,
     },
   ],

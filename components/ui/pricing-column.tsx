@@ -127,7 +127,7 @@ export function PricingColumn({
         <div className="flex min-h-8 flex-wrap items-center gap-x-2.5 gap-y-1">
           <Sparkles className="text-credit size-[18px] shrink-0" />
           {stat.figure && (
-            <span className="text-credit font-mono text-[28px] leading-8 font-semibold">
+            <span className="text-credit-foreground font-mono text-[28px] leading-8 font-semibold">
               {stat.figure}
             </span>
           )}

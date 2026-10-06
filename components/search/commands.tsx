@@ -13,11 +13,13 @@ import {
   NewspaperIcon,
   PencilIcon,
   SearchIcon,
+  ServerIcon,
   SparklesIcon,
   UserPlusIcon,
 } from 'lucide-react'
 import * as Brand from '@/components/social-icons/icons'
 import { cn } from '@/components/lib/utils'
+import { EDITIONS } from '@/components/docs/editions'
 import { aiChatUrls } from '@/components/ui/page-actions'
 import siteMetadata from '@/data/siteMetadata'
 
@@ -147,12 +149,21 @@ export function buildCommands({ navigate, openScope, isAuthed, page }: CommandCo
     },
     {
       id: 'go-docs',
-      name: 'Go to Docs',
+      name: 'Go to Faved Cloud docs',
       group: 'Navigation',
       icon: BookOpenIcon,
-      keywords: 'documentation help guides manual',
+      keywords: 'documentation help guides manual cloud',
       shortcut: ['G', 'D'],
-      perform: () => navigate('/docs/getting-started/introduction'),
+      perform: () => navigate(EDITIONS.cloud.intro),
+    },
+    {
+      id: 'go-docs-self-hosted',
+      name: 'Go to Self-hosted docs',
+      group: 'Navigation',
+      icon: ServerIcon,
+      keywords: 'documentation help guides manual self-host docker',
+      shortcut: ['G', 'S'],
+      perform: () => navigate(EDITIONS['self-hosted'].intro),
     },
     {
       id: 'go-blog',

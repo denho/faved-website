@@ -13,6 +13,8 @@ import {
   XIcon,
 } from 'lucide-react'
 import { formatDate } from 'pliny/utils/formatDate'
+import { usePathname } from 'next/navigation'
+import { EDITIONS, Edition, editionOfPath } from '@/components/docs/editions'
 import { cn } from '@/components/lib/utils'
 import siteMetadata from '@/data/siteMetadata'
 import { COMMAND_GROUPS, Command, SearchScope } from './commands'
@@ -83,7 +85,9 @@ function PageRow({ page }: { page: SearchPage }) {
     <>
       <ArrowRightIcon className="text-muted-foreground size-4 shrink-0" />
       <span className="text-muted-foreground shrink-0">
-        {page.type === 'docs' ? 'Docs' : 'Blog post'}
+        {page.type === 'docs' && page.edition
+          ? `${EDITIONS[page.edition].label} docs`
+          : 'Blog post'}
       </span>
       <ChevronRightIcon className="text-muted-foreground/60 size-3.5 shrink-0" />
       <span className="truncate">{page.title}</span>
@@ -154,6 +158,9 @@ export default function CommandPalette() {
   const listRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const trimmed = query.trim()
+  const pathname = usePathname()
+  // On a docs page, its edition (Faved Cloud or Self-hosted) leads the docs results.
+  const edition = pathname.startsWith('/docs') ? editionOfPath(pathname) : null
 
   const groups = useMemo<ResultGroup[]>(() => {
     const byId = <T extends { id: string }>(items: T[]) => new Map(items.map((i) => [i.id, i]))
@@ -162,9 +169,9 @@ export default function CommandPalette() {
       return globalResults({ trimmed, commands, commandSearch, index, navigate, setScope })
     }
     if (!index) return []
-    if (scope === 'docs') return docsResults({ trimmed, index, navigate, byId })
+    if (scope === 'docs') return docsResults({ trimmed, index, edition, navigate, byId })
     return blogResults({ trimmed, index, navigate })
-  }, [scope, trimmed, commands, commandSearch, index, navigate, setScope])
+  }, [scope, trimmed, edition, commands, commandSearch, index, navigate, setScope])
 
   // Keep the first result selected and scrolled into view as results change.
   const firstId = groups[0]?.items[0]?.id ?? ''
@@ -367,23 +374,41 @@ function globalResults({
 function docsResults({
   trimmed,
   index,
+  edition,
   navigate,
   byId,
 }: {
   trimmed: string
   index: SearchIndex
+  edition: Edition | null
   navigate: (url: string) => void
   byId: <T extends { id: string }>(items: T[]) => Map<string, T>
 }): ResultGroup[] {
-  const docsPages = index.pages.filter((p) => p.type === 'docs')
+  // Name the edition wherever it isn't the one being read, since both have pages of the same name.
+  const breadcrumb = (pageEdition: Edition, ...parts: string[]) => (
+    <>
+      {[pageEdition !== edition ? EDITIONS[pageEdition].label : '', ...parts]
+        .filter(Boolean)
+        .map((part, i) => (
+          <span key={i} className="flex items-center gap-1">
+            {i > 0 && <ChevronRightIcon className="size-3 opacity-60" />}
+            {part}
+          </span>
+        ))}
+    </>
+  )
 
   if (!trimmed) {
-    const categories = [...new Set(docsPages.map((p) => p.category))]
-    return categories.map((category) => ({
-      heading: category || 'Docs',
-      items: docsPages
-        .filter((p) => p.category === category)
-        .map((page) => ({
+    const docsPages = index.pages.filter(
+      (p) => p.type === 'docs' && (!edition || p.edition === edition)
+    )
+    const sections = [...new Set(docsPages.map((p) => `${p.edition}:${p.category}`))]
+    return sections.map((key) => {
+      const pages = docsPages.filter((p) => `${p.edition}:${p.category}` === key)
+      const { edition: pageEdition, category } = pages[0]
+      return {
+        heading: breadcrumb(pageEdition ?? 'self-hosted', category || 'Docs'),
+        items: pages.map((page) => ({
           id: `doc:${page.id}`,
           onSelect: () => navigate(page.url),
           content: (
@@ -393,37 +418,38 @@ function docsResults({
             </>
           ),
         })),
-    }))
+      }
+    })
   }
 
   const sections = byId(index.sections)
+  const ranked = searchWithFallback(index.sectionsSearch, trimmed, {})
+    .map((result) => ({ section: sections.get(String(result.id)), terms: result.terms }))
+    .filter((hit): hit is { section: SearchSection; terms: string[] } => Boolean(hit.section))
+  // Stable partition: the current edition's hits first, each part still in score order.
+  const hits = edition
+    ? [
+        ...ranked.filter((h) => h.section.edition === edition),
+        ...ranked.filter((h) => h.section.edition !== edition),
+      ]
+    : ranked
+
   const grouped = new Map<string, { section: SearchSection; terms: string[] }[]>()
-  for (const result of searchWithFallback(index.sectionsSearch, trimmed, {})) {
-    const section = sections.get(String(result.id))
-    if (!section) continue
-    const hits = grouped.get(section.page) ?? []
-    if (!grouped.has(section.page)) {
+  for (const hit of hits) {
+    const page = hit.section.page
+    if (!grouped.has(page)) {
       if (grouped.size >= MAX_DOC_PAGES) continue
-      grouped.set(section.page, hits)
+      grouped.set(page, [])
     }
-    if (hits.length < MAX_SECTIONS_PER_PAGE) hits.push({ section, terms: result.terms })
+    const pageHits = grouped.get(page)!
+    if (pageHits.length < MAX_SECTIONS_PER_PAGE) pageHits.push(hit)
   }
 
-  return [...grouped.values()].map((hits) => {
-    const { pageTitle, category } = hits[0].section
+  return [...grouped.values()].map((pageHits) => {
+    const { pageTitle, category, edition: pageEdition } = pageHits[0].section
     return {
-      heading: (
-        <>
-          {category && (
-            <>
-              {category}
-              <ChevronRightIcon className="size-3 opacity-60" />
-            </>
-          )}
-          {pageTitle}
-        </>
-      ),
-      items: hits.map(({ section, terms }) => ({
+      heading: breadcrumb(pageEdition, category, pageTitle),
+      items: pageHits.map(({ section, terms }) => ({
         id: `section:${section.id}`,
         onSelect: () => navigate(section.url),
         content: <SectionRow section={section} terms={terms} />,

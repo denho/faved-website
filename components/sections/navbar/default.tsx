@@ -15,10 +15,13 @@ import { Sheet, SheetContent, SheetTrigger } from '../../ui/sheet'
 import GithubStars from '@/components/GithubStars'
 import BrandLogo from '@/components/ui/brand-logo'
 import Link from '@/components/Link'
+import DocsTabs from '@/components/docs/DocsTabs'
+import { EDITIONS, editionOfPath } from '@/components/docs/editions'
 
 interface NavbarLink {
   text: string
   href: string
+  children?: NavbarLink[]
 }
 
 interface NavbarActionProps {
@@ -50,7 +53,11 @@ export default function Navbar({
     },
     {
       text: 'Docs',
-      href: '/docs/getting-started/introduction',
+      href: '/docs',
+      children: [
+        { text: EDITIONS.cloud.label, href: EDITIONS.cloud.intro },
+        { text: EDITIONS['self-hosted'].label, href: EDITIONS['self-hosted'].intro },
+      ],
     },
     {
       text: 'Pricing',
@@ -91,6 +98,8 @@ export default function Navbar({
   className,
 }: NavbarProps) {
   const pathname = usePathname()
+  const isDocs = pathname === '/docs' || pathname.startsWith('/docs/')
+  const currentDocsHref = isDocs ? EDITIONS[editionOfPath(pathname)].intro : null
 
   const [isAuthed, setIsAuthed] = useState(false)
 
@@ -116,7 +125,13 @@ export default function Navbar({
 
   return (
     <header className={cn('sticky top-0 z-50 -mb-4 px-4 pb-4', className)}>
-      <div className="fade-bottom bg-background/15 absolute left-0 h-24 w-full backdrop-blur-lg"></div>
+      <div
+        className={cn(
+          'absolute left-0 w-full backdrop-blur-lg',
+          // On docs the edition tabs end the header with a hard edge
+          isDocs ? 'bg-background h-28' : 'fade-bottom bg-background/15 h-24'
+        )}
+      ></div>
       <div className="max-w-container relative mx-auto">
         <NavbarComponent>
           <NavbarLeft>
@@ -155,25 +170,55 @@ export default function Navbar({
                   <a href={homeUrl} className="flex items-center gap-2 text-xl font-bold">
                     <BrandLogo />
                   </a>
-                  {mobileLinks.map((link, index) => (
-                    <a
-                      key={index}
-                      href={link.href}
-                      className={
-                        isNavLinkActive(pathname, link.href)
-                          ? 'text-primary font-medium'
-                          : 'text-muted-foreground hover:text-foreground'
-                      }
-                    >
-                      {link.text}
-                    </a>
-                  ))}
+                  {mobileLinks.map((link, index) =>
+                    link.children ? (
+                      <div key={index} className="grid gap-3">
+                        <span
+                          className={
+                            isNavLinkActive(pathname, link.href)
+                              ? 'text-primary font-medium'
+                              : 'text-muted-foreground'
+                          }
+                        >
+                          {link.text}
+                        </span>
+                        {link.children.map((child) => (
+                          <a
+                            key={child.href}
+                            href={child.href}
+                            aria-current={child.href === currentDocsHref ? 'page' : undefined}
+                            className={cn(
+                              'pl-4 text-base',
+                              child.href === currentDocsHref
+                                ? 'text-primary font-medium'
+                                : 'text-muted-foreground hover:text-foreground'
+                            )}
+                          >
+                            {child.text}
+                          </a>
+                        ))}
+                      </div>
+                    ) : (
+                      <a
+                        key={index}
+                        href={link.href}
+                        className={
+                          isNavLinkActive(pathname, link.href)
+                            ? 'text-primary font-medium'
+                            : 'text-muted-foreground hover:text-foreground'
+                        }
+                      >
+                        {link.text}
+                      </a>
+                    )
+                  )}
                 </nav>
               </SheetContent>
             </Sheet>
           </NavbarRight>
         </NavbarComponent>
       </div>
+      {isDocs && <DocsTabs edition={editionOfPath(pathname)} />}
     </header>
   )
 }

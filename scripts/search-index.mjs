@@ -18,6 +18,15 @@ const MAX_SECTION_TEXT = 3000
 
 const parser = unified().use(remarkParse).use(remarkMdx).use(remarkGfm)
 
+// Mirrors components/docs/editions.ts: Faved Cloud pages live under docs/cloud/,
+// every other docs page belongs to the self-hosted edition.
+const CLOUD_PREFIX = 'cloud/'
+const editionOf = (slug) => (slug.startsWith(CLOUD_PREFIX) ? 'cloud' : 'self-hosted')
+const categoryOf = (slug) => {
+  const local = slug.startsWith(CLOUD_PREFIX) ? slug.slice(CLOUD_PREFIX.length) : slug
+  return local.includes('/') ? formatCategory(local.split('/')[0]) : ''
+}
+
 const formatCategory = (category) =>
   category
     .split('-')
@@ -64,7 +73,8 @@ const clean = (text) =>
 function docSections(doc) {
   const tree = parser.parse(doc.body.raw)
   const slugger = new GithubSlugger()
-  const category = doc.slug.includes('/') ? formatCategory(doc.slug.split('/')[0]) : ''
+  const category = categoryOf(doc.slug)
+  const edition = editionOf(doc.slug)
   const baseUrl = `/${doc.path}`
   const sections = [{ heading: doc.title, anchor: '', parts: [] }]
 
@@ -97,6 +107,7 @@ function docSections(doc) {
       url: anchor ? `${baseUrl}#${anchor}` : baseUrl,
       heading,
       pageTitle: doc.title,
+      edition,
       category,
       text: clean(parts.join(' ')).slice(0, MAX_SECTION_TEXT),
     }))
@@ -112,7 +123,8 @@ function pageEntry(doc) {
     title: doc.title,
     description: (isDocs ? doc.description : doc.summary) || '',
     tags: doc.tags || [],
-    category: isDocs && doc.slug.includes('/') ? formatCategory(doc.slug.split('/')[0]) : '',
+    edition: isDocs ? editionOf(doc.slug) : null,
+    category: isDocs ? categoryOf(doc.slug) : '',
     order: doc.order ?? null,
     date: doc.date,
   }

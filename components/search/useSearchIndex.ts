@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import MiniSearch, { type SearchOptions, type SearchResult } from 'minisearch'
 import siteMetadata from '@/data/siteMetadata'
+import type { Edition } from '@/components/docs/editions'
 
 // Shape of public/search.json, written by scripts/search-index.mjs
 export interface SearchPage {
@@ -12,6 +13,7 @@ export interface SearchPage {
   title: string
   description: string
   tags: string[]
+  edition: Edition | null
   category: string
   order: number | null
   date: string
@@ -23,6 +25,7 @@ export interface SearchSection {
   url: string
   heading: string
   pageTitle: string
+  edition: Edition
   category: string
   text: string
 }

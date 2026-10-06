@@ -9,12 +9,25 @@ import siteMetadata from '@/data/siteMetadata'
 import PageActions from '@/components/ui/page-actions'
 import SearchField from '@/components/search/SearchField'
 import { useRegisterPageContext } from '@/components/search/SearchContext'
+import { categoryOf, editionOf } from '@/components/docs/editions'
 import '../styles/prism.css'
-import { ChevronDownIcon, RocketIcon, BookOpenIcon, FolderIcon, PencilIcon } from 'lucide-react'
+import {
+  ChevronDownIcon,
+  RocketIcon,
+  BookOpenIcon,
+  FolderIcon,
+  PencilIcon,
+  UserIcon,
+  BookmarkPlusIcon,
+  ShapesIcon,
+} from 'lucide-react'
 
 const SECTION_ICONS: Record<string, React.ElementType> = {
   'getting-started': RocketIcon,
+  organizing: ShapesIcon,
+  saving: BookmarkPlusIcon,
   guides: BookOpenIcon,
+  account: UserIcon,
 }
 
 interface TocItem {
@@ -84,17 +97,17 @@ export default function DocsLayout({ content, allDocs, rawContent, children }: D
 
     return () => observer.disconnect()
   }, [toc])
-  const category = content.slug.includes('/') ? content.slug.split('/')[0] : ''
+  const edition = editionOf(content.slug)
+  const category = categoryOf(content.slug)
 
-  // Group docs by their directory structure
+  // Only this edition's pages, grouped by their directory structure
   const sortedDocs = allDocs
-    .filter((doc) => !doc.draft)
+    .filter((doc) => !doc.draft && editionOf(doc.slug) === edition)
     .sort((a, b) => (a.order || 999) - (b.order || 999))
 
   const groupedDocs = sortedDocs.reduce(
     (acc, doc) => {
-      const pathParts = doc.slug.split('/')
-      const docCategory = pathParts.length > 1 ? pathParts[0] : ''
+      const docCategory = categoryOf(doc.slug)
 
       if (!acc[docCategory]) {
         acc[docCategory] = []
@@ -147,24 +160,19 @@ export default function DocsLayout({ content, allDocs, rawContent, children }: D
 
         {/* Sidebar */}
         <aside
-          className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} bg-background fixed top-15 left-0 z-40 h-screen w-72 flex-shrink-0 overflow-y-auto pt-10 pb-4 transition-transform md:sticky md:top-15 md:h-auto md:max-h-[calc(100vh-3.75rem)] md:translate-x-0 md:self-start md:bg-transparent`}
+          className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} bg-background fixed top-28 left-0 z-40 h-[calc(100vh-7rem)] w-72 flex-shrink-0 overflow-y-auto pt-8 pb-4 transition-transform md:sticky md:top-28 md:h-auto md:max-h-[calc(100vh-7rem)] md:translate-x-0 md:self-start md:bg-transparent`}
         >
           <nav className="space-y-6 px-4 xl:pl-0">
             <SearchField scope="docs" shortcut="mod+k" className="hidden md:flex" />
-            <div className="mb-4">
-              <h2 className="text-muted-foreground mb-3 text-xs font-semibold tracking-wider uppercase">
-                Documentation
-              </h2>
-            </div>
-
             {Object.entries(groupedDocs).map(([docCategory, docs]) => {
-              const isCollapsed = !!collapsedSections[docCategory]
+              const sectionKey = `${edition}:${docCategory}`
+              const isCollapsed = !!collapsedSections[sectionKey]
               const Icon = SECTION_ICONS[docCategory] ?? FolderIcon
               return (
                 <div key={docCategory}>
                   {docCategory && (
                     <button
-                      onClick={() => toggleSection(docCategory)}
+                      onClick={() => toggleSection(sectionKey)}
                       className="text-sidebar-foreground hover:text-foreground mb-1 flex w-full items-center justify-between gap-2 rounded-md px-1 py-1 text-sm font-semibold transition-colors"
                     >
                       <span className="flex items-center gap-2">
@@ -215,21 +223,12 @@ export default function DocsLayout({ content, allDocs, rawContent, children }: D
             <SearchField scope="docs" className="mb-5 md:hidden" />
             <nav aria-label="Breadcrumb" className="mb-4 md:hidden">
               <ol className="text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm">
-                <li>
-                  <Link
-                    href="/docs/getting-started/introduction"
-                    className="hover:text-foreground transition-colors"
-                  >
-                    Docs
-                  </Link>
-                </li>
                 {category && (
                   <>
-                    <li aria-hidden="true">/</li>
                     <li>{formatCategory(category)}</li>
+                    <li aria-hidden="true">/</li>
                   </>
                 )}
-                <li aria-hidden="true">/</li>
                 <li aria-current="page" className="text-foreground">
                   {title}
                 </li>
@@ -248,8 +247,8 @@ export default function DocsLayout({ content, allDocs, rawContent, children }: D
             <div
               className={[
                 'prose prose-zinc dark:prose-invert max-w-none',
-                'prose-headings:scroll-m-20 prose-headings:tracking-tight',
-                'prose-img:rounded-md prose-img:border',
+                'prose-headings:scroll-m-32 prose-headings:tracking-tight',
+                'prose-img:rounded-md',
               ].join(' ')}
             >
               {children}
@@ -311,7 +310,7 @@ export default function DocsLayout({ content, allDocs, rawContent, children }: D
           <aside className="hidden w-56 flex-shrink-0 xl:block">
             <nav
               aria-label="On this page"
-              className="sticky top-15 max-h-[calc(100vh-3.75rem)] overflow-y-auto py-10 pr-1"
+              className="sticky top-28 max-h-[calc(100vh-7rem)] overflow-y-auto py-10 pr-1"
             >
               <h2 className="text-muted-foreground mb-3 text-xs font-semibold tracking-wider uppercase">
                 On this page
