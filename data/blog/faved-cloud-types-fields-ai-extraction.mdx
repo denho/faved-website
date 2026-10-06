@@ -1,0 +1,85 @@
+---
+title: 'Faved Cloud now turns the pages you save into structured records'
+date: '2026-10-06'
+tags: ['Announcement']
+draft: false
+summary: 'Faved Cloud now saves more than a link. Give each page a type, such as a product, a recipe or a job posting, and Faved reads the page and fills in the details you care about, from price and brand to prep time and salary range. Then compare everything in a view made for that type.'
+---
+
+import siteMetadata from '@/data/siteMetadata'
+
+A bookmark tells you where something is. It doesn't tell you what you found there: the price of those headphones, how long the recipe takes, what the job pays. Until now you had to open the page again to find out.
+
+**Faved Cloud now turns the pages you save into structured records.** Every page gets a type, each type has its own fields, and Faved can read the page and fill those fields in for you.
+
+## Types and fields
+
+A **type** says what kind of thing a page is, and decides which **fields** it carries. Start from a preset, such as Product, Recipe, Job posting, Real estate listing, Article or Event, or build your own from scratch.
+
+<video controls={false} autoPlay loop muted playsInline className="w-full rounded-lg">
+  <source
+    src="/static/videos/posts/faved-cloud-types-fields-ai-extraction/create-type.mp4"
+    type="video/mp4"
+  />
+</video>
+
+A field can hold text, a number with a unit (€, kg, min), a date, a checkbox, a link, or one or more options from a list you define. Fields can also be **global**, so every record has them whatever its type, which is handy for things like a Project, or Home and Work.
+
+## Extract: let Faved fill in the details
+
+When you save a page, **Extract** reads it and fills in the fields you picked: the price and rating of a product, the ingredients of a recipe, the salary of a job posting. Select fields are matched to the options you already have, and a short hint on a field can steer what it looks for.
+
+<video controls={false} autoPlay loop muted playsInline className="w-full rounded-lg">
+  <source
+    src="/static/videos/posts/faved-cloud-types-fields-ai-extraction/save-and-extract.mp4"
+    type="video/mp4"
+  />
+</video>
+
+Extract can also write a short summary, keep the page's content as clean Markdown, and take a screenshot. Got a backlog? Select any number of records and extract them all at once in the background.
+
+## A view for every type
+
+Each type keeps its own columns and filters. Products line up with their price, brand and rating; recipes with their cuisine and prep time. Filter by any field and sort by any value, such as the cheapest first or the best rated.
+
+<video controls={false} autoPlay loop muted playsInline className="w-full rounded-lg">
+  <source
+    src="/static/videos/posts/faved-cloud-types-fields-ai-extraction/switch-types.mp4"
+    type="video/mp4"
+  />
+</video>
+
+## Save from anywhere
+
+Whatever you're doing on the web, saving is a click or a tap away: the [Chrome extension](/docs/cloud/saving/chrome-extension), the [bookmarklet](/docs/cloud/saving/using-browser-bookmarklet) in any browser, the [Apple Shortcut](/docs/cloud/saving/saving-with-apple-shortcut) on iPhone, iPad and Mac, [Android share](/docs/cloud/saving/android-share), or the **Add** button in the app. Every one of them opens the same form, with Extract ready to go.
+
+Already have a library elsewhere? [Import](/docs/cloud/getting-started/importing) your bookmarks from any browser, Raindrop.io or Pocket, and export them any time.
+
+## Plans
+
+Faved Cloud comes with a **14-day free trial** of every feature and **50 AI credits** to try extraction on. No credit card is required.
+
+- **Basic:** \$5 a month or \$48 a year, with 100 AI credits a month.
+- **Plus:** \$20 a month or \$192 a year, with 500 AI credits a month.
+- **Lifetime:** \$120 once, with 100 AI credits every month.
+
+One AI credit is one page put through the AI to fill your custom fields. Fetching a page's title, description and preview image, keeping its content, taking a screenshot and writing a summary are free. Records, fields and types are unlimited on every plan. See [Plans and AI credits](/docs/cloud/account/plans-and-ai-credits) for the details.
+
+## What about self-hosted Faved?
+
+The classic Faved bookmark manager stays open source and free to self-host. Types, fields and AI extraction live in Faved Cloud, and you can move a Cloud library to a self-hosted Faved through export and import at any time.
+
+## Try it
+
+<div className="justify-left my-4 flex">
+  <a href={siteMetadata.cloudUrl}>
+    Start your free trial
+    <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
+      →
+    </span>
+  </a>
+</div>
+
+New to the new Faved? The [Faved Cloud docs](/docs/cloud/getting-started/introduction) walk through everything above.
+
+As always, feedback shapes what comes next. Reach out on <a href={siteMetadata.discord} target="_blank" rel="noopener">Discord</a> or at [hello@faved.to](mailto:hello@faved.to).

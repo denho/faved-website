@@ -1,0 +1,91 @@
+---
+title: 'Compare products across shops with Faved Cloud'
+date: '2026-10-13'
+tags: ['Tutorial']
+draft: true
+summary: 'Shopping for something you want to get right? Save the product pages from every shop into Faved Cloud, let it pull out the price, brand, rating and availability, and compare them side by side in one table, sorted and filtered the way you like.'
+---
+
+import siteMetadata from '@/data/siteMetadata'
+
+Buying a pair of noise-cancelling headphones means a dozen tabs: the maker's own shop, a couple of retailers, a review or two. Each page lays out the price, rating and stock differently, so comparing them means flicking between tabs or copying numbers into a spreadsheet.
+
+Here's how to do it in [Faved Cloud](/docs/cloud/getting-started/introduction) instead: save the pages, let Faved pull out the details, and compare everything in one table.
+
+## 1. Create a Product type
+
+Open **Types and Fields**, click **New type** and choose the **Product** preset. It comes with the fields you need for shopping: Name, Price, Currency, Brand, Rating, Review count, Availability, Categories and Screenshot.
+
+<video controls={false} autoPlay loop muted playsInline className="w-full rounded-lg">
+  <source
+    src="/static/videos/posts/faved-cloud-types-fields-ai-extraction/create-type.mp4"
+    type="video/mp4"
+  />
+</video>
+
+You can rename, add or remove fields later, so treat the preset as a starting point.
+
+## 2. Save product pages from any shop
+
+On a product page, click the [Chrome extension](/docs/cloud/saving/chrome-extension) or the [bookmarklet](/docs/cloud/saving/using-browser-bookmarklet), or paste the link into **Add** in the app. Choose **Product** as the type and click **Extract**: Faved reads the page and fills in the fields before you save, so you can check them first.
+
+<video controls={false} autoPlay loop muted playsInline className="w-full rounded-lg">
+  <source
+    src="/static/videos/posts/faved-cloud-types-fields-ai-extraction/save-and-extract.mp4"
+    type="video/mp4"
+  />
+</video>
+
+The Chrome extension and the bookmarklet save the page exactly as you see it, so they also work on shops that show prices only when you're signed in.
+
+## 3. Already saved a few? Extract them at once
+
+If you saved some pages without extracting, there's no need to open them one by one. Select them in the list, click **Extract** in the bar at the bottom, pick the fields, and Faved reads every page in the background. You can follow the run in **Activity**.
+
+<video controls={false} autoPlay loop muted playsInline className="w-full rounded-lg">
+  <source
+    src="/static/videos/posts/comparing-products-with-faved-cloud/bulk-extract.mp4"
+    type="video/mp4"
+  />
+</video>
+
+## 4. Compare them in a table
+
+Switch to **Table view** under **View**, and choose the columns you want to compare: Price, Brand, Rating, Review count and Availability. The Product type remembers its columns, so the table looks the same next time.
+
+Now the comparison is a couple of clicks:
+
+- **Sort by Price** to see the cheapest first, and click it again to flip the order.
+- **Filter Price** to your budget, for example at most 250.
+- **Sort by Rating** to put the best-rated options on top.
+
+<video controls={false} autoPlay loop muted playsInline className="w-full rounded-lg">
+  <source
+    src="/static/videos/posts/comparing-products-with-faved-cloud/compare-table.mp4"
+    type="video/mp4"
+  />
+</video>
+
+Your search, filters and sort live in the page address, so you can bookmark the comparison and come back to it later.
+
+## 5. Keep track of what you're considering
+
+Add your favourites to a **Wishlist** option in your Tags, or create a global **Project** field, such as "New headphones", to group everything for one purchase, whatever its type.
+
+## Learn more
+
+- [Types and fields](/docs/cloud/organizing/types-and-fields)
+- [Extracting from pages](/docs/cloud/organizing/extracting-from-pages)
+- [Finding and viewing records](/docs/cloud/organizing/finding-and-viewing)
+- [Bulk actions](/docs/cloud/organizing/bulk-actions)
+
+<div className="justify-left my-4 flex">
+  <a href={siteMetadata.cloudUrl}>
+    Start your free trial
+    <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
+      →
+    </span>
+  </a>
+</div>
+
+Questions or ideas? Reach out on <a href={siteMetadata.discord} target="_blank" rel="noopener">Discord</a> or at [hello@faved.to](mailto:hello@faved.to).
