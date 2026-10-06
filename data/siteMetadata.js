@@ -10,7 +10,6 @@ const siteMetadata = {
   theme: 'system', // system, dark or light
   siteUrl: 'https://faved.to',
   siteRepo: 'https://github.com/denho/faved-website',
-  siteLogo: `${process.env.BASE_PATH || ''}/static/images/faved-logo.png`,
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/og-image.png`,
   // mastodon: 'https://mastodon.social/@mastodonuser',
   // email: 'address@yoursite.com',
