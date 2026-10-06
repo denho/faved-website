@@ -45,7 +45,8 @@ export const CTA_PARAM = 'cta'
 // Our own CTA values, which used to ride on `?ref=` and are still out there in
 // bookmarks, caches and links people have shared. Referrer suppression below
 // misses those (external referrer, internal value), so they are also rejected
-// by name. Keep in sync with the CTAs in components/sections/.
+// by name. Keep in sync with the CTAs in components/sections/, but never prune
+// the legacy block: those values are no longer emitted, only still in circulation.
 const INTERNAL_REF_VALUES = new Set([
   'hero-cta',
   'pricing-basic',
@@ -55,6 +56,11 @@ const INTERNAL_REF_VALUES = new Set([
   'navbar-signin',
   'navbar-open-app',
   'closing-cta',
+  // Legacy: no current CTA emits these, kept until links carrying them age out.
+  'pricing-cta', // old pricing page, before the Basic/Plus split
+  'get-started-cta', // old closing CTA section
+  'hero-badge', // old hero announcement badge
+  'navbar', // navbar CTA before navbar-get-started
 ])
 
 // A referrer from our own site is navigation, not acquisition.
