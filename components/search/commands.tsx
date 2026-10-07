@@ -9,7 +9,6 @@ import {
   HouseIcon,
   LinkIcon,
   LogInIcon,
-  MonitorPlayIcon,
   NewspaperIcon,
   PencilIcon,
   SearchIcon,
