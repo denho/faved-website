@@ -101,7 +101,8 @@ const siteMetadata = {
     },
   },
   // Built by scripts/search-index.mjs; loaded by the ⌘K command palette
-  searchIndexPath: `${process.env.BASE_PATH || ''}/search.json`,
+  // Renamed from search.json (kbar's array format) so cached copies of the old file can't be read.
+  searchIndexPath: `${process.env.BASE_PATH || ''}/search-index.json`,
 }
 
 module.exports = siteMetadata

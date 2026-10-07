@@ -12,7 +12,6 @@ import {
   SearchIcon,
   XIcon,
 } from 'lucide-react'
-import { formatDate } from 'pliny/utils/formatDate'
 import { usePathname } from 'next/navigation'
 import { EDITIONS, Edition, editionOfPath } from '@/components/docs/editions'
 import { cn } from '@/components/lib/utils'
@@ -32,6 +31,7 @@ import {
 const MAX_PAGE_RESULTS = 8
 const MAX_DOC_PAGES = 8
 const MAX_SECTIONS_PER_PAGE = 3
+const EDITION_BOOST = 1.5
 
 const SCOPES: Record<SearchScope, { label: string; placeholder: string }> = {
   global: { label: '', placeholder: 'Type a command or search…' },
@@ -69,13 +69,6 @@ function CommandRow({ command }: { command: Command }) {
     <>
       <Icon className="text-muted-foreground size-4 shrink-0" />
       <span className="flex-1 truncate">{command.name}</span>
-      {command.shortcut && (
-        <span className="flex gap-1">
-          {command.shortcut.map((key) => (
-            <Kbd key={key}>{key}</Kbd>
-          ))}
-        </span>
-      )}
     </>
   )
 }
@@ -115,6 +108,16 @@ function SectionRow({ section, terms }: { section: SearchSection; terms: string[
   )
 }
 
+// Post dates are calendar dates stored as UTC midnight; format them in UTC so visitors west of
+// UTC don't see the previous day.
+const formatPostDate = (date: string) =>
+  new Date(date).toLocaleDateString(siteMetadata.locale as string, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'UTC',
+  })
+
 function BlogRow({ page, terms }: { page: SearchPage; terms: string[] }) {
   return (
     <>
@@ -125,7 +128,7 @@ function BlogRow({ page, terms }: { page: SearchPage; terms: string[] }) {
             <Highlight text={page.title} terms={terms} />
           </span>
           <time className="text-muted-foreground shrink-0 text-xs" dateTime={page.date}>
-            {formatDate(page.date, siteMetadata.locale)}
+            {formatPostDate(page.date)}
           </time>
         </span>
         {page.description && (
@@ -151,7 +154,8 @@ function useCommandSearch(commands: Command[]) {
 }
 
 export default function CommandPalette() {
-  const { open, setOpen, scope, setScope, query, setQuery, commands, navigate } = useSearch()
+  const { open, setOpen, scope, setScope, query, setQuery, commands, navigate, restoreFocus } =
+    useSearch()
   const { index, error } = useSearchIndex(open)
   const commandSearch = useCommandSearch(commands)
   const [selected, setSelected] = useState('')
@@ -166,19 +170,21 @@ export default function CommandPalette() {
     const byId = <T extends { id: string }>(items: T[]) => new Map(items.map((i) => [i.id, i]))
 
     if (scope === 'global') {
-      return globalResults({ trimmed, commands, commandSearch, index, navigate, setScope })
+      return globalResults({ trimmed, commands, commandSearch, index, navigate, setOpen, setScope })
     }
     if (!index) return []
     if (scope === 'docs') return docsResults({ trimmed, index, edition, navigate, byId })
     return blogResults({ trimmed, index, navigate })
-  }, [scope, trimmed, edition, commands, commandSearch, index, navigate, setScope])
+  }, [scope, trimmed, edition, commands, commandSearch, index, navigate, setOpen, setScope])
 
-  // Keep the first result selected and scrolled into view as results change.
+  // Select the first result (and scroll to it) whenever the palette opens or the results change,
+  // so Enter never runs an item highlighted in an earlier session.
   const firstId = groups[0]?.items[0]?.id ?? ''
   useEffect(() => {
+    if (!open) return
     setSelected(firstId)
     listRef.current?.scrollTo({ top: 0 })
-  }, [firstId, scope, trimmed])
+  }, [open, firstId, scope, trimmed])
 
   const onInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Backspace' && query === '' && scope !== 'global') {
@@ -194,11 +200,17 @@ export default function CommandPalette() {
       <Dialog.Portal>
         <Dialog.Overlay className="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/60" />
         <Dialog.Content
+          data-search-palette
           aria-describedby={undefined}
           onOpenAutoFocus={(event) => {
             // Focus the input, not the first focusable element (the scope chip).
             event.preventDefault()
             inputRef.current?.focus()
+          }}
+          onCloseAutoFocus={(event) => {
+            // Radix has no trigger to return to (the palette opens from many places).
+            event.preventDefault()
+            restoreFocus()
           }}
           className="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-[0.98] data-[state=open]:zoom-in-[0.98] bg-popover border-border dark:border-border/15 fixed top-[10vh] left-1/2 z-50 w-[calc(100%-2rem)] max-w-2xl -translate-x-1/2 overflow-hidden rounded-xl border shadow-2xl sm:top-[12vh]"
         >
@@ -210,6 +222,10 @@ export default function CommandPalette() {
             onValueChange={setSelected}
             label="Search Faved"
             className="flex flex-col"
+            onMouseDown={(event) => {
+              // Clicks keep focus in the input, so typing after a click still searches.
+              if (event.target !== inputRef.current) event.preventDefault()
+            }}
           >
             <div className="border-border dark:border-border/15 flex items-center gap-2 border-b px-4">
               {scope === 'global' ? (
@@ -220,6 +236,11 @@ export default function CommandPalette() {
                   onClick={() => {
                     setScope('global')
                     inputRef.current?.focus()
+                  }}
+                  onKeyDown={(event) => {
+                    // Keep Enter/Space on the chip from reaching cmdk, which would open the
+                    // highlighted result instead of leaving the scope.
+                    if (event.key === 'Enter' || event.key === ' ') event.stopPropagation()
                   }}
                   className="bg-accent/60 text-foreground hover:bg-accent inline-flex shrink-0 items-center gap-1 rounded-md py-0.5 pr-1 pl-2 text-xs font-medium transition-colors"
                   aria-label={`Leave ${SCOPES[scope].label} search`}
@@ -301,6 +322,7 @@ function globalResults({
   commandSearch,
   index,
   navigate,
+  setOpen,
   setScope,
 }: {
   trimmed: string
@@ -308,11 +330,15 @@ function globalResults({
   commandSearch: MiniSearch<Command>
   index: SearchIndex | null
   navigate: (url: string) => void
+  setOpen: (open: boolean) => void
   setScope: (scope: SearchScope) => void
 }): ResultGroup[] {
   const commandItem = (command: Command): ResultItem => ({
     id: `command:${command.id}`,
-    onSelect: command.perform,
+    onSelect: () => {
+      if (!command.keepOpen) setOpen(false)
+      command.perform()
+    },
     content: <CommandRow command={command} />,
   })
 
@@ -423,16 +449,15 @@ function docsResults({
   }
 
   const sections = byId(index.sections)
-  const ranked = searchWithFallback(index.sectionsSearch, trimmed, {})
+  // Favour the edition being read without letting weak matches there bury strong ones elsewhere.
+  // (`edition` is stored as its label, since stored fields go through extractField.)
+  const currentLabel = edition ? EDITIONS[edition].label : null
+  const hits = searchWithFallback(index.sectionsSearch, trimmed, {
+    boostDocument: (_id, _term, stored) =>
+      currentLabel && stored?.edition === currentLabel ? EDITION_BOOST : 1,
+  })
     .map((result) => ({ section: sections.get(String(result.id)), terms: result.terms }))
     .filter((hit): hit is { section: SearchSection; terms: string[] } => Boolean(hit.section))
-  // Stable partition: the current edition's hits first, each part still in score order.
-  const hits = edition
-    ? [
-        ...ranked.filter((h) => h.section.edition === edition),
-        ...ranked.filter((h) => h.section.edition !== edition),
-      ]
-    : ranked
 
   const grouped = new Map<string, { section: SearchSection; terms: string[] }[]>()
   for (const hit of hits) {

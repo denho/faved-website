@@ -39,8 +39,8 @@ export interface Command {
   group: 'App' | 'Navigation' | 'Search' | 'This page' | 'Links'
   icon: ComponentType<SVGProps<SVGSVGElement>>
   keywords?: string
-  /** Key sequence, e.g. ['G', 'D'] — also works outside the palette. */
-  shortcut?: string[]
+  /** Keep the palette open after running (commands that switch the search scope). */
+  keepOpen?: boolean
   perform: () => void
 }
 
@@ -49,6 +49,8 @@ export interface CommandContext {
   openScope: (scope: SearchScope) => void
   isAuthed: boolean
   page: PageContext | null
+  /** Show a short confirmation after the palette closes, e.g. "Link copied". */
+  notify: (message: string) => void
 }
 
 export const COMMAND_GROUPS: Command['group'][] = [
@@ -77,9 +79,22 @@ const site = siteMetadata as unknown as Record<
 >
 
 const openExternal = (url: string) => window.open(url, '_blank', 'noopener,noreferrer')
-const copy = (text: string) => navigator.clipboard?.writeText(text)
 
-export function buildCommands({ navigate, openScope, isAuthed, page }: CommandContext): Command[] {
+export function buildCommands({
+  navigate,
+  openScope,
+  isAuthed,
+  page,
+  notify,
+}: CommandContext): Command[] {
+  const copy = (text: string, done: string) => {
+    if (!navigator.clipboard) return notify('Copying isn’t available in this browser')
+    navigator.clipboard.writeText(text).then(
+      () => notify(done),
+      () => notify('Couldn’t copy to the clipboard')
+    )
+  }
+
   const app: Command[] = isAuthed
     ? [
         {
@@ -126,7 +141,6 @@ export function buildCommands({ navigate, openScope, isAuthed, page }: CommandCo
       group: 'Navigation',
       icon: HouseIcon,
       keywords: 'homepage start landing',
-      shortcut: ['G', 'H'],
       perform: () => navigate('/'),
     },
     {
@@ -135,7 +149,6 @@ export function buildCommands({ navigate, openScope, isAuthed, page }: CommandCo
       group: 'Navigation',
       icon: SparklesIcon,
       keywords: 'product overview what',
-      shortcut: ['G', 'F'],
       perform: () => navigate('/#features'),
     },
     {
@@ -144,7 +157,6 @@ export function buildCommands({ navigate, openScope, isAuthed, page }: CommandCo
       group: 'Navigation',
       icon: CreditCardIcon,
       keywords: 'plans cost price cloud self-host team',
-      shortcut: ['G', 'P'],
       perform: () => navigate('/#pricing'),
     },
     {
@@ -153,7 +165,6 @@ export function buildCommands({ navigate, openScope, isAuthed, page }: CommandCo
       group: 'Navigation',
       icon: BookOpenIcon,
       keywords: 'documentation help guides manual cloud',
-      shortcut: ['G', 'D'],
       perform: () => navigate(EDITIONS.cloud.intro),
     },
     {
@@ -162,7 +173,6 @@ export function buildCommands({ navigate, openScope, isAuthed, page }: CommandCo
       group: 'Navigation',
       icon: ServerIcon,
       keywords: 'documentation help guides manual self-host docker',
-      shortcut: ['G', 'S'],
       perform: () => navigate(EDITIONS['self-hosted'].intro),
     },
     {
@@ -171,7 +181,6 @@ export function buildCommands({ navigate, openScope, isAuthed, page }: CommandCo
       group: 'Navigation',
       icon: NewspaperIcon,
       keywords: 'news articles posts updates announcements',
-      shortcut: ['G', 'B'],
       perform: () => navigate('/blog'),
     },
     {
@@ -180,7 +189,6 @@ export function buildCommands({ navigate, openScope, isAuthed, page }: CommandCo
       group: 'Navigation',
       icon: DownloadIcon,
       keywords: 'install self-host docker setup',
-      shortcut: ['G', 'I'],
       perform: () => navigate('/docs/getting-started/installation'),
     },
     {
@@ -189,7 +197,6 @@ export function buildCommands({ navigate, openScope, isAuthed, page }: CommandCo
       group: 'Navigation',
       icon: HistoryIcon,
       keywords: 'releases versions what is new',
-      shortcut: ['G', 'C'],
       perform: () => openExternal(site.changelogUrl),
     },
     {
@@ -198,6 +205,7 @@ export function buildCommands({ navigate, openScope, isAuthed, page }: CommandCo
       group: 'Search',
       icon: SearchIcon,
       keywords: 'docs help find',
+      keepOpen: true,
       perform: () => openScope('docs'),
     },
     {
@@ -206,6 +214,7 @@ export function buildCommands({ navigate, openScope, isAuthed, page }: CommandCo
       group: 'Search',
       icon: SearchIcon,
       keywords: 'posts articles find',
+      keepOpen: true,
       perform: () => openScope('blog'),
     },
   ]
@@ -219,7 +228,7 @@ export function buildCommands({ navigate, openScope, isAuthed, page }: CommandCo
         group: 'This page',
         icon: CopyIcon,
         keywords: 'clipboard md source',
-        perform: () => copy(page.rawContent),
+        perform: () => copy(page.rawContent, 'Page copied as Markdown'),
       },
       {
         id: 'page-ask-claude',
@@ -255,7 +264,7 @@ export function buildCommands({ navigate, openScope, isAuthed, page }: CommandCo
       group: 'This page',
       icon: LinkIcon,
       keywords: 'link share clipboard',
-      perform: () => copy(window.location.href),
+      perform: () => copy(window.location.href, 'Link copied'),
     },
     {
       id: 'github',

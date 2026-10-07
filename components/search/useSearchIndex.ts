@@ -3,9 +3,9 @@
 import { useEffect, useState } from 'react'
 import MiniSearch, { type SearchOptions, type SearchResult } from 'minisearch'
 import siteMetadata from '@/data/siteMetadata'
-import type { Edition } from '@/components/docs/editions'
+import { EDITIONS, type Edition } from '@/components/docs/editions'
 
-// Shape of public/search.json, written by scripts/search-index.mjs
+// Shape of public/search-index.json, written by scripts/search-index.mjs
 export interface SearchPage {
   id: string
   type: 'docs' | 'blog'
@@ -61,19 +61,34 @@ function loadIndex(): Promise<SearchIndex> {
         if (!res.ok) throw new Error(`Search index request failed (${res.status})`)
         return res.json()
       })
-      .then(({ pages, sections }: { pages: SearchPage[]; sections: SearchSection[] }) => {
+      .then((data: { pages?: unknown; sections?: unknown }) => {
+        if (!Array.isArray(data?.pages) || !Array.isArray(data?.sections)) {
+          throw new Error('Search index has an unexpected format')
+        }
+        const pages = data.pages as SearchPage[]
+        const sections = data.sections as SearchSection[]
+        // The edition's name ("Faved Cloud", "Self-hosted") is searchable, so typing it finds its pages.
+        const editionLabel = (edition: Edition | null) => (edition ? EDITIONS[edition].label : '')
+
         const pagesSearch = new MiniSearch<SearchPage>({
-          fields: ['title', 'description', 'tags'],
+          fields: ['title', 'description', 'tags', 'edition'],
           storeFields: ['id'],
-          extractField: (doc, field) =>
-            field === 'tags' ? doc.tags.join(' ') : (doc[field as keyof SearchPage] as string),
+          extractField: (doc, field) => {
+            if (field === 'tags') return doc.tags.join(' ')
+            if (field === 'edition') return editionLabel(doc.edition)
+            return doc[field as keyof SearchPage] as string
+          },
           searchOptions: { boost: { title: 3, tags: 1.5 } },
         })
         pagesSearch.addAll(pages)
 
         const sectionsSearch = new MiniSearch<SearchSection>({
-          fields: ['heading', 'pageTitle', 'text'],
-          storeFields: ['id'],
+          fields: ['heading', 'pageTitle', 'text', 'edition'],
+          storeFields: ['id', 'edition'],
+          extractField: (doc, field) =>
+            field === 'edition'
+              ? editionLabel(doc.edition)
+              : (doc[field as keyof SearchSection] as string),
           searchOptions: { boost: { heading: 3, pageTitle: 2 } },
         })
         sectionsSearch.addAll(sections)

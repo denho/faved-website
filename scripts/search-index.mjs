@@ -82,7 +82,7 @@ function docSections(doc) {
     if (node.type === 'heading') {
       const heading = toString(node)
       const anchor = slugger.slug(heading)
-      if (SECTION_DEPTHS.includes(node.depth)) {
+      if (SECTION_DEPTHS.includes(node.depth) && anchor) {
         sections.push({ heading, anchor, parts: [] })
         continue
       }
@@ -100,18 +100,19 @@ function docSections(doc) {
     }
   }
 
-  return sections
-    .map(({ heading, anchor, parts }) => ({
-      id: anchor ? `${doc.path}#${anchor}` : doc.path,
-      page: doc.path,
-      url: anchor ? `${baseUrl}#${anchor}` : baseUrl,
-      heading,
-      pageTitle: doc.title,
-      edition,
-      category,
-      text: clean(parts.join(' ')).slice(0, MAX_SECTION_TEXT),
-    }))
-    .filter((section) => section.text || section.id !== doc.path)
+  return sections.map(({ heading, anchor, parts }) => ({
+    id: anchor ? `${doc.path}#${anchor}` : doc.path,
+    page: doc.path,
+    url: anchor ? `${baseUrl}#${anchor}` : baseUrl,
+    heading,
+    pageTitle: doc.title,
+    edition,
+    category,
+    text: clean([anchor ? '' : doc.description || '', ...parts].join(' ')).slice(
+      0,
+      MAX_SECTION_TEXT
+    ),
+  }))
 }
 
 function pageEntry(doc) {
@@ -130,8 +131,10 @@ function pageEntry(doc) {
   }
 }
 
-export function buildSearchIndex({ allDocs, allBlogs, outFile, isProduction }) {
-  const published = (doc) => !isProduction || doc.draft !== true
+export function buildSearchIndex({ allDocs, allBlogs, outFile }) {
+  // Drafts are always left out: `yarn build` runs contentlayer before NODE_ENV=production is set,
+  // so an environment check would leak them into the deployed index.
+  const published = (doc) => doc.draft !== true
   const docs = allDocs.filter(published).sort((a, b) => (a.order ?? 999) - (b.order ?? 999))
   const blogs = allBlogs.filter(published).sort((a, b) => (a.date < b.date ? 1 : -1))
 

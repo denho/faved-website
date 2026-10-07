@@ -197,6 +197,10 @@ export default makeSource({
   onSuccess: async (importData) => {
     const { allBlogs, allDocs } = await importData()
     createTagCount(allBlogs)
-    buildSearchIndex({ allDocs, allBlogs, outFile: 'public/search.json', isProduction })
+    buildSearchIndex({
+      allDocs,
+      allBlogs,
+      outFile: `public/${path.basename(siteMetadata.searchIndexPath)}`,
+    })
   },
 })

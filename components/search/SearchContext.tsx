@@ -27,6 +27,8 @@ interface SearchContextValue {
   setQuery: (query: string) => void
   navigate: (url: string) => void
   setPage: (page: PageContext | null) => void
+  /** Return focus to whatever had it before the palette opened. */
+  restoreFocus: () => void
 }
 
 const SearchContext = createContext<SearchContextValue | null>(null)
@@ -54,16 +56,20 @@ export function scopeForPath(pathname: string): SearchScope {
   return 'global'
 }
 
-const SEQUENCE_TIMEOUT = 1000
+const isMac = () => /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent)
 
-function isTypingTarget(target: EventTarget | null) {
-  if (!(target instanceof HTMLElement)) return false
-  return (
-    target.isContentEditable ||
-    ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName) ||
-    target.closest('[role="dialog"]') !== null
-  )
+/** ⌘K on macOS, Ctrl+K elsewhere (Ctrl+K on a Mac is a text-editing shortcut). */
+function isPaletteShortcut(event: KeyboardEvent) {
+  if (typeof event.key !== 'string' || event.key.toLowerCase() !== 'k') return false
+  if (event.shiftKey || event.altKey) return false
+  return isMac() ? event.metaKey && !event.ctrlKey : event.ctrlKey && !event.metaKey
 }
+
+/** Another modal (e.g. the mobile navigation sheet) is open. */
+const otherDialogOpen = () =>
+  document.querySelector('[role="dialog"][data-state="open"]:not([data-search-palette])') !== null
+
+const TOAST_DURATION = 2000
 
 export function SearchProvider({ children }: { children: ReactNode }) {
   const router = useRouter()
@@ -74,10 +80,30 @@ export function SearchProvider({ children }: { children: ReactNode }) {
   const [page, setPage] = useState<PageContext | null>(null)
   const [isAuthed, setIsAuthed] = useState(false)
 
+  const [toast, setToast] = useState<string | null>(null)
+  const opener = useRef<HTMLElement | null>(null)
+
   const setOpen = useCallback((next: boolean) => {
+    if (next) {
+      // Remember the opener before the dialog moves focus into itself.
+      if (document.activeElement instanceof HTMLElement) opener.current = document.activeElement
+      setIsAuthed(getCookie('faved-logged-in') === '1')
+    }
     setOpenState(next)
-    if (next) setIsAuthed(getCookie('faved-logged-in') === '1')
   }, [])
+
+  const restoreFocus = useCallback(() => {
+    const element = opener.current
+    opener.current = null
+    if (element?.isConnected && element !== document.body) element.focus({ preventScroll: true })
+  }, [])
+
+  const notify = useCallback((message: string) => setToast(message), [])
+  useEffect(() => {
+    if (!toast) return
+    const timer = setTimeout(() => setToast(null), TOAST_DURATION)
+    return () => clearTimeout(timer)
+  }, [toast])
 
   const openSearch = useCallback(
     (nextScope: SearchScope = 'global', nextQuery = '') => {
@@ -107,59 +133,25 @@ export function SearchProvider({ children }: { children: ReactNode }) {
         },
         isAuthed,
         page,
+        notify,
       }),
-    [navigate, isAuthed, page]
+    [navigate, isAuthed, page, notify]
   )
 
-  // Keyboard: ⌘K / Ctrl+K toggles the palette (scoped to the current section), "/" opens the
-  // section search, and "G then <key>" runs navigation commands.
+  // ⌘K / Ctrl+K toggles the palette; on docs pages it opens straight into docs search.
   const sectionScope = scopeForPath(pathname)
-  const pending = useRef<{ key: string; at: number } | null>(null)
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
-      const key = event.key.toLowerCase()
-
-      if (key === 'k' && (event.metaKey || event.ctrlKey) && !event.altKey) {
-        event.preventDefault()
-        if (open) setOpenState(false)
-        else openSearch(sectionScope === 'docs' ? 'docs' : 'global')
-        return
-      }
-
-      if (open || event.metaKey || event.ctrlKey || event.altKey || isTypingTarget(event.target)) {
-        return
-      }
-
-      if (key === '/' && sectionScope !== 'global') {
-        event.preventDefault()
-        openSearch(sectionScope)
-        return
-      }
-
-      const now = Date.now()
-      const prev = pending.current
-      if (prev && now - prev.at < SEQUENCE_TIMEOUT) {
-        const command = commands.find(
-          (c) =>
-            c.shortcut?.length === 2 &&
-            c.shortcut[0].toLowerCase() === prev.key &&
-            c.shortcut[1].toLowerCase() === key
-        )
-        pending.current = null
-        if (command) {
-          event.preventDefault()
-          command.perform()
-          return
-        }
-      }
-      if (commands.some((c) => c.shortcut?.length === 2 && c.shortcut[0].toLowerCase() === key)) {
-        pending.current = { key, at: now }
-      }
+      if (event.defaultPrevented || !isPaletteShortcut(event)) return
+      if (!open && otherDialogOpen()) return
+      event.preventDefault()
+      if (open) setOpenState(false)
+      else openSearch(sectionScope === 'docs' ? 'docs' : 'global')
     }
 
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
-  }, [open, openSearch, sectionScope, commands])
+  }, [open, openSearch, sectionScope])
 
   useEffect(() => {
     prefetchSearchIndex()
@@ -177,14 +169,22 @@ export function SearchProvider({ children }: { children: ReactNode }) {
       setQuery,
       navigate,
       setPage,
+      restoreFocus,
     }),
-    [open, scope, query, commands, openSearch, setOpen, navigate]
+    [open, scope, query, commands, openSearch, setOpen, navigate, restoreFocus]
   )
 
   return (
     <SearchContext.Provider value={value}>
       {children}
       <CommandPalette />
+      <div
+        role="status"
+        aria-live="polite"
+        className={`bg-popover text-foreground border-border dark:border-border/15 pointer-events-none fixed bottom-6 left-1/2 z-[60] -translate-x-1/2 rounded-lg border px-4 py-2 text-sm shadow-lg transition-opacity duration-200 ${toast ? 'opacity-100' : 'opacity-0'}`}
+      >
+        {toast}
+      </div>
     </SearchContext.Provider>
   )
 }

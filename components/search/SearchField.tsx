@@ -18,12 +18,12 @@ const LABELS: Partial<Record<SearchScope, string>> = {
  */
 export default function SearchField({
   scope,
-  shortcut = '/',
+  shortcut,
   className,
 }: {
   scope: Exclude<SearchScope, 'global'>
-  /** Hint shown on the right: "/" or "mod+k" (rendered as ⌘K / Ctrl K). */
-  shortcut?: '/' | 'mod+k'
+  /** Show the ⌘K / Ctrl K hint (only where that shortcut opens this section's search). */
+  shortcut?: 'mod+k'
   className?: string
 }) {
   const { openSearch } = useSearch()
@@ -45,16 +45,12 @@ export default function SearchField({
     >
       <SearchIcon className="size-4 shrink-0" />
       <span className="flex-1 truncate text-left">{LABELS[scope]}</span>
-      <span className="hidden gap-1 md:flex">
-        {shortcut === '/' ? (
-          <Kbd>/</Kbd>
-        ) : (
-          <>
-            <Kbd>{isMac ? '⌘' : 'Ctrl'}</Kbd>
-            <Kbd>K</Kbd>
-          </>
-        )}
-      </span>
+      {shortcut === 'mod+k' && (
+        <span className="hidden gap-1 md:flex">
+          <Kbd>{isMac ? '⌘' : 'Ctrl'}</Kbd>
+          <Kbd>K</Kbd>
+        </span>
+      )}
     </button>
   )
 }
