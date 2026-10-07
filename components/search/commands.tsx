@@ -74,7 +74,7 @@ const Discord = filled(Brand.Discord)
 const X = filled(Brand.X)
 
 const site = siteMetadata as unknown as Record<
-  'appUrl' | 'cloudUrl' | 'demoUrl' | 'changelogUrl' | 'github' | 'discord' | 'x',
+  'appUrl' | 'cloudUrl' | 'changelogUrl' | 'github' | 'discord' | 'x',
   string
 >
 
@@ -127,14 +127,6 @@ export function buildCommands({
 
   const commands: Command[] = [
     ...app,
-    {
-      id: 'demo',
-      name: 'Open live demo',
-      group: 'App',
-      icon: MonitorPlayIcon,
-      keywords: 'try preview playground',
-      perform: () => openExternal(site.demoUrl),
-    },
     {
       id: 'go-home',
       name: 'Go to Home',
