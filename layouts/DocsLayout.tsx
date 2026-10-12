@@ -7,6 +7,8 @@ import type { Docs } from 'contentlayer/generated'
 import { usePathname } from 'next/navigation'
 import siteMetadata from '@/data/siteMetadata'
 import PageActions from '@/components/ui/page-actions'
+import SearchField from '@/components/search/SearchField'
+import { useRegisterPageContext } from '@/components/search/SearchContext'
 import { categoryOf, editionOf } from '@/components/docs/editions'
 import '../styles/prism.css'
 import {
@@ -60,6 +62,7 @@ export default function DocsLayout({ content, allDocs, rawContent, children }: D
         timeZone: 'UTC',
       })
     : null
+  useRegisterPageContext({ slug: content.slug, title, rawContent, editUrl })
   const pathname = usePathname()
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [collapsedSections, setCollapsedSections] = useState<Record<string, boolean>>({})
@@ -160,6 +163,7 @@ export default function DocsLayout({ content, allDocs, rawContent, children }: D
           className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} bg-background fixed top-28 left-0 z-40 h-[calc(100vh-7rem)] w-72 flex-shrink-0 overflow-y-auto pt-8 pb-4 transition-transform md:sticky md:top-28 md:h-auto md:max-h-[calc(100vh-7rem)] md:translate-x-0 md:self-start md:bg-transparent`}
         >
           <nav className="space-y-6 px-4 xl:pl-0">
+            <SearchField scope="docs" shortcut="mod+k" className="hidden md:flex" />
             {Object.entries(groupedDocs).map(([docCategory, docs]) => {
               const sectionKey = `${edition}:${docCategory}`
               const isCollapsed = !!collapsedSections[sectionKey]
@@ -216,6 +220,7 @@ export default function DocsLayout({ content, allDocs, rawContent, children }: D
         {/* Main content */}
         <div className="min-w-0 flex-1 px-4 py-8 md:px-8">
           <article className="mx-auto max-w-3xl">
+            <SearchField scope="docs" className="mb-5 md:hidden" />
             <nav aria-label="Breadcrumb" className="mb-4 md:hidden">
               <ol className="text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm">
                 {category && (

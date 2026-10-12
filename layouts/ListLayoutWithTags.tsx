@@ -8,6 +8,7 @@ import type { Blog } from 'contentlayer/generated'
 import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import PostListItem from '@/components/PostListItem'
+import SearchField from '@/components/search/SearchField'
 import tagData from 'app/tag-data.json'
 
 interface PaginationProps {
@@ -129,6 +130,7 @@ export default function ListLayoutWithTags({
         <p className="mt-3 text-lg leading-7 text-gray-500 dark:text-gray-400">
           {posts.length} {posts.length === 1 ? 'post' : 'posts'} tagged &ldquo;{title}&rdquo;
         </p>
+        <SearchField scope="blog" className="mt-6 max-w-sm" />
       </div>
       <TagNav />
       <ul className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -163,6 +165,7 @@ export function ListLayoutWithoutTags({
         {subheading && (
           <p className="mt-4 text-lg leading-7 text-gray-500 dark:text-gray-400">{subheading}</p>
         )}
+        <SearchField scope="blog" className="mt-6 max-w-sm" />
       </div>
       <TagNav />
       <ul className="divide-y divide-gray-200 dark:divide-gray-700">
