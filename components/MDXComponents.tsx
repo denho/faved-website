@@ -8,6 +8,7 @@ import Pre from './ui/pre'
 import { Steps, Step } from './ui/steps'
 import { CodeTabs, CodeTab } from './ui/code-tabs'
 import Screenshot from './ui/docs-screenshot'
+import CtaButton from './CtaButton'
 
 export const components: MDXComponents = {
   Image,
@@ -21,4 +22,5 @@ export const components: MDXComponents = {
   CodeTabs,
   CodeTab,
   Screenshot,
+  CtaButton,
 }

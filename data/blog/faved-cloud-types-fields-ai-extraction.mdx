@@ -1,16 +1,18 @@
 ---
-title: 'Faved Cloud now turns the pages you save into structured records'
+title: 'Faved now turns the pages you save into structured records'
 date: '2026-10-06'
 tags: ['Announcement']
 draft: false
-summary: 'Faved Cloud now saves more than a link. Give each page a type, such as a product, a recipe or a job posting, and Faved reads the page and fills in the details you care about, from price and brand to prep time and salary range. Then compare everything in a view made for that type.'
+summary: 'Faved now saves more than a link. Give each page a type, such as a product, a recipe or a job posting, and Faved reads the page and fills in the details you care about, from price and brand to prep time and salary range. Then compare everything in a view made for that type.'
 ---
 
 import siteMetadata from '@/data/siteMetadata'
 
 A bookmark tells you where something is. It doesn't tell you what you found there: the price of those headphones, how long the recipe takes, what the job pays. Until now you had to open the page again to find out.
 
-**Faved Cloud now turns the pages you save into structured records.** Every page gets a type, each type has its own fields, and Faved can read the page and fill those fields in for you.
+**Faved now turns the pages you save into structured records.** Every page gets a type, each type has its own fields, and Faved can read the page and fill those fields in for you.
+
+_Types, fields and Extract are available in [Faved Cloud](/docs/cloud/getting-started/introduction). Self-hosted Faved stays open source and free, and you can move a library between the two through export and import._
 
 ## Types and fields
 
@@ -57,7 +59,7 @@ Already have a library elsewhere? [Import](/docs/cloud/getting-started/importing
 
 ## Plans
 
-Faved Cloud comes with a **14-day free trial** of every feature and **50 AI credits** to try extraction on. No credit card is required.
+Every plan starts with a **14-day free trial** of every feature and **50 AI credits** to try extraction on. No credit card is required.
 
 - **Basic:** \$5 a month or \$48 a year, with 100 AI credits a month.
 - **Plus:** \$20 a month or \$192 a year, with 500 AI credits a month.
@@ -65,21 +67,10 @@ Faved Cloud comes with a **14-day free trial** of every feature and **50 AI cred
 
 One AI credit is one page put through the AI to fill your custom fields. Fetching a page's title, description and preview image, keeping its content, taking a screenshot and writing a summary are free. Records, fields and types are unlimited on every plan. See [Plans and AI credits](/docs/cloud/account/plans-and-ai-credits) for the details.
 
-## What about self-hosted Faved?
-
-The classic Faved bookmark manager stays open source and free to self-host. Types, fields and AI extraction live in Faved Cloud, and you can move a Cloud library to a self-hosted Faved through export and import at any time.
-
 ## Try it
 
-<div className="justify-left my-4 flex">
-  <a href={siteMetadata.cloudUrl}>
-    Start your free trial
-    <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
-      →
-    </span>
-  </a>
-</div>
+<CtaButton cta="blog-types-fields-launch" />
 
-New to the new Faved? The [Faved Cloud docs](/docs/cloud/getting-started/introduction) walk through everything above.
+New to the new Faved? The [docs](/docs/cloud/getting-started/introduction) walk through everything above.
 
 As always, feedback shapes what comes next. Reach out on <a href={siteMetadata.discord} target="_blank" rel="noopener">Discord</a> or at [hello@faved.to](mailto:hello@faved.to).
