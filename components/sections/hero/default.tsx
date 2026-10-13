@@ -54,7 +54,7 @@ export default function Hero({
   badge = (
     <Badge variant="outline" className="animate-appear">
       <span className="text-muted-foreground">New</span>
-      <a href="/#features" className="flex items-center gap-1">
+      <a href="/blog/faved-types-fields-ai-extraction" className="flex items-center gap-1">
         Types, fields and Extract are here
         <ArrowRightIcon className="size-3" />
       </a>
