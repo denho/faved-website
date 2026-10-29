@@ -51,7 +51,7 @@ const INTERNAL_REF_VALUES = new Set([
   'hero-cta',
   'pricing-basic',
   'pricing-plus',
-  'stats',
+  'social-proof',
   'navbar-get-started',
   'navbar-signin',
   'navbar-open-app',
@@ -61,6 +61,7 @@ const INTERNAL_REF_VALUES = new Set([
   'get-started-cta', // old closing CTA section
   'hero-badge', // old hero announcement badge
   'navbar', // navbar CTA before navbar-get-started
+  'stats', // old Cloud users stat in the social proof section
 ])
 
 // A referrer from our own site is navigation, not acquisition.

@@ -54,3 +54,6 @@ docker-compose.override.yml
 Dockerfile.dev.local
 ca-bundle.crt
 tsconfig.tsbuildinfo
+/public/docs/
+# generated og images (scripts/generate-og.mjs)
+/public/static/og/

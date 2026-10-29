@@ -47,9 +47,14 @@ interface NavigationProps {
 export default function Navigation({
   menuItems = [
     {
-      title: 'Blog',
+      title: 'Features',
       isLink: true,
-      href: '/blog',
+      href: '/#features',
+    },
+    {
+      title: 'Pricing',
+      isLink: true,
+      href: '/#pricing',
     },
     {
       title: 'Docs',
@@ -57,9 +62,19 @@ export default function Navigation({
       content: <DocsMenu />,
     },
     {
-      title: 'Pricing',
+      title: 'FAQ',
       isLink: true,
-      href: '/#pricing',
+      href: '/#faq',
+    },
+    {
+      title: 'Community',
+      isLink: true,
+      href: '/#community',
+    },
+    {
+      title: 'Blog',
+      isLink: true,
+      href: '/blog',
     },
   ],
 }: NavigationProps) {

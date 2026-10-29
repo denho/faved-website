@@ -59,8 +59,9 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
     answer: (
       <>
         <Answer>
-          One AI credit is one page put through the AI to fill your custom fields. Everything else is free and uncounted. Fetching page metadata (title, description and
-          preview image) and content, taking a screenshot and generating a summary cost nothing.
+          One AI credit is one page put through the AI to fill your custom fields. Everything else
+          is free and uncounted. Fetching page metadata (title, description and preview image) and
+          content, taking a screenshot and generating a summary cost nothing.
         </Answer>
       </>
     ),
@@ -228,8 +229,9 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
     answer: (
       <>
         <Answer>
-          Yes, always. Export your whole library at any time as a standard bookmarks HTML file. It imports into any browser, another bookmark
-          manager, or a free self-hosted Faved on your own machine.
+          Yes, always. Export your whole library at any time as a standard bookmarks HTML file. It
+          imports into any browser, another bookmark manager, or a free self-hosted Faved on your
+          own machine.
         </Answer>
         <Answer>
           Cancel anytime, with no minimum term and no fee. You keep access to the end of what you’ve
@@ -305,7 +307,7 @@ export default function FAQ({
   className,
 }: FAQProps) {
   return (
-    <Section className={className}>
+    <Section className={className} id="faq">
       <div className="max-w-container mx-auto flex flex-col items-center gap-12 sm:gap-20">
         <div className="flex flex-col items-center gap-4 text-center">
           <h2 className="text-3xl font-semibold sm:text-5xl">{title}</h2>

@@ -11,7 +11,7 @@ import siteMetadata from '@/data/siteMetadata'
 import { Button, buttonVariants } from '../../ui/button'
 import { Navbar as NavbarComponent, NavbarLeft, NavbarRight } from '../../ui/navbar'
 import Navigation from '../../ui/navigation'
-import { Sheet, SheetContent, SheetTrigger } from '../../ui/sheet'
+import { Sheet, SheetClose, SheetContent, SheetTrigger } from '../../ui/sheet'
 import GithubStars from '@/components/GithubStars'
 import BrandLogo from '@/components/ui/brand-logo'
 import Link from '@/components/Link'
@@ -48,8 +48,12 @@ export default function Navbar({
   homeUrl = '/',
   mobileLinks = [
     {
-      text: 'Blog',
-      href: '/blog',
+      text: 'Features',
+      href: '/#features',
+    },
+    {
+      text: 'Pricing',
+      href: '/#pricing',
     },
     {
       text: 'Docs',
@@ -60,8 +64,16 @@ export default function Navbar({
       ],
     },
     {
-      text: 'Pricing',
-      href: '/#pricing',
+      text: 'FAQ',
+      href: '/#faq',
+    },
+    {
+      text: 'Community',
+      href: '/#community',
+    },
+    {
+      text: 'Blog',
+      href: '/blog',
     },
     // {
     //   text: 'Discord',
@@ -183,33 +195,36 @@ export default function Navbar({
                           {link.text}
                         </span>
                         {link.children.map((child) => (
-                          <a
-                            key={child.href}
-                            href={child.href}
-                            aria-current={child.href === currentDocsHref ? 'page' : undefined}
-                            className={cn(
-                              'pl-4 text-base',
-                              child.href === currentDocsHref
-                                ? 'text-primary font-medium'
-                                : 'text-muted-foreground hover:text-foreground'
-                            )}
-                          >
-                            {child.text}
-                          </a>
+                          <SheetClose asChild key={child.href}>
+                            <a
+                              href={child.href}
+                              aria-current={child.href === currentDocsHref ? 'page' : undefined}
+                              className={cn(
+                                'pl-4 text-base',
+                                child.href === currentDocsHref
+                                  ? 'text-primary font-medium'
+                                  : 'text-muted-foreground hover:text-foreground'
+                              )}
+                            >
+                              {child.text}
+                            </a>
+                          </SheetClose>
                         ))}
                       </div>
                     ) : (
-                      <a
-                        key={index}
-                        href={link.href}
-                        className={
-                          isNavLinkActive(pathname, link.href)
-                            ? 'text-primary font-medium'
-                            : 'text-muted-foreground hover:text-foreground'
-                        }
-                      >
-                        {link.text}
-                      </a>
+                      // Close the sheet on tap, otherwise it stays open over same-page anchors
+                      <SheetClose asChild key={index}>
+                        <a
+                          href={link.href}
+                          className={
+                            isNavLinkActive(pathname, link.href)
+                              ? 'text-primary font-medium'
+                              : 'text-muted-foreground hover:text-foreground'
+                          }
+                        >
+                          {link.text}
+                        </a>
+                      </SheetClose>
                     )
                   )}
                 </nav>
