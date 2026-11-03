@@ -832,31 +832,31 @@ function ImportVisual() {
         <line x1="86" y1="23" x2="50" y2="50" stroke="rgba(0,98,255,.16)" strokeWidth="0.4" />
         <line x1="76" y1="72" x2="50" y2="50" stroke="rgba(0,98,255,.16)" strokeWidth="0.4" />
       </svg>
-      {brandNode('https://api.iconify.design/logos:chrome.svg', 'Chrome', {
+      {brandNode('https://api.iconify.design/logos/chrome.svg', 'Chrome', {
         left: '6%',
         top: '13%',
         transform: 'rotate(-9deg)',
       })}
-      {brandNode('https://api.iconify.design/logos:firefox.svg', 'Firefox', {
+      {brandNode('https://api.iconify.design/logos/firefox.svg', 'Firefox', {
         left: '22%',
         top: '4%',
         transform: 'rotate(6deg)',
         width: '46px',
         height: '46px',
       })}
-      {brandNode('https://api.iconify.design/logos:safari.svg', 'Safari', {
+      {brandNode('https://api.iconify.design/logos/safari.svg', 'Safari', {
         left: '7%',
         top: '60%',
         transform: 'rotate(8deg)',
         width: '46px',
         height: '46px',
       })}
-      {brandNode('https://api.iconify.design/logos:microsoft-edge.svg', 'Edge', {
+      {brandNode('https://api.iconify.design/logos/microsoft-edge.svg', 'Edge', {
         left: '79%',
         top: '11%',
         transform: 'rotate(11deg)',
       })}
-      {brandNode('https://api.iconify.design/simple-icons:pocket.svg?color=%23ef3f56', 'Pocket', {
+      {brandNode('https://api.iconify.design/simple-icons/pocket.svg?color=%23ef3f56', 'Pocket', {
         left: '68%',
         top: '58%',
         transform: 'rotate(-7deg)',
