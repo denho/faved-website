@@ -800,10 +800,6 @@ function SearchVisual() {
 }
 
 /* Card 7 — import & migration */
-// Self-hosted copies of the Iconify `logos` / `simple-icons` sets, so the card
-// never depends on a third-party request (or its URL format) to render.
-const brandSrc = (name: string) => `${process.env.BASE_PATH || ''}/static/images/brands/${name}.svg`
-
 function ImportVisual() {
   const brandNode = (src: string, alt: string, style: CSSProperties) => (
     <div
@@ -836,31 +832,31 @@ function ImportVisual() {
         <line x1="86" y1="23" x2="50" y2="50" stroke="rgba(0,98,255,.16)" strokeWidth="0.4" />
         <line x1="76" y1="72" x2="50" y2="50" stroke="rgba(0,98,255,.16)" strokeWidth="0.4" />
       </svg>
-      {brandNode(brandSrc('chrome'), 'Chrome', {
+      {brandNode('https://api.iconify.design/logos:chrome.svg', 'Chrome', {
         left: '6%',
         top: '13%',
         transform: 'rotate(-9deg)',
       })}
-      {brandNode(brandSrc('firefox'), 'Firefox', {
+      {brandNode('https://api.iconify.design/logos:firefox.svg', 'Firefox', {
         left: '22%',
         top: '4%',
         transform: 'rotate(6deg)',
         width: '46px',
         height: '46px',
       })}
-      {brandNode(brandSrc('safari'), 'Safari', {
+      {brandNode('https://api.iconify.design/logos:safari.svg', 'Safari', {
         left: '7%',
         top: '60%',
         transform: 'rotate(8deg)',
         width: '46px',
         height: '46px',
       })}
-      {brandNode(brandSrc('microsoft-edge'), 'Edge', {
+      {brandNode('https://api.iconify.design/logos:microsoft-edge.svg', 'Edge', {
         left: '79%',
         top: '11%',
         transform: 'rotate(11deg)',
       })}
-      {brandNode(brandSrc('pocket'), 'Pocket', {
+      {brandNode('https://api.iconify.design/simple-icons:pocket.svg?color=%23ef3f56', 'Pocket', {
         left: '68%',
         top: '58%',
         transform: 'rotate(-7deg)',
@@ -1224,6 +1220,7 @@ export default function AppFeatures({
             {showMockups && <ExtractVisual />}
           </FeatureCard>
 
+
           <FeatureCard
             title="Capture from anywhere"
             description="Save any web page in one click with the Chrome extension, a lightweight bookmarklet, or the Share menu on Apple and Android."
@@ -1256,6 +1253,7 @@ export default function AppFeatures({
             {showMockups && <ReaderVisual />}
           </FeatureCard>
 
+
           <FeatureCard
             title="Full-text search and filters"
             description="Full-text search as you type, page content included, then narrow by any field: option picks, number and date ranges, text matches, even the link’s domain."
@@ -1271,6 +1269,7 @@ export default function AppFeatures({
           >
             {showMockups && <PhoneVisual />}
           </FeatureCard>
+
 
           <FeatureCard
             title="Bring your whole library"

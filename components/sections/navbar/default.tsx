@@ -52,10 +52,6 @@ export default function Navbar({
       href: '/#features',
     },
     {
-      text: 'Use cases',
-      href: '/use-cases',
-    },
-    {
       text: 'Pricing',
       href: '/#pricing',
     },

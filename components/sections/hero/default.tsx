@@ -70,7 +70,7 @@ export default function Hero({
   className,
 }: HeroProps) {
   return (
-    <Section className={cn('fade-bottom overflow-hidden pb-0 sm:pb-0 md:pb-0', className)}>
+    <Section className={cn('overflow-hidden pb-16 sm:pb-20 md:pb-24', className)}>
       <div className="max-w-container mx-auto flex flex-col gap-12 pt-10 sm:gap-24">
         <div className="flex flex-col items-center gap-6 text-center sm:gap-12">
           {badge !== false && badge}

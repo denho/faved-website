@@ -5,7 +5,6 @@ import { Footer, FooterBottom, FooterColumn, FooterContent } from '../../ui/foot
 import BrandLogo from '../../ui/brand-logo'
 import siteMetadata from '@/data/siteMetadata'
 import SocialIcon from '@/components/social-icons'
-import { useCases } from '@/data/use-cases'
 
 interface FooterLink {
   text: string
@@ -37,10 +36,6 @@ export default function FooterSection({
       ],
     },
     {
-      title: 'Use cases',
-      links: useCases.map((u) => ({ text: u.label, href: `/use-cases/${u.slug}` })),
-    },
-    {
       title: 'Connect',
       links: [
         { text: 'Blog', href: '/blog' },
@@ -61,7 +56,7 @@ export default function FooterSection({
     <footer className={cn('bg-background w-full px-4', className)}>
       <div className="max-w-container mx-auto">
         <Footer className="mb-10">
-          <FooterContent className="md:grid-cols-5">
+          <FooterContent>
             <FooterColumn className="col-span-1 space-y-3 md:col-span-2">
               <BrandLogo />
               <div className="text-muted-foreground space-y-2 text-sm">Save. Extract. Own.</div>
