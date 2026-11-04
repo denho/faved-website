@@ -10,7 +10,7 @@ import { Badge } from '../../ui/badge'
 import { Button, buttonVariants } from '../../ui/button'
 import Glow from '../../ui/glow'
 import { Mockup, MockupFrame } from '../../ui/mockup'
-import Screenshot from '../../ui/screenshot'
+import HeroVideo from '../../ui/hero-video'
 import { Section } from '../../ui/section'
 
 interface HeroButtonProps {
@@ -40,14 +40,13 @@ export default function Hero({
     </>
   ),
   mockup = (
-    <Screenshot
-      srcLight="/static/images/screenshot-list-desktop.png"
-      srcDark="/static/images/screenshot-list-desktop.png"
-      alt="Faved application screenshot"
-      width={3204}
-      height={1854}
+    <HeroVideo
+      src="/static/videos/hero/save-and-extract.mp4"
+      poster="/static/videos/hero/save-and-extract-poster.jpg"
+      alt="Saving a product page in Faved: the Product type is picked and Extract fills in its name, price, brand, rating and availability"
+      width={1536}
+      height={1080}
       className="w-full"
-      preload
       sizes="(max-width: 1280px) 100vw, 1280px"
     />
   ),
