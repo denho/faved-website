@@ -10,7 +10,7 @@ import { Badge } from '../../ui/badge'
 import { Button, buttonVariants } from '../../ui/button'
 import Glow from '../../ui/glow'
 import { Mockup, MockupFrame } from '../../ui/mockup'
-import Screenshot from '../../ui/screenshot'
+import HeroVideo from '../../ui/hero-video'
 import { Section } from '../../ui/section'
 
 interface HeroButtonProps {
@@ -40,14 +40,13 @@ export default function Hero({
     </>
   ),
   mockup = (
-    <Screenshot
-      srcLight="/static/images/screenshot-list-desktop.png"
-      srcDark="/static/images/screenshot-list-desktop.png"
-      alt="Faved application screenshot"
-      width={3204}
-      height={1854}
+    <HeroVideo
+      src="/static/videos/hero/save-extract-compare.mp4"
+      poster="/static/videos/hero/save-extract-compare-poster.jpg"
+      alt="Saving a Sonos product page in Faved: Extract fills in its name, price, brand, rating and review count, then the Product table is filtered to in-stock headphones at most 450, sorted by rating and shown as cards"
+      width={1536}
+      height={1080}
       className="w-full"
-      preload
       sizes="(max-width: 1280px) 100vw, 1280px"
     />
   ),
@@ -71,7 +70,7 @@ export default function Hero({
   className,
 }: HeroProps) {
   return (
-    <Section className={cn('fade-bottom overflow-hidden pb-0 sm:pb-0 md:pb-0', className)}>
+    <Section className={cn('overflow-hidden pb-16 sm:pb-20 md:pb-24', className)}>
       <div className="max-w-container mx-auto flex flex-col gap-12 pt-10 sm:gap-24">
         <div className="flex flex-col items-center gap-6 text-center sm:gap-12">
           {badge !== false && badge}
