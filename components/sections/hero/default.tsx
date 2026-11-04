@@ -43,7 +43,7 @@ export default function Hero({
     <HeroVideo
       src="/static/videos/hero/save-extract-compare.mp4"
       poster="/static/videos/hero/save-extract-compare-poster.jpg"
-      alt="Saving a Sonos product page in Faved: Extract fills in its name, price, brand, rating and review count, then the Product table is filtered to headphones under 450, sorted by rating and shown as cards"
+      alt="Saving a Sonos product page in Faved: Extract fills in its name, price, brand, rating and review count, then the Product table is filtered to in-stock headphones at most 450, sorted by rating and shown as cards"
       width={1536}
       height={1080}
       className="w-full"
