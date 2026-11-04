@@ -41,9 +41,9 @@ export default function Hero({
   ),
   mockup = (
     <HeroVideo
-      src="/static/videos/hero/save-and-extract.mp4"
-      poster="/static/videos/hero/save-and-extract-poster.jpg"
-      alt="Saving a product page in Faved: the Product type is picked and Extract fills in its name, price, brand, rating and availability"
+      src="/static/videos/hero/save-extract-compare.mp4"
+      poster="/static/videos/hero/save-extract-compare-poster.jpg"
+      alt="Saving a Sonos product page in Faved: Extract fills in its name, price, brand, rating and review count, then the Product table compares it with three other headphones by price"
       width={1536}
       height={1080}
       className="w-full"
