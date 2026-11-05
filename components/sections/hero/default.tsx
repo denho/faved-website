@@ -11,6 +11,7 @@ import { Button, buttonVariants } from '../../ui/button'
 import Glow from '../../ui/glow'
 import HeroVideo from '../../ui/hero-video'
 import { Section } from '../../ui/section'
+import VideoStage from '../../ui/video-stage'
 
 interface HeroButtonProps {
   href: string
@@ -94,10 +95,9 @@ export default function Hero({
           )}
           {mockup !== false && (
             <div className="relative w-full pt-12">
-              {/* No frame: the clip sits on the page on its own */}
-              <div className="animate-appear relative z-10 overflow-hidden rounded-xl opacity-0 shadow-2xl delay-700">
+              <VideoStage className="animate-appear relative z-10 opacity-0 delay-700">
                 {mockup}
-              </div>
+              </VideoStage>
               <Glow variant="top" className="animate-appear-zoom opacity-0 delay-1000" />
             </div>
           )}
