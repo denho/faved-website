@@ -7,6 +7,7 @@ import { ReactNode } from 'react'
 
 import { cn, isNavLinkActive } from '@/components/lib/utils'
 import { EDITIONS, editionOfPath } from '@/components/docs/editions'
+import { useCases } from '@/data/use-cases'
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -50,6 +51,11 @@ export default function Navigation({
       title: 'Features',
       isLink: true,
       href: '/#features',
+    },
+    {
+      title: 'Use cases',
+      href: '/use-cases',
+      content: <UseCasesMenu />,
     },
     {
       title: 'Pricing',
@@ -113,6 +119,29 @@ export default function Navigation({
         ))}
       </NavigationMenuList>
     </NavigationMenu>
+  )
+}
+
+/** The Use cases dropdown: one entry per preset type's landing page. */
+function UseCasesMenu() {
+  const pathname = usePathname()
+
+  return (
+    <ul className="grid w-[520px] gap-3 p-4 md:grid-cols-2">
+      {useCases.map((u) => (
+        <ListItem
+          key={u.slug}
+          href={`/use-cases/${u.slug}`}
+          title={u.label}
+          active={pathname === `/use-cases/${u.slug}`}
+        >
+          {u.blurb}
+        </ListItem>
+      ))}
+      <ListItem href="/use-cases" title="All use cases" active={pathname === '/use-cases'}>
+        Start from a preset type, or build your own
+      </ListItem>
+    </ul>
   )
 }
 
