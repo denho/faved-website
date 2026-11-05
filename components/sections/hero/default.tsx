@@ -9,7 +9,6 @@ import { cn } from '@/components/lib/utils'
 import { Badge } from '../../ui/badge'
 import { Button, buttonVariants } from '../../ui/button'
 import Glow from '../../ui/glow'
-import { Mockup, MockupFrame } from '../../ui/mockup'
 import HeroVideo from '../../ui/hero-video'
 import { Section } from '../../ui/section'
 
@@ -95,11 +94,10 @@ export default function Hero({
           )}
           {mockup !== false && (
             <div className="relative w-full pt-12">
-              <MockupFrame className="animate-appear opacity-0 delay-700" size="small">
-                <Mockup type="responsive" className="bg-background/90 w-full rounded-xl border-0">
-                  {mockup}
-                </Mockup>
-              </MockupFrame>
+              {/* No frame: the clip sits on the page on its own */}
+              <div className="animate-appear relative z-10 overflow-hidden rounded-xl opacity-0 shadow-2xl delay-700">
+                {mockup}
+              </div>
               <Glow variant="top" className="animate-appear-zoom opacity-0 delay-1000" />
             </div>
           )}
