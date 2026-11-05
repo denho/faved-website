@@ -10,12 +10,15 @@ import { Section } from '../../ui/section'
 interface ClosingCtaProps {
   title?: string
   description?: string
+  /** Placement recorded in the `cta` param of the signup link. */
+  cta?: string
   className?: string
 }
 
 export default function ClosingCta({
   title = 'Ready to give your bookmarks structure?',
   description = 'Start your 14-day free trial in under 60 seconds — no credit card required.',
+  cta = 'closing-cta',
   className,
 }: ClosingCtaProps) {
   return (
@@ -29,7 +32,7 @@ export default function ClosingCta({
         </p>
         <div className="flex flex-col items-center gap-4">
           <Button variant="default" size="lg" asChild>
-            <a href={`${siteConfig.cloudUrl}?cta=closing-cta`}>
+            <a href={`${siteConfig.cloudUrl}?cta=${cta}`}>
               <ArrowRightIcon className="mr-2 size-4" />
               Try for free
             </a>
