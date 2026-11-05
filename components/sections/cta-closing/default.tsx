@@ -15,7 +15,7 @@ interface ClosingCtaProps {
 
 export default function ClosingCta({
   title = 'Ready to give your bookmarks structure?',
-  description = 'Start your 14-day free trial in under 60 seconds — no credit card required.',
+  description = 'Start your 14-day free trial in under 60 seconds. No credit card required.',
   className,
 }: ClosingCtaProps) {
   return (
@@ -35,11 +35,11 @@ export default function ClosingCta({
             </a>
           </Button>
           <p className="text-muted-foreground mt-4 text-sm">
-            <span className="font-semibold"> Prefer self-hosting?</span> Read the{' '}
+            <span className="font-semibold">Prefer self-hosting?</span> Read the{' '}
             <a href="/docs/getting-started/installation" className="text-foreground underline">
               guide
             </a>{' '}
-            to get started
+            to get started.
           </p>
         </div>
       </div>

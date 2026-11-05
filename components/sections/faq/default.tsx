@@ -36,7 +36,7 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
           Add presets such as Product, Recipe, Job posting, Real estate listing, Article and Event,
           or define your own. Fields can also be global, so every record has them whatever its type.
           Each type keeps its own columns, filters and layout, so a list of products looks like a
-          catalogue and a list of recipes looks like a cookbook. Records, fields and types are
+          catalog and a list of recipes looks like a cookbook. Records, fields and types are
           unlimited on every plan.
         </Answer>
       </>
@@ -48,7 +48,7 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
       <>
         <Answer>
           Extract reads a page and fills in the fields you picked. It can also write an AI summary,
-          keep the page content as clean Markdown, and take a screenshot. Select fields are matched
+          keep the page content as clean Markdown and take a screenshot. Select fields are matched
           to the options you already have, never invented.
         </Answer>
       </>
@@ -71,11 +71,11 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
     answer: (
       <>
         <Answer>
-          AI extraction pauses until your credits renew, or on a trial, until you subscribe.
+          AI extraction pauses until your credits renew or, on a trial, until you subscribe.
           Everything else keeps working.
         </Answer>
         <Answer>
-          Need more sooner? On a paid plan, top up any time: 100 AI credits for $5, or 500 for $20.
+          Need more sooner? On a paid plan, top up anytime: 100 AI credits for $5, or 500 for $20.
           They never expire and are used once the month’s allowance is spent.
         </Answer>
       </>
@@ -102,8 +102,8 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
           with no limits on how much you save.
         </Answer>
         <Answer>
-          Faved Cloud, with types, fields, AI extraction and hosting, backups and support included,
-          starts at $5 a month, $48 a year, or $120 once for lifetime access.
+          Faved Cloud adds types, fields and AI extraction, with hosting, backups and support
+          included. It starts at $5 a month, $48 a year or $120 once for lifetime access.
         </Answer>
       </>
     ),
@@ -114,19 +114,19 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
       <>
         <Answer>
           Basic, paid once: 100 AI credits every month for as long as Faved Cloud exists, top-ups
-          whenever you like, and no subscription to manage. If Faved Cloud ever closes you’ll get
+          whenever you like and no subscription to manage. If Faved Cloud ever closes, you’ll get
           plenty of notice and can move your export to the free self-hosted version.
         </Answer>
       </>
     ),
   },
   {
-    question: "What's the difference between self-hosted and Faved Cloud?",
+    question: 'What’s the difference between self-hosted and Faved Cloud?',
     answer: (
       <>
         <Answer>
           Faved Cloud is where the new features live today: types, fields, views and AI extraction,
-          along with hosting, encryption, daily backups and updates, and email support.
+          along with hosting, encryption, daily backups, updates and email support.
         </Answer>
         <Answer>
           The self-hosted version is the classic bookmark manager: nested tags, instant search,
@@ -143,7 +143,7 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
       <>
         <Answer>
           Yes. Records, fields and types have no plan limit. Fair usage applies: Faved is for your
-          own library, so a few ceilings stop it being used as a bulk scraper.
+          own library, so a few ceilings keep it from being used as a bulk scraper.
         </Answer>
         <ul className="text-muted-foreground mb-4 list-disc space-y-1 pl-5 text-balance">
           <li>
@@ -164,7 +164,7 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
     answer: (
       <>
         <Answer>
-          Yes. Faved imports bookmarks from any browser, including Chrome, Safari, Firefox, and
+          Yes. Faved imports bookmarks from any browser, including Chrome, Safari, Firefox and
           Edge, and turns your folders into nested tags automatically.
         </Answer>
         <Answer>
@@ -189,7 +189,7 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
           </a>{' '}
           and save the current page in one click. Everywhere else, use the bookmarklet in any
           desktop or mobile browser, or send a page straight to Faved from the Share menu on iPhone,
-          iPad, Mac, and Android.
+          iPad, Mac and Android.
         </Answer>
         <Answer>
           Every save form has an Extract row: pick the fields to fill and extract right away, or
@@ -202,9 +202,8 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
     question: 'Can I use Faved on my phone?',
     answer: (
       <Answer>
-        Yes. Faved is fully responsive across mobile, tablet, and desktop. It’s also a PWA, so you
-        can install it to your home screen for an app-like experience, with no separate app download
-        required.
+        Yes. Faved works in any mobile browser. It’s also a PWA, so you can add it to your home
+        screen and open it like an app, with nothing to download from an app store.
       </Answer>
     ),
   },
@@ -218,25 +217,25 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
           it came from.
         </Answer>
         <Answer>
-          When you self-host the classic version, your bookmarks live entirely on your own
-          infrastructure: no tracking, no third parties, nothing leaves your control.
+          When you self-host the classic version, your bookmarks stay on your own server, with no
+          tracking and no third parties.
         </Answer>
       </>
     ),
   },
   {
-    question: 'Can I take my records with me, cancel, or get a refund?',
+    question: 'Can I take my records with me, cancel or get a refund?',
     answer: (
       <>
         <Answer>
           Yes, always. Export your whole library at any time as a standard bookmarks HTML file. It
-          imports into any browser, another bookmark manager, or a free self-hosted Faved on your
+          imports into any browser, another bookmark manager or a free self-hosted Faved on your
           own machine.
         </Answer>
         <Answer>
           Cancel anytime, with no minimum term and no fee. You keep access to the end of what you’ve
-          paid for, and we keep your records after that, for whenever you come back. Refunds within
-          14 days on monthly, 30 on yearly and lifetime.
+          paid for, and we keep your records after that, for whenever you come back. Refunds are
+          available within 14 days on monthly plans, and 30 days on yearly and lifetime.
         </Answer>
       </>
     ),
@@ -260,9 +259,8 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
     question: 'Do you provide technical support?',
     answer: (
       <>
-        <Answer>Yes, we provide dedicated support via email for Cloud plans.</Answer>
         <Answer>
-          A person reads every email, so you get the most accurate and helpful assistance.
+          Yes. All paid plans include support by email, and a person reads and answers every one.
         </Answer>
       </>
     ),
@@ -301,8 +299,8 @@ const DEFAULT_ITEMS: FAQItemProps[] = [
 ]
 
 export default function FAQ({
-  title = 'Questions and Answers',
-  description = 'Everything you need to know about records, Extract, AI credits, and getting started.',
+  title = 'Questions and answers',
+  description = 'Records, Extract, AI credits, billing and getting started.',
   items = DEFAULT_ITEMS,
   className,
 }: FAQProps) {

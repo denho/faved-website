@@ -198,7 +198,7 @@ function PraiseCard({ item }: { item: Praise }) {
 }
 
 export default function SocialProof({
-  title = 'Join a community of organized, productive people',
+  title = 'What people say about Faved',
   description = 'Why do people stick with Faved? We asked the internet.',
   items = DEFAULT_PRAISE,
   className,

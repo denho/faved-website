@@ -37,7 +37,7 @@ const CREDITS_NOTE = 'for AI extraction of data from web pages into your custom 
  */
 const BASIC_FEATURES: ReactNode[] = [
   'Fetching page metadata and content, taking a screenshot and generating a summary are free: no credits',
-  'Unlimited records, fields and types, fair usage applies',
+  'Unlimited records, fields and types (fair usage applies)',
   'Web archive: page content and screenshots',
   'Full-text search',
   'Priority support by email',
@@ -50,7 +50,7 @@ const BASIC_FEATURES: ReactNode[] = [
  */
 const SHARED_FEATURES: { text: string; icon?: ReactNode }[] = [
   {
-    text: 'Top up any time: 100 AI credits for $5, 500 for $20. They never expire',
+    text: 'Top up anytime: 100 AI credits for $5, 500 for $20. They never expire',
     icon: <Sparkles className="text-credit size-4 shrink-0" />,
   },
   { text: 'Custom record types and fields' },
@@ -60,7 +60,7 @@ const SHARED_FEATURES: { text: string; icon?: ReactNode }[] = [
     text: 'Capture from any browser or phone: Chrome extension, bookmarklet, Apple Shortcuts, Android share',
   },
   { text: 'Import and export: browsers, Raindrop.io, Pocket and bookmarks HTML' },
-  { text: 'Lightning-fast access from anywhere, on any device' },
+  { text: 'Web app for desktop and mobile, installable as a PWA' },
   { text: 'Daily backups' },
 ]
 
@@ -137,7 +137,7 @@ const DEFAULT_PRICING_PLANS: PricingPlan[] = [
     features: [
       'Everything in Plus',
       'Multi-user access',
-      'Single Sign-On (SSO)',
+      'Single sign-on (SSO)',
       'User management',
       'Customizable branding',
       'Priority support',
@@ -155,8 +155,8 @@ const yearlySavings = (monthlyPrice: number, yearlyPrice: number) =>
   Math.round((1 - yearlyPrice / (monthlyPrice * 12)) * 100)
 
 export default function Pricing({
-  title = 'Simple, flexible pricing',
-  description = 'Unlimited records, fields and types on every plan. Pay only for AI extraction; everything else is free. Start with a 14-day free trial.',
+  title = 'Pricing',
+  description = 'Unlimited records, fields and types on every plan. You only pay for AI extraction. Try it free for 14 days.',
   plans = DEFAULT_PRICING_PLANS as PricingPlan[],
   className = '',
 }: PricingProps) {

@@ -30,7 +30,7 @@ export const DEFAULT_STATS: StatItemProps[] = [
   {
     label: 'image pulls',
     value: formatToThousands(siteMetadata.stats.dockerHubPulls as number) + 'k+',
-    description: 'from DockerHub ',
+    description: 'from Docker Hub ',
     href: siteMetadata.dockerHub,
   },
 ]

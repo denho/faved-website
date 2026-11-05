@@ -28,33 +28,33 @@ export default function Items({
   title = 'The little things that add up',
   items = [
     {
-      title: 'Powerful UI without Clutter',
+      title: 'Everything one click away',
       description:
-        'Multiple layouts (card, list, table), flexible sorting, customizable sidebar and filters. All major actions are one click away with no need to navigate between screens.',
+        'Card, list and table layouts, any sort order, plus a sidebar and filters you arrange yourself. Common actions happen on the same screen, in one click.',
       icon: <FontAwesomeIcon icon={faBolt} className="size-5 stroke-1" />,
     },
     {
       title: 'Views per type',
       description:
-        'Customize how each record type appears in card, list, and table layouts. Your preferences persist across views.',
+        'Customize how each record type appears in card, list and table layouts. Your preferences persist across views.',
       icon: <FontAwesomeIcon icon={faLayerGroup} className="size-5 stroke-1" />,
     },
     {
       title: 'Activity log',
       description:
-        'Every extraction is recorded: what it asked for, what it cost, and anything that went wrong. Bulk runs show their progress right in the sidebar.',
+        'Every extraction is recorded: what it asked for, what it cost and anything that went wrong. Bulk runs show their progress right in the sidebar.',
       icon: <FontAwesomeIcon icon={faListCheck} className="size-5 stroke-1" />,
     },
     {
       title: 'Bulk actions',
       description:
-        'Select records to extract data from their linked web pages, edit their field values, or delete them in one go.',
+        'Select records to extract data from their linked web pages, edit their field values or delete them in one go.',
       icon: <FontAwesomeIcon icon={faSliders} className="size-5 stroke-1" />,
     },
     {
       title: 'Light and dark mode',
       description:
-        'Automatically syncs with your system theme for a comfortable viewing experience in any lighting condition.',
+        'Follows your system’s light or dark setting automatically.',
       icon: <EclipseIcon className="size-5 stroke-1" />,
     },
     {

@@ -1199,15 +1199,14 @@ export default function AppFeatures({
         <header className="relative mx-auto mb-12 flex flex-col items-center gap-4 text-center sm:mb-20">
           <h2 className="text-3xl font-semibold sm:text-5xl">A library that knows what it saved</h2>
           <p className="text-muted-foreground text-md max-w-[640px] text-balance sm:text-xl">
-            Every record has a type, every type has fields, and Faved fills them from the page — so
-            your library reads like a database, not a list of links.
+            Every record has a type, and every type has fields, which Faved fills in from the page.
           </p>
         </header>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
           <FeatureCard
-            title="Types and fields, not just folders"
-            description="Start from a preset — Product, Article, Recipe, Job posting, Real estate, Event — or define your own type with text, number, date, link, select and checkbox fields."
+            title="Give every page a type"
+            description="Start from a preset (Product, Article, Recipe, Job posting, Real estate, Event) or define your own type with text, number, date, link, select and checkbox fields."
             className="lg:col-span-4"
           >
             {showMockups && <TypesVisual />}
@@ -1223,23 +1222,23 @@ export default function AppFeatures({
 
           <FeatureCard
             title="Capture from anywhere"
-            description="Save any web page in one click with the Chrome extension, a lightweight bookmarklet, or the Share menu on Apple and Android."
+            description="Save any web page in one click with the Chrome extension, a lightweight bookmarklet or the Share menu on Apple and Android."
             className="lg:col-span-2"
           >
             {showMockups && <CaptureVisual />}
           </FeatureCard>
 
           <FeatureCard
-            title="Duplicates detection"
-            description="Faved detects duplicate records as you save, helping you keep your library clean."
+            title="Duplicate detection"
+            description="Faved tells you when a page is already in your library, before you save it twice."
             className="lg:col-span-2"
           >
             {showMockups && <DuplicatesVisual />}
           </FeatureCard>
 
           <FeatureCard
-            title="Advanced tagging system"
-            description="Organize records with nested tags for structured grouping. Customize tags with colors, and pin the frequently used ones for quick access."
+            title="Nested tags"
+            description="Nest tags as deep as you like, give them colors and pin the ones you use most to the top of the sidebar."
             className="lg:col-span-2"
           >
             {showMockups && <TagsVisual />}
@@ -1264,7 +1263,7 @@ export default function AppFeatures({
 
           <FeatureCard
             title="Works on any device"
-            description="Fully responsive across mobile, tablet, and desktop. Installable as a PWA for a faster, native app-like experience."
+            description="Works on phones, tablets and desktops. Install it to your home screen as a PWA and it opens like a native app."
             className="lg:col-span-2"
           >
             {showMockups && <PhoneVisual />}
@@ -1273,7 +1272,7 @@ export default function AppFeatures({
 
           <FeatureCard
             title="Bring your whole library"
-            description="Import from Chrome, Safari, Firefox, and Edge with the full folder structure preserved, or migrate from Raindrop and Pocket keeping tags and collections."
+            description="Import from Chrome, Safari, Firefox and Edge with the full folder structure preserved, or migrate from Raindrop.io and Pocket, keeping tags and collections."
             className="lg:col-span-3"
           >
             {showMockups && <ImportVisual />}

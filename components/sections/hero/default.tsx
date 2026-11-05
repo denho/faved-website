@@ -31,12 +31,11 @@ interface HeroProps {
 }
 
 export default function Hero({
-  title = 'Save any page. Extract what matters.',
+  title = 'Turn your bookmarks into a database',
   description = (
     <>
-      Faved is a bookmark manager that turns web pages into structured records. Give a page a type,
-      such as product, recipe, job posting, or your own, and Faved’s AI fills in its fields straight
-      from the page.
+      With Faved, any web page becomes a structured record with fields you can search, filter and
+      sort by. The AI reads the page, finds each detail and puts it in the right field.
     </>
   ),
   mockup = (
